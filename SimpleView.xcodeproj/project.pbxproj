@@ -15,6 +15,9 @@
 		CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE55BE571CBBC2F600D8364B /* LaunchScreen.storyboard */; };
 		CE55BE641CBBC2F600D8364B /* SimpleViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE631CBBC2F600D8364B /* SimpleViewTests.m */; };
 		CE55BE6F1CBBC2F600D8364B /* SimpleViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE6E1CBBC2F600D8364B /* SimpleViewUITests.m */; };
+		CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */; };
+		CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */; };
+		CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE891CBBD09600D8364B /* NSObject+Block.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		CE55BE6A1CBBC2F600D8364B /* SimpleViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE55BE6E1CBBC2F600D8364B /* SimpleViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleViewUITests.m; sourceTree = "<group>"; };
 		CE55BE701CBBC2F600D8364B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SimpleFactory.h"; sourceTree = "<group>"; };
+		CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimpleNavigation.h"; sourceTree = "<group>"; };
+		CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleNavigation.m"; sourceTree = "<group>"; };
+		CE55BE881CBBD09600D8364B /* NSObject+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Block.h"; sourceTree = "<group>"; };
+		CE55BE891CBBD09600D8364B /* NSObject+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Block.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +114,8 @@
 				CE55BE4D1CBBC2F600D8364B /* AppDelegate.m */,
 				CE55BE4F1CBBC2F600D8364B /* ViewController.h */,
 				CE55BE501CBBC2F600D8364B /* ViewController.m */,
+				CE55BE871CBBD09600D8364B /* Simple */,
+				CE55BE7C1CBBCB6A00D8364B /* SimpleView */,
 				CE55BE521CBBC2F600D8364B /* Main.storyboard */,
 				CE55BE551CBBC2F600D8364B /* Assets.xcassets */,
 				CE55BE571CBBC2F600D8364B /* LaunchScreen.storyboard */,
@@ -138,6 +149,26 @@
 				CE55BE701CBBC2F600D8364B /* Info.plist */,
 			);
 			path = SimpleViewUITests;
+			sourceTree = "<group>";
+		};
+		CE55BE7C1CBBCB6A00D8364B /* SimpleView */ = {
+			isa = PBXGroup;
+			children = (
+				CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */,
+				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
+				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
+				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
+			);
+			path = SimpleView;
+			sourceTree = "<group>";
+		};
+		CE55BE871CBBD09600D8364B /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				CE55BE881CBBD09600D8364B /* NSObject+Block.h */,
+				CE55BE891CBBD09600D8364B /* NSObject+Block.m */,
+			);
+			path = Simple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +301,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
+				CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
+				CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +530,7 @@
 				CE55BE751CBBC2F600D8364B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE55BE761CBBC2F600D8364B /* Build configuration list for PBXNativeTarget "SimpleViewTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +539,7 @@
 				CE55BE781CBBC2F600D8364B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE55BE791CBBC2F600D8364B /* Build configuration list for PBXNativeTarget "SimpleViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +548,7 @@
 				CE55BE7B1CBBC2F600D8364B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
