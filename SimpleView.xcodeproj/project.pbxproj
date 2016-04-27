@@ -18,6 +18,7 @@
 		CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */; };
 		CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */; };
 		CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE891CBBD09600D8364B /* NSObject+Block.m */; };
+		CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleNavigation.m"; sourceTree = "<group>"; };
 		CE55BE881CBBD09600D8364B /* NSObject+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Block.h"; sourceTree = "<group>"; };
 		CE55BE891CBBD09600D8364B /* NSObject+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Block.m"; sourceTree = "<group>"; };
+		CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SimpleFactory.h"; sourceTree = "<group>"; };
+		CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SimpleFactory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
 				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
 				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
+				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */,
+				CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */,
 			);
 			path = SimpleView;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			files = (
 				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
+				CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */,
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
 				CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
