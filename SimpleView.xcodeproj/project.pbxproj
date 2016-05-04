@@ -161,10 +161,10 @@
 				CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */,
 				CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */,
 				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
-				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
-				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
 				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */,
 				CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */,
+				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
+				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
 			);
 			path = SimpleView;
 			sourceTree = "<group>";

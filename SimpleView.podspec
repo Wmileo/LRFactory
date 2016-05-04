@@ -13,8 +13,14 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/Wmileo/SimpleView.git", :tag => s.version.to_s }
 
-  s.source_files  = "SimpleView/Simple/*", "SimpleView/SimpleView/*"
-
   s.requires_arc = true
+
+  s.subspec "Simple" do |simple|
+    simple.source_files = 'SimpleView/Simple/*'
+  end
+
+  s.subspec "SimpleView" do |simpleView|
+    simpleView.source_files = 'SimpleView/SimpleView/*'
+  end
 
 end
