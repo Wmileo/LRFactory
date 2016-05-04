@@ -8,16 +8,34 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UIViewControllerNavigationDataSource <NSObject>
+
+
+@optional
+
+/**
+ *  设置barbuttonitem文字颜色
+ */
++(UIColor *)navBarButtonItemLeftTextColor;
++(UIColor *)navBarButtonItemRightTextColor;
+
+/**
+ *  设置barbuttonitem文字字体
+ */
++(UIFont *)navBarButtonItemLeftTextFont;
++(UIFont *)navBarButtonItemRightTextFont;
+
+@end
 
 @interface UIViewController (SimpleNavigation)
 
+#pragma mark - 配置
+/**
+ *  配置默认barbuttonitem颜色，字体
+ */
++(void)configNavButtonTextColor:(UIColor *)color font:(UIFont *)font;
 
-
-
-
-
-
-
+#pragma mark - 设置按钮
 
 /**
  *  设置按钮nav barbuttonitem
@@ -66,6 +84,8 @@
  */
 -(id)navAddLeftSpaceWithWidth:(CGFloat)width;
 -(id)navAddRightSpaceWithWidth:(CGFloat)width;
+
+
 
 
 

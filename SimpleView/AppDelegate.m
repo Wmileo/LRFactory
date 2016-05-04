@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "UIViewController+SimpleNavigation.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [UIViewController configNavButtonTextColor:[UIColor yellowColor] font:[UIFont systemFontOfSize:20]];
+    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    
     return YES;
 }
 

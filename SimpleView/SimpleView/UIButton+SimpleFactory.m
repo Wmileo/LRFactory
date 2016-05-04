@@ -57,10 +57,14 @@
 }
 
 CGSize CGSizeMakeTitleSize(NSString *title, UIFont *font, CGFloat maxWidth){
+    if (!font || !title) {
+        return CGSizeZero;
+    }
     return [title boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
 }
 
 +(UIButton *)buttonWithCenter:(CGPoint)center title:(NSString *)title textColor:(UIColor *)textColor font:(UIFont *)font click:(void (^)())click onView:(UIView *)view{
+    font = !font ? [UIFont systemFontOfSize:[UIFont systemFontSize]] : font;
     CGSize size = CGSizeMakeTitleSize(title, font, 300);
     return [UIButton buttonWithFrame:CGRectMake(center.x - size.width / 2, center.y - size.height / 2, size.width, size.height) title:title textColor:textColor font:font click:click onView:view];
 }

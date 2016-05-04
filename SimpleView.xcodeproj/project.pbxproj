@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleViewHeader.h; sourceTree = "<group>"; };
 		CE55BE461CBBC2F500D8364B /* SimpleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE55BE4A1CBBC2F600D8364B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE55BE4C1CBBC2F600D8364B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +158,7 @@
 		CE55BE7C1CBBCB6A00D8364B /* SimpleView */ = {
 			isa = PBXGroup;
 			children = (
+				CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */,
 				CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */,
 				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
 				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
@@ -243,6 +245,7 @@
 				TargetAttributes = {
 					CE55BE451CBBC2F500D8364B = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = LZ6NA3C3G7;
 					};
 					CE55BE5E1CBBC2F600D8364B = {
 						CreatedOnToolsVersion = 7.3;
@@ -453,7 +456,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SimpleView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,7 +469,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SimpleView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
