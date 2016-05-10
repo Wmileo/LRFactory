@@ -7,6 +7,7 @@
 //
 
 #import "UIBarButtonItem+SimpleFactory.h"
+#import "NSObject+Block.h"
 
 @implementation UIBarButtonItem (SimpleFactory)
 
@@ -18,6 +19,18 @@
 
 +(UIBarButtonItem *)barButtonItemWithButton:(UIButton *)button{
     return [[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
++(UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image action:(void (^)())action{
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:nil action:nil];
+    [barButtonItem onlyHangdleUIBarButtonItemWithBlock:action];
+    return barButtonItem;
+}
+
++(UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title action:(void (^)())action{
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:nil action:nil];
+    [barButtonItem onlyHangdleUIBarButtonItemWithBlock:action];
+    return barButtonItem;
 }
 
 @end

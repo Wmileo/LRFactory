@@ -21,7 +21,8 @@
     // Override point for customization after application launch.
     
     [UIViewController configNavButtonTextColor:[UIColor yellowColor] font:[UIFont systemFontOfSize:20]];
-    
+    [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
+    [UIViewController configNavBackgroundColor:[UIColor blueColor]];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     
     return YES;

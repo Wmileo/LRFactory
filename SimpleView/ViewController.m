@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "UIViewController+SimpleNavigation.h"
+#import "SimpleViewHeader.h"
+#import "TestViewController.h"
 
 @interface ViewController () <UIViewControllerNavigationDataSource>
 
@@ -16,10 +17,14 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blueColor];
-    
+
+
+//    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
+    self.title = @"test";
 //    [self navSetupLeftTitle:@"aaa" action:^{
 //        NSLog(@"aa");
 //    }];
@@ -30,29 +35,30 @@
         NSLog(@"cc");
     }];
     
-    [self navSetupRightSpaceWithWidth:100];
+    [self navSetupRightSpaceWithWidth:10];
+    __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
-        NSLog(@"bb");
+        [wself.navigationController pushViewController:[[TestViewController alloc] init] animated:YES];
     }];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-+(UIColor *)navBarButtonItemLeftTextColor{
-    return [UIColor orangeColor];
-}
-
-+(UIFont *)navBarButtonItemLeftTextFont{
-    return [UIFont systemFontOfSize:50];
-}
-
-+(UIFont *)navBarButtonItemRightTextFont{
-    return [UIFont systemFontOfSize:40];
-}
-
-+(UIColor *)navBarButtonItemRightTextColor{
-    return [UIColor grayColor];
-}
+//+(UIColor *)navBarButtonItemLeftTextColor{
+//    return [UIColor orangeColor];
+//}
+//
+//+(UIFont *)navBarButtonItemLeftTextFont{
+//    return [UIFont systemFontOfSize:50];
+//}
+//
+//+(UIFont *)navBarButtonItemRightTextFont{
+//    return [UIFont systemFontOfSize:40];
+//}
+//
+//+(UIColor *)navBarButtonItemRightTextColor{
+//    return [UIColor grayColor];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

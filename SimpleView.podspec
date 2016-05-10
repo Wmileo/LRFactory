@@ -15,6 +15,8 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
+  s.dependency 'Aspects'
+
   s.subspec "Simple" do |simple|
     simple.source_files = 'SimpleView/Simple/*'
   end

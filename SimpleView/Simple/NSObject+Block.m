@@ -39,4 +39,18 @@ static char overviewKey;
     }
 }
 
+#pragma mark - UIBarButtonItem
+-(void)onlyHangdleUIBarButtonItemWithBlock:(ActionUIBarButtonItemBlock)action{
+    objc_setAssociatedObject(self, &overviewKey, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    ((UIBarButtonItem *)self).target = self;
+    ((UIBarButtonItem *)self).action = @selector(callUIBarButtonItemActionBlock:);
+}
+
+- (void)callUIBarButtonItemActionBlock:(id)sender {
+    ActionUIBarButtonItemBlock block = (ActionUIBarButtonItemBlock)objc_getAssociatedObject(self, &overviewKey);
+    if (block) {
+        block(sender);
+    }
+}
+
 @end

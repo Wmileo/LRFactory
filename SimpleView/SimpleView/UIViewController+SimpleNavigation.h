@@ -35,7 +35,30 @@
  */
 +(void)configNavButtonTextColor:(UIColor *)color font:(UIFont *)font;
 
+/**
+ *  配置默认导航栏Title颜色，字体
+ */
++(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
+
+/**
+ *  配置默认导航栏背景颜色
+ */
++(void)configNavBackgroundColor:(UIColor *)color;
+
+#pragma mark - Title
+
+/**
+ *  设置导航栏Title颜色，字体
+ */
+-(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font;
+
 #pragma mark - 设置按钮
+
+/**
+ *  设置按钮nav barbuttonitem
+ */
+-(id)navSetupLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(id)navSetupRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 /**
  *  设置按钮nav barbuttonitem
@@ -64,6 +87,12 @@
 /**
  *  添加按钮nav barbuttonitem
  */
+-(id)navAddLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(id)navAddRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
+
+/**
+ *  添加按钮nav barbuttonitem
+ */
 -(id)navAddLeftButton:(UIButton *)button;
 -(id)navAddRightButton:(UIButton *)button;
 
@@ -84,9 +113,6 @@
  */
 -(id)navAddLeftSpaceWithWidth:(CGFloat)width;
 -(id)navAddRightSpaceWithWidth:(CGFloat)width;
-
-
-
 
 
 @end

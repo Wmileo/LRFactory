@@ -10,10 +10,12 @@
 
 typedef void (^ActionUIControlBlock)(id sender);
 typedef void (^ActionUIGestureRecognizerBlock)(id recognizer);
+typedef void (^ActionUIBarButtonItemBlock)(id sender);
 
 @interface NSObject (Block)
 
 -(void)onlyHangdleUIControlEvent:(UIControlEvents)controlEvent withBlock:(ActionUIControlBlock)action;
 -(void)onlyHangdleUIGestureRecognizerWithBlock:(ActionUIGestureRecognizerBlock)action;
+-(void)onlyHangdleUIBarButtonItemWithBlock:(ActionUIBarButtonItemBlock)action;
 
 @end

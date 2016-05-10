@@ -20,4 +20,14 @@
  */
 +(UIBarButtonItem *)barButtonItemWithButton:(UIButton *)button;
 
+/**
+ *  默认方式生成带图片BarButtonItem
+ */
++(UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image action:(void (^)())action;
+
+/**
+ *  默认方式生成带文字BarButtonItem
+ */
++(UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title action:(void (^)())action;
+
 @end
