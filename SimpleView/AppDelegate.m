@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "UIViewController+SimpleNavigation.h"
+#import "SimpleViewHeader.h"
 #import "ViewController.h"
+#import "TestViewController.h"
+#import "UIViewController+BackButtonStyle.h"
+#import "UIViewController+NavBackgroundStyle.h"
 
 @interface AppDelegate ()
 
@@ -22,8 +25,16 @@
     
     [UIViewController configNavButtonTextColor:[UIColor yellowColor] font:[UIFont systemFontOfSize:20]];
     [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
-    [UIViewController configNavBackgroundColor:[UIColor blueColor]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
+    [UIViewController configViewControllerGesturePopBack];
+    [UIViewController configNavBackgroundStyle];
+    UITabBarController *tab = [[UITabBarController alloc] init];
+    tab.viewControllers = @[[UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]],[UINavigationController navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
+    
+    self.window.rootViewController = tab;
+    
+    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault];
+    
     
     return YES;
 }

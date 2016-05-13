@@ -8,6 +8,13 @@
 
 #import "TestViewController.h"
 #import "UIViewController+SimpleNavigation.h"
+#import "SimpleView/SimpleViewHeader.h"
+#import "UIViewController+BackButtonStyle.h"
+#import "UIViewController+NavBackgroundStyle.h"
+
+@interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
+
+@end
 
 @implementation TestViewController
 
@@ -17,6 +24,21 @@
 //    [self navResetTitleColor:[UIColor grayColor] font:[UIFont systemFontOfSize:20]];
     self.title = @"aaa";
     self.view.backgroundColor = [UIColor whiteColor];
+    [[[UIButton buttonEmptyWithFrame:CGRectMake(0, 0, 100, 100) click:^{
+        NSLog(@"click");
+    }] resetBackgroundColor:[UIColor yellowColor]] setupOnView:self.view];
+    
+    [self navSetupLeftTitle:@"aa" action:^{
+        NSLog(@"back");
+    }];
+}
+
+//-(BOOL)viewControllerShouldGesturePopBack{
+//    return NO;
+//}
+
+-(UIColor *)navBackgroundColor{
+    return [UIColor redColor];
 }
 
 @end

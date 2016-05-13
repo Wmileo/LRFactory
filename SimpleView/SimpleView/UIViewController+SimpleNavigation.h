@@ -16,14 +16,14 @@
 /**
  *  设置barbuttonitem文字颜色
  */
-+(UIColor *)navBarButtonItemLeftTextColor;
-+(UIColor *)navBarButtonItemRightTextColor;
+-(UIColor *)navBarButtonItemLeftTextColor;
+-(UIColor *)navBarButtonItemRightTextColor;
 
 /**
  *  设置barbuttonitem文字字体
  */
-+(UIFont *)navBarButtonItemLeftTextFont;
-+(UIFont *)navBarButtonItemRightTextFont;
+-(UIFont *)navBarButtonItemLeftTextFont;
+-(UIFont *)navBarButtonItemRightTextFont;
 
 @end
 
@@ -31,19 +31,29 @@
 
 #pragma mark - 配置
 /**
- *  配置默认barbuttonitem颜色，字体
+ *  配置默认barbuttonitem颜色，字体  ps.应用开启时配置
  */
 +(void)configNavButtonTextColor:(UIColor *)color font:(UIFont *)font;
 
 /**
- *  配置默认导航栏Title颜色，字体
+ *  配置默认导航栏Title颜色，字体  ps.应用开启时配置
  */
 +(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
 
 /**
- *  配置默认导航栏背景颜色
+ *  配置默认导航栏背景颜色  ps.应用开启时配置
  */
 +(void)configNavBackgroundColor:(UIColor *)color;
+
+/**
+ *  获取配置的导航栏背景颜色
+ */
++(UIColor *)navBackgroundColor;
+
+/**
+ *  配置默认状态栏样式  ps.应用开启时配置
+ */
++(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Title
 

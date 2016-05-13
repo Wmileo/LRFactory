@@ -168,18 +168,18 @@ typedef NS_ENUM(NSInteger, BarButtonSide){
     UIFont *font = [UIViewController navTextFont];
 
     if (side == BarButtonSideLeft) {
-        if ([[self class] respondsToSelector:@selector(navBarButtonItemLeftTextColor)]) {
-            color = [[self class] navBarButtonItemLeftTextColor];
+        if ([self respondsToSelector:@selector(navBarButtonItemLeftTextColor)]) {
+            color = [self performSelector:@selector(navBarButtonItemLeftTextColor)];
         }
-        if ([[self class] respondsToSelector:@selector(navBarButtonItemLeftTextFont)]) {
-            font = [[self class] navBarButtonItemLeftTextFont];
+        if ([self respondsToSelector:@selector(navBarButtonItemLeftTextFont)]) {
+            font = [self performSelector:@selector(navBarButtonItemLeftTextFont)];
         }
     }else if (side == BarButtonSideRight) {
-        if ([[self class] respondsToSelector:@selector(navBarButtonItemRightTextColor)]) {
-            color = [[self class] navBarButtonItemRightTextColor];
+        if ([self respondsToSelector:@selector(navBarButtonItemRightTextColor)]) {
+            color = [self performSelector:@selector(navBarButtonItemRightTextColor)];
         }
-        if ([[self class] respondsToSelector:@selector(navBarButtonItemRightTextFont)]) {
-            font = [[self class] navBarButtonItemRightTextFont];
+        if ([self respondsToSelector:@selector(navBarButtonItemRightTextFont)]) {
+            font = [self performSelector:@selector(navBarButtonItemRightTextFont)];
         }
     }
 
@@ -201,7 +201,6 @@ static char keyTextColor, keyTextFont, keyHadConfigTextColorAndFont;
     [[UINavigationBar appearance] setTintColor:color];
 }
 
-
 +(BOOL)hadConfigTextColorAndFont{
     return [objc_getAssociatedObject(self, &keyHadConfigTextColorAndFont) boolValue];
 }
@@ -218,8 +217,30 @@ static char keyTextColor, keyTextFont, keyHadConfigTextColorAndFont;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color, NSFontAttributeName : font}];
 }
 
+static UIColor *navBackgroundColor;
+
 +(void)configNavBackgroundColor:(UIColor *)color{
+    navBackgroundColor = color;
     [[UINavigationBar appearance] setBarTintColor:color];
+}
+
++(UIColor *)navBackgroundColor{
+    return navBackgroundColor;
+}
+
++(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
+    [UINavigationController aspect_hookSelector:@selector(childViewControllerForStatusBarStyle) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
+        NSInvocation *invocation = info.originalInvocation;
+        UINavigationController *navC = invocation.target;
+        UIViewController *vc = navC.visibleViewController;
+        [invocation setReturnValue:&vc];
+    } error:NULL];
+    
+    [UIViewController aspect_hookSelector:@selector(preferredStatusBarStyle) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
+        UIStatusBarStyle style = statusBarStyle;
+        NSInvocation *invocation = info.originalInvocation;
+        [invocation setReturnValue:&style];
+    } error:NULL];
 }
 
 @end

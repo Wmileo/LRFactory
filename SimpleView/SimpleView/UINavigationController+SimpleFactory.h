@@ -10,8 +10,9 @@
 
 @interface UINavigationController (SimpleFactory)
 
+/**
+ *  生成有NavigationController
+ */
 +(UINavigationController *)navigationControllerWithRootViewController:(UIViewController *)viewController;
-
--(UINavigationController *)navigationControllerRemoveBackgroundView;
 
 @end

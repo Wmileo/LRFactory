@@ -22,7 +22,6 @@
     
     self.view.backgroundColor = [UIColor blueColor];
 
-
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"test";
 //    [self navSetupLeftTitle:@"aaa" action:^{
@@ -33,6 +32,8 @@
     
     [self navAddLeftTitle:@"cc" action:^{
         NSLog(@"cc");
+        [[[UIButton buttonEmptyWithFrame:CGRectMake(50, 50, 50, 50) click:nil] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
+
     }];
     
     [self navSetupRightSpaceWithWidth:10];
@@ -41,24 +42,31 @@
         [wself.navigationController pushViewController:[[TestViewController alloc] init] animated:YES];
     }];
     
+
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-//+(UIColor *)navBarButtonItemLeftTextColor{
-//    return [UIColor orangeColor];
-//}
-//
-//+(UIFont *)navBarButtonItemLeftTextFont{
-//    return [UIFont systemFontOfSize:50];
-//}
-//
-//+(UIFont *)navBarButtonItemRightTextFont{
+-(UIFont *)navBarButtonItemLeftTextFont{
+    return [UIFont systemFontOfSize:50];
+}
+
+-(UIColor *)navBarButtonItemLeftTextColor{
+    return [UIColor orangeColor];
+}
+
+//-(UIFont *)navBarButtonItemRightTextFont{
 //    return [UIFont systemFontOfSize:40];
 //}
 //
-//+(UIColor *)navBarButtonItemRightTextColor{
+//-(UIColor *)navBarButtonItemRightTextColor{
 //    return [UIColor grayColor];
 //}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

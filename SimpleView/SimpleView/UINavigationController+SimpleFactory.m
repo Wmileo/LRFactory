@@ -14,14 +14,4 @@
     return [[UINavigationController alloc] initWithRootViewController:viewController];
 }
 
--(UINavigationController *)navigationControllerRemoveBackgroundView{
-    [self.navigationBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
-            [obj setHidden:YES];
-            *stop = YES;
-        }
-    }];
-    return self;
-}
-
 @end
