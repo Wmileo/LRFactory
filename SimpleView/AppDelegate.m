@@ -19,22 +19,29 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [UIViewController configNavButtonTextColor:[UIColor yellowColor] font:[UIFont systemFontOfSize:20]];
+    [UIViewController configNavButtonTextColor:[UIColor blueColor] font:[UIFont systemFontOfSize:20]];
     [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
+//    [UIViewController configNavBarTranslucent:NO];
+    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
     [UIViewController configViewControllerGesturePopBack];
     [UIViewController configNavBackgroundStyle];
+    [UIViewController configBackItemIdentifications:^NSDictionary *{
+        return @{@"back":@[]};
+    }];
+    
     UITabBarController *tab = [[UITabBarController alloc] init];
-    tab.viewControllers = @[[UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]],[UINavigationController navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
+    
+    UINavigationController *nav = [UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]];
+    
+    tab.viewControllers = @[nav,[UINavigationController navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
     
     self.window.rootViewController = tab;
     
     [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault];
-    
     
     return YES;
 }

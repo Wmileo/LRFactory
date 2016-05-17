@@ -273,11 +273,12 @@
 }
 
 #pragma mark - debug
--(void)showDebugFrame{
+-(id)showDebugFrame{
 #ifdef DEBUG
     [[self layer] setBorderColor:[[UIColor redColor] CGColor]];
     [[self layer] setBorderWidth:1.0f];
 #endif
+    return self;
 }
 
 @end

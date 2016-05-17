@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SimpleViewHeader.h"
 #import "TestViewController.h"
+#import "UIViewController+BackButtonStyle.h"
 
 @interface ViewController () <UIViewControllerNavigationDataSource>
 
@@ -41,7 +42,6 @@
     [self navAddRightTitle:@"bb" action:^{
         [wself.navigationController pushViewController:[[TestViewController alloc] init] animated:YES];
     }];
-    
 
     
     // Do any additional setup after loading the view, typically from a nib.

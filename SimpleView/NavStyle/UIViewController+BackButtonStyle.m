@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+BackButtonStyle.h"
+#import "NSObject+Block.h"
 #import "UIView+Sizes.h"
 #import "Aspects.h"
 
@@ -36,12 +37,51 @@
     } error:NULL];
 }
 
+static NSDictionary *backItemIdentifications;
+
++(void)configBackItemIdentifications:(NSDictionary *(^)())identifications{
+    backItemIdentifications = identifications();
+}
+
+-(instancetype)navSetupBackItemWithIdentification:(NSString *)identification{
+    NSArray *backItems = backItemIdentifications[identification];
+    __weak __typeof(self) wself = self;
+    [backItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = obj.customView;
+        if ([view isKindOfClass:[UIButton class]]) {
+            if ([wself respondsToSelector:@selector(clickOnBackItem)]) {
+                [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+                    [wself performSelector:@selector(clickOnBackItem)];
+                }];
+            }else{
+                [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+                    [wself.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+        }
+    }];
+    if (backItems) {
+        [self.navigationItem setLeftBarButtonItems:backItems];
+    }
+    return self;
+}
+
+-(NSString *)navLastTitle{
+    if (self.navigationController) {
+        NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+        if (index > 0) {
+            return (self.navigationController.viewControllers[index - 1]).title;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - 右滑返回
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     if ([self isKindOfClass:[UINavigationController class]]) {
         UIViewController *vc = ((UINavigationController *)self).visibleViewController;
         if ([vc respondsToSelector:@selector(viewControllerShouldGesturePopBack)]) {
-            return [vc performSelector:@selector(viewControllerShouldGesturePopBack)];
+            return (BOOL)[vc performSelector:@selector(viewControllerShouldGesturePopBack)];
         }
         return ((UINavigationController *)self).viewControllers.count != 1;
     }

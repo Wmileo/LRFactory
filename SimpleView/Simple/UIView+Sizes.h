@@ -134,6 +134,6 @@
 
 
 #pragma mark - debug
--(void)showDebugFrame;
+-(id)showDebugFrame;
 
 @end

@@ -27,6 +27,8 @@
 		CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */; };
 		CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */; };
 		CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */; };
+		CEC716E51CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E41CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.m */; };
+		CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */; };
 		CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,10 @@
 		CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavBackgroundStyle.h"; sourceTree = "<group>"; };
 		CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavBackgroundStyle.m"; sourceTree = "<group>"; };
+		CEC716E31CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BackButtonStyle.h"; sourceTree = "<group>"; };
+		CEC716E41CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BackButtonStyle.m"; sourceTree = "<group>"; };
+		CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SimpleFactory.h"; sourceTree = "<group>"; };
+		CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SimpleFactory.m"; sourceTree = "<group>"; };
 		CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SimpleFactory.h"; sourceTree = "<group>"; };
 		CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SimpleFactory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +222,8 @@
 				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
 				CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */,
 				CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */,
+				CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */,
+				CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */,
 				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */,
 				CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */,
 				CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */,
@@ -242,6 +250,8 @@
 		CE805F251CE18DE8000780D7 /* NavStyle */ = {
 			isa = PBXGroup;
 			children = (
+				CEC716E31CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.h */,
+				CEC716E41CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.m */,
 				CE805F291CE18F37000780D7 /* UIViewController+BackButtonStyle.h */,
 				CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */,
 				CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */,
@@ -435,12 +445,14 @@
 				CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */,
 				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
+				CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */,
 				CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */,
 				CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */,
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
 				CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
+				CEC716E51CEABD83006536F2 /* UIBarButtonItem+BackButtonStyle.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
 				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
@@ -590,7 +602,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SimpleView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -604,7 +616,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SimpleView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";

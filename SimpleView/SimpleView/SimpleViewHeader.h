@@ -12,9 +12,9 @@
 #import "UIView+SimpleFactory.h"
 #import "UIButton+SimpleFactory.h"
 #import "UILabel+SimpleFactory.h"
+#import "UIImageView+SimpleFactory.h"
 #import "UIBarButtonItem+SimpleFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"
-
 
 #endif /* SimpleViewHeader_h */

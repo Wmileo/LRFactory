@@ -12,6 +12,8 @@
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 
+
+
 @interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
 
 @end
@@ -28,9 +30,8 @@
         NSLog(@"click");
     }] resetBackgroundColor:[UIColor yellowColor]] setupOnView:self.view];
     
-    [self navSetupLeftTitle:@"aa" action:^{
-        NSLog(@"back");
-    }];
+    [self navSetupBackItemWithIdentification:@"back"];
+    
 }
 
 //-(BOOL)viewControllerShouldGesturePopBack{
@@ -38,7 +39,7 @@
 //}
 
 -(UIColor *)navBackgroundColor{
-    return [UIColor redColor];
+    return [UIColor blueColor];
 }
 
 @end

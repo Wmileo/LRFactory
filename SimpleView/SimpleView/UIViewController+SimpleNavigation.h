@@ -41,6 +41,17 @@
 +(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
 
 /**
+ *  配置默认导航栏是否透明 NO时view从导航栏底部开始  YES时view从屏幕顶部开始
+ */
++(void)configNavBarTranslucent:(BOOL)translucent;
+
+/**
+ *  使得view从导航栏底部开始
+ *  配置默认视图edgesForExtendedLayout为UIRectEdgeNone
+ */
++(void)configViewControllerRectEdgeNoneForExtendedLayout;
+
+/**
  *  配置默认导航栏背景颜色  ps.应用开启时配置
  */
 +(void)configNavBackgroundColor:(UIColor *)color;
@@ -55,6 +66,7 @@
  */
 +(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
+
 #pragma mark - Title
 
 /**
@@ -67,62 +79,62 @@
 /**
  *  设置按钮nav barbuttonitem
  */
--(id)navSetupLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
--(id)navSetupRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(instancetype)navSetupLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(instancetype)navSetupRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 /**
  *  设置按钮nav barbuttonitem
  */
--(id)navSetupLeftButton:(UIButton *)button;
--(id)navSetupRightButton:(UIButton *)button;
+-(instancetype)navSetupLeftButton:(UIButton *)button;
+-(instancetype)navSetupRightButton:(UIButton *)button;
 
 /**
  *  设置图片nav barbuttonitem
  */
--(id)navSetupLeftImageName:(NSString *)name action:(void (^)())action;
--(id)navSetupRightImageName:(NSString *)name action:(void(^)())action;
+-(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)())action;
+-(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)())action;
 
 /**
  *  设置文字nav barbuttonitem
  */
--(id)navSetupLeftTitle:(NSString *)title action:(void(^)())action;
--(id)navSetupRightTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)())action;
 
 /**
  *  设置间隔nav barbuttonitem
  */
--(id)navSetupLeftSpaceWithWidth:(CGFloat)width;
--(id)navSetupRightSpaceWithWidth:(CGFloat)width;
+-(instancetype)navSetupLeftSpaceWithWidth:(CGFloat)width;
+-(instancetype)navSetupRightSpaceWithWidth:(CGFloat)width;
 
 /**
  *  添加按钮nav barbuttonitem
  */
--(id)navAddLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
--(id)navAddRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(instancetype)navAddLeftBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(instancetype)navAddRightBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 /**
  *  添加按钮nav barbuttonitem
  */
--(id)navAddLeftButton:(UIButton *)button;
--(id)navAddRightButton:(UIButton *)button;
+-(instancetype)navAddLeftButton:(UIButton *)button;
+-(instancetype)navAddRightButton:(UIButton *)button;
 
 /**
  *  添加图片nav barbuttonitem
  */
--(id)navAddLeftImageName:(NSString *)name action:(void (^)())action;
--(id)navAddRightImageName:(NSString *)name action:(void(^)())action;
+-(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)())action;
+-(instancetype)navAddRightImageName:(NSString *)name action:(void(^)())action;
 
 /**
  *  添加文字nav barbuttonitem
  */
--(id)navAddLeftTitle:(NSString *)title action:(void(^)())action;
--(id)navAddRightTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navAddRightTitle:(NSString *)title action:(void(^)())action;
 
 /**
  *  添加间隔nav barbuttonitem
  */
--(id)navAddLeftSpaceWithWidth:(CGFloat)width;
--(id)navAddRightSpaceWithWidth:(CGFloat)width;
+-(instancetype)navAddLeftSpaceWithWidth:(CGFloat)width;
+-(instancetype)navAddRightSpaceWithWidth:(CGFloat)width;
 
 
 @end

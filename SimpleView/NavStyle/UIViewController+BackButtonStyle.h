@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIBarButtonItem+BackButtonStyle.h"
 
 @protocol UIViewControllerBackButtonDataSource <NSObject>
 
@@ -16,6 +17,11 @@
  *  是否能右滑返回手势
  */
 -(BOOL)viewControllerShouldGesturePopBack;
+
+/**
+ *  点击返回按钮
+ */
+-(void)clickOnBackItem;
 
 @end
 
@@ -27,6 +33,20 @@
  */
 +(void)configViewControllerGesturePopBack;
 
+#pragma mark - 返回按钮
+/**
+ *  配置返回按钮样式 key为identification  value为数组元素为barButtonItem
+ */
++(void)configBackItemIdentifications:(NSDictionary* (^)())identifications;
 
+/**
+ *  设置返回按钮 样式为identification对应的样式
+ */
+-(instancetype)navSetupBackItemWithIdentification:(NSString *)identification;
+
+/**
+ *  返回上一个ViewController的title
+ */
+-(NSString *)navLastTitle;
 
 @end

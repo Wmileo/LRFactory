@@ -14,4 +14,9 @@
     return [[UINavigationController alloc] initWithRootViewController:viewController];
 }
 
+-(UINavigationController *)navResetNavBarTranslucent:(BOOL)translucent{
+    self.navigationBar.translucent = translucent;
+    return self;
+}
+
 @end
