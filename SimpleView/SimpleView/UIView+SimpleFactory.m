@@ -19,6 +19,11 @@
     return self;
 }
 
+-(instancetype)resetTag:(NSInteger)tag{
+    self.tag = tag;
+    return self;
+}
+
 -(instancetype)setupOnView:(UIView *)view{
     [view addSubview:self];
     return self;

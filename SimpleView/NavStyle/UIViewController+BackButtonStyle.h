@@ -21,7 +21,12 @@
 /**
  *  点击返回按钮
  */
--(void)clickOnBackItem;
+-(void)navClickOnBackItem;
+
+/**
+ *  返回按钮文字描述
+ */
+-(NSString *)navBackItemTitle;
 
 @end
 

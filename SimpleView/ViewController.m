@@ -24,7 +24,7 @@
     self.view.backgroundColor = [UIColor blueColor];
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
-    self.title = @"test";
+    self.title = @"testaaaaaaaaaaaaaaaaaa";
 //    [self navSetupLeftTitle:@"aaa" action:^{
 //        NSLog(@"aa");
 //    }];

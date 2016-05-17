@@ -21,6 +21,12 @@
 -(instancetype)resetBackgroundColor:(UIColor *)color;
 
 /**
+ *  设置tag
+ */
+-(instancetype)resetTag:(NSInteger)tag;
+
+
+/**
  *  添加到View上 addSubView
  */
 -(instancetype)setupOnView:(UIView *)view;

@@ -49,14 +49,22 @@ static NSDictionary *backItemIdentifications;
     [backItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view = obj.customView;
         if ([view isKindOfClass:[UIButton class]]) {
-            if ([wself respondsToSelector:@selector(clickOnBackItem)]) {
+            if ([wself respondsToSelector:@selector(navClickOnBackItem)]) {
                 [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-                    [wself performSelector:@selector(clickOnBackItem)];
+                    [wself performSelector:@selector(navClickOnBackItem)];
                 }];
             }else{
                 [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
                     [wself.navigationController popViewControllerAnimated:YES];
                 }];
+            }
+            UILabel *label = [view viewWithTag:TAG_TITLE_LABEL];
+            if (label) {
+                NSString *title = wself.navLastTitle;
+                if ([wself respondsToSelector:@selector(navBackItemTitle)]) {
+                    title = [wself performSelector:@selector(navBackItemTitle)];
+                }
+                label.text = title;
             }
         }
     }];

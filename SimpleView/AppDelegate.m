@@ -30,7 +30,7 @@
     [UIViewController configViewControllerGesturePopBack];
     [UIViewController configNavBackgroundStyle];
     [UIViewController configBackItemIdentifications:^NSDictionary *{
-        return @{@"back":@[]};
+        return @{@"back":[UIBarButtonItem backButtonItemsWithOffsetX:-10 image:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]]};
     }];
     
     UITabBarController *tab = [[UITabBarController alloc] init];
