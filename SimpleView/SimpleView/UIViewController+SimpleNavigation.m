@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, BarButtonSide){
 }
 -(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)())action{
     if (![UIViewController hadConfigTextColorAndFont]) {
-        return [self navSetupLeftBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
+        return [self navSetupRightBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
     }else{
         return [self navSetupRightButton:[self buttonSide:BarButtonSideRight withTitle:title action:action]];
     }
