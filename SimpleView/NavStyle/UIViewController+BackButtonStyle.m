@@ -44,25 +44,36 @@ static NSDictionary *backItemIdentifications;
 }
 
 -(instancetype)navSetupBackItemWithIdentification:(NSString *)identification{
-    NSArray *backItems = backItemIdentifications[identification];
+    
+    [self resetBackItemWithIdentification:identification];
+    
     __weak __typeof(self) wself = self;
+    [self aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionBefore|AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> info){
+        [wself resetBackItemWithIdentification:identification];
+    } error:NULL];
+    
+    return self;
+}
+
+-(void)resetBackItemWithIdentification:(NSString *)identification{
+    NSArray *backItems = backItemIdentifications[identification];
     [backItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view = obj.customView;
         if ([view isKindOfClass:[UIButton class]]) {
-            if ([wself respondsToSelector:@selector(navClickOnBackItem)]) {
+            if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
                 [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-                    [wself performSelector:@selector(navClickOnBackItem)];
+                    [self performSelector:@selector(navClickOnBackItem)];
                 }];
             }else{
                 [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-                    [wself.navigationController popViewControllerAnimated:YES];
+                    [self.navigationController popViewControllerAnimated:YES];
                 }];
             }
             UILabel *label = [view viewWithTag:TAG_TITLE_LABEL];
             if (label) {
-                NSString *title = wself.navLastTitle;
-                if ([wself respondsToSelector:@selector(navBackItemTitle)]) {
-                    title = [wself performSelector:@selector(navBackItemTitle)];
+                NSString *title = self.navLastTitle;
+                if ([self respondsToSelector:@selector(navBackItemTitle)]) {
+                    title = [self performSelector:@selector(navBackItemTitle)];
                 }
                 label.text = title;
             }
@@ -71,7 +82,6 @@ static NSDictionary *backItemIdentifications;
     if (backItems) {
         [self.navigationItem setLeftBarButtonItems:backItems];
     }
-    return self;
 }
 
 -(NSString *)navLastTitle{

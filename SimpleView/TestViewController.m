@@ -30,11 +30,20 @@
         NSLog(@"click");
     }] resetBackgroundColor:[UIColor yellowColor]] setupOnView:self.view];
     
-    [self navSetupBackItemWithIdentification:@"back"];
     [self navAddLeftSpaceWithWidth:50];
     [self navAddLeftTitle:@"ABC" action:^{
         NSLog(@"abc");
     }];
+    
+    [self navSetupBackItemWithIdentification:@"back"];
+
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[UIView viewWithFrame:CGRectMake(50, 50, 50, 50)] setupOnView:self.view];
+
 }
 
 //-(BOOL)viewControllerShouldGesturePopBack{
@@ -45,8 +54,8 @@
     return [UIColor grayColor];
 }
 
--(NSString *)navBackItemTitle{
-    return @"返回";
-}
+//-(NSString *)navBackItemTitle{
+//    return @"返回";
+//}
 
 @end

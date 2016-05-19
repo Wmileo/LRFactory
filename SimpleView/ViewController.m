@@ -25,35 +25,46 @@
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
-//    [self navSetupLeftTitle:@"aaa" action:^{
+    
+    
+//    [self navSetupRightTitle:@"SAAA" action:^{
 //        NSLog(@"aa");
 //    }];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"NNN" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *barButtonItemR = [[UIBarButtonItem alloc] initWithTitle:@"N制作NN" style:UIBarButtonItemStyleBordered target:nil action:nil];
+
+    [self.navigationItem setLeftBarButtonItem:barButtonItem];
+    [self.navigationItem setRightBarButtonItem:barButtonItemR];
+
 //    [self navSetup LeftSpaceWithWidth:-30];
 //    [self navAddLeftSpaceWithWidth:-100];
     
-    [self navAddLeftTitle:@"cc" action:^{
-        NSLog(@"cc");
-        [[[UIButton buttonEmptyWithFrame:CGRectMake(50, 50, 50, 50) click:nil] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
-
-    }];
+//    [self navAddLeftTitle:@"cc" action:^{
+//        NSLog(@"cc");
+//        [[[UIButton buttonEmptyWithFrame:CGRectMake(50, 50, 50, 50) click:nil] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
+//
+//    }];
     
     [self navSetupRightSpaceWithWidth:10];
     __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
-        [wself.navigationController pushViewController:[[TestViewController alloc] init] animated:YES];
+        TestViewController *test = [[TestViewController alloc] init];
+//        [test navSetupBackItemWithIdentification:@"back"];
+        [wself.navigationController pushViewController:test animated:YES];
     }];
 
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 
--(UIFont *)navBarButtonItemLeftTextFont{
-    return [UIFont systemFontOfSize:50];
-}
-
--(UIColor *)navBarButtonItemLeftTextColor{
-    return [UIColor orangeColor];
-}
+//-(UIFont *)navBarButtonItemLeftTextFont{
+//    return [UIFont systemFontOfSize:50];
+//}
+//
+//-(UIColor *)navBarButtonItemLeftTextColor{
+//    return [UIColor orangeColor];
+//}
 
 //-(UIFont *)navBarButtonItemRightTextFont{
 //    return [UIFont systemFontOfSize:40];

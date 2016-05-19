@@ -22,13 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [UIViewController configNavButtonTextColor:[UIColor blueColor] font:[UIFont systemFontOfSize:20]];
-    [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
+//    [UIViewController configNavButtonTextColor:[UIColor blueColor] font:[UIFont systemFontOfSize:20]];
+//    [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
 //    [UIViewController configNavBarTranslucent:NO];
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
     [UIViewController configViewControllerGesturePopBack];
-    [UIViewController configNavBackgroundStyle];
+//    [UIViewController configNavBackgroundStyle];
     [UIViewController configBackItemIdentifications:^NSDictionary *{
         return @{@"back":[UIBarButtonItem backButtonItemsWithOffsetX:-10 image:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]]};
     }];
