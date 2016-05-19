@@ -18,6 +18,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     if (normalImg) {
         [button setImage:normalImg forState:UIControlStateNormal];
+        [button setImage:normalImg forState:UIControlStateHighlighted];
     }
     [button setExclusiveTouch:YES];
     if (click) [button onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:click];

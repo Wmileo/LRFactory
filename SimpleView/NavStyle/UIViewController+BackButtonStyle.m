@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+BackButtonStyle.h"
+#import "SimpleViewHeader.h"
 #import "NSObject+Block.h"
 #import "UIView+Sizes.h"
 #import "Aspects.h"
@@ -56,31 +57,44 @@ static NSDictionary *backItemIdentifications;
 }
 
 -(void)resetBackItemWithIdentification:(NSString *)identification{
-    NSArray *backItems = backItemIdentifications[identification];
-    [backItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *view = obj.customView;
-        if ([view isKindOfClass:[UIButton class]]) {
-            if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
-                [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-                    [self performSelector:@selector(navClickOnBackItem)];
-                }];
-            }else{
-                [view onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-            }
-            UILabel *label = [view viewWithTag:TAG_TITLE_LABEL];
-            if (label) {
-                NSString *title = self.navLastTitle;
-                if ([self respondsToSelector:@selector(navBackItemTitle)]) {
-                    title = [self performSelector:@selector(navBackItemTitle)];
-                }
-                label.text = title;
-            }
+    
+    BackItemModel *model = backItemIdentifications[identification];
+
+    NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:3];
+    if (model.offsetX != 0){
+        [tmp addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:model.offsetX]];
+    }
+    
+    NSString *title = self.navLastTitle;
+    if ([self respondsToSelector:@selector(navBackItemTitle)]) {
+        title = [self performSelector:@selector(navBackItemTitle)];
+    }
+    __weak __typeof(self) wself = self;
+    if (model.icon) {
+        UIButton *button = [UIButton buttonWithCenter:CGPointZero normalImage:model.icon click:^{
+            [wself clickOnBack];
+        }];
+        if (model.hasTitle) {
+            UILabel *label = [[[UILabel labelWithFrame:CGRectMake(button.width + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor] labelResetTextAlignment:NSTextAlignmentLeft] setupOnView:button];
+            label.centerY = button.height/2;
         }
-    }];
-    if (backItems) {
-        [self.navigationItem setLeftBarButtonItems:backItems];
+        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:button]];
+    }else if (model.hasTitle) {
+        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:[UIButton buttonWithCenter:CGPointZero title:title textColor:model.titleColor font:model.titleFont click:^{
+            [wself clickOnBack];
+        }]]];
+    }
+    
+    if (tmp.count > 0) {
+        [self.navigationItem setLeftBarButtonItems:[tmp copy]];
+    }
+}
+
+-(void)clickOnBack{
+    if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
+        [self performSelector:@selector(navClickOnBackItem)];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -112,6 +126,30 @@ static NSDictionary *backItemIdentifications;
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
+}
+
+@end
+
+
+@implementation BackItemModel
+
++(BackItemModel *)modelWithOffsetX:(CGFloat)offsetX icon:(UIImage *)icon titleOffsetX:(CGFloat)titleOffsetX titleColor:(UIColor *)color titleFont:(UIFont *)font{
+    BackItemModel *model = [[BackItemModel alloc] init];
+    model.offsetX = offsetX;
+    model.icon = icon;
+    model.titleOffsetX = titleOffsetX;
+    model.titleColor = color;
+    model.titleFont = font;
+    model.hasTitle = YES;
+    return model;
+}
+
++(BackItemModel *)modelWithOffsetX:(CGFloat)offsetX icon:(UIImage *)icon{
+    BackItemModel *model = [[BackItemModel alloc] init];
+    model.offsetX = offsetX;
+    model.icon = icon;
+    model.hasTitle = NO;
+    return model;
 }
 
 @end

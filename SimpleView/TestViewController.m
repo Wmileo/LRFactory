@@ -11,7 +11,7 @@
 #import "SimpleView/SimpleViewHeader.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
-
+#import "ViewController.h"
 
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
@@ -31,11 +31,13 @@
     }] resetBackgroundColor:[UIColor yellowColor]] setupOnView:self.view];
     
     [self navAddLeftSpaceWithWidth:50];
-    [self navAddLeftTitle:@"ABC" action:^{
-        NSLog(@"abc");
+    __weak __typeof(self) wself = self;
+    [self navSetupRightTitle:@"ABC" action:^{
+        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
     }];
     
     [self navSetupBackItemWithIdentification:@"back"];
+
 
 }
 
@@ -43,6 +45,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[UIView viewWithFrame:CGRectMake(50, 50, 50, 50)] setupOnView:self.view];
+//    [self navSetupLeftTitle:@"---" action:nil];
 
 }
 

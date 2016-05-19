@@ -31,11 +31,11 @@
 //        NSLog(@"aa");
 //    }];
     
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"NNN" style:UIBarButtonItemStylePlain target:nil action:nil];
-    UIBarButtonItem *barButtonItemR = [[UIBarButtonItem alloc] initWithTitle:@"N制作NN" style:UIBarButtonItemStyleBordered target:nil action:nil];
-
-    [self.navigationItem setLeftBarButtonItem:barButtonItem];
-    [self.navigationItem setRightBarButtonItem:barButtonItemR];
+//    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"NNN" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    UIBarButtonItem *barButtonItemR = [[UIBarButtonItem alloc] initWithTitle:@"N制作NN" style:UIBarButtonItemStyleBordered target:nil action:nil];
+//
+//    [self.navigationItem setLeftBarButtonItem:barButtonItem];
+//    [self.navigationItem setRightBarButtonItem:barButtonItemR];
 
 //    [self navSetup LeftSpaceWithWidth:-30];
 //    [self navAddLeftSpaceWithWidth:-100];
@@ -55,7 +55,15 @@
     }];
 
     
+    [self navSetupBackItemWithIdentification:@"back"];
+    
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [self navSetupLeftTitle:@"___" action:nil];
+
 }
 
 //-(UIFont *)navBarButtonItemLeftTextFont{
