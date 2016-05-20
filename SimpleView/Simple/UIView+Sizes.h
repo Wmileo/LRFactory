@@ -20,6 +20,10 @@
 
 @interface UIView (Sizes)
 
+
+-(instancetype)initWithSize:(CGSize)size;
+
+
 /**
  * Shortcut for frame.origin.x.
  *
@@ -131,6 +135,7 @@
  * The view controller whose view contains this view.
  */
 - (UIViewController*)viewController;
+
 
 
 #pragma mark - debug

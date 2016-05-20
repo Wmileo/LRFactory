@@ -18,6 +18,12 @@
 
 @implementation UIView (Sizes)
 
+-(instancetype)initWithSize:(CGSize)size{
+    self = [self initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    return self;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)left {
     return CGRectGetMinX(self.frame);

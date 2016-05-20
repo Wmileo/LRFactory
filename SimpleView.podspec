@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SimpleView"
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
   s.summary      = "封装视图控件，用于方便调用"
   s.description  = <<-DESC
 					 封装视图控件，用于方便调用
