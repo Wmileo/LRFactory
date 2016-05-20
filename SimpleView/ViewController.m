@@ -20,8 +20,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    NSLog(@"did");
     
-    self.view.backgroundColor = [UIColor blueColor];
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";

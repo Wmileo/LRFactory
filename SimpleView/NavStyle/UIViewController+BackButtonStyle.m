@@ -49,7 +49,7 @@ static NSDictionary *backItemIdentifications;
     [self resetBackItemWithIdentification:identification];
     
     __weak __typeof(self) wself = self;
-    [self aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionBefore|AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> info){
+    [self aspect_hookSelector:@selector(view) withOptions:AspectPositionBefore|AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> info){
         [wself resetBackItemWithIdentification:identification];
     } error:NULL];
     
