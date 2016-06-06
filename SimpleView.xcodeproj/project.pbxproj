@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8EABBBE5778E284EC2B1DE38 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F361E162AAB11556C4DE82 /* libPods-SimpleView.a */; };
+		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */; };
 		CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */; };
 		CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C21CDB634900A11CEB /* TestViewController.m */; };
 		CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */; };
+		CE1B646F1D01722A0034672B /* UIViewController+SimplePresent.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */; };
 		CE55BE4B1CBBC2F600D8364B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE4A1CBBC2F600D8364B /* main.m */; };
 		CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE4D1CBBC2F600D8364B /* AppDelegate.m */; };
 		CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE501CBBC2F600D8364B /* ViewController.m */; };
@@ -50,9 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E026B73744D174630940377 /* Pods-SimpleView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.release.xcconfig"; sourceTree = "<group>"; };
-		28F361E162AAB11556C4DE82 /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C073CE29470F7C050ADA9AD3 /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
+		0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
+		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SimpleFactory.h"; sourceTree = "<group>"; };
 		CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SimpleFactory.m"; sourceTree = "<group>"; };
 		CE0AE0BB1CD9FCB300A11CEB /* NSString+CGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CGSize.h"; sourceTree = "<group>"; };
@@ -63,6 +63,8 @@
 		CE0AE0C21CDB634900A11CEB /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SimpleFactory.h"; sourceTree = "<group>"; };
 		CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE1B646D1D01722A0034672B /* UIViewController+SimplePresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimplePresent.h"; sourceTree = "<group>"; };
+		CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimplePresent.m"; sourceTree = "<group>"; };
 		CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleViewHeader.h; sourceTree = "<group>"; };
 		CE55BE461CBBC2F500D8364B /* SimpleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE55BE4A1CBBC2F600D8364B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SimpleFactory.m"; sourceTree = "<group>"; };
 		CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SimpleFactory.h"; sourceTree = "<group>"; };
 		CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SimpleFactory.m"; sourceTree = "<group>"; };
+		D90EDF4A8338FD51929EC816 /* Pods-SimpleView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EABBBE5778E284EC2B1DE38 /* libPods-SimpleView.a in Frameworks */,
+				5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,19 +130,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		617382D8881868AEE3DE600B /* Frameworks */ = {
+		1A626B04172B21AAE13B6234 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28F361E162AAB11556C4DE82 /* libPods-SimpleView.a */,
+				B511EC83D4174AA046132E6B /* libPods-SimpleView.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CB4EDD4BB3718414F02103C3 /* Pods */ = {
+		20EC872659B86EBAE2C6E523 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C073CE29470F7C050ADA9AD3 /* Pods-SimpleView.debug.xcconfig */,
-				0E026B73744D174630940377 /* Pods-SimpleView.release.xcconfig */,
+				0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */,
+				D90EDF4A8338FD51929EC816 /* Pods-SimpleView.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -151,8 +154,8 @@
 				CE55BE621CBBC2F600D8364B /* SimpleViewTests */,
 				CE55BE6D1CBBC2F600D8364B /* SimpleViewUITests */,
 				CE55BE471CBBC2F500D8364B /* Products */,
-				CB4EDD4BB3718414F02103C3 /* Pods */,
-				617382D8881868AEE3DE600B /* Frameworks */,
+				20EC872659B86EBAE2C6E523 /* Pods */,
+				1A626B04172B21AAE13B6234 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,6 +234,8 @@
 				CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */,
 				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
 				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
+				CE1B646D1D01722A0034672B /* UIViewController+SimplePresent.h */,
+				CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */,
 			);
 			path = SimpleView;
 			sourceTree = "<group>";
@@ -269,12 +274,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE55BE731CBBC2F600D8364B /* Build configuration list for PBXNativeTarget "SimpleView" */;
 			buildPhases = (
-				E9EACB6FB888F3F7517EE3D2 /* Check Pods Manifest.lock */,
+				C7CEC81421047218CE0B32C7 /* 📦 Check Pods Manifest.lock */,
 				CE55BE421CBBC2F500D8364B /* Sources */,
 				CE55BE431CBBC2F500D8364B /* Frameworks */,
 				CE55BE441CBBC2F500D8364B /* Resources */,
-				BACD3C7B11A97AD5B47186EA /* Embed Pods Frameworks */,
-				76CAA81602F4D4F9CDCCE29C /* Copy Pods Resources */,
+				3479B25D2AA8648B677FF37A /* 📦 Embed Pods Frameworks */,
+				6C7D48070142E08DDD3FE89C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -392,29 +397,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		76CAA81602F4D4F9CDCCE29C /* Copy Pods Resources */ = {
+		3479B25D2AA8648B677FF37A /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BACD3C7B11A97AD5B47186EA /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,14 +412,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9EACB6FB888F3F7517EE3D2 /* Check Pods Manifest.lock */ = {
+		6C7D48070142E08DDD3FE89C /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7CEC81421047218CE0B32C7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +465,7 @@
 				CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
 				CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */,
+				CE1B646F1D01722A0034672B /* UIViewController+SimplePresent.m in Sources */,
 				CE880DF81CEEF9CF002AA73D /* UIColor+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,7 +605,7 @@
 		};
 		CE55BE741CBBC2F600D8364B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C073CE29470F7C050ADA9AD3 /* Pods-SimpleView.debug.xcconfig */;
+			baseConfigurationReference = 0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -620,7 +626,7 @@
 		};
 		CE55BE751CBBC2F600D8364B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E026B73744D174630940377 /* Pods-SimpleView.release.xcconfig */;
+			baseConfigurationReference = D90EDF4A8338FD51929EC816 /* Pods-SimpleView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

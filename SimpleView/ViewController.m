@@ -10,6 +10,7 @@
 #import "SimpleViewHeader.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
+#import "UIViewController+SimplePresent.h"
 
 @interface ViewController () <UIViewControllerNavigationDataSource>
 
@@ -50,8 +51,13 @@
     __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
         TestViewController *test = [[TestViewController alloc] init];
-//        [test navSetupBackItemWithIdentification:@"back"];
-        [wself.navigationController pushViewController:test animated:YES];
+        
+////        [test navSetupBackItemWithIdentification:@"back"];
+//        [wself.navigationController pushViewController:test animated:YES];
+        
+        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil callback:^(BOOL success, id info) {
+            NSLog(@"%@",info);
+        }];
     }];
 
     

@@ -12,7 +12,7 @@
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "ViewController.h"
-
+#import "UIViewController+SimplePresent.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
 
@@ -33,7 +33,10 @@
     [self navAddLeftSpaceWithWidth:50];
     __weak __typeof(self) wself = self;
     [self navSetupRightTitle:@"ABC" action:^{
-        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
+//        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
+        
+        [wself dismissViewControllerAnimated:YES completion:nil success:YES info:@{@"info":@"aaaa"}];
+        
     }];
     
     [self navSetupBackItemWithIdentification:@"back"];
