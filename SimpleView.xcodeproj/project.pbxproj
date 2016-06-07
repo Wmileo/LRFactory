@@ -25,6 +25,7 @@
 		CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */; };
 		CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */; };
 		CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE891CBBD09600D8364B /* NSObject+Block.m */; };
+		CE763C381D054FB10068DA0B /* UITextField+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE763C371D054FB10068DA0B /* UITextField+SimpleFactory.m */; };
 		CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */; };
 		CE880DF81CEEF9CF002AA73D /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = CE880DF71CEEF9CF002AA73D /* UIColor+HexString.m */; };
 		CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */; };
@@ -88,6 +89,8 @@
 		CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleNavigation.m"; sourceTree = "<group>"; };
 		CE55BE881CBBD09600D8364B /* NSObject+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Block.h"; sourceTree = "<group>"; };
 		CE55BE891CBBD09600D8364B /* NSObject+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Block.m"; sourceTree = "<group>"; };
+		CE763C361D054FB10068DA0B /* UITextField+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+SimpleFactory.h"; sourceTree = "<group>"; };
+		CE763C371D054FB10068DA0B /* UITextField+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+SimpleFactory.m"; sourceTree = "<group>"; };
 		CE805F291CE18F37000780D7 /* UIViewController+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonStyle.h"; sourceTree = "<group>"; };
 		CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonStyle.m"; sourceTree = "<group>"; };
 		CE880DF61CEEF9CF002AA73D /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */,
 				CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */,
 				CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */,
+				CE763C361D054FB10068DA0B /* UITextField+SimpleFactory.h */,
+				CE763C371D054FB10068DA0B /* UITextField+SimpleFactory.m */,
 				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */,
 				CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */,
 				CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */,
@@ -461,6 +466,7 @@
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
+				CE763C381D054FB10068DA0B /* UITextField+SimpleFactory.m in Sources */,
 				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
 				CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,

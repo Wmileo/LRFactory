@@ -31,4 +31,24 @@
  */
 -(instancetype)setupOnView:(UIView *)view;
 
+/**
+ *  设置边框
+ */
+-(instancetype)resetBorderWidth:(CGFloat)width borderColor:(UIColor *)color;
+
+
+/**
+ *  设置圆角
+ */
+-(instancetype)resetCornerRadius:(CGFloat)cornerRadius;
+
+
+/**
+ *  设置配置，返回自己为ui，用于配置自己
+ */
+-(instancetype)resetConfig:(void (^)(id ui))config;
+
+
+
 @end
+

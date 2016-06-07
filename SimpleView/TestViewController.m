@@ -26,9 +26,11 @@
 //    [self navResetTitleColor:[UIColor grayColor] font:[UIFont systemFontOfSize:20]];
     self.title = @"aaa";
     self.view.backgroundColor = [UIColor whiteColor];
-    [[[UIButton buttonEmptyWithFrame:CGRectMake(0, 0, 100, 100) click:^{
+    [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
-    }] resetBackgroundColor:[UIColor yellowColor]] setupOnView:self.view];
+    }] resetBackgroundColor:[UIColor blueColor]] setupOnView:self.view] resetCornerRadius:11] resetConfig:^(UIButton *ui) {
+        ui.backgroundColor = [UIColor yellowColor];
+    }];
     
     [self navAddLeftSpaceWithWidth:50];
     __weak __typeof(self) wself = self;

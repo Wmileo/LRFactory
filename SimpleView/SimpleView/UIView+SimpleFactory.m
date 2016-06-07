@@ -29,4 +29,27 @@
     return self;
 }
 
+-(instancetype)resetBorderWidth:(CGFloat)width borderColor:(UIColor *)color{
+    self.layer.borderWidth = width;
+    self.layer.borderColor = color.CGColor;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    return self;
+}
+
+-(instancetype)resetCornerRadius:(CGFloat)cornerRadius{
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.masksToBounds = YES;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    return self;
+}
+
+-(instancetype)resetConfig:(void (^)(id))config{
+    if (config) {
+        config(self);
+    }
+    return self;
+}
+
 @end
