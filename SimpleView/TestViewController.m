@@ -37,7 +37,7 @@
     [self navSetupRightTitle:@"ABC" action:^{
 //        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
         
-        [wself dismissViewControllerAnimated:YES completion:nil success:YES info:@{@"info":@"aaaa"}];
+        [wself dismissViewControllerAnimated:YES completion:nil success:NO info:@{@"info":@"aaaa"}];
         
     }];
     

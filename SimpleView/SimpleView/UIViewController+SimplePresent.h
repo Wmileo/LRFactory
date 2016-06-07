@@ -21,7 +21,7 @@ typedef void (^PresentBlock)(BOOL success, id info);
  *  弹出界面，带弹出界面消失的回调信息，
  *  ps支持单纯UIViewController，或者带UIViewController的UINavigationController取topViewController
  */
--(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion callback:(PresentBlock)callback;
+-(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(PresentBlock)willDismissCallback didDismissCallback:(PresentBlock)didDismissCallback;
 
 /**
  *  消失界面，带回调信息

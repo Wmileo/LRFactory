@@ -55,8 +55,10 @@
 ////        [test navSetupBackItemWithIdentification:@"back"];
 //        [wself.navigationController pushViewController:test animated:YES];
         
-        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil callback:^(BOOL success, id info) {
-            NSLog(@"%@",info);
+        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil willDismissCallback:^(BOOL success, id info) {
+            NSLog(@"%zd - %@",success,info);
+        } didDismissCallback:^(BOOL success, id info) {
+            NSLog(@"%zd - %@",success,info);
         }];
     }];
 

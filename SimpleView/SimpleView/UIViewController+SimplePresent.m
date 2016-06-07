@@ -11,7 +11,8 @@
 
 @implementation UIViewController (SimplePresent)
 
-static char keyPresentBlock;
+static char keyPresentWillDismissBlock;
+static char keyPresentDidDismissBlock;
 static char keyPresenterViewController;
 
 -(instancetype)resetModalTransitionStyle:(UIModalTransitionStyle)style{
@@ -19,8 +20,9 @@ static char keyPresenterViewController;
     return self;
 }
 
--(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion callback:(PresentBlock)callback{
-    objc_setAssociatedObject(self, &keyPresentBlock, callback, OBJC_ASSOCIATION_COPY_NONATOMIC);
+-(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(PresentBlock)willDismissCallback didDismissCallback:(PresentBlock)didDismissCallback{
+    objc_setAssociatedObject(self, &keyPresentWillDismissBlock, willDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &keyPresentDidDismissBlock, didDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
     UIViewController *viewController = viewControllerToPresent;
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         viewController = ((UINavigationController *) viewControllerToPresent).topViewController;
@@ -31,14 +33,18 @@ static char keyPresenterViewController;
 
 -(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion success:(BOOL)success info:(id)info{
     __weak __typeof(self) wself = self;
+    UIViewController *presenterViewController = objc_getAssociatedObject(wself, &keyPresenterViewController);
+    PresentBlock willDismissBlock = (PresentBlock)objc_getAssociatedObject(presenterViewController, &keyPresentWillDismissBlock);
+    PresentBlock didDismissBlock = (PresentBlock)objc_getAssociatedObject(presenterViewController, &keyPresentDidDismissBlock);
+    if (willDismissBlock) {
+        willDismissBlock(success,info);
+    }
     [self dismissViewControllerAnimated:flag completion:^{
         if (completion) {
             completion();
         }
-        UIViewController *presenterViewController = objc_getAssociatedObject(wself, &keyPresenterViewController);
-        PresentBlock block = (PresentBlock)objc_getAssociatedObject(presenterViewController, &keyPresentBlock);
-        if (block) {
-            block(flag,info);
+        if (didDismissBlock) {
+            didDismissBlock(success,info);
         }
     }];
 }
