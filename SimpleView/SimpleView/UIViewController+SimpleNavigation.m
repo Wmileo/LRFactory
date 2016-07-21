@@ -12,7 +12,8 @@
 #import "UILabel+SimpleFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
-#import "Aspects.h"
+#import "NSObject+Method.h"
+#import "UINavigationController+SimpleFactory.h"
 
 typedef NS_ENUM(NSInteger, BarButtonSide){
     BarButtonSideLeft,
@@ -22,26 +23,41 @@ typedef NS_ENUM(NSInteger, BarButtonSide){
 @implementation UIViewController (SimpleNavigation)
 
 #pragma mark - title
+
+static char keyTitleColor;
+static char keyTitleFont;
+static char keyIsTitleCustom;
+
 -(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font{
     
     self.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:font text:self.title textColor:color];
 
-    __weak __typeof(self) wself = self;
-    [self aspect_hookSelector:@selector(setTitle:) withOptions:AspectPositionAfter usingBlock:^(){
-        wself.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:font text:wself.title textColor:color];
-    } error:NULL];
+    objc_setAssociatedObject(self, &keyIsTitleCustom, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyTitleFont, font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyTitleColor, color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(setTitle:) withSEL:@selector(SimpleNavigation_setTitle:)];
+    });
+}
+
+-(void)SimpleNavigation_setTitle:(NSString *)title{
+    [self SimpleNavigation_setTitle:title];
+    if ([objc_getAssociatedObject(self, &keyIsTitleCustom) boolValue]) {
+        self.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:objc_getAssociatedObject(self, &keyTitleFont) text:self.title textColor:objc_getAssociatedObject(self, &keyTitleColor)];
+    }
 }
 
 #pragma mark - 设置按钮
 
 -(instancetype)navSetupLeftBarButtonItem:(UIBarButtonItem *)barButtonItem{
-    [self.navigationItem setLeftBarButtonItem:barButtonItem];
+    [self.navigationItem setLeftBarButtonItems:@[barButtonItem]];
     return self;
 }
 
 -(instancetype)navSetupRightBarButtonItem:(UIBarButtonItem *)barButtonItem{
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
+    [self.navigationItem setRightBarButtonItems:@[barButtonItem]];
     return self;
 }
 
@@ -221,6 +237,7 @@ static BOOL hadConfigTextColorAndFont;
 }
 
 static UIColor *navBackgroundColor;
+static UIStatusBarStyle defaultStatusBarStyle;
 
 +(void)configNavBackgroundColor:(UIColor *)color{
     navBackgroundColor = color;
@@ -232,36 +249,30 @@ static UIColor *navBackgroundColor;
 }
 
 +(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
-    [UINavigationController aspect_hookSelector:@selector(childViewControllerForStatusBarStyle) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UINavigationController *navC = invocation.target;
-        UIViewController *vc = navC.visibleViewController;
-        [invocation setReturnValue:&vc];
-    } error:NULL];
-    
-    [UIViewController aspect_hookSelector:@selector(preferredStatusBarStyle) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-        UIStatusBarStyle style = statusBarStyle;
-        NSInvocation *invocation = info.originalInvocation;
-        [invocation setReturnValue:&style];
-    } error:NULL];
-}
-
-+(void)configNavBarTranslucent:(BOOL)translucent{
-    [UINavigationController aspect_hookSelector:@selector(initWithRootViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UINavigationController *navC = invocation.target;
-        navC.navigationBar.translucent = translucent;
-    } error:NULL];
+    [UINavigationController configChildViewControllerForStatusBarStyle];
+    defaultStatusBarStyle = statusBarStyle;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+       [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleNavigation_preferredStatusBarStyle)];
+    });
 }
 
 +(void)configViewControllerRectEdgeNoneForExtendedLayout{
-    [UIViewController aspect_hookSelector:@selector(viewDidLoad) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UIViewController *vc = invocation.target;
-        if (vc.navigationController) {
-            vc.edgesForExtendedLayout = UIRectEdgeNone;
-        }
-    } error:NULL];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(viewDidLoad) withSEL:@selector(SimpleNavigation_viewDidLoad)];
+    });
+}
+
+-(UIStatusBarStyle)SimpleNavigation_preferredStatusBarStyle{
+    return defaultStatusBarStyle;
+}
+
+-(void)SimpleNavigation_viewDidLoad{
+    if (self.navigationController) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    [self SimpleNavigation_viewDidLoad];
 }
 
 @end

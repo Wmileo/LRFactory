@@ -22,9 +22,9 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
-//    [self navResetTitleColor:[UIColor grayColor] font:[UIFont systemFontOfSize:20]];
-    self.title = @"aaa";
+       self.title = @"aaa";
+    [self navResetTitleColor:[UIColor grayColor] font:[UIFont systemFontOfSize:20]];
+
     self.view.backgroundColor = [UIColor whiteColor];
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
@@ -35,14 +35,15 @@
     [self navAddLeftSpaceWithWidth:50];
     __weak __typeof(self) wself = self;
     [self navSetupRightTitle:@"ABC" action:^{
-//        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
-        
-        [wself dismissViewControllerAnimated:YES completion:nil success:NO info:@{@"info":@"aaaa"}];
+        [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
+
+//        [wself dismissViewControllerAnimated:YES completion:nil success:NO info:@{@"info":@"aaaa"}];
         
     }];
     
-    [self navSetupBackItemWithIdentification:@"back"];
-
+//    [self navSetupBackItemWithIdentification:@"back" action:^{
+//        NSLog(@"逗你");
+//    }];
 
 }
 
@@ -53,7 +54,7 @@
 //    [self navSetupLeftTitle:@"---" action:nil];
 
 }
-
+//
 //-(BOOL)viewControllerShouldGesturePopBack{
 //    return NO;
 //}

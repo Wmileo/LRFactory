@@ -9,37 +9,33 @@
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "UINavigationController+SimpleFactory.h"
+#import "UINavigationController+BackButtonStyle.h"
 #import "UIView+SimpleFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
-#import "Aspects.h"
+#import "NSObject+Method.h"
 
 @implementation UIViewController (NavBackgroundStyle)
 
 +(void)configNavBackgroundStyle{
 
-    //去掉导航栏默认背景
-    [UINavigationController aspect_hookSelector:@selector(initWithRootViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UINavigationController *navC = invocation.target;
-        [navC.navigationBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
-                [obj setHidden:YES];
-                *stop = YES;
-            }
-        }];
-    } error:NULL];
+    [UINavigationController removeNavigationBarBackground];
     
-    //添加自定义导航栏背景
-    [UIViewController aspect_hookSelector:@selector(viewWillLayoutSubviews) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UIViewController *vc = invocation.target;
-        if (vc.navigationController) {
-            [vc.view bringSubviewToFront:vc.navView];
-        }
-    } error:NULL];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(viewWillLayoutSubviews) withSEL:@selector(NavBackgroundStyle_viewWillLayoutSubviews)];
+    });
     
 }
+
+-(void)NavBackgroundStyle_viewWillLayoutSubviews{
+    [self NavBackgroundStyle_viewWillLayoutSubviews];
+    if (self.navigationController) {
+        [self.view bringSubviewToFront:self.navView];
+    }
+}
+
+
 
 static char keyNavView;
 

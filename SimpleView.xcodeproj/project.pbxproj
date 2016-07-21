@@ -31,6 +31,8 @@
 		CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */; };
 		CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */; };
 		CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */; };
+		CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */; };
+		CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */; };
 		CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,10 @@
 		CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavBackgroundStyle.m"; sourceTree = "<group>"; };
 		CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SimpleFactory.h"; sourceTree = "<group>"; };
 		CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SimpleFactory.m"; sourceTree = "<group>"; };
+		CECD577F1D3DDA7F009C1F6F /* NSObject+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Method.h"; sourceTree = "<group>"; };
+		CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Method.m"; sourceTree = "<group>"; };
+		CED209101D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackButtonStyle.h"; sourceTree = "<group>"; };
+		CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackButtonStyle.m"; sourceTree = "<group>"; };
 		CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SimpleFactory.h"; sourceTree = "<group>"; };
 		CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SimpleFactory.m"; sourceTree = "<group>"; };
 		D90EDF4A8338FD51929EC816 /* Pods-SimpleView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +263,8 @@
 				CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */,
 				CE880DF61CEEF9CF002AA73D /* UIColor+HexString.h */,
 				CE880DF71CEEF9CF002AA73D /* UIColor+HexString.m */,
+				CECD577F1D3DDA7F009C1F6F /* NSObject+Method.h */,
+				CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */,
 			);
 			path = Simple;
 			sourceTree = "<group>";
@@ -266,6 +274,8 @@
 			children = (
 				CE805F291CE18F37000780D7 /* UIViewController+BackButtonStyle.h */,
 				CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */,
+				CED209101D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.h */,
+				CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */,
 				CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */,
 				CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */,
 			);
@@ -342,7 +352,7 @@
 				TargetAttributes = {
 					CE55BE451CBBC2F500D8364B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = LZ6NA3C3G7;
+						DevelopmentTeam = G464W59869;
 					};
 					CE55BE5E1CBBC2F600D8364B = {
 						CreatedOnToolsVersion = 7.3;
@@ -458,10 +468,12 @@
 				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */,
+				CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */,
 				CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */,
 				CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */,
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
 				CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */,
+				CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,

@@ -30,7 +30,7 @@
 @end
 
 
-@interface UIViewController (BackButtonStyle) 
+@interface UIViewController (BackButtonStyle)
 
 /**
  *  配置右滑返回手势  ps.应用开启时配置
@@ -47,6 +47,11 @@
  *  设置返回按钮 样式为identification对应的样式
  */
 -(instancetype)navSetupBackItemWithIdentification:(NSString *)identification;
+
+/**
+ *  设置返回按钮 样式为identification对应的样式 点击为action
+ */
+-(instancetype)navSetupBackItemWithIdentification:(NSString *)identification action:(void (^)())action;
 
 /**
  *  返回上一个ViewController的title

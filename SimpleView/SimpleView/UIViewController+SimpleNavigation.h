@@ -40,10 +40,7 @@
  */
 +(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
 
-/**
- *  配置默认导航栏是否透明 NO时view从导航栏底部开始  YES时view从屏幕顶部开始
- */
-+(void)configNavBarTranslucent:(BOOL)translucent;
+
 
 /**
  *  使得view从导航栏底部开始

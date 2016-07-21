@@ -10,35 +10,35 @@
 #import "SimpleViewHeader.h"
 #import "NSObject+Block.h"
 #import "UIView+Sizes.h"
-#import "Aspects.h"
+#import "NSObject+Method.h"
+#import "UINavigationController+BackButtonStyle.h"
+#import <objc/runtime.h>
 
-@interface UIViewController() <UIGestureRecognizerDelegate>
+@interface UIViewController() <UIViewControllerBackButton>
 
 @end
 
 @implementation UIViewController (BackButtonStyle)
 
 +(void)configViewControllerGesturePopBack{
-    [UINavigationController aspect_hookSelector:@selector(initWithRootViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UINavigationController *navC = invocation.target;
-        navC.interactivePopGestureRecognizer.delegate = navC;
-    } error:NULL];
-    [UINavigationController aspect_hookSelector:@selector(pushViewController:animated:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UINavigationController *navC = invocation.target;
-        navC.interactivePopGestureRecognizer.enabled = NO;
-    } error:NULL];
-    [UIViewController aspect_hookSelector:@selector(viewDidAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info){
-        NSInvocation *invocation = info.originalInvocation;
-        UIViewController *vc = invocation.target;
-        if (vc.navigationController) {
-            vc.navigationController.interactivePopGestureRecognizer.enabled = YES;
-        }
-    } error:NULL];
+    [UINavigationController configNavigationControllerGesturePopBack];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(BackButtonStyle_viewDidAppear:)];
+    });
+}
+
+-(void)BackButtonStyle_viewDidAppear:(BOOL)animated{
+    [self BackButtonStyle_viewDidAppear:animated];
+    if (self.navigationController) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 static NSDictionary *backItemIdentifications;
+
+static char keyResetBackButtonBlock;
+static char keyBackButtonClick;
 
 +(void)configBackItemIdentifications:(NSDictionary *(^)())identifications{
     backItemIdentifications = identifications();
@@ -46,16 +46,33 @@ static NSDictionary *backItemIdentifications;
 
 -(instancetype)navSetupBackItemWithIdentification:(NSString *)identification{
     
-    [self resetBackItemWithIdentification:identification];
-    
-    __weak __typeof(self) wself = self;
-    [self aspect_hookSelector:@selector(view) withOptions:AspectPositionBefore|AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> info){
-        [wself resetBackItemWithIdentification:identification];
-    } error:NULL];
+    if (self.navigationController) {
+        [self resetBackItemWithIdentification:identification];
+    }else{
+        [UINavigationController configViewControllerResetBackButton];
+        __weak __typeof(self) wself = self;
+        void (^ResetBackButtonBlock)() = ^(){
+            [wself resetBackItemWithIdentification:identification];
+        };
+        objc_setAssociatedObject(self, &keyResetBackButtonBlock, ResetBackButtonBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    }
     
     return self;
 }
 
+-(instancetype)navSetupBackItemWithIdentification:(NSString *)identification action:(void (^)())action{
+    objc_setAssociatedObject(self, &keyBackButtonClick, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return [self navSetupBackItemWithIdentification:identification];
+}
+
+#pragma mark - backbutton
+-(void)viewControllerResetBackButton{
+    void (^ResetBackButtonBlock)() = objc_getAssociatedObject(self, &keyResetBackButtonBlock);
+    if (ResetBackButtonBlock) {
+        ResetBackButtonBlock();
+    }
+}
+#pragma mark
 -(void)resetBackItemWithIdentification:(NSString *)identification{
     
     BackItemModel *model = backItemIdentifications[identification];
@@ -91,7 +108,10 @@ static NSDictionary *backItemIdentifications;
 }
 
 -(void)clickOnBack{
-    if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
+    void (^BackButtonClick)() = objc_getAssociatedObject(self, &keyBackButtonClick);
+    if (BackButtonClick) {
+        BackButtonClick();
+    }else if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
         [self performSelector:@selector(navClickOnBackItem)];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
@@ -108,28 +128,7 @@ static NSDictionary *backItemIdentifications;
     return nil;
 }
 
-#pragma mark - 右滑返回
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    if ([self isKindOfClass:[UINavigationController class]]) {
-        UIViewController *vc = ((UINavigationController *)self).visibleViewController;
-        if ([vc respondsToSelector:@selector(viewControllerShouldGesturePopBack)]) {
-            return (BOOL)[vc performSelector:@selector(viewControllerShouldGesturePopBack)];
-        }
-        return ((UINavigationController *)self).viewControllers.count != 1;
-    }
-    return NO;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
-}
-
 @end
-
 
 @implementation BackItemModel
 

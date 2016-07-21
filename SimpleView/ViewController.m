@@ -51,19 +51,24 @@
     __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
         TestViewController *test = [[TestViewController alloc] init];
+
+        [test navSetupBackItemWithIdentification:@"back"];
+        [wself.navigationController pushViewController:test animated:YES];
         
-////        [test navSetupBackItemWithIdentification:@"back"];
-//        [wself.navigationController pushViewController:test animated:YES];
-        
-        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil willDismissCallback:^(BOOL success, id info) {
-            NSLog(@"%zd - %@",success,info);
-        } didDismissCallback:^(BOOL success, id info) {
-            NSLog(@"%zd - %@",success,info);
-        }];
+//        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil willDismissCallback:^(BOOL success, id info) {
+//            NSLog(@"%zd - %@",success,info);
+//        } didDismissCallback:^(BOOL success, id info) {
+//            NSLog(@"%zd - %@",success,info);
+//        }];
     }];
 
-    
+
     [self navSetupBackItemWithIdentification:@"back"];
+    
+    [self navSetupLeftButton:[UIButton buttonWithCenter:CGPointZero title:@"啊哈哈哈" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:10] click:^{
+        
+    }]];
+
     
     // Do any additional setup after loading the view, typically from a nib.
 }

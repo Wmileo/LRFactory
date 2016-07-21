@@ -14,6 +14,6 @@
 #import "NSString+CGSize.h"
 #import "UIView+Sizes.h"
 #import "UIColor+HexString.h"
-
+#import "NSObject+Method.h"
 
 #endif /* SimpleHeader_h */
