@@ -23,12 +23,12 @@ Pod::Spec.new do |s|
 
   s.subspec "SimpleView" do |simpleView|
     simpleView.source_files = 'SimpleView/SimpleView/*'
-    simpleView.dependency 'SimpleView.Simple'
+    simpleView.dependency 'SimpleView/Simple'
   end
 
   s.subspec "NavStyle" do |navStyle|
     navStyle.source_files = 'SimpleView/NavStyle/*'
-    navStyle.dependency 'SimpleView.SimpleView'
+    navStyle.dependency 'SimpleView/SimpleView'
   end
 
 end
