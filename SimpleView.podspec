@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SimpleView"
-  s.version      = "0.0.11"
+  s.version      = "0.1.0"
   s.summary      = "封装视图控件，用于方便调用"
   s.description  = <<-DESC
 					 封装视图控件，用于方便调用
@@ -23,10 +23,12 @@ Pod::Spec.new do |s|
 
   s.subspec "SimpleView" do |simpleView|
     simpleView.source_files = 'SimpleView/SimpleView/*'
+    simpleView.dependency 'SimpleView.Simple'
   end
 
   s.subspec "NavStyle" do |navStyle|
     navStyle.source_files = 'SimpleView/NavStyle/*'
+    navStyle.dependency 'SimpleView.SimpleView'
   end
 
 end
