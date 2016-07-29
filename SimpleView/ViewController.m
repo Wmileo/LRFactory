@@ -30,7 +30,7 @@
     
     NSAttributedString *att = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]];
     NSAttributedString *att1 = [[[NSAttributedString attributedStringWithText:@"    "] copyAttributedStringWithFont:[UIFont systemFontOfSize:10]] copyAttributedStringWithColor:[UIColor orangeColor]];
-    NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
+    NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"大的"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
     NSAttributedString *att3 = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]];
     
     [[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 50)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att,att1,att2,[NSAttributedString attributedStringWithSpaceNum:5],att3]]] setupOnView:self.view];
