@@ -35,4 +35,9 @@
     return self;
 }
 
+-(UILabel *)labelResetAttributedText:(NSAttributedString *)attributedText{
+    self.attributedText = attributedText;
+    return self;
+}
+
 @end

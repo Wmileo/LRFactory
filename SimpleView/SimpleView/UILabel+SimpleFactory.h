@@ -30,5 +30,10 @@
  */
 -(UILabel *)labelResetNumberOfLines:(NSInteger)lines;
 
+/**
+ *  设置attributedText
+ */
+-(UILabel *)labelResetAttributedText:(NSAttributedString *)attributedText;
+
 
 @end

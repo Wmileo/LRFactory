@@ -13,6 +13,7 @@
 		CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */; };
 		CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C21CDB634900A11CEB /* TestViewController.m */; };
 		CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */; };
+		CE10184E1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */; };
 		CE1B646F1D01722A0034672B /* UIViewController+SimplePresent.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */; };
 		CE55BE4B1CBBC2F600D8364B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE4A1CBBC2F600D8364B /* main.m */; };
 		CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE4D1CBBC2F600D8364B /* AppDelegate.m */; };
@@ -66,6 +67,8 @@
 		CE0AE0C21CDB634900A11CEB /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SimpleFactory.h"; sourceTree = "<group>"; };
 		CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE10184C1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+SimpleFactory.h"; sourceTree = "<group>"; };
+		CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+SimpleFactory.m"; sourceTree = "<group>"; };
 		CE1B646D1D01722A0034672B /* UIViewController+SimplePresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimplePresent.h"; sourceTree = "<group>"; };
 		CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimplePresent.m"; sourceTree = "<group>"; };
 		CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleViewHeader.h; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
 				CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */,
 				CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */,
+				CE10184C1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.h */,
+				CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */,
 				CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */,
 				CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */,
 				CE763C361D054FB10068DA0B /* UITextField+SimpleFactory.h */,
@@ -482,6 +487,7 @@
 				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
 				CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
+				CE10184E1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m in Sources */,
 				CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */,
 				CE1B646F1D01722A0034672B /* UIViewController+SimplePresent.m in Sources */,
 				CE880DF81CEEF9CF002AA73D /* UIColor+HexString.m in Sources */,

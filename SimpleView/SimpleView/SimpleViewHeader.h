@@ -17,7 +17,10 @@
 #import "UIBarButtonItem+SimpleFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 
+#import "NSAttributedString+SimpleFactory.h"
+
 #import "UIViewController+SimpleNavigation.h"
 #import "UIViewController+SimplePresent.h"
+
 
 #endif /* SimpleViewHeader_h */
