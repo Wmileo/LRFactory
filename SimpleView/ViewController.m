@@ -11,6 +11,7 @@
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+SimplePresent.h"
+#import "UIView+Sizes.h"
 
 @interface ViewController () <UIViewControllerNavigationDataSource>
 
@@ -29,11 +30,11 @@
     
     
     NSAttributedString *att = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]];
-    NSAttributedString *att1 = [[[NSAttributedString attributedStringWithText:@"\n\n"] copyAttributedStringWithFont:[UIFont systemFontOfSize:5]] copyAttributedStringWithColor:[UIColor orangeColor]];
+    NSAttributedString *att1 = [NSAttributedString attributedStringWithLineFeedSize:50];
     NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"大的"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
     NSAttributedString *att3 = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]];
     
-    [[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att,att1,[NSAttributedString attributedStringWithText:@"啊哈哈哈" color:nil font:[UIFont systemFontOfSize:8]],att2,[NSAttributedString attributedStringWithSpaceNum:5],att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentCenter];
+    [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
     
 //    [self navSetupRightTitle:@"SAAA" action:^{
 //        NSLog(@"aa");

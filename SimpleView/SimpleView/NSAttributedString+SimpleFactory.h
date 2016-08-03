@@ -37,6 +37,11 @@
 +(NSAttributedString *)attributedStringWithSpaceNum:(NSInteger)num;
 
 /**
+ *  生成换行 size换行的尺寸
+ */
++(NSAttributedString *)attributedStringWithLineFeedSize:(CGFloat)size;
+
+/**
  *  按顺序拼接attributedString成新的attributedString
  */
 +(NSAttributedString *)attributedStringWithAttributedStrings:(NSArray *)attributedString;

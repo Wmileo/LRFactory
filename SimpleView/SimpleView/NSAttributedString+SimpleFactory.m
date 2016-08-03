@@ -37,7 +37,11 @@
     }
     return [NSAttributedString attributedStringWithText:[string copy]];
 }
-
++(NSAttributedString *)attributedStringWithLineFeedSize:(CGFloat)size{
+    NSAttributedString *att1 = [NSAttributedString attributedStringWithText:@"\n" color:nil font:[UIFont systemFontOfSize:1]];
+    NSAttributedString *att2 = [NSAttributedString attributedStringWithText:@"\n" color:nil font:[UIFont systemFontOfSize:size]];
+    return [NSAttributedString attributedStringWithAttributedStrings:@[att1,att2]];
+}
 +(NSAttributedString *)attributedStringWithAttributedStrings:(NSArray *)attributedString{
     NSInteger num = attributedString.count;
     if (num > 0) {
