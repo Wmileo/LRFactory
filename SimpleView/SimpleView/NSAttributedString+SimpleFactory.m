@@ -10,7 +10,12 @@
 
 @implementation NSAttributedString (SimpleFactory)
 
-
++(NSAttributedString *)attributedStringWithText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];
+    if (color) [dic setObject:color forKey:NSForegroundColorAttributeName];
+    if (font) [dic setObject:font forKey:NSFontAttributeName];
+    return [[NSAttributedString alloc] initWithString:text attributes:dic];
+}
 +(NSAttributedString *)attributedStringWithText:(NSString *)text{
     return [[NSAttributedString alloc] initWithString:text];
 }
