@@ -16,6 +16,21 @@
 +(instancetype)viewWithFrame:(CGRect)frame;
 
 /**
+ *  工厂生产UIView
+ */
++(instancetype)viewWithCenter:(CGPoint)center size:(CGSize)size;
+
+/**
+ *  工厂生产UIView
+ */
++(instancetype)viewWithCenterX:(CGFloat)centerX top:(CGFloat)top size:(CGSize)size;
+
+/**
+ *  工厂生产UIView
+ */
++(instancetype)viewWithRight:(CGFloat)right top:(CGFloat)top size:(CGSize)size;
+
+/**
  *  设置背景颜色
  */
 -(instancetype)resetBackgroundColor:(UIColor *)color;

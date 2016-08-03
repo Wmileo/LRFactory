@@ -14,6 +14,18 @@
     return [[[self class] alloc] initWithFrame:frame];
 }
 
++(instancetype)viewWithCenter:(CGPoint)center size:(CGSize)size{
+    return [[[self class] alloc] initWithFrame:CGRectMake(center.x - size.width / 2, center.y - size.height / 2, size.width, size.height)];
+}
+
++(instancetype)viewWithCenterX:(CGFloat)centerX top:(CGFloat)top size:(CGSize)size{
+    return [[[self class] alloc] initWithFrame:CGRectMake(centerX - size.width / 2, top, size.width, size.height)];
+}
+
++(instancetype)viewWithRight:(CGFloat)right top:(CGFloat)top size:(CGSize)size{
+    return [[[self class] alloc] initWithFrame:CGRectMake(right - size.width, top, size.width, size.height)];
+}
+
 -(instancetype)resetBackgroundColor:(UIColor *)color{
     self.backgroundColor = color;
     return self;
