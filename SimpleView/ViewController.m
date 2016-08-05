@@ -13,7 +13,7 @@
 #import "UIViewController+SimplePresent.h"
 #import "UIView+Sizes.h"
 
-@interface ViewController () <UIViewControllerNavigationDataSource>
+@interface ViewController () <UIViewControllerNavigationDataSource,UITextViewDelegate>
 
 @end
 
@@ -28,13 +28,21 @@
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
     
+    NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
+    p.lineBreakMode = NSLineBreakByTruncatingHead;
+    p.alignment = NSTextAlignmentJustified;
     
-    NSAttributedString *att = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]];
+    NSAttributedString *att = [[[[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]] copyAttributedStringWithUnderLineWithColor:[UIColor blueColor]] copyAttributedStringWithLink:@"aaa"];
     NSAttributedString *att1 = [NSAttributedString attributedStringWithLineFeedSize:50];
     NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"大的"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
-    NSAttributedString *att3 = [[[NSAttributedString attributedStringWithText:@"aa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]];
+    NSAttributedString *att3 = [[[[NSAttributedString attributedStringWithText:@"aaaadfadfasdfsesfeafadfafasdfasdfadfsdfsadfasdfasfio"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p];
     
-    [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
+    [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:3] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
+    
+    UITextView *text = [[UITextView viewWithFrame:CGRectMake(0, 0, 100, 100)] setupOnView:self.view];
+    text.attributedText = att;
+    text.editable = NO;
+    text.delegate = self;
     
 //    [self navSetupRightTitle:@"SAAA" action:^{
 //        NSLog(@"aa");
@@ -85,6 +93,10 @@
     [super viewWillAppear:animated];
 //    [self navSetupLeftTitle:@"___" action:nil];
 
+}
+
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    return YES;
 }
 
 //-(UIFont *)navBarButtonItemLeftTextFont{

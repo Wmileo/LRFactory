@@ -29,7 +29,22 @@
     [att addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.string.length)];
     return [att copy];
 }
-
+-(NSAttributedString *)copyAttributedStringWithParagraphStyle:(NSParagraphStyle *)paragraphStyle{
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    [att addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, self.string.length)];
+    return [att copy];
+}
+-(NSAttributedString *)copyAttributedStringWithUnderLineWithColor:(UIColor *)color{
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    [att addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, self.string.length)];
+    [att addAttribute:NSUnderlineColorAttributeName value:color range:NSMakeRange(0, self.string.length)];
+    return [att copy];
+}
+-(NSAttributedString *)copyAttributedStringWithLink:(id)link{
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    [att addAttribute:NSLinkAttributeName value:link range:NSMakeRange(0, self.string.length)];
+    return [att copy];
+}
 +(NSAttributedString *)attributedStringWithSpaceNum:(NSInteger)num{
     NSMutableString *string = [NSMutableString stringWithCapacity:3];
     for (int i = 0; i < num; i++) {

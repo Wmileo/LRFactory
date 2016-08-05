@@ -32,6 +32,21 @@
 -(NSAttributedString *)copyAttributedStringWithFont:(UIFont *)font;
 
 /**
+ *  拷贝新的AttributedString 换成ParagraphStyle
+ */
+-(NSAttributedString *)copyAttributedStringWithParagraphStyle:(NSParagraphStyle *)paragraphStyle;
+
+/**
+ *  拷贝新的AttributedString 生成NSUnderlineStyleSingle 并设置颜色
+ */
+-(NSAttributedString *)copyAttributedStringWithUnderLineWithColor:(UIColor *)color;
+
+/**
+ *  拷贝新的AttributedString 生成点击链接  优先支持NSURL 然后支持NSString //仅支持UITextView
+ */
+-(NSAttributedString *)copyAttributedStringWithLink:(id)link;
+
+/**
  *  生成空格 num空格数量
  */
 +(NSAttributedString *)attributedStringWithSpaceNum:(NSInteger)num;
