@@ -11,12 +11,14 @@
 @implementation NSAttributedString (SimpleFactory)
 
 +(NSAttributedString *)attributedStringWithText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
+    if (!text) text = @"";
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];
     if (color) [dic setObject:color forKey:NSForegroundColorAttributeName];
     if (font) [dic setObject:font forKey:NSFontAttributeName];
     return [[NSAttributedString alloc] initWithString:text attributes:dic];
 }
 +(NSAttributedString *)attributedStringWithText:(NSString *)text{
+    if (!text) text = @"";
     return [[NSAttributedString alloc] initWithString:text];
 }
 -(NSAttributedString *)copyAttributedStringWithColor:(UIColor *)color{
