@@ -275,4 +275,26 @@ static UIStatusBarStyle defaultStatusBarStyle;
     [self SimpleNavigation_viewDidLoad];
 }
 
+-(NSArray<UIView *> *)navLeftViews{
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:self.navigationItem.leftBarButtonItems.count];
+    [self.navigationItem.leftBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = obj.customView;
+        if (view) {
+            [views addObject:view];
+        }
+    }];
+    return [views copy];
+}
+
+-(NSArray<UIView *> *)navRightViews{
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:self.navigationItem.rightBarButtonItems.count];
+    [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = obj.customView;
+        if (view) {
+            [views addObject:view];
+        }
+    }];
+    return [views copy];
+}
+
 @end

@@ -25,6 +25,17 @@
 }
 
 - (void)testExample {
+    
+    NSUInteger i0 = 0;
+    NSUInteger i1 = 1 << 0;
+    NSUInteger i2 = 1 << 1;
+    NSUInteger i4 = 1 << 2;
+    
+    NSUInteger ii = i0 | i1 | i2 | i4;
+    
+    NSLog(@"%zd",ii);
+    
+    
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }

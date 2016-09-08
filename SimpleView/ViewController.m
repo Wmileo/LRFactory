@@ -66,6 +66,10 @@
     [self navSetupRightSpaceWithWidth:10];
     __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
+        
+        NSLog(@"%@\n%@",wself.navLeftViews,wself.navRightViews);
+        
+        
         TestViewController *test = [[TestViewController alloc] init];
 
         [test navSetupBackItemWithIdentification:@"back"];

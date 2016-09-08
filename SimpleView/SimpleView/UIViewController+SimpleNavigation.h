@@ -133,5 +133,9 @@
 -(instancetype)navAddLeftSpaceWithWidth:(CGFloat)width;
 -(instancetype)navAddRightSpaceWithWidth:(CGFloat)width;
 
+#pragma mark - 获取 barbuttonitem的View
+-(NSArray<UIView *> *)navLeftViews;
+-(NSArray<UIView *> *)navRightViews;
+
 
 @end
