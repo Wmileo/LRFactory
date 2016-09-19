@@ -55,7 +55,7 @@
 -(void)NavBackgroundStyle_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self NavBackgroundStyle_pushViewController:viewController animated:animated];
     [self.navigationBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+        if ([obj isKindOfClass:NSClassFromString(([[[UIDevice currentDevice] systemVersion] floatValue] >= 10) ? @"_UIBarBackground" : @"_UINavigationBarBackground")]) {
             [obj setHidden:YES];
             *stop = YES;
         }
