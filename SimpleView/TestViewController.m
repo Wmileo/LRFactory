@@ -32,7 +32,7 @@
         ui.backgroundColor = [UIColor yellowColor];
     }];
     
-    [self navAddLeftSpaceWithWidth:50];
+//    [self navAddLeftSpaceWithWidth:50];
     __weak __typeof(self) wself = self;
     [self navSetupRightTitle:@"ABC" action:^{
         [wself.navigationController pushViewController:[[ViewController alloc] init] animated:YES];

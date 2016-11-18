@@ -40,8 +40,15 @@ static NSDictionary *backItemIdentifications;
 static char keyResetBackButtonBlock;
 static char keyBackButtonClick;
 
+static NSString *defaultBackItemIdentification;
+
 +(void)configBackItemIdentifications:(NSDictionary *(^)())identifications{
     backItemIdentifications = identifications();
+}
+
++(void)configDefaultBackItemWithIdentification:(NSString *)identification{
+    defaultBackItemIdentification = identification;
+    [UINavigationController configViewControllerSetupDefaultBackButton];
 }
 
 -(instancetype)navSetupBackItemWithIdentification:(NSString *)identification{
@@ -72,6 +79,13 @@ static char keyBackButtonClick;
         ResetBackButtonBlock();
     }
 }
+
+-(void)viewControllerSetupDefaultBackButton{
+    if (defaultBackItemIdentification) {
+        [self navSetupBackItemWithIdentification:defaultBackItemIdentification];
+    }
+}
+
 #pragma mark
 -(void)resetBackItemWithIdentification:(NSString *)identification{
     

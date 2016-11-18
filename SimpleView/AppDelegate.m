@@ -34,6 +34,7 @@
     [UIViewController configBackItemIdentifications:^NSDictionary *{
         return @{@"back":[BackItemModel modelWithOffsetX:-10 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]]};
     }];
+    [UIViewController configDefaultBackItemWithIdentification:@"back"];
     
     UITabBarController *tab = [[UITabBarController alloc] init];
     

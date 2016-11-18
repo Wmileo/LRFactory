@@ -12,6 +12,7 @@
 
 @optional
 -(void)viewControllerResetBackButton;
+-(void)viewControllerSetupDefaultBackButton;
 
 @end
 
@@ -27,6 +28,11 @@
  *  配置返回按钮  在push之后调用UIViewControllerBackButton
  */
 +(void)configViewControllerResetBackButton;
+
+/**
+ *  配置默认返回按钮  在push之后调用UIViewControllerBackButton
+ */
++(void)configViewControllerSetupDefaultBackButton;
 
 /**
  *  去掉导航栏默认背景

@@ -72,7 +72,7 @@
         
         TestViewController *test = [[TestViewController alloc] init];
 
-        [test navSetupBackItemWithIdentification:@"back"];
+//        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         
 //        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil willDismissCallback:^(BOOL success, id info) {
@@ -83,11 +83,11 @@
     }];
 
 
-    [self navSetupBackItemWithIdentification:@"back"];
+//    [self navSetupBackItemWithIdentification:@"back"];
     
-    [self navSetupLeftButton:[UIButton buttonWithCenter:CGPointZero title:@"啊哈哈哈" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:10] click:^{
-        
-    }]];
+//    [self navSetupLeftButton:[UIButton buttonWithCenter:CGPointZero title:@"啊哈哈哈" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:10] click:^{
+//        
+//    }]];
 
     
     // Do any additional setup after loading the view, typically from a nib.

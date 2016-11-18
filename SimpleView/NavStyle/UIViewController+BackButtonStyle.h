@@ -44,6 +44,11 @@
 +(void)configBackItemIdentifications:(NSDictionary* (^)())identifications;
 
 /**
+ *  配置默认返回按钮样式
+ */
++(void)configDefaultBackItemWithIdentification:(NSString *)identification;
+
+/**
  *  设置返回按钮 样式为identification对应的样式
  */
 -(instancetype)navSetupBackItemWithIdentification:(NSString *)identification;

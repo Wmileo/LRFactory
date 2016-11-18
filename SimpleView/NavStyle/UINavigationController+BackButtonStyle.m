@@ -38,10 +38,24 @@
     });
 }
 
++(void)configViewControllerSetupDefaultBackButton{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(UIViewControllerBackButton_setupDefault_pushViewController:animated:)];
+    });
+}
+
 -(void)UIViewControllerBackButton_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self UIViewControllerBackButton_pushViewController:viewController animated:animated];
     if ([viewController respondsToSelector:@selector(viewControllerResetBackButton)]) {
         [viewController performSelector:@selector(viewControllerResetBackButton)];
+    }
+}
+
+-(void)UIViewControllerBackButton_setupDefault_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [self UIViewControllerBackButton_setupDefault_pushViewController:viewController animated:animated];
+    if ([viewController respondsToSelector:@selector(viewControllerSetupDefaultBackButton)]) {
+        [viewController performSelector:@selector(viewControllerSetupDefaultBackButton)];
     }
 }
 

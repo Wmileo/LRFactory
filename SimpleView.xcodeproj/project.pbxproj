@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
+		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */; };
 		CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleView.podspec; sourceTree = "<group>"; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SimpleFactory.h"; sourceTree = "<group>"; };
 		CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SimpleFactory.m"; sourceTree = "<group>"; };
 		CE0AE0BB1CD9FCB300A11CEB /* NSString+CGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CGSize.h"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		CE55BE3D1CBBC2F500D8364B = {
 			isa = PBXGroup;
 			children = (
+				CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */,
 				CE55BE481CBBC2F600D8364B /* SimpleView */,
 				CE55BE621CBBC2F600D8364B /* SimpleViewTests */,
 				CE55BE6D1CBBC2F600D8364B /* SimpleViewUITests */,
@@ -352,7 +355,7 @@
 		CE55BE3E1CBBC2F500D8364B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ileo;
 				TargetAttributes = {
 					CE55BE451CBBC2F500D8364B = {
@@ -397,6 +400,7 @@
 				CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */,
 				CE55BE561CBBC2F600D8364B /* Assets.xcassets in Resources */,
 				CE55BE541CBBC2F600D8364B /* Main.storyboard in Resources */,
+				CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,8 +563,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -582,7 +588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -603,8 +609,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -620,7 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -639,7 +647,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SimpleView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,7 +668,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SimpleView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ileo.SimpleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
