@@ -54,7 +54,7 @@
 
 -(void)UIViewControllerBackButton_setupDefault_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self UIViewControllerBackButton_setupDefault_pushViewController:viewController animated:animated];
-    if ([viewController respondsToSelector:@selector(viewControllerSetupDefaultBackButton)]) {
+    if (self.viewControllers.count > 1 && [viewController respondsToSelector:@selector(viewControllerSetupDefaultBackButton)]) {
         [viewController performSelector:@selector(viewControllerSetupDefaultBackButton)];
     }
 }
