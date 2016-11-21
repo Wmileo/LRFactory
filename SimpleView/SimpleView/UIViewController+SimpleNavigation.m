@@ -31,7 +31,7 @@ static char keyIsTitleCustom;
 -(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font{
     
     self.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:font text:self.title textColor:color];
-
+    
     objc_setAssociatedObject(self, &keyIsTitleCustom, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &keyTitleFont, font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &keyTitleColor, color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
