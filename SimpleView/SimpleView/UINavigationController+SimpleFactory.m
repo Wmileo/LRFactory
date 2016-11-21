@@ -48,4 +48,18 @@ static BOOL defaultTranslucent;
     [self SimpleNavigation_pushViewController:viewController animated:animated];
 }
 
++(void)autoHidesBottomBarWhenPush{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(SimpleNavigation_autoHidesBottomBarWhenPush_pushViewController:animated:)];
+    });
+}
+
+-(void)SimpleNavigation_autoHidesBottomBarWhenPush_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [self SimpleNavigation_autoHidesBottomBarWhenPush_pushViewController:viewController animated:animated];
+}
+
 @end

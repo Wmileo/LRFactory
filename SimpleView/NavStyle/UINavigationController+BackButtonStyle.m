@@ -76,18 +76,6 @@
     }];
 }
 
-+(void)autoHidesBottomBarWhenPush{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(NavBackgroundStyle_autoHidesBottomBarWhenPush_pushViewController:animated:)];
-    });
-}
-
--(void)NavBackgroundStyle_autoHidesBottomBarWhenPush_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    viewController.hidesBottomBarWhenPushed = YES;
-    [self NavBackgroundStyle_autoHidesBottomBarWhenPush_pushViewController:viewController animated:animated];
-}
-
 #pragma mark - 右滑返回
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     UIViewController *vc = self.visibleViewController;

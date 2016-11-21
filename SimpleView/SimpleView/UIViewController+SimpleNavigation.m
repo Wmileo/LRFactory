@@ -264,6 +264,10 @@ static UIStatusBarStyle defaultStatusBarStyle;
     });
 }
 
++(void)autoHidesBottomBarWhenPush{
+    [UINavigationController autoHidesBottomBarWhenPush];
+}
+
 -(UIStatusBarStyle)SimpleNavigation_preferredStatusBarStyle{
     return defaultStatusBarStyle;
 }

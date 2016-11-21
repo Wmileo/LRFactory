@@ -35,7 +35,7 @@
         return @{@"back":[BackItemModel modelWithOffsetX:-10 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]]};
     }];
     [UIViewController configDefaultBackItemWithIdentification:@"back"];
-    
+    [UIViewController autoHidesBottomBarWhenPush];
     UITabBarController *tab = [[UITabBarController alloc] init];
     
     UINavigationController *nav = [UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]];
