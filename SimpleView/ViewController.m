@@ -44,6 +44,9 @@
     text.editable = NO;
     text.delegate = self;
     
+    
+    [[UIImageView imageViewWithCenter:self.view.center image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://s.qianbaocard.com/file/images.do?name=201612/02/58412bd866ea9_small.png&date=1480997107265"]]]] setupOnView:self.view];
+    
 //    [self navSetupRightTitle:@"SAAA" action:^{
 //        NSLog(@"aa");
 //    }];
