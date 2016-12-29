@@ -10,7 +10,6 @@
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
 		B33353C21DFE8FC5000118A0 /* AlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B33353C11DFE8FC5000118A0 /* AlertCenter.m */; };
 		B33353C81DFEAAC2000118A0 /* UIView+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = B33353C71DFEAAC2000118A0 /* UIView+Alert.m */; };
-		B33353CE1DFFC87E000118A0 /* UIView+KeyframeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B33353CD1DFFC87E000118A0 /* UIView+KeyframeAnimation.m */; };
 		B33353D21DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B33353D11DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m */; };
 		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
@@ -65,8 +64,6 @@
 		B33353C11DFE8FC5000118A0 /* AlertCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertCenter.m; path = Alert/AlertCenter.m; sourceTree = "<group>"; };
 		B33353C61DFEAAC2000118A0 /* UIView+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Alert.h"; path = "Alert/UIView+Alert.h"; sourceTree = "<group>"; };
 		B33353C71DFEAAC2000118A0 /* UIView+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Alert.m"; path = "Alert/UIView+Alert.m"; sourceTree = "<group>"; };
-		B33353CC1DFFC87E000118A0 /* UIView+KeyframeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KeyframeAnimation.h"; sourceTree = "<group>"; };
-		B33353CD1DFFC87E000118A0 /* UIView+KeyframeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KeyframeAnimation.m"; sourceTree = "<group>"; };
 		B33353D01DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+SimpleFactory.h"; sourceTree = "<group>"; };
 		B33353D11DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+SimpleFactory.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,8 +298,6 @@
 				CE55BE891CBBD09600D8364B /* NSObject+Block.m */,
 				CE0AE0BB1CD9FCB300A11CEB /* NSString+CGSize.h */,
 				CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */,
-				B33353CC1DFFC87E000118A0 /* UIView+KeyframeAnimation.h */,
-				B33353CD1DFFC87E000118A0 /* UIView+KeyframeAnimation.m */,
 				CEC716DA1CE4527E006536F2 /* UIView+Sizes.h */,
 				CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */,
 				CE880DF61CEEF9CF002AA73D /* UIColor+HexString.h */,
@@ -522,7 +517,6 @@
 				CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
-				B33353CE1DFFC87E000118A0 /* UIView+KeyframeAnimation.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
 				CE763C381D054FB10068DA0B /* UITextField+SimpleFactory.m in Sources */,
