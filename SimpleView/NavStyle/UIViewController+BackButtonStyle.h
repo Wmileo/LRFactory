@@ -30,7 +30,7 @@
 @end
 
 
-@interface UIViewController (BackButtonStyle)
+@interface UIViewController (BackButtonStyle) <UIViewControllerBackButtonDataSource>
 
 /**
  *  配置右滑返回手势  ps.应用开启时配置
