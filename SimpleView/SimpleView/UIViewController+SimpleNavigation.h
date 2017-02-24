@@ -40,8 +40,6 @@
  */
 +(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
 
-
-
 /**
  *  使得view从导航栏底部开始
  *  配置默认视图edgesForExtendedLayout为UIRectEdgeNone

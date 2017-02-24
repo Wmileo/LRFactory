@@ -10,11 +10,12 @@
 
 @protocol UIViewControllerNavBackgroundDataSource <NSObject>
 
+@optional
 -(UIColor *)navBackgroundColor;
 
 @end
 
-@interface UIViewController (NavBackgroundStyle)
+@interface UIViewController (NavBackgroundStyle) <UIViewControllerNavBackgroundDataSource>
 
 /**
  *  设置为可配置的导航栏背景  ps.应用开启时配置

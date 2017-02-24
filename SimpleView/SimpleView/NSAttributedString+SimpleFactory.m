@@ -10,6 +10,10 @@
 
 @implementation NSAttributedString (SimpleFactory)
 
+-(CGSize)sizeWithMaxWidth:(CGFloat)maxWidth{
+    return [self boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+}
+
 +(NSAttributedString *)attributedStringWithText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
     if (!text) text = @"";
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];

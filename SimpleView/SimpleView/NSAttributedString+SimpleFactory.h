@@ -11,6 +11,9 @@
 
 @interface NSAttributedString (SimpleFactory)
 
+
+-(CGSize)sizeWithMaxWidth:(CGFloat)maxWidth;
+
 /**
  *  初始化一个带text color font的AttributedString
  */

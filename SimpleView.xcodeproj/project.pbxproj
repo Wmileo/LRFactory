@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
-		B33353D21DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B33353D11DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m */; };
+		B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */; };
 		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */; };
@@ -58,8 +58,8 @@
 
 /* Begin PBXFileReference section */
 		0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
-		B33353D01DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+SimpleFactory.h"; sourceTree = "<group>"; };
-		B33353D11DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+SimpleFactory.m"; sourceTree = "<group>"; };
+		B34952171E600EB4004AD109 /* CAKeyframeAnimation+Simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+Simple.h"; sourceTree = "<group>"; };
+		B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+Simple.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleView.podspec; sourceTree = "<group>"; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SimpleFactory.h"; sourceTree = "<group>"; };
@@ -164,13 +164,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B33353CF1DFFCBB1000118A0 /* Animation */ = {
+		B34952161E600EA4004AD109 /* SimpleAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				B33353D01DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.h */,
-				B33353D11DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m */,
+				B34952171E600EB4004AD109 /* CAKeyframeAnimation+Simple.h */,
+				B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */,
 			);
-			name = Animation;
+			path = SimpleAnimation;
 			sourceTree = "<group>";
 		};
 		CE55BE3D1CBBC2F500D8364B = {
@@ -205,7 +205,7 @@
 				CE55BE501CBBC2F600D8364B /* ViewController.m */,
 				CE0AE0C11CDB634900A11CEB /* TestViewController.h */,
 				CE0AE0C21CDB634900A11CEB /* TestViewController.m */,
-				B33353CF1DFFCBB1000118A0 /* Animation */,
+				B34952161E600EA4004AD109 /* SimpleAnimation */,
 				CE55BE871CBBD09600D8364B /* Simple */,
 				CE55BE7C1CBBCB6A00D8364B /* SimpleView */,
 				CE805F251CE18DE8000780D7 /* NavStyle */,
@@ -505,9 +505,9 @@
 				CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
 				CE10184E1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m in Sources */,
+				B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */,
 				CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */,
 				CE1B646F1D01722A0034672B /* UIViewController+SimplePresent.m in Sources */,
-				B33353D21DFFCBFA000118A0 /* CAKeyframeAnimation+SimpleFactory.m in Sources */,
 				CE880DF81CEEF9CF002AA73D /* UIColor+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
