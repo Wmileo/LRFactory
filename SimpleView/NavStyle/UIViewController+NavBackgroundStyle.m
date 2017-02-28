@@ -24,6 +24,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(viewWillLayoutSubviews) withSEL:@selector(NavBackgroundStyle_viewWillLayoutSubviews)];
+        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
     });
     
 }
@@ -35,9 +37,34 @@
     }
 }
 
+-(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillDisappear:animated];
+    if (self.navHide) {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    }
+}
 
+-(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillAppear:animated];
+    if (self.navHide) {
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
+}
 
 static char keyNavView;
+static char keyNavHide;
+
+
+-(void)setNavHide:(BOOL)navHide{
+    self.navView.hidden = navHide;
+    objc_setAssociatedObject(self, &keyNavHide, @(navHide), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.navigationController setNavigationBarHidden:navHide animated:NO];
+}
+
+-(BOOL)navHide{
+    return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
+}
+
 
 -(UIView *)navView{
     UIView *vc = objc_getAssociatedObject(self, &keyNavView);
