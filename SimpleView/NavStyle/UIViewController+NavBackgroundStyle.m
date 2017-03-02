@@ -65,7 +65,6 @@ static char keyNavHide;
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 
-
 -(UIView *)navView{
     UIView *vc = objc_getAssociatedObject(self, &keyNavView);
     if (!vc) {

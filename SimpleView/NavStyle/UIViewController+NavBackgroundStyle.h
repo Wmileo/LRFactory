@@ -22,11 +22,14 @@
  */
 +(void)configNavBackgroundStyle;
 
+/**
+ *  隐藏导航栏
+ */
 @property (nonatomic, assign) BOOL navHide;
 
 /**
  *  自定义的导航背景
  */
--(UIView *)navView;
+@property (nonatomic, readonly) UIView *navView;
 
 @end
