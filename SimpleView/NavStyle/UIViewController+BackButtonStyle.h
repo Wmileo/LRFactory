@@ -27,6 +27,12 @@
  */
 -(NSString *)navBackItemTitle;
 
+
+/**
+ *  返回按钮将要响应
+ */
+-(void)navBackItemWillHandleClick;
+
 @end
 
 

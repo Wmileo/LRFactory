@@ -122,6 +122,9 @@ static NSString *defaultBackItemIdentification;
 }
 
 -(void)clickOnBack{
+    if ([self respondsToSelector:@selector(navBackItemWillHandleClick)]) {
+        [self navBackItemWillHandleClick];
+    }
     void (^BackButtonClick)() = objc_getAssociatedObject(self, &keyBackButtonClick);
     if (BackButtonClick) {
         BackButtonClick();
