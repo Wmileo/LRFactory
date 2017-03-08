@@ -14,6 +14,7 @@
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
 #import "NSObject+Method.h"
+#import "SimpleViewHeader.h"
 
 @implementation UIViewController (NavBackgroundStyle)
 
@@ -26,6 +27,7 @@
         [UIViewController exchangeSEL:@selector(viewWillLayoutSubviews) withSEL:@selector(NavBackgroundStyle_viewWillLayoutSubviews)];
         [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
         [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
+        [UIViewController exchangeSEL:@selector(setStatusHide:) withSEL:@selector(NavBackgroundStyle_setStatusHide:)];
     });
     
 }
@@ -63,6 +65,13 @@ static char keyNavHide;
 
 -(BOOL)navHide{
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
+}
+
+-(void)NavBackgroundStyle_setStatusHide:(BOOL)statusHide{
+    [self NavBackgroundStyle_setStatusHide:statusHide];
+//    [UIView animateWithDuration:0.25 animations:^{
+        self.navView.height = statusHide ? 44 : 64;
+//    }];
 }
 
 -(UIView *)navView{

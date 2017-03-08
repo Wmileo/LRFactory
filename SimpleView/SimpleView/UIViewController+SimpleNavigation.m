@@ -237,7 +237,6 @@ static BOOL hadConfigTextColorAndFont;
 }
 
 static UIColor *navBackgroundColor;
-static UIStatusBarStyle defaultStatusBarStyle;
 
 +(void)configNavBackgroundColor:(UIColor *)color{
     navBackgroundColor = color;
@@ -248,14 +247,6 @@ static UIStatusBarStyle defaultStatusBarStyle;
     return navBackgroundColor;
 }
 
-+(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
-    [UINavigationController configChildViewControllerForStatusBarStyle];
-    defaultStatusBarStyle = statusBarStyle;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-       [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleNavigation_preferredStatusBarStyle)];
-    });
-}
 
 +(void)configViewControllerRectEdgeNoneForExtendedLayout{
     static dispatch_once_t onceToken;
@@ -268,9 +259,6 @@ static UIStatusBarStyle defaultStatusBarStyle;
     [UINavigationController autoHidesBottomBarWhenPush];
 }
 
--(UIStatusBarStyle)SimpleNavigation_preferredStatusBarStyle{
-    return defaultStatusBarStyle;
-}
 
 -(void)SimpleNavigation_viewDidLoad{
     if (self.navigationController) {
@@ -299,6 +287,24 @@ static UIStatusBarStyle defaultStatusBarStyle;
         }
     }];
     return [views copy];
+}
+
+-(UIViewController *)navLastViewController{
+    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    index--;
+    if (index >= 0) {
+        return self.navigationController.viewControllers[index];
+    }
+    return nil;
+}
+
+-(UIViewController *)navNextViewController{
+    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    index++;
+    if (index < self.navigationController.viewControllers.count) {
+        return self.navigationController.viewControllers[index];
+    }
+    return nil;
 }
 
 @end

@@ -35,7 +35,10 @@
         ui.backgroundColor = [UIColor yellowColor];
     }];
     
-    self.navHide = YES;
+//    self.navHide = YES;
+    self.statusHide = YES;
+    
+    
 }
 
 //

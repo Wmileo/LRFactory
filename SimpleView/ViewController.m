@@ -23,7 +23,7 @@
     
     [super viewDidLoad];
     NSLog(@"did");
-    
+    self.statusHide = YES;
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";

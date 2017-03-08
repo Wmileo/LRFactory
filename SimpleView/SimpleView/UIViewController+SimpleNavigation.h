@@ -57,11 +57,6 @@
 +(UIColor *)navBackgroundColor;
 
 /**
- *  配置默认状态栏样式  ps.应用开启时配置
- */
-+(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-/**
  *  自动隐藏底部按钮当push的时候
  */
 +(void)autoHidesBottomBarWhenPush;
@@ -139,5 +134,7 @@
 -(NSArray<UIView *> *)navLeftViews;
 -(NSArray<UIView *> *)navRightViews;
 
+-(UIViewController *)navLastViewController;//导航的上一个页面
+-(UIViewController *)navNextViewController;//导航的下一个页面
 
 @end

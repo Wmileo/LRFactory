@@ -21,6 +21,6 @@
 
 #import "UIViewController+SimpleNavigation.h"
 #import "UIViewController+SimplePresent.h"
-
+#import "UIViewController+SimpleStatus.h"
 
 #endif /* SimpleViewHeader_h */
