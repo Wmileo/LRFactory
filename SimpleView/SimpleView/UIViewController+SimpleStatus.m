@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import "UIViewController+SimpleStatus.h"
 #import "UINavigationController+SimpleFactory.h"
+#import "UIViewController+SimpleNavigation.h"
 #import "NSObject+Method.h"
 
 @implementation UIViewController (SimpleStatus)
@@ -39,7 +40,10 @@ static UIStatusBarStyle defaultStatusBarStyle;
 
 -(void)SimpleStatus_viewWillDisappear:(BOOL)animated{
     [self SimpleStatus_viewWillDisappear:animated];
-    if (self.statusHide) {
+    if (self.statusHide &&
+        !(self.navNextViewController && self.navNextViewController.statusHide) &&
+        !(self.navLastViewController && self.navLastViewController.statusHide)
+        ) {
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animated];
     }
 }

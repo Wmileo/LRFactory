@@ -74,7 +74,7 @@
         
         
         TestViewController *test = [[TestViewController alloc] init];
-
+        test.statusHide = YES;
 //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         
