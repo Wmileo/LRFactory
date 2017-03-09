@@ -15,50 +15,56 @@
 @implementation UIViewController (SimpleStatus)
 
 static UIStatusBarStyle defaultStatusBarStyle;
+static BOOL defaultStatusBarHidden;
 
-+(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
+
++(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden{
     [UINavigationController configChildViewControllerForStatusBarStyle];
     defaultStatusBarStyle = statusBarStyle;
+    defaultStatusBarHidden = statusBarHidden;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleStatus_preferredStatusBarStyle)];
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(SimpleStatus_viewWillAppear:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(SimpleStatus_viewWillDisappear:)];
+        [UIViewController exchangeSEL:@selector(prefersStatusBarHidden) withSEL:@selector(SimpleStatus_prefersStatusBarHidden)];
     });
 }
 
 -(UIStatusBarStyle)SimpleStatus_preferredStatusBarStyle{
+    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
+        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    }
     return defaultStatusBarStyle;
 }
 
--(void)SimpleStatus_viewWillAppear:(BOOL)animated{
-    [self SimpleStatus_viewWillAppear:animated];
-    if (self.statusHide) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:animated];
+-(BOOL)SimpleStatus_prefersStatusBarHidden{
+    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
+        return [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
     }
-}
-
--(void)SimpleStatus_viewWillDisappear:(BOOL)animated{
-    [self SimpleStatus_viewWillDisappear:animated];
-    if (self.statusHide &&
-        !(self.navNextViewController && self.navNextViewController.statusHide) &&
-        !(self.navLastViewController && self.navLastViewController.statusHide)
-        ) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animated];
-    }
+    return defaultStatusBarHidden;
 }
 
 
-static char keyStatusHide;
+static char keyStatusBarStyle;
+static char keyStatusBarHidden;
 
--(void)setStatusHide:(BOOL)statusHide{
-    objc_setAssociatedObject(self, &keyStatusHide, @(statusHide), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [[UIApplication sharedApplication] setStatusBarHidden:statusHide withAnimation:NO];
+-(void)setStatusBarHidden:(BOOL)statusBarHidden{
+    objc_setAssociatedObject(self, &keyStatusBarHidden, @(statusBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self prefersStatusBarHidden];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
--(BOOL)statusHide{
-    return [objc_getAssociatedObject(self, &keyStatusHide) boolValue];
+-(BOOL)statusBarHidden{
+    return [self prefersStatusBarHidden];
 }
 
+-(UIStatusBarStyle)statusBarStyle{
+    return [self preferredStatusBarStyle];
+}
+
+-(void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
+    objc_setAssociatedObject(self, &keyStatusBarStyle, @(statusBarStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self preferredStatusBarStyle];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
 
 @end

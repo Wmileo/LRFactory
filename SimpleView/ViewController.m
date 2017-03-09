@@ -23,7 +23,7 @@
     
     [super viewDidLoad];
     NSLog(@"did");
-    self.statusHide = YES;
+//    self.statusHide = YES;
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
@@ -74,7 +74,7 @@
         
         
         TestViewController *test = [[TestViewController alloc] init];
-        test.statusHide = YES;
+//        test.statusHide = YES;
 //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         
@@ -92,6 +92,7 @@
 //        
 //    }]];
 
+    self.statusBarStyle = UIStatusBarStyleDefault;
     
     // Do any additional setup after loading the view, typically from a nib.
 }

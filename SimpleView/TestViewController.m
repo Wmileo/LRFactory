@@ -36,12 +36,12 @@
     }];
     
 //    self.navHide = YES;
-    self.statusHide = YES;
+//    self.statusHide = YES;
     
     
 }
 
-//
+
 //-(BOOL)viewControllerShouldGesturePopBack{
 //    return NO;
 //}
@@ -53,5 +53,18 @@
 //-(NSString *)navBackItemTitle{
 //    return @"返回";
 //}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+-(void)viewDidBePopped{
+    NSLog(@"pop");
+
+}
 
 @end

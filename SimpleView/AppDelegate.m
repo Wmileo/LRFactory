@@ -44,7 +44,7 @@
     
     self.window.rootViewController = tab;
     
-    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault];
+    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault statusHidden:NO];
     
     return YES;
 }

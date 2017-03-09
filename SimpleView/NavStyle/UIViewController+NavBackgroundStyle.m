@@ -27,7 +27,7 @@
         [UIViewController exchangeSEL:@selector(viewWillLayoutSubviews) withSEL:@selector(NavBackgroundStyle_viewWillLayoutSubviews)];
         [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
         [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
-        [UIViewController exchangeSEL:@selector(setStatusHide:) withSEL:@selector(NavBackgroundStyle_setStatusHide:)];
+        [UIViewController exchangeSEL:@selector(setStatusBarHidden:) withSEL:@selector(NavBackgroundStyle_setStatusBarHidden:)];
     });
     
 }
@@ -67,12 +67,11 @@ static char keyNavHide;
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 
--(void)NavBackgroundStyle_setStatusHide:(BOOL)statusHide{
-    [self NavBackgroundStyle_setStatusHide:statusHide];
-//    [UIView animateWithDuration:0.25 animations:^{
-        self.navView.height = statusHide ? 44 : 64;
-//    }];
+-(void)NavBackgroundStyle_setStatusBarHidden:(BOOL)statusBarHidden{
+    [self NavBackgroundStyle_setStatusBarHidden:statusBarHidden];
+    self.navView.height = statusBarHidden ? 44 : 64;
 }
+
 
 -(UIView *)navView{
     UIView *vc = objc_getAssociatedObject(self, &keyNavView);
@@ -83,7 +82,7 @@ static char keyNavHide;
         }else{
             color = [UIViewController navBackgroundColor];
         }
-        vc = [[[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)] resetBackgroundColor:color] setupOnView:self.view];
+        vc = [[[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.statusBarHidden ? 44 : 64)] resetBackgroundColor:color] setupOnView:self.view];
         objc_setAssociatedObject(self, &keyNavView, vc, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     vc.top = -self.view.screenViewY;
