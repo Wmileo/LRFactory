@@ -84,6 +84,7 @@ static char keyNavHide;
         }
         vc = [[[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.statusBarHidden ? 44 : 64)] resetBackgroundColor:color] setupOnView:self.view];
         objc_setAssociatedObject(self, &keyNavView, vc, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self.view setClipsToBounds:NO];
     }
     vc.top = -self.view.screenViewY;
     return vc;

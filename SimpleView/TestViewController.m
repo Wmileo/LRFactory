@@ -13,6 +13,7 @@
 #import "UIViewController+NavBackgroundStyle.h"
 #import "ViewController.h"
 #import "UIViewController+SimplePresent.h"
+#import "TableViewController.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
 
@@ -33,6 +34,12 @@
         
     }] resetBackgroundColor:[UIColor blueColor]] setupOnView:self.view] resetCornerRadius:11] resetConfig:^(UIButton *ui) {
         ui.backgroundColor = [UIColor yellowColor];
+    }];
+    
+    
+    [self navSetupRightTitle:@"table" action:^{
+        TableViewController *vc = [[TableViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
 //    self.navHide = YES;
