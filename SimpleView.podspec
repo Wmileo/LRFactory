@@ -33,5 +33,4 @@ Pod::Spec.new do |s|
     navStyle.dependency 'SimpleView/SimpleView'
   end
 
-
 end

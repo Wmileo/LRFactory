@@ -23,7 +23,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
     [UIViewController configNavButtonTextColor:[UIColor blueColor] font:[UIFont systemFontOfSize:20]];
 //    [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
     [UINavigationController configNavBarTranslucent:YES];
