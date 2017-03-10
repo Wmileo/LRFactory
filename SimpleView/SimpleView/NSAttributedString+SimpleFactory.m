@@ -8,10 +8,11 @@
 
 #import "NSAttributedString+SimpleFactory.h"
 
+
 @implementation NSAttributedString (SimpleFactory)
 
 -(CGSize)sizeWithMaxWidth:(CGFloat)maxWidth{
-    return [self boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    return [self boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin) context:nil].size;
 }
 
 +(NSAttributedString *)attributedStringWithText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
@@ -40,6 +41,31 @@
     [att addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, self.string.length)];
     return [att copy];
 }
+
+-(NSParagraphStyle *)paragraphStyle{
+    NSRange range;
+    return [self attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:&range];
+}
+
+
+-(NSAttributedString *)copyAttributedStringWithLineSpacing:(CGFloat)lineSpacing{
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
+    [newStyle setParagraphStyle:[self paragraphStyle]];
+    newStyle.lineSpacing = lineSpacing;
+    [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];
+    return [att copy];
+}
+
+-(NSAttributedString *)copyAttributedStringWithFirstLineHeadIndent:(CGFloat)firstLineHeadIndent{
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
+    [newStyle setParagraphStyle:[self paragraphStyle]];
+    newStyle.firstLineHeadIndent = firstLineHeadIndent;
+    [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];
+    return [att copy];
+}
+
 -(NSAttributedString *)copyAttributedStringWithUnderLineWithColor:(UIColor *)color{
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     [att addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, self.string.length)];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
 @interface NSAttributedString (SimpleFactory)
 
 
@@ -38,6 +39,16 @@
  *  拷贝新的AttributedString 换成ParagraphStyle
  */
 -(NSAttributedString *)copyAttributedStringWithParagraphStyle:(NSParagraphStyle *)paragraphStyle;
+
+/**
+ *  拷贝新的AttributedString 替换行间距
+ */
+-(NSAttributedString *)copyAttributedStringWithLineSpacing:(CGFloat)lineSpacing;
+
+/**
+ *  拷贝新的AttributedString 替换首行缩进
+ */
+-(NSAttributedString *)copyAttributedStringWithFirstLineHeadIndent:(CGFloat)firstLineHeadIndent;
 
 /**
  *  拷贝新的AttributedString 生成NSUnderlineStyleSingle 并设置颜色

@@ -32,12 +32,15 @@
     p.lineBreakMode = NSLineBreakByTruncatingHead;
     p.alignment = NSTextAlignmentJustified;
     
-    NSAttributedString *att = [[[[[NSAttributedString attributedStringWithText:@""] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]] copyAttributedStringWithUnderLineWithColor:[UIColor blueColor]] copyAttributedStringWithLink:@"aaa"];
-    NSAttributedString *att1 = [NSAttributedString attributedStringWithLineFeedSize:50];
-    NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:nil] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
-    NSAttributedString *att3 = [[[[NSAttributedString attributedStringWithText:@""] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p];
+    NSAttributedString *att = [[[[[NSAttributedString attributedStringWithText:@"aaaaaaaaaa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]] copyAttributedStringWithUnderLineWithColor:[UIColor blueColor]] copyAttributedStringWithLink:@"aaa"];
+    NSAttributedString *att1 = [NSAttributedString attributedStringWithLineFeedSize:10];
+    NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"bbbbbbb"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
+    NSAttributedString *att3 = [[[[[[NSAttributedString attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p] copyAttributedStringWithLineSpacing:17] copyAttributedStringWithFirstLineHeadIndent:50];
     
-    [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
+    UILabel *label = [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
+    
+    label.height = label.attributedText.size.height;
+    
     
     UITextView *text = [[UITextView viewWithFrame:CGRectMake(0, 0, 100, 100)] setupOnView:self.view];
     text.attributedText = att;
