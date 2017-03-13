@@ -10,8 +10,6 @@
 
 @interface UIViewController (SimpleStatus)
 
-//需配置info.list "View controller-based status bar appearance"为YES
-
 /**
  *  配置默认状态栏样式  ps.应用开启时配置
  */

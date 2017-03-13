@@ -35,20 +35,20 @@
 -(void)NavBackgroundStyle_viewWillLayoutSubviews{
     [self NavBackgroundStyle_viewWillLayoutSubviews];
     if (self.navigationController) {
-        [self.view bringSubviewToFront:self.navView];
+        [self.view bringSubviewToFront:self.navigationBarBackGroundView];
     }
 }
 
 -(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
     [self NavBackgroundStyle_viewWillDisappear:animated];
-    if (self.navHide) {
+    if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
 }
 
 -(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
     [self NavBackgroundStyle_viewWillAppear:animated];
-    if (self.navHide) {
+    if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
 }
@@ -57,23 +57,22 @@ static char keyNavView;
 static char keyNavHide;
 
 
--(void)setNavHide:(BOOL)navHide{
-    self.navView.hidden = navHide;
-    objc_setAssociatedObject(self, &keyNavHide, @(navHide), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.navigationController setNavigationBarHidden:navHide animated:NO];
+-(void)setNavigationBarHidden:(BOOL)navigationBarHidden{
+    self.navigationBarBackGroundView.hidden = navigationBarHidden;
+    objc_setAssociatedObject(self, &keyNavHide, @(navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.navigationController setNavigationBarHidden:navigationBarHidden animated:NO];
 }
 
--(BOOL)navHide{
+-(BOOL)navigationBarHidden{
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 
 -(void)NavBackgroundStyle_setStatusBarHidden:(BOOL)statusBarHidden{
     [self NavBackgroundStyle_setStatusBarHidden:statusBarHidden];
-    self.navView.height = statusBarHidden ? 44 : 64;
+    self.navigationBarBackGroundView.height = statusBarHidden ? 44 : 64;
 }
 
-
--(UIView *)navView{
+-(UIView *)navigationBarBackGroundView{
     UIView *vc = objc_getAssociatedObject(self, &keyNavView);
     if (!vc) {
         UIColor *color;
@@ -82,9 +81,14 @@ static char keyNavHide;
         }else{
             color = [UIViewController navBackgroundColor];
         }
-        vc = [[[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.statusBarHidden ? 44 : 64)] resetBackgroundColor:color] setupOnView:self.view];
+        vc = [[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.statusBarHidden ? 44 : 64)] resetBackgroundColor:color];
         objc_setAssociatedObject(self, &keyNavView, vc, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    if (self.view) {
         [self.view setClipsToBounds:NO];
+        if (!vc.superview) {
+            [self.view addSubview:vc];
+        }
     }
     vc.top = -self.view.screenViewY;
     return vc;

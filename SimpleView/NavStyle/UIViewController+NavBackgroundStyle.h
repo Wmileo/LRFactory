@@ -25,11 +25,11 @@
 /**
  *  隐藏导航栏
  */
-@property (nonatomic, assign) BOOL navHide;
+@property (nonatomic, assign) BOOL navigationBarHidden;
 
 /**
  *  自定义的导航背景
  */
-@property (nonatomic, readonly) UIView *navView;
+@property (nonatomic, readonly) UIView *navigationBarBackGroundView;
 
 @end
