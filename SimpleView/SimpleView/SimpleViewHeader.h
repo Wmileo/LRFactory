@@ -19,6 +19,7 @@
 
 #import "NSAttributedString+SimpleFactory.h"
 
+#import "UIViewController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "UIViewController+SimplePresent.h"
 #import "UIViewController+SimpleStatus.h"

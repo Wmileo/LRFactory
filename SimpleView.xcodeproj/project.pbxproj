@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
+		B33625D91E8DFA0800C8D071 /* UIViewController+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B33625D81E8DFA0800C8D071 /* UIViewController+SimpleFactory.m */; };
 		B34759981E70280C007C702C /* UIViewController+SimpleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B34759971E70280C007C702C /* UIViewController+SimpleStatus.m */; };
 		B347599B1E713607007C702C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B347599A1E713607007C702C /* TableViewController.m */; };
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */; };
@@ -60,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
+		B33625D71E8DFA0800C8D071 /* UIViewController+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimpleFactory.h"; sourceTree = "<group>"; };
+		B33625D81E8DFA0800C8D071 /* UIViewController+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleFactory.m"; sourceTree = "<group>"; };
 		B34759961E70280C007C702C /* UIViewController+SimpleStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimpleStatus.h"; sourceTree = "<group>"; };
 		B34759971E70280C007C702C /* UIViewController+SimpleStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleStatus.m"; sourceTree = "<group>"; };
 		B34759991E713607007C702C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */,
 				CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */,
 				CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */,
+				B33625D71E8DFA0800C8D071 /* UIViewController+SimpleFactory.h */,
+				B33625D81E8DFA0800C8D071 /* UIViewController+SimpleFactory.m */,
 				B34759961E70280C007C702C /* UIViewController+SimpleStatus.h */,
 				B34759971E70280C007C702C /* UIViewController+SimpleStatus.m */,
 				CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */,
@@ -383,7 +388,7 @@
 				TargetAttributes = {
 					CE55BE451CBBC2F500D8364B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = G464W59869;
+						DevelopmentTeam = 9MDFP7US47;
 					};
 					CE55BE5E1CBBC2F600D8364B = {
 						CreatedOnToolsVersion = 7.3;
@@ -508,6 +513,7 @@
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
 				CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */,
 				CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */,
+				B33625D91E8DFA0800C8D071 /* UIViewController+SimpleFactory.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,
@@ -667,7 +673,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = G464W59869;
+				DEVELOPMENT_TEAM = 9MDFP7US47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleView",
@@ -689,7 +695,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = G464W59869;
+				DEVELOPMENT_TEAM = 9MDFP7US47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleView",
