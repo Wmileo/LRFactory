@@ -15,7 +15,7 @@
 #import "UIViewController+SimplePresent.h"
 #import "TableViewController.h"
 
-@interface TestViewController () <UIViewControllerBackButtonDataSource, UIViewControllerNavBackgroundDataSource>
+@interface TestViewController () <UIViewControllerBackButtonDataSource>
 
 @end
 
@@ -38,13 +38,10 @@
     
     
     [self navSetupRightTitle:@"table" action:^{
-        TableViewController *vc = [[TableViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
     }];
-    
-//    self.navHide = YES;
-//    self.statusHide = YES;
-    
+
+//    self.navigationBarHidden = YES;
+    self.statusBarHidden = YES;
     
 }
 
@@ -53,9 +50,9 @@
 //    return NO;
 //}
 
--(UIColor *)navBackgroundColor{
-    return [UIColor grayColor];
-}
+//-(UIColor *)navBackgroundColor{
+//    return [UIColor grayColor];
+//}
 
 //-(NSString *)navBackItemTitle{
 //    return @"返回";
@@ -65,9 +62,6 @@
     return UIStatusBarStyleDefault;
 }
 
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
 
 -(void)viewDidBePopped{
     NSLog(@"pop");

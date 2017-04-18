@@ -34,10 +34,5 @@
  */
 +(void)configViewControllerSetupDefaultBackButton;
 
-/**
- *  去掉导航栏默认背景
- */
-+(void)removeNavigationBarBackground;
-
 
 @end

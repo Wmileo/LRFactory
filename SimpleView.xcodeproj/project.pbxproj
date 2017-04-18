@@ -388,7 +388,7 @@
 				TargetAttributes = {
 					CE55BE451CBBC2F500D8364B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 9MDFP7US47;
+						DevelopmentTeam = 9J6JH9B3QM;
 					};
 					CE55BE5E1CBBC2F600D8364B = {
 						CreatedOnToolsVersion = 7.3;
@@ -673,7 +673,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9MDFP7US47;
+				DEVELOPMENT_TEAM = 9J6JH9B3QM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleView",
@@ -695,7 +695,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9MDFP7US47;
+				DEVELOPMENT_TEAM = 9J6JH9B3QM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleView",

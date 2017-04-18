@@ -12,6 +12,7 @@
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+SimplePresent.h"
 #import "UIView+Sizes.h"
+#import "UIViewController+NavBackgroundStyle.h"
 
 @interface ViewController () <UIViewControllerNavigationDataSource,UITextViewDelegate>
 
@@ -78,6 +79,8 @@
         
         TestViewController *test = [[TestViewController alloc] init];
 //        test.statusHide = YES;
+        test.navBackgroundColor = [UIColor redColor];
+
 //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         

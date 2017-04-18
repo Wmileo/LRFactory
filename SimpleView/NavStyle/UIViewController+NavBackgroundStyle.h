@@ -8,14 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol UIViewControllerNavBackgroundDataSource <NSObject>
+@interface UIViewController (NavBackgroundStyle)
 
-@optional
--(UIColor *)navBackgroundColor;
 
-@end
+/**
+ *  配置默认导航栏背景颜色  ps.应用开启时配置
+ */
++(void)configNavBackgroundColor:(UIColor *)color;
 
-@interface UIViewController (NavBackgroundStyle) <UIViewControllerNavBackgroundDataSource>
+/**
+ *  获取配置的导航栏背景颜色
+ */
++(UIColor *)navBackgroundColor;
+
 
 /**
  *  设置为可配置的导航栏背景  ps.应用开启时配置
@@ -26,10 +31,11 @@
  *  隐藏导航栏
  */
 @property (nonatomic, assign) BOOL navigationBarHidden;
+-(void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)animated;
 
 /**
- *  自定义的导航背景
+ *  背景颜色
  */
-@property (nonatomic, readonly) UIView *navigationBarBackGroundView;
+@property (nonatomic, strong) UIColor *navBackgroundColor;
 
 @end
