@@ -47,16 +47,6 @@
 +(void)configViewControllerRectEdgeNoneForExtendedLayout;
 
 /**
- *  配置默认导航栏背景颜色  ps.应用开启时配置
- */
-+(void)configNavBackgroundColor:(UIColor *)color;
-
-/**
- *  获取配置的导航栏背景颜色
- */
-+(UIColor *)navBackgroundColor;
-
-/**
  *  自动隐藏底部按钮当push的时候
  */
 +(void)autoHidesBottomBarWhenPush;

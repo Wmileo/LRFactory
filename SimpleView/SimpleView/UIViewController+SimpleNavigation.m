@@ -236,18 +236,6 @@ static BOOL hadConfigTextColorAndFont;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color, NSFontAttributeName : font}];
 }
 
-static UIColor *navBackgroundColor;
-
-+(void)configNavBackgroundColor:(UIColor *)color{
-    navBackgroundColor = color;
-    [[UINavigationBar appearance] setBarTintColor:color];
-}
-
-+(UIColor *)navBackgroundColor{
-    return navBackgroundColor;
-}
-
-
 +(void)configViewControllerRectEdgeNoneForExtendedLayout{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
