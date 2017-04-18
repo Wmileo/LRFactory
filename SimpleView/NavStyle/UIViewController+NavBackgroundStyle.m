@@ -18,25 +18,24 @@
 
 @implementation UIViewController (NavBackgroundStyle)
 
-+(void)configNavBackgroundStyle{
+static UIColor *navBackgroundColor;
 
-    [UINavigationController removeNavigationBarBackground];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillLayoutSubviews) withSEL:@selector(NavBackgroundStyle_viewWillLayoutSubviews)];
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
-        [UIViewController exchangeSEL:@selector(setStatusBarHidden:) withSEL:@selector(NavBackgroundStyle_setStatusBarHidden:)];
-    });
-    
++(void)configNavBackgroundColor:(UIColor *)color{
+    navBackgroundColor = color;
+    [[UINavigationBar appearance] setBarTintColor:color];
 }
 
--(void)NavBackgroundStyle_viewWillLayoutSubviews{
-    [self NavBackgroundStyle_viewWillLayoutSubviews];
-    if (self.navigationController) {
-        [self.view bringSubviewToFront:self.navigationBarBackGroundView];
-    }
++(UIColor *)navBackgroundColor{
+    return navBackgroundColor;
+}
+
++(void)configNavBackgroundStyle{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
+    });
+    
 }
 
 -(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
@@ -44,6 +43,7 @@
     if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
+    [self.navigationController.navigationBar setBarTintColor:self.oldColor];
 }
 
 -(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
@@ -51,47 +51,53 @@
     if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
+    [self tryRegisterOldColor];
+    if (self.navBackgroundColor) {
+        [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
+    }
 }
 
-static char keyNavView;
+
+static char keyNavOldColor;
+static char keyNavNewColor;
 static char keyNavHide;
 
-
 -(void)setNavigationBarHidden:(BOOL)navigationBarHidden{
-    self.navigationBarBackGroundView.hidden = navigationBarHidden;
+    [self setNavigationBarHidden:navigationBarHidden animated:NO];
+}
+
+-(void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)animated{
     objc_setAssociatedObject(self, &keyNavHide, @(navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.navigationController setNavigationBarHidden:navigationBarHidden animated:NO];
+    if (self.navigationController) {
+        [self.navigationController setNavigationBarHidden:navigationBarHidden animated:animated];
+    }
 }
 
 -(BOOL)navigationBarHidden{
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 
--(void)NavBackgroundStyle_setStatusBarHidden:(BOOL)statusBarHidden{
-    [self NavBackgroundStyle_setStatusBarHidden:statusBarHidden];
-    self.navigationBarBackGroundView.height = statusBarHidden ? 44 : 64;
+
+-(void)setNavBackgroundColor:(UIColor *)navBackgroundColor{
+    objc_setAssociatedObject(self, &keyNavNewColor, navBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController) {
+        [self tryRegisterOldColor];
+        [self.navigationController.navigationBar setBarTintColor:navBackgroundColor];
+    }
 }
 
--(UIView *)navigationBarBackGroundView{
-    UIView *vc = objc_getAssociatedObject(self, &keyNavView);
-    if (!vc) {
-        UIColor *color;
-        if ([self respondsToSelector:@selector(navBackgroundColor)]) {
-            color = [self performSelector:@selector(navBackgroundColor)];
-        }else{
-            color = [UIViewController navBackgroundColor];
-        }
-        vc = [[UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.statusBarHidden ? 44 : 64)] resetBackgroundColor:color];
-        objc_setAssociatedObject(self, &keyNavView, vc, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(UIColor *)navBackgroundColor{
+    return objc_getAssociatedObject(self, &keyNavNewColor);
+}
+
+-(void)tryRegisterOldColor{
+    if (!self.oldColor) {
+        objc_setAssociatedObject(self, &keyNavOldColor, self.navigationController.navigationBar.barTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    if (self.view) {
-        [self.view setClipsToBounds:NO];
-        if (!vc.superview) {
-            [self.view addSubview:vc];
-        }
-    }
-    vc.top = -self.view.screenViewY;
-    return vc;
+}
+
+-(UIColor *)oldColor{
+    return objc_getAssociatedObject(self, &keyNavOldColor);
 }
 
 @end

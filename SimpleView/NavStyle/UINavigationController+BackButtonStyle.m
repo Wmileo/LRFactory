@@ -59,23 +59,6 @@
     }
 }
 
-+(void)removeNavigationBarBackground{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(NavBackgroundStyle_pushViewController:animated:)];
-    });
-}
-
--(void)NavBackgroundStyle_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [self NavBackgroundStyle_pushViewController:viewController animated:animated];
-    [self.navigationBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:NSClassFromString(([[[UIDevice currentDevice] systemVersion] floatValue] >= 10) ? @"_UIBarBackground" : @"_UINavigationBarBackground")]) {
-            [obj setHidden:YES];
-            *stop = YES;
-        }
-    }];
-}
-
 #pragma mark - 右滑返回
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     UIViewController *vc = self.visibleViewController;
