@@ -23,6 +23,9 @@ static UIColor *navBackgroundColor;
 +(void)configNavBackgroundColor:(UIColor *)color{
     navBackgroundColor = color;
     [[UINavigationBar appearance] setBarTintColor:color];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 }
 
 +(UIColor *)navBackgroundColor{
