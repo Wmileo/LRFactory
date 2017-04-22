@@ -50,24 +50,24 @@
 
 #pragma mark - 返回按钮
 /**
- *  配置返回按钮样式 key为identification  value为BackItemModel
+ *  配置返回按钮样式 key为style  value为BackItemModel
  */
-+(void)configBackItemIdentifications:(NSDictionary* (^)())identifications;
++(void)configBackItemStyles:(NSDictionary*)styles;
 
 /**
  *  配置默认返回按钮样式
  */
-+(void)configDefaultBackItemWithIdentification:(NSString *)identification;
++(void)configDefaultBackItemWithStyle:(NSString *)style;
 
 /**
- *  设置返回按钮 样式为identification对应的样式
+ *  设置返回按钮 样式为style对应的样式
  */
--(instancetype)navSetupBackItemWithIdentification:(NSString *)identification;
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style;
 
 /**
- *  设置返回按钮 样式为identification对应的样式 点击为action
+ *  设置返回按钮 样式为style对应的样式 点击为action
  */
--(instancetype)navSetupBackItemWithIdentification:(NSString *)identification action:(void (^)())action;
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action;
 
 /**
  *  返回上一个ViewController的title

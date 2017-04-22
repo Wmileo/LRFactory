@@ -25,7 +25,6 @@ static UIColor *navBackgroundColor;
     [[UINavigationBar appearance] setBarTintColor:color];
     [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 }
 
 +(UIColor *)navBackgroundColor{
@@ -38,7 +37,6 @@ static UIColor *navBackgroundColor;
         [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
         [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
     });
-    
 }
 
 -(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
@@ -47,6 +45,7 @@ static UIColor *navBackgroundColor;
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
     [self.navigationController.navigationBar setBarTintColor:self.oldColor];
+    [self.navigationController.navigationBar setShadowImage:self.oldShadowImage];
 }
 
 -(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
@@ -55,14 +54,17 @@ static UIColor *navBackgroundColor;
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
     [self tryRegisterOldColor];
+    [self tryRegisterOldShadowImage];
     if (self.navBackgroundColor) {
         [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
     }
+    if (self.navShadowImage) {
+        [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
+    }
 }
 
+#pragma mark - navigationBarHidden
 
-static char keyNavOldColor;
-static char keyNavNewColor;
 static char keyNavHide;
 
 -(void)setNavigationBarHidden:(BOOL)navigationBarHidden{
@@ -80,6 +82,11 @@ static char keyNavHide;
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 
+#pragma mrak - navBackgroundColor
+
+static char keyNavOldColor;
+static char keyNavNewColor;
+BOOL registerOldColor = NO;
 
 -(void)setNavBackgroundColor:(UIColor *)navBackgroundColor{
     objc_setAssociatedObject(self, &keyNavNewColor, navBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -94,7 +101,8 @@ static char keyNavHide;
 }
 
 -(void)tryRegisterOldColor{
-    if (!self.oldColor) {
+    if (!registerOldColor) {
+        registerOldColor = YES;
         objc_setAssociatedObject(self, &keyNavOldColor, self.navigationController.navigationBar.barTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -102,5 +110,36 @@ static char keyNavHide;
 -(UIColor *)oldColor{
     return objc_getAssociatedObject(self, &keyNavOldColor);
 }
+
+
+#pragma mark - navShadowImage
+
+static char keyNavOldShadowImage;
+static char keyNavNewShadowImage;
+BOOL registerOldShadowImage = NO;
+
+-(void)setNavShadowImage:(UIImage *)navShadowImage{
+    objc_setAssociatedObject(self, &keyNavNewShadowImage, navShadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController) {
+        [self tryRegisterOldShadowImage];
+        [self.navigationController.navigationBar setShadowImage:navShadowImage];
+    }
+}
+
+-(UIImage *)navShadowImage{
+    return objc_getAssociatedObject(self, &keyNavNewShadowImage);
+}
+
+-(void)tryRegisterOldShadowImage{
+    if (!registerOldShadowImage) {
+        registerOldShadowImage = YES;
+        objc_setAssociatedObject(self, &keyNavOldShadowImage, self.navigationController.navigationBar.shadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
+-(UIImage *)oldShadowImage{
+    return objc_getAssociatedObject(self, &keyNavOldShadowImage);
+}
+
 
 @end

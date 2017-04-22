@@ -26,4 +26,32 @@
     return vc;
 }
 
++(UIWindow *)mainWindow{
+    return [UIApplication sharedApplication].delegate.window;
+}
+
+
+-(UIViewController *)navLastViewController{
+    if ([self.navigationController.viewControllers containsObject:self]) {
+        NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+        if (index > 0) {
+            return self.navigationController.viewControllers[index - 1];
+        }
+    }else if (self.navigationController.viewControllers.count > 0) {
+        return [self.navigationController.viewControllers lastObject];
+    }
+    return nil;
+}
+
+-(UIViewController *)navNextViewController{
+    if ([self.navigationController.viewControllers containsObject:self]) {
+        NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+        index++;
+        if (index < self.navigationController.viewControllers.count) {
+            return self.navigationController.viewControllers[index];
+        }
+    }
+    return nil;
+}
+
 @end

@@ -14,6 +14,7 @@
 #import "ViewController.h"
 #import "UIViewController+SimplePresent.h"
 #import "TableViewController.h"
+#import "UIViewController+NavStyle.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource>
 
@@ -26,8 +27,9 @@
        self.title = @"aaa";
 
 
-    self.view.backgroundColor = [UIColor whiteColor];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navBackgroundColor = [UIColor whiteColor];
     
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
@@ -41,10 +43,22 @@
     }];
 
 //    self.navigationBarHidden = YES;
-    self.statusBarHidden = YES;
+//    self.statusBarHidden = YES;
+    
+    
+//    [self navSetupStyle:@"bababa"];
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
 
 //-(BOOL)viewControllerShouldGesturePopBack{
 //    return NO;

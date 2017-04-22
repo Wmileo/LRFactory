@@ -51,6 +51,36 @@ static char keyIsTitleCustom;
 
 #pragma mark - 设置按钮
 
+static char keyButtonTextColor;
+static char keyButtonTextFont;
+
+-(void)navResetButtonTextColor:(UIColor *)color font:(UIFont *)font{
+    
+    objc_setAssociatedObject(self, &keyButtonTextFont, font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyButtonTextColor, color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    if (self.navigationController) {
+        __weak typeof(self) wself = self;
+        [self.navLeftViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [wself tryResetButtonTextColor:color font:font WithView:obj];
+        }];
+        [self.navRightViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [wself tryResetButtonTextColor:color font:font WithView:obj];
+        }];
+    }
+    
+}
+
+-(void)tryResetButtonTextColor:(UIColor *)color font:(UIFont *)font WithView:(UIView *)view{
+    if ([view isKindOfClass:[UIButton class]]) {
+        UIButton *button = (UIButton *)view;
+        if (button.titleLabel.text) {
+            button.titleLabel.font = font;
+            [button setTitleColor:color forState:UIControlStateNormal];
+        }
+    }
+}
+
 -(instancetype)navSetupLeftBarButtonItem:(UIBarButtonItem *)barButtonItem{
     [self.navigationItem setLeftBarButtonItems:@[barButtonItem]];
     return self;
@@ -85,18 +115,10 @@ static char keyIsTitleCustom;
  *  设置文字nav barbuttonitem
  */
 -(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)())action{
-    if (![UIViewController hadConfigTextColorAndFont]) {
-        return [self navSetupLeftBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
-    }else{
-        return [self navSetupLeftButton:[self buttonSide:BarButtonSideLeft withTitle:title action:action]];
-    }
+    return [self navSetupLeftButton:[self buttonWithTitle:title action:action]];
 }
 -(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)())action{
-    if (![UIViewController hadConfigTextColorAndFont]) {
-        return [self navSetupRightBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
-    }else{
-        return [self navSetupRightButton:[self buttonSide:BarButtonSideRight withTitle:title action:action]];
-    }
+    return [self navSetupRightButton:[self buttonWithTitle:title action:action]];
 }
 
 /**
@@ -150,18 +172,10 @@ static char keyIsTitleCustom;
  *  添加文字nav barbuttonitem
  */
 -(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)())action{
-    if (![UIViewController hadConfigTextColorAndFont]) {
-        return [self navAddLeftBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
-    }else{
-        return [self navAddLeftButton:[self buttonSide:BarButtonSideLeft withTitle:title action:action]];
-    }
+    return [self navAddLeftButton:[self buttonWithTitle:title action:action]];
 }
 -(instancetype)navAddRightTitle:(NSString *)title action:(void(^)())action{
-    if (![UIViewController hadConfigTextColorAndFont]) {
-        return [self navAddRightBarButtonItem:[UIBarButtonItem barButtonItemWithTitle:title action:action]];
-    }else{
-        return [self navAddRightButton:[self buttonSide:BarButtonSideRight withTitle:title action:action]];
-    }
+    return [self navAddRightButton:[self buttonWithTitle:title action:action]];
 }
 
 /**
@@ -180,26 +194,8 @@ static char keyIsTitleCustom;
     return self;
 }
 
--(UIButton *)buttonSide:(BarButtonSide)side withTitle:(NSString *)title action:(void(^)())action{
-    UIColor *color = [UIViewController navTextColor];
-    UIFont *font = [UIViewController navTextFont];
-
-    if (side == BarButtonSideLeft) {
-        if ([self respondsToSelector:@selector(navBarButtonItemLeftTextColor)]) {
-            color = [self performSelector:@selector(navBarButtonItemLeftTextColor)];
-        }
-        if ([self respondsToSelector:@selector(navBarButtonItemLeftTextFont)]) {
-            font = [self performSelector:@selector(navBarButtonItemLeftTextFont)];
-        }
-    }else if (side == BarButtonSideRight) {
-        if ([self respondsToSelector:@selector(navBarButtonItemRightTextColor)]) {
-            color = [self performSelector:@selector(navBarButtonItemRightTextColor)];
-        }
-        if ([self respondsToSelector:@selector(navBarButtonItemRightTextFont)]) {
-            font = [self performSelector:@selector(navBarButtonItemRightTextFont)];
-        }
-    }
-    UIButton *button = [UIButton buttonWithCenter:CGPointZero title:title textColor:color font:font click:action];
+-(UIButton *)buttonWithTitle:(NSString *)title action:(void(^)())action{
+    UIButton *button = [UIButton buttonWithCenter:CGPointZero title:title textColor:objc_getAssociatedObject(self, &keyButtonTextColor) font:objc_getAssociatedObject(self, &keyButtonTextFont) click:action];
     return button;
 }
 
@@ -207,34 +203,7 @@ static char keyIsTitleCustom;
     return [UIButton buttonWithCenter:CGPointZero normalImage:[UIImage imageNamed:name] click:action];
 }
 
-#pragma mark - setter getter
-
-static UIColor *textColor;
-static UIFont *textFont;
-static BOOL hadConfigTextColorAndFont;
-
-+(void)configNavButtonTextColor:(UIColor *)color font:(UIFont *)font{
-    textColor = color;
-    textFont = font;
-    hadConfigTextColorAndFont = YES;
-    [[UINavigationBar appearance] setTintColor:color];
-}
-
-+(BOOL)hadConfigTextColorAndFont{
-    return hadConfigTextColorAndFont;
-}
-
-+(UIColor *)navTextColor{
-    return textColor;
-}
-
-+(UIFont *)navTextFont{
-    return textFont;
-}
-
-+(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font{
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color, NSFontAttributeName : font}];
-}
+#pragma mark - 配置
 
 +(void)configViewControllerRectEdgeNoneForExtendedLayout{
     static dispatch_once_t onceToken;
@@ -275,29 +244,6 @@ static BOOL hadConfigTextColorAndFont;
         }
     }];
     return [views copy];
-}
-
--(UIViewController *)navLastViewController{
-    if ([self.navigationController.viewControllers containsObject:self]) {
-        NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
-        if (index > 0) {
-            return self.navigationController.viewControllers[index - 1];
-        }
-    }else if (self.navigationController.viewControllers.count > 0) {
-        return [self.navigationController.viewControllers lastObject];
-    }
-    return nil;
-}
-
--(UIViewController *)navNextViewController{
-    if ([self.navigationController.viewControllers containsObject:self]) {
-        NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
-        index++;
-        if (index < self.navigationController.viewControllers.count) {
-            return self.navigationController.viewControllers[index];
-        }
-    }
-    return nil;
 }
 
 @end

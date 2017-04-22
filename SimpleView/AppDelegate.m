@@ -13,6 +13,7 @@
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UINavigationController+SimpleFactory.h"
+#import "UIViewController+NavStyle.h"
 
 @interface AppDelegate ()
 
@@ -23,18 +24,48 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [UIViewController configNavButtonTextColor:[UIColor blueColor] font:[UIFont systemFontOfSize:20]];
-//    [UIViewController configNavTitleTextColor:[UIColor redColor] font:[UIFont systemFontOfSize:10]];
-    [UINavigationController configNavBarTranslucent:YES];
-    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
+
+//    [UINavigationController configNavBarTranslucent:YES];
+//    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
-    [UIViewController configViewControllerGesturePopBack];
-    [UIViewController configNavBackgroundStyle];
-    [UIViewController configBackItemIdentifications:^NSDictionary *{
-        return @{@"back":[BackItemModel modelWithOffsetX:-10 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]]};
+//    [UIViewController configViewControllerGesturePopBack];
+//    [UIViewController configNavBackgroundStyle];
+    [UIViewController configBackItemStyles:@{
+                                                      @"back":[BackItemModel modelWithOffsetX:-10 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:20]]}];
+    [UIViewController configDefaultBackItemWithStyle:@"back"];
+    
+    
+    [UIViewController configNavStyles:
+  @{@"lalala" : [NavStyleModel modelWithTitleColor:[UIColor redColor] titleFont:[UIFont systemFontOfSize:20] textColor:[UIColor redColor] textFont:[UIFont systemFontOfSize:20] backStyle:@"back" config:^(UIViewController *vc) {
+        vc.navShadowImage = [[UIImage alloc] init];
+    }],
+    @"bababa" : [NavStyleModel modelWithTitleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:10] textColor:[UIColor blueColor] textFont:[UIFont systemFontOfSize:10] backStyle:@"back" config:^(UIViewController *vc) {
+        vc.navShadowImage = nil;
+    }]
+                                        
     }];
-    [UIViewController configDefaultBackItemWithIdentification:@"back"];
+    
+    [UIViewController configDefaultNavStyle:@"bababa"];
+    
+    
+    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
+    
+    [UIViewController configViewControllerGesturePopBack];
+    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
+    [UIViewController configNavBackgroundStyle];
+    
+
     [UIViewController autoHidesBottomBarWhenPush];
+
+    [[UINavigationBar appearance] setShadowImage:nil];
+    
+    
+    
+    
+    
+    
+    
+    
     UITabBarController *tab = [[UITabBarController alloc] init];
     
     UINavigationController *nav = [UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]];
@@ -43,7 +74,7 @@
     
     self.window.rootViewController = tab;
     
-    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault statusHidden:NO];
+//    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleDefault statusHidden:NO];
     
     return YES;
 }

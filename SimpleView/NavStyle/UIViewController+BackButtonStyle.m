@@ -45,31 +45,31 @@
     }
 }
 
-static NSDictionary *backItemIdentifications;
+static NSDictionary *backItemStyles;
 
 static char keyResetBackButtonBlock;
 static char keyBackButtonClick;
 
-static NSString *defaultBackItemIdentification;
+static NSString *defaultBackItemStyle;
 
-+(void)configBackItemIdentifications:(NSDictionary *(^)())identifications{
-    backItemIdentifications = identifications();
++(void)configBackItemStyles:(NSDictionary *)styles{
+    backItemStyles = styles;
 }
 
-+(void)configDefaultBackItemWithIdentification:(NSString *)identification{
-    defaultBackItemIdentification = identification;
++(void)configDefaultBackItemWithStyle:(NSString *)style{
+    defaultBackItemStyle = style;
     [UINavigationController configViewControllerSetupDefaultBackButton];
 }
 
--(instancetype)navSetupBackItemWithIdentification:(NSString *)identification{
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style{
     
     if (self.navigationController) {
-        [self resetBackItemWithIdentification:identification];
+        [self resetBackItemWithStyle:style];
     }else{
         [UINavigationController configViewControllerResetBackButton];
         __weak __typeof(self) wself = self;
         void (^ResetBackButtonBlock)() = ^(){
-            [wself resetBackItemWithIdentification:identification];
+            [wself resetBackItemWithStyle:style];
         };
         objc_setAssociatedObject(self, &keyResetBackButtonBlock, ResetBackButtonBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
@@ -77,9 +77,9 @@ static NSString *defaultBackItemIdentification;
     return self;
 }
 
--(instancetype)navSetupBackItemWithIdentification:(NSString *)identification action:(void (^)())action{
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action{
     objc_setAssociatedObject(self, &keyBackButtonClick, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    return [self navSetupBackItemWithIdentification:identification];
+    return [self navSetupBackItemWithStyle:style];
 }
 
 #pragma mark - backbutton
@@ -91,15 +91,15 @@ static NSString *defaultBackItemIdentification;
 }
 
 -(void)viewControllerSetupDefaultBackButton{
-    if (defaultBackItemIdentification) {
-        [self navSetupBackItemWithIdentification:defaultBackItemIdentification];
+    if (defaultBackItemStyle) {
+        [self navSetupBackItemWithStyle:defaultBackItemStyle];
     }
 }
 
 #pragma mark
--(void)resetBackItemWithIdentification:(NSString *)identification{
+-(void)resetBackItemWithStyle:(NSString *)style{
     
-    BackItemModel *model = backItemIdentifications[identification];
+    BackItemModel *model = backItemStyles[style];
 
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:3];
     if (model.offsetX != 0){
