@@ -15,7 +15,6 @@
 
 @implementation UIViewController (NavStyle)
 
-
 static NSDictionary *navStyles;
 static NSString *defaultNavStyle;
 
@@ -25,8 +24,12 @@ static NSString *defaultNavStyle;
 
 +(void)configDefaultNavStyle:(NSString *)style{
     defaultNavStyle = style;
-//    [[UINavigationBar appearance] setTintColor:color];
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color, NSFontAttributeName : font}];
+    NavStyleModel *model = navStyles[style];
+    NSAssert(model, @"请先配置Styles");
+    [UIViewController configNavBackgroundColor:nil];
+    [UIViewController configNavBackgroundStyle];
+    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
+    [UIViewController configDefaultBackItemWithStyle:model.backStyle];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavStyle_viewDidLoad)];
