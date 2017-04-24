@@ -26,6 +26,8 @@ static NSString *defaultNavStyle;
     defaultNavStyle = style;
     NavStyleModel *model = navStyles[style];
     NSAssert(model, @"请先配置Styles");
+    [[UINavigationBar appearance] setTintColor:model.textColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : model.titleColor, NSFontAttributeName : model.textFont}];
     [UIViewController configNavBackgroundColor:nil];
     [UIViewController configNavBackgroundStyle];
     [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
@@ -45,7 +47,9 @@ static NSString *defaultNavStyle;
     NavStyleModel *model = navStyles[style];
     [self navResetButtonTextColor:model.textColor font:model.textFont];
     [self navResetTitleColor:model.titleColor font:model.titleFont];
-    [self navSetupBackItemWithStyle:model.backStyle];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self navSetupBackItemWithStyle:model.backStyle];
+    }
     model.Config(self);
     return self;
 }
