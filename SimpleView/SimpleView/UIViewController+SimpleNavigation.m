@@ -24,28 +24,51 @@ typedef NS_ENUM(NSInteger, BarButtonSide){
 
 #pragma mark - title
 
-static char keyTitleColor;
-static char keyTitleFont;
-static char keyIsTitleCustom;
+static char keyNewTitleTextAttributes;
+static char keyOldTitleTextAttributes;
+BOOL registerOldTitleTextAttributes;
 
 -(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font{
     
-    self.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:font text:self.title textColor:color];
+    NSDictionary *textAttributes = @{NSFontAttributeName : font, NSForegroundColorAttributeName : color};
+    objc_setAssociatedObject(self, &keyNewTitleTextAttributes, textAttributes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    objc_setAssociatedObject(self, &keyIsTitleCustom, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, &keyTitleFont, font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, &keyTitleColor, color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+    if (self.navigationController) {
+        [self tryRegisterOldTextAttributes];
+        self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    }
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(setTitle:) withSEL:@selector(SimpleNavigation_setTitle:)];
+        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(SimpleNavigation_viewWillAppear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(SimpleNavigation_viewWillDisappear:)];
     });
 }
 
--(void)SimpleNavigation_setTitle:(NSString *)title{
-    [self SimpleNavigation_setTitle:title];
-    if ([objc_getAssociatedObject(self, &keyIsTitleCustom) boolValue]) {
-        self.navigationItem.titleView = [UILabel labelWithCenter:CGPointZero font:objc_getAssociatedObject(self, &keyTitleFont) text:self.title textColor:objc_getAssociatedObject(self, &keyTitleColor)];
+-(NSDictionary *)newTitleTextAttributes{
+    return objc_getAssociatedObject(self, &keyNewTitleTextAttributes);
+}
+
+-(NSDictionary *)oldTitleTextAttributes{
+    return objc_getAssociatedObject(self, &keyOldTitleTextAttributes);
+}
+
+-(void)SimpleNavigation_viewWillDisappear:(BOOL)animated{
+    [self SimpleNavigation_viewWillDisappear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:self.oldTitleTextAttributes];
+}
+
+-(void)SimpleNavigation_viewWillAppear:(BOOL)animated{
+    [self SimpleNavigation_viewWillAppear:animated];
+    [self tryRegisterOldTextAttributes];
+    if (self.newTitleTextAttributes) {
+        [self.navigationController.navigationBar setTitleTextAttributes:self.newTitleTextAttributes];
+    }
+}
+
+-(void)tryRegisterOldTextAttributes{
+    if (!registerOldTitleTextAttributes) {
+        registerOldTitleTextAttributes = YES;
+        objc_setAssociatedObject(self, &registerOldTitleTextAttributes, self.navigationController.navigationBar.titleTextAttributes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
