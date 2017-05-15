@@ -15,6 +15,7 @@
 #import "UIViewController+SimplePresent.h"
 #import "TableViewController.h"
 #import "UIViewController+NavStyle.h"
+#import "SimpleHeader.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource>
 
@@ -24,12 +25,13 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-       self.title = @"aaa";
-
+    
+    self.title = @"aaa";
 
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navBackgroundColor = [UIColor whiteColor];
+    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
     
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
@@ -42,6 +44,8 @@
     [self navSetupRightTitle:@"table" action:^{
     }];
 
+    self.navBackgroundTranslucent = YES;
+    
 //    self.navigationBarHidden = YES;
 //    self.statusBarHidden = YES;
     

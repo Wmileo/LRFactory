@@ -41,4 +41,9 @@
  */
 @property (nonatomic, strong) UIImage *navShadowImage;
 
+/**
+ *  导航栏背景透明
+ */
+@property (nonatomic, assign) BOOL navBackgroundTranslucent;
+
 @end

@@ -24,6 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
 
 //    [UINavigationController configNavBarTranslucent:YES];
 //    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
