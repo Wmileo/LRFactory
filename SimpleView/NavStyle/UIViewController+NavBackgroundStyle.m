@@ -40,6 +40,11 @@ static UIColor *navBackgroundColor;
 
 -(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
     [self NavBackgroundStyle_viewWillDisappear:animated];
+    
+    if (self.presentedViewController) {
+        return;
+    }
+    
     if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
@@ -50,6 +55,11 @@ static UIColor *navBackgroundColor;
 
 -(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
     [self NavBackgroundStyle_viewWillAppear:animated];
+    
+    if (self.presentedViewController) {
+        return;
+    }
+    
     if (self.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }

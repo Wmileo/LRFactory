@@ -54,11 +54,21 @@ BOOL registerOldTitleTextAttributes;
 
 -(void)SimpleNavigation_viewWillDisappear:(BOOL)animated{
     [self SimpleNavigation_viewWillDisappear:animated];
+    
+    if (self.presentedViewController) {
+        return;
+    }
+    
     [self.navigationController.navigationBar setTitleTextAttributes:self.oldTitleTextAttributes];
 }
 
 -(void)SimpleNavigation_viewWillAppear:(BOOL)animated{
     [self SimpleNavigation_viewWillAppear:animated];
+    
+    if (self.presentedViewController) {
+        return;
+    }
+    
     [self tryRegisterOldTextAttributes];
     if (self.newTitleTextAttributes) {
         [self.navigationController.navigationBar setTitleTextAttributes:self.newTitleTextAttributes];
