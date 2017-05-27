@@ -12,6 +12,8 @@
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "NSObject+Method.h"
+#import <objc/runtime.h>
+
 
 @implementation UIViewController (NavStyle)
 
@@ -39,7 +41,11 @@ static NSString *defaultNavStyle;
 }
 
 -(void)NavStyle_viewDidLoad{
-    [self navSetupStyle:defaultNavStyle];
+    if (self.navStyle) {
+        [self navSetupStyle:self.navStyle];
+    }else{
+        [self navSetupStyle:defaultNavStyle];
+    }
     [self NavStyle_viewDidLoad];
 }
 
@@ -52,6 +58,17 @@ static NSString *defaultNavStyle;
     }
     model.Config(self);
     return self;
+}
+
+static char keyNavStyle;
+
+-(NSString *)navStyle{
+    return objc_getAssociatedObject(self, &keyNavStyle);
+}
+
+-(void)setNavStyle:(NSString *)navStyle{
+    objc_setAssociatedObject(self, &keyNavStyle, navStyle, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self navSetupStyle:navStyle];
 }
 
 @end

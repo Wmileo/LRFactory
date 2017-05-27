@@ -15,6 +15,7 @@
 +(void)configDefaultNavStyle:(NSString *)style;
 
 -(instancetype)navSetupStyle:(NSString *)style;
+@property (nonatomic, copy) NSString *navStyle;
 
 @end
 
