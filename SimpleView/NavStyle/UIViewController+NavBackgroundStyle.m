@@ -45,7 +45,7 @@ static UIColor *navBackgroundColor;
         return;
     }
     
-    if (self.navigationBarHidden) {
+    if (self.navBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
     [self.navigationController.navigationBar setBarTintColor:self.oldColor];
@@ -60,7 +60,7 @@ static UIColor *navBackgroundColor;
         return;
     }
     
-    if (self.navigationBarHidden) {
+    if (self.navBarHidden) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
     [self tryRegisterOldColor];
@@ -75,22 +75,22 @@ static UIColor *navBackgroundColor;
     [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
 }
 
-#pragma mark - navigationBarHidden
+#pragma mark - navBarHidden
 
 static char keyNavHide;
 
--(void)setNavigationBarHidden:(BOOL)navigationBarHidden{
-    [self setNavigationBarHidden:navigationBarHidden animated:NO];
+-(void)setNavBarHidden:(BOOL)navBarHidden{
+    [self setNavBarHidden:navBarHidden animated:NO];
 }
 
--(void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)animated{
-    objc_setAssociatedObject(self, &keyNavHide, @(navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void)setNavBarHidden:(BOOL)navBarHidden animated:(BOOL)animated{
+    objc_setAssociatedObject(self, &keyNavHide, @(navBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
-        [self.navigationController setNavigationBarHidden:navigationBarHidden animated:animated];
+        [self.navigationController setNavigationBarHidden:navBarHidden animated:animated];
     }
 }
 
--(BOOL)navigationBarHidden{
+-(BOOL)navBarHidden{
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
 }
 

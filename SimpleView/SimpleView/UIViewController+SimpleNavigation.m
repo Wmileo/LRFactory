@@ -54,11 +54,9 @@ BOOL registerOldTitleTextAttributes;
 
 -(void)SimpleNavigation_viewWillDisappear:(BOOL)animated{
     [self SimpleNavigation_viewWillDisappear:animated];
-    
     if (self.presentedViewController) {
         return;
     }
-    
     [self.navigationController.navigationBar setTitleTextAttributes:self.oldTitleTextAttributes];
 }
 

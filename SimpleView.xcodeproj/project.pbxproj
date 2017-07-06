@@ -12,6 +12,7 @@
 		B34759981E70280C007C702C /* UIViewController+SimpleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B34759971E70280C007C702C /* UIViewController+SimpleStatus.m */; };
 		B347599B1E713607007C702C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B347599A1E713607007C702C /* TableViewController.m */; };
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */; };
+		B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+SimplePush.m */; };
 		B3E84E551EAB347B0089E3BC /* UIViewController+NavStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */; };
 		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
@@ -70,6 +71,8 @@
 		B347599A1E713607007C702C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		B34952171E600EB4004AD109 /* CAKeyframeAnimation+Simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+Simple.h"; sourceTree = "<group>"; };
 		B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+Simple.m"; sourceTree = "<group>"; };
+		B3A251CB1F0E26ED00E2AF1D /* UIViewController+SimplePush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimplePush.h"; sourceTree = "<group>"; };
+		B3A251CC1F0E26ED00E2AF1D /* UIViewController+SimplePush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimplePush.m"; sourceTree = "<group>"; };
 		B3E84E531EAB347B0089E3BC /* UIViewController+NavStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavStyle.h"; sourceTree = "<group>"; };
 		B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavStyle.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +289,8 @@
 				CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */,
 				CE1B646D1D01722A0034672B /* UIViewController+SimplePresent.h */,
 				CE1B646E1D01722A0034672B /* UIViewController+SimplePresent.m */,
+				B3A251CB1F0E26ED00E2AF1D /* UIViewController+SimplePush.h */,
+				B3A251CC1F0E26ED00E2AF1D /* UIViewController+SimplePush.m */,
 			);
 			path = SimpleView;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 			files = (
 				B34759981E70280C007C702C /* UIViewController+SimpleStatus.m in Sources */,
 				CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */,
+				B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */,
 				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */,

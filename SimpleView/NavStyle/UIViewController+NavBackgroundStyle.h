@@ -28,8 +28,8 @@
 /**
  *  隐藏导航栏
  */
-@property (nonatomic, assign) BOOL navigationBarHidden;
--(void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)animated;
+@property (nonatomic, assign) BOOL navBarHidden;
+-(void)setNavBarHidden:(BOOL)navBarHidden animated:(BOOL)animated;
 
 /**
  *  背景颜色
