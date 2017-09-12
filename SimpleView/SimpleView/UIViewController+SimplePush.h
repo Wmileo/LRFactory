@@ -16,6 +16,7 @@
 
 @interface UIViewController (SimplePush)
 
+//插入方法替换
 +(void)configSimplePush;
 
 @property (nonatomic, assign) BOOL popIgnore;//pop时忽略
