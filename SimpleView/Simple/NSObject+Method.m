@@ -11,14 +11,24 @@
 
 @implementation NSObject (Method)
 
-static char tagObjectKey;
+static char tagObjectCopyKey;
+static char tagObjectStrongKey;
 
--(void)setTagObject:(id)tagObject{
-    objc_setAssociatedObject(self, &tagObjectKey, tagObject, OBJC_ASSOCIATION_COPY_NONATOMIC);
+-(void)setTagObject_copy:(id)tagObject_copy{
+    objc_setAssociatedObject(self, &tagObject_copy, tagObject_copy, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
--(id)tagObject{
-    return objc_getAssociatedObject(self, &tagObjectKey);
+-(id)tagObject_copy{
+    return objc_getAssociatedObject(self, &tagObjectCopyKey);
+}
+
+
+-(void)setTagObject_strong:(id)tagObject_strong{
+    objc_setAssociatedObject(self, &tagObject_strong, tagObject_strong, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(id)tagObject_strong{
+    return objc_getAssociatedObject(self, &tagObjectStrongKey);
 }
 
 +(void)exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2{

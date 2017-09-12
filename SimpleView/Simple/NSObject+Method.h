@@ -10,7 +10,8 @@
 
 @interface NSObject (Method)
 
-@property (nonatomic, copy) id tagObject;//用于区分，存值
+@property (nonatomic, copy) id tagObject_copy;//用于区分，存值，copy
+@property (nonatomic, strong) id tagObject_strong;//用于区分，存值，strong
 
 +(void)exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2;
 
