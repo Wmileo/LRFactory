@@ -13,8 +13,9 @@
 #import "UIViewController+SimplePresent.h"
 #import "UIView+Sizes.h"
 #import "UIViewController+NavBackgroundStyle.h"
+#import "UIViewController+NavStyle.h"
 
-@interface ViewController () <UIViewControllerNavigationDataSource,UITextViewDelegate>
+@interface ViewController () <UITextViewDelegate>
 
 @end
 
@@ -23,11 +24,21 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    NSLog(@"did");
+    
+//    [self navSetupStyle:@"lalala"];
+    
+    self.navBackgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navBarHidden = NO;
 //    self.statusHide = YES;
+    
+    self.navShadowImage = [[UIImage alloc] init];
+    
+    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 64)] resetBackgroundColor:[UIColor whiteColor]] setupOnView:self.view];
 
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
+    [self navResetTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
     
     NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
     p.lineBreakMode = NSLineBreakByTruncatingHead;
@@ -80,7 +91,7 @@
         TestViewController *test = [[TestViewController alloc] init];
 //        test.statusHide = YES;
         test.navBackgroundColor = [UIColor redColor];
-
+        test.navShadowImage = nil;
 //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         
@@ -103,10 +114,15 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    [self navSetupLeftTitle:@"___" action:nil];
-
+    
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{

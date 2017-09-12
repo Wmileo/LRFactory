@@ -25,5 +25,4 @@
  */
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
-
 @end

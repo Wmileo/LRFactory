@@ -8,38 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol UIViewControllerNavigationDataSource <NSObject>
-
-
-@optional
-
-/**
- *  设置barbuttonitem文字颜色
- */
--(UIColor *)navBarButtonItemLeftTextColor;
--(UIColor *)navBarButtonItemRightTextColor;
-
-/**
- *  设置barbuttonitem文字字体
- */
--(UIFont *)navBarButtonItemLeftTextFont;
--(UIFont *)navBarButtonItemRightTextFont;
-
-@end
-
 @interface UIViewController (SimpleNavigation)
 
 #pragma mark - 配置
-/**
- *  配置默认barbuttonitem颜色，字体  ps.应用开启时配置
- */
-+(void)configNavButtonTextColor:(UIColor *)color font:(UIFont *)font;
-
-/**
- *  配置默认导航栏Title颜色，字体  ps.应用开启时配置
- */
-+(void)configNavTitleTextColor:(UIColor *)color font:(UIFont *)font;
-
 /**
  *  使得view从导航栏底部开始
  *  配置默认视图edgesForExtendedLayout为UIRectEdgeNone
@@ -59,6 +30,11 @@
 -(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font;
 
 #pragma mark - 设置按钮
+
+/**
+ *  设置按钮颜色，字体
+ */
+-(void)navResetButtonTextColor:(UIColor *)color font:(UIFont *)font;
 
 /**
  *  设置按钮nav barbuttonitem
@@ -124,7 +100,5 @@
 -(NSArray<UIView *> *)navLeftViews;
 -(NSArray<UIView *> *)navRightViews;
 
--(UIViewController *)navLastViewController;//导航的上一个页面
--(UIViewController *)navNextViewController;//导航的下一个页面
 
 @end
