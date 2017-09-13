@@ -15,7 +15,7 @@ static char tagObjectCopyKey;
 static char tagObjectStrongKey;
 
 -(void)setTagObject_copy:(id)tagObject_copy{
-    objc_setAssociatedObject(self, &tagObject_copy, tagObject_copy, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &tagObjectCopyKey, tagObject_copy, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 -(id)tagObject_copy{
@@ -24,7 +24,7 @@ static char tagObjectStrongKey;
 
 
 -(void)setTagObject_strong:(id)tagObject_strong{
-    objc_setAssociatedObject(self, &tagObject_strong, tagObject_strong, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &tagObjectStrongKey, tagObject_strong, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(id)tagObject_strong{
