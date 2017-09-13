@@ -29,7 +29,7 @@
     
     self.navBackgroundColor = [UIColor whiteColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navBarHidden = NO;
+    self.navBarHidden                                                                                                                                                                                                                                          = NO;
 //    self.statusHide = YES;
     
     self.navShadowImage = [[UIImage alloc] init];
