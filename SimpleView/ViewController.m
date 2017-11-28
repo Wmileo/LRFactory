@@ -27,7 +27,7 @@
     
 //    [self navSetupStyle:@"lalala"];
     
-    self.navBackgroundColor = [UIColor whiteColor];
+    self.navBackgroundColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navBarHidden                                                                                                                                                                                                                                          = NO;
 //    self.statusHide = YES;

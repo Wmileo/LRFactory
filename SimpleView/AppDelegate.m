@@ -41,6 +41,7 @@
         vc.navShadowImage = [[UIImage alloc] init];
     }],
     @"bababa" : [NavStyleModel modelWithTitleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:10] textColor:[UIColor blueColor] textFont:[UIFont systemFontOfSize:10] backStyle:@"back" config:^(UIViewController *vc) {
+        vc.navBackgroundColor = [UIColor blackColor];
         vc.navShadowImage = nil;
     }]
                                         
