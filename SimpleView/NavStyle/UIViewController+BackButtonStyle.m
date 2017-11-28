@@ -118,8 +118,6 @@ static NSString *defaultBackItemStyle;
         button.width = MAX(button.width, 60);
         button.height = MAX(button.height, 40);
         CGFloat iconWidth = model.icon.size.width;
-        [button showDebugFrame];
-        [button.imageView showDebugFrame];
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0,(button.width-iconWidth)                                                                                       );
         if (model.hasTitle) {
             UILabel *label = [[[UILabel labelWithFrame:CGRectMake(iconWidth + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor] labelResetTextAlignment:NSTextAlignmentLeft] setupOnView:button];
