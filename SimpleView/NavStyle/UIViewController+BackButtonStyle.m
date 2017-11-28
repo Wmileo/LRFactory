@@ -115,7 +115,7 @@ static NSString *defaultBackItemStyle;
         UIButton *button = [UIButton buttonWithCenter:CGPointZero normalImage:model.icon click:^{
             [wself clickOnBack];
         }];
-        button.width = MAX(button.width, 60);
+        button.width = MAX(button.width, 30);
         button.height = MAX(button.height, 40);
         CGFloat iconWidth = model.icon.size.width;
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0,(button.width-iconWidth)                                                                                       );
