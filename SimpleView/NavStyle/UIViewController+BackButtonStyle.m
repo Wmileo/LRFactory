@@ -115,6 +115,8 @@ static NSString *defaultBackItemStyle;
         UIButton *button = [UIButton buttonWithCenter:CGPointZero normalImage:model.icon click:^{
             [wself clickOnBack];
         }];
+        button.width = MAX(button.width, 40);
+        button.height = MAX(button.height, 40);
         if (model.hasTitle) {
             UILabel *label = [[[UILabel labelWithFrame:CGRectMake(button.width + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor] labelResetTextAlignment:NSTextAlignmentLeft] setupOnView:button];
             label.centerY = button.height/2;
