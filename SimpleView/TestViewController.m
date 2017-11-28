@@ -29,9 +29,9 @@
     self.title = @"aaa";
 
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navBackgroundColor = [UIColor whiteColor];
-    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
+    self.view.backgroundColor = [UIColor blackColor];
+    self.navBackgroundColor = [UIColor blackColor];
+    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
