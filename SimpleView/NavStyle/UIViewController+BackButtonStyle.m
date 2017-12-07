@@ -150,7 +150,7 @@ static NSString *defaultBackItemStyle;
 }
 
 -(NSString *)navLastTitle{
-    if (self.navigationController) {
+    if (self.navigationController && [self.navigationController.viewControllers containsObject:self]) {
         NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
         if (index > 0) {
             return (self.navigationController.viewControllers[index - 1]).title;
