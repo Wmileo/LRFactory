@@ -26,6 +26,7 @@ static BOOL defaultStatusBarHidden;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleStatus_preferredStatusBarStyle)];
         [UIViewController exchangeSEL:@selector(prefersStatusBarHidden) withSEL:@selector(SimpleStatus_prefersStatusBarHidden)];
+        [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(SimpleStatus_viewDidAppear:)];
     });
 }
 
@@ -41,6 +42,22 @@ static BOOL defaultStatusBarHidden;
         return [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
     }
     return defaultStatusBarHidden;
+}
+
+-(void)SimpleStatus_viewDidAppear:(BOOL)animated{
+    [self SimpleStatus_viewDidAppear:animated];
+    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
+        self.statusBarStyle = [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    }else{
+        self.statusBarStyle = defaultStatusBarStyle;
+    }
+    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
+        self.statusBarHidden = [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
+    }else{
+        self.statusBarHidden = defaultStatusBarHidden;
+    }
+    [self prefersStatusBarHidden];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 
