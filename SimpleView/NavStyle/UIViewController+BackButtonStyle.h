@@ -33,10 +33,6 @@
  */
 -(void)navBackItemWillHandleClick;
 
-/**
- *  返回结束
- */
--(void)viewDidBePopped;
 
 @end
 

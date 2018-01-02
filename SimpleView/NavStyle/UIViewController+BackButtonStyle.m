@@ -25,7 +25,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(BackButtonStyle_viewDidAppear:)];
-        [UIViewController exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(BackButtonStyle_viewDidDisappear:)];
     });
 }
 
@@ -33,15 +32,6 @@
     [self BackButtonStyle_viewDidAppear:animated];
     if (self.navigationController) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    }
-}
-
--(void)BackButtonStyle_viewDidDisappear:(BOOL)animated{
-    [self BackButtonStyle_viewDidDisappear:animated];
-    if (![self.navigationController.viewControllers containsObject:self]) {
-        if ([self respondsToSelector:@selector(viewDidBePopped)]) {
-            [self performSelector:@selector(viewDidBePopped)];
-        }
     }
 }
 

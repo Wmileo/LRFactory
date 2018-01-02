@@ -7,8 +7,38 @@
 //
 
 #import "UIViewController+SimpleFactory.h"
+#import "NSObject+Method.h"
+
 
 @implementation UIViewController (SimpleFactory)
+
++(void)configSimple{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(Simple_viewDidDisappear:)];
+    });
+}
+
+-(void)Simple_viewDidDisappear:(BOOL)animated{
+    [self Simple_viewDidDisappear:animated];
+    
+    BOOL isContain = NO;
+    if ([self.tabBarController.viewControllers containsObject:self]) {
+        isContain = YES;
+    }
+    if ([self.navigationController.viewControllers containsObject:self]) {
+        isContain = YES;
+    }
+    if (self.presentedViewController) {
+        isContain = YES;
+    }
+
+    if (!isContain) {
+        [self viewDidDisappearForever];
+    }
+}
+
+-(void)viewDidDisappearForever{}
 
 +(UIViewController *)currentViewController{
     UIViewController *vc = [[UIApplication sharedApplication].delegate.window rootViewController];
