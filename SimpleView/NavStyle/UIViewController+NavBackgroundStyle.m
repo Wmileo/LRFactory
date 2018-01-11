@@ -45,9 +45,6 @@ static UIColor *navBackgroundColor;
         return;
     }
     
-    if (self.navBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:animated];
-    }
     [self.navigationController.navigationBar setBarTintColor:self.oldColor];
     [self.navigationController.navigationBar setShadowImage:self.oldShadowImage];
     [self.navigationController.navigationBar setTranslucent:self.oldTranslucent];
@@ -60,9 +57,8 @@ static UIColor *navBackgroundColor;
         return;
     }
     
-    if (self.navBarHidden) {
-        [self.navigationController setNavigationBarHidden:YES animated:animated];
-    }
+    [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
+
     [self tryRegisterOldColor];
     [self tryRegisterOldShadowImage];
     [self tryRegisterOldTranslucent];
