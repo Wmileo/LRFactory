@@ -35,4 +35,9 @@ static char tagObjectStrongKey;
     method_exchangeImplementations(class_getInstanceMethod([self class], sel1), class_getInstanceMethod([self class], sel2));
 }
 
++(void)exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2{
+    method_exchangeImplementations(class_getClassMethod([self class], sel1), class_getClassMethod([self class], sel2));
+}
+
+
 @end
