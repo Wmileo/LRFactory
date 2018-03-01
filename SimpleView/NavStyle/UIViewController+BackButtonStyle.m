@@ -52,24 +52,30 @@ static NSString *defaultBackItemStyle;
 }
 
 -(instancetype)navSetupBackItemWithStyle:(NSString *)style{
-    
+    return [self navSetupBackItem:backItemStyles[style]];
+}
+
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action{
+    return [self navSetupBackItem:backItemStyles[style] action:action];
+}
+
+-(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)())action{
+    objc_setAssociatedObject(self, &keyBackButtonClick, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return [self navSetupBackItem:item];
+}
+
+-(instancetype)navSetupBackItem:(BackItemModel *)item{
     if (self.navigationController) {
-        [self resetBackItemWithStyle:style];
+        [self resetBackItem:item];
     }else{
         [UINavigationController configViewControllerResetBackButton];
         __weak __typeof(self) wself = self;
         void (^ResetBackButtonBlock)() = ^(){
-            [wself resetBackItemWithStyle:style];
+            [wself resetBackItem:item];
         };
         objc_setAssociatedObject(self, &keyResetBackButtonBlock, ResetBackButtonBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
-    
     return self;
-}
-
--(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action{
-    objc_setAssociatedObject(self, &keyBackButtonClick, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    return [self navSetupBackItemWithStyle:style];
 }
 
 #pragma mark - backbutton
@@ -87,10 +93,8 @@ static NSString *defaultBackItemStyle;
 }
 
 #pragma mark
--(void)resetBackItemWithStyle:(NSString *)style{
+-(void)resetBackItem:(BackItemModel *)model{
     
-    BackItemModel *model = backItemStyles[style];
-
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:3];
     if (model.offsetX != 0){
         [tmp addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:model.offsetX]];

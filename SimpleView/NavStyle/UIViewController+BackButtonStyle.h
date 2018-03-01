@@ -36,6 +36,7 @@
 
 @end
 
+@class BackItemModel;
 
 @interface UIViewController (BackButtonStyle) <UIViewControllerBackButtonDataSource>
 
@@ -64,6 +65,16 @@
  *  设置返回按钮 样式为style对应的样式 点击为action
  */
 -(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action;
+
+/**
+ *  设置返回按钮
+ */
+-(instancetype)navSetupBackItem:(BackItemModel *)item;
+
+/**
+ *  设置返回按钮 点击为action
+ */
+-(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)())action;
 
 /**
  *  返回上一个ViewController的title
