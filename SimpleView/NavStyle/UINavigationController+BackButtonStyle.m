@@ -64,6 +64,8 @@
     UIViewController *vc = self.visibleViewController;
     if ([vc respondsToSelector:@selector(viewControllerShouldGesturePopBack)]) {
         return (BOOL)[vc performSelector:@selector(viewControllerShouldGesturePopBack)];
+    }else if (vc.canGesturePopBack) {
+        return [vc.canGesturePopBack boolValue];
     }
     return self.viewControllers.count != 1;
 }

@@ -134,7 +134,9 @@ static NSString *defaultBackItemStyle;
         BackButtonClick();
     }else if ([self respondsToSelector:@selector(navClickOnBackItem)]) {
         [self performSelector:@selector(navClickOnBackItem)];
-    }else{
+    }else if (self.NavClickOnBackItem) {
+        self.NavClickOnBackItem();
+    }else {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -147,6 +149,25 @@ static NSString *defaultBackItemStyle;
         }
     }
     return nil;
+}
+
+#pragma mark -
+
+static char kNavClickOnBackItem;
+-(void (^)(void))NavClickOnBackItem{
+    return objc_getAssociatedObject(self, &kNavClickOnBackItem);
+}
+
+-(void)setNavClickOnBackItem:(void (^)(void))NavClickOnBackItem{
+    objc_setAssociatedObject(self, &kNavClickOnBackItem, NavClickOnBackItem, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+static char kCanGesturePopBack;
+-(NSNumber *)canGesturePopBack{
+    return objc_getAssociatedObject(self, &kCanGesturePopBack);
+}
+-(void)setCanGesturePopBack:(NSNumber *)canGesturePopBack{
+    objc_setAssociatedObject(self, &kCanGesturePopBack, canGesturePopBack, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 @end

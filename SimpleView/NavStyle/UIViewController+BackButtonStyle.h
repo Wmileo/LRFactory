@@ -70,6 +70,9 @@
  */
 -(NSString *)navLastTitle;
 
+@property (nonatomic, copy) void (^NavClickOnBackItem)(void);
+@property (nonatomic, copy) NSNumber *canGesturePopBack;
+
 @end
 
 @interface BackItemModel : NSObject
