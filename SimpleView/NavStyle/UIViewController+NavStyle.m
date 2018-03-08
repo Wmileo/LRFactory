@@ -22,6 +22,12 @@ static NSString *defaultNavStyle;
 
 +(void)configNavStyles:(NSDictionary *)styles{
     navStyles = styles;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavStyle_viewDidLoad)];
+    });
+    [UIViewController configNavBackgroundColor:nil];
+    [UIViewController configNavBackgroundStyle];
 }
 
 +(void)configDefaultNavStyle:(NSString *)style{
@@ -30,20 +36,14 @@ static NSString *defaultNavStyle;
     NSAssert(model, @"请先配置Styles");
     [[UINavigationBar appearance] setTintColor:model.textColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : model.titleColor, NSFontAttributeName : model.textFont}];
-    [UIViewController configNavBackgroundColor:nil];
-    [UIViewController configNavBackgroundStyle];
     [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
     [UIViewController configDefaultBackItemWithStyle:model.backStyle];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavStyle_viewDidLoad)];
-    });
 }
 
 -(void)NavStyle_viewDidLoad{
     if (self.navStyle) {
         [self navSetupStyle:self.navStyle];
-    }else{
+    }else if (defaultNavStyle) {
         [self navSetupStyle:defaultNavStyle];
     }
     [self NavStyle_viewDidLoad];

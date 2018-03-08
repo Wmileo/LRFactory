@@ -11,7 +11,6 @@
 @interface UIViewController (NavStyle)
 
 +(void)configNavStyles:(NSDictionary *)styles;
-
 +(void)configDefaultNavStyle:(NSString *)style;
 
 -(instancetype)navSetupStyle:(NSString *)style;
