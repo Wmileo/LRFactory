@@ -57,7 +57,9 @@ static UIColor *navBackgroundColor;
         return;
     }
     
-    [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
+    if (self.hadNavBarHidden) {
+        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
+    }
 
     [self tryRegisterOldColor];
     [self tryRegisterOldShadowImage];
@@ -68,7 +70,9 @@ static UIColor *navBackgroundColor;
     if (self.navShadowImage) {
         [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
     }
-    [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+    if (self.hadNavBackgroundTranslucent) {
+        [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+    }
 }
 
 #pragma mark - navBarHidden
@@ -88,6 +92,10 @@ static char keyNavHide;
 
 -(BOOL)navBarHidden{
     return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
+}
+
+-(BOOL)hadNavBarHidden{
+    return objc_getAssociatedObject(self, &keyNavHide);
 }
 
 #pragma mrak - navBackgroundColor
@@ -164,6 +172,10 @@ BOOL registerOldTranslucent = NO;
 
 -(BOOL)navBackgroundTranslucent{
     return [objc_getAssociatedObject(self, &keyNavNewTranslucent) boolValue];
+}
+
+-(BOOL)hadNavBackgroundTranslucent{
+    return objc_getAssociatedObject(self, &keyNavNewTranslucent);
 }
 
 -(void)tryRegisterOldTranslucent{
