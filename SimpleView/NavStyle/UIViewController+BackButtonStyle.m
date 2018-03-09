@@ -111,8 +111,11 @@ static NSString *defaultBackItemStyle;
         }];
         button.width = MAX(button.width, 30);
         button.height = MAX(button.height, 40);
-        CGFloat iconWidth = model.icon.size.width;
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0,(button.width-iconWidth)                                                                                       );
+        CGFloat iconWidth = model.imgWidth > 0 ? model.imgWidth : model.icon.size.width;
+        CGFloat iconHeight = model.imgWidth > 0 ? model.imgHeight : model.icon.size.height;
+        CGFloat gapWidth = MAX((button.width - iconWidth), 0);
+        CGFloat gapHeight = MAX((button.height - iconHeight), 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, 0, gapHeight / 2,gapWidth);
         if (model.hasTitle) {
             UILabel *label = [[[UILabel labelWithFrame:CGRectMake(iconWidth + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor] labelResetTextAlignment:NSTextAlignmentLeft] setupOnView:button];
             label.centerY = button.height/2;

@@ -44,7 +44,7 @@ static UIColor *navBackgroundColor;
     if (self.presentedViewController) {
         return;
     }
-    
+    [self.navigationController setNavigationBarHidden:self.oldNavBarHidden animated:animated];
     [self.navigationController.navigationBar setBarTintColor:self.oldColor];
     [self.navigationController.navigationBar setShadowImage:self.oldShadowImage];
     [self.navigationController.navigationBar setTranslucent:self.oldTranslucent];
@@ -56,46 +56,58 @@ static UIColor *navBackgroundColor;
     if (self.presentedViewController) {
         return;
     }
-    
-    if (self.hadNavBarHidden) {
-        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
-    }
-
+    [self tryRegisterOldBarHidden];
     [self tryRegisterOldColor];
     [self tryRegisterOldShadowImage];
     [self tryRegisterOldTranslucent];
+//    if (self.hadNavBarHidden) {
+        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
+//    }
     if (self.navBackgroundColor) {
         [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
     }
     if (self.navShadowImage) {
         [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
     }
-    if (self.hadNavBackgroundTranslucent) {
+//    if (self.hadNavBackgroundTranslucent) {
         [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
-    }
+//    }
 }
 
 #pragma mark - navBarHidden
 
-static char keyNavHide;
+static char keyNavOldBarHidden;
+static char keyNavNewBarHidden;
+BOOL registerOldBarHidden = NO;
 
 -(void)setNavBarHidden:(BOOL)navBarHidden{
     [self setNavBarHidden:navBarHidden animated:NO];
 }
 
+-(void)tryRegisterOldBarHidden{
+    if (!registerOldBarHidden) {
+        registerOldBarHidden = YES;
+        objc_setAssociatedObject(self, &keyNavOldBarHidden, @(self.navigationController.navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
 -(void)setNavBarHidden:(BOOL)navBarHidden animated:(BOOL)animated{
-    objc_setAssociatedObject(self, &keyNavHide, @(navBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyNavNewBarHidden, @(navBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:navBarHidden animated:animated];
     }
 }
 
 -(BOOL)navBarHidden{
-    return [objc_getAssociatedObject(self, &keyNavHide) boolValue];
+    return [objc_getAssociatedObject(self, &keyNavNewBarHidden) boolValue];
+}
+
+-(BOOL)oldNavBarHidden{
+    return [objc_getAssociatedObject(self, &keyNavOldBarHidden) boolValue];
 }
 
 -(BOOL)hadNavBarHidden{
-    return objc_getAssociatedObject(self, &keyNavHide);
+    return objc_getAssociatedObject(self, &keyNavNewBarHidden);
 }
 
 #pragma mrak - navBackgroundColor
