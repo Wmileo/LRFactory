@@ -94,6 +94,8 @@
 @property (nonatomic, assign) CGFloat titleOffsetX;//title距离icon的位移
 @property (nonatomic, strong) UIColor *titleColor;//title颜色
 @property (nonatomic, strong) UIFont *titleFont;//title字体
+@property (nonatomic, assign) CGFloat imgWidth;//图片宽
+@property (nonatomic, assign) CGFloat imgHeight;//图片高
 
 +(BackItemModel *)modelWithOffsetX:(CGFloat)offsetX icon:(UIImage *)icon;//只生成图标 不生成文字
 +(BackItemModel *)modelWithOffsetX:(CGFloat)offsetX icon:(UIImage *)icon titleOffsetX:(CGFloat)titleOffsetX titleColor:(UIColor *)color titleFont:(UIFont *)font;//生成图标文字
