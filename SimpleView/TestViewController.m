@@ -63,10 +63,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
 
 -(void)viewWillDisappearForever:(BOOL)animated{
+    
+}
+
+-(void)viewWillAppearFirstTime:(BOOL)animated{
     
 }
 

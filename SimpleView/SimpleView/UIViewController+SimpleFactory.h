@@ -21,5 +21,6 @@
 
 -(void)viewDidDisappearForever;
 -(void)viewWillDisappearForever:(BOOL)animated;
+-(void)viewWillAppearFirstTime:(BOOL)animated;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "UIViewController+SimpleFactory.h"
 #import "NSObject+Method.h"
-
+#import <objc/runtime.h>
 
 @implementation UIViewController (SimpleFactory)
 
@@ -17,7 +17,18 @@
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(Simple_viewDidDisappear:)];
         [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(Simple_viewWillDisappear:)];
+        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(Simple_viewWillAppear:)];
     });
+}
+
+static char keyViewHadAppeared;
+
+-(void)Simple_viewWillAppear:(BOOL)animated{
+    [self Simple_viewWillAppear:animated];
+    if (![objc_getAssociatedObject(self, &keyViewHadAppeared) boolValue]) {
+        objc_setAssociatedObject(self, &keyViewHadAppeared, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self viewWillAppearFirstTime:animated];
+    }
 }
 
 -(void)Simple_viewDidDisappear:(BOOL)animated{
@@ -50,6 +61,7 @@
 
 -(void)viewDidDisappearForever{}
 -(void)viewWillDisappearForever:(BOOL)animated{}
+-(void)viewWillAppearFirstTime:(BOOL)animated{}
 
 +(UIViewController *)currentViewController{
     UIViewController *vc = [[UIApplication sharedApplication].delegate.window rootViewController];

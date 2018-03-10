@@ -35,7 +35,7 @@ static UIColor *navBackgroundColor;
     [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
+        [UIViewController exchangeSEL:@selector(viewWillAppearFirstTime:) withSEL:@selector(NavBackgroundStyle_viewWillAppearFirstTime:)];
         [UIViewController exchangeSEL:@selector(viewWillDisappearForever:) withSEL:@selector(NavBackgroundStyle_viewWillDisappearForever:)];
     });
 }
@@ -51,8 +51,8 @@ static UIColor *navBackgroundColor;
     [self.navigationController.navigationBar setTranslucent:self.oldTranslucent];
 }
 
--(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillAppear:animated];
+-(void)NavBackgroundStyle_viewWillAppearFirstTime:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillAppearFirstTime:animated];
     
     if (self.presentedViewController) {
         return;
@@ -79,15 +79,15 @@ static UIColor *navBackgroundColor;
 
 static char keyNavOldBarHidden;
 static char keyNavNewBarHidden;
-BOOL registerOldBarHidden = NO;
+static char keyRegisterOldBarHidden;
 
 -(void)setNavBarHidden:(BOOL)navBarHidden{
     [self setNavBarHidden:navBarHidden animated:NO];
 }
 
 -(void)tryRegisterOldBarHidden{
-    if (!registerOldBarHidden) {
-        registerOldBarHidden = YES;
+    if (![objc_getAssociatedObject(self, &keyRegisterOldBarHidden) boolValue]) {
+        objc_setAssociatedObject(self, &keyRegisterOldBarHidden, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, &keyNavOldBarHidden, @(self.navigationController.navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -115,7 +115,7 @@ BOOL registerOldBarHidden = NO;
 
 static char keyNavOldColor;
 static char keyNavNewColor;
-BOOL registerOldColor = NO;
+static char keyRegisterOldColor;
 
 -(void)setNavBackgroundColor:(UIColor *)navBackgroundColor{
     objc_setAssociatedObject(self, &keyNavNewColor, navBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -130,8 +130,8 @@ BOOL registerOldColor = NO;
 }
 
 -(void)tryRegisterOldColor{
-    if (!registerOldColor) {
-        registerOldColor = YES;
+    if (![objc_getAssociatedObject(self, &keyRegisterOldColor) boolValue]) {
+        objc_setAssociatedObject(self, &keyRegisterOldColor, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, &keyNavOldColor, self.navigationController.navigationBar.barTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -145,7 +145,7 @@ BOOL registerOldColor = NO;
 
 static char keyNavOldShadowImage;
 static char keyNavNewShadowImage;
-BOOL registerOldShadowImage = NO;
+static char keyRegisterOldShadowImage;
 
 -(void)setNavShadowImage:(UIImage *)navShadowImage{
     objc_setAssociatedObject(self, &keyNavNewShadowImage, navShadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -160,8 +160,8 @@ BOOL registerOldShadowImage = NO;
 }
 
 -(void)tryRegisterOldShadowImage{
-    if (!registerOldShadowImage) {
-        registerOldShadowImage = YES;
+    if (![objc_getAssociatedObject(self, &keyRegisterOldShadowImage) boolValue]) {
+        objc_setAssociatedObject(self, &keyRegisterOldShadowImage, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, &keyNavOldShadowImage, self.navigationController.navigationBar.shadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -173,7 +173,7 @@ BOOL registerOldShadowImage = NO;
 #pragma mark - navBackgroundTranslucent
 static char keyNavOldTranslucent;
 static char keyNavNewTranslucent;
-BOOL registerOldTranslucent = NO;
+static char keyRegisterOldTranslucent;
 
 -(void)setNavBackgroundTranslucent:(BOOL)navBackgroundTranslucent{
     objc_setAssociatedObject(self, &keyNavNewTranslucent, @(navBackgroundTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -192,8 +192,8 @@ BOOL registerOldTranslucent = NO;
 }
 
 -(void)tryRegisterOldTranslucent{
-    if (!registerOldTranslucent) {
-        registerOldTranslucent = YES;
+    if (![objc_getAssociatedObject(self, &keyRegisterOldTranslucent) boolValue]) {
+        objc_setAssociatedObject(self, &keyRegisterOldTranslucent, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, &keyNavOldTranslucent, @(self.navigationController.navigationBar.translucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
