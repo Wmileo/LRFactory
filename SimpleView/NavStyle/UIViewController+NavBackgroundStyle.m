@@ -15,6 +15,7 @@
 #import <objc/runtime.h>
 #import "NSObject+Method.h"
 #import "SimpleViewHeader.h"
+#import "UIViewController+SimpleFactory.h"
 
 @implementation UIViewController (NavBackgroundStyle)
 
@@ -31,16 +32,16 @@ static UIColor *navBackgroundColor;
 }
 
 +(void)configNavBackgroundStyle{
+    [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappearForever:) withSEL:@selector(NavBackgroundStyle_viewWillDisappearForever:)];
     });
 }
 
--(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillDisappear:animated];
-    
+-(void)NavBackgroundStyle_viewWillDisappearForever:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillDisappearForever:animated];
     if (self.presentedViewController) {
         return;
     }
@@ -60,18 +61,18 @@ static UIColor *navBackgroundColor;
     [self tryRegisterOldColor];
     [self tryRegisterOldShadowImage];
     [self tryRegisterOldTranslucent];
-//    if (self.hadNavBarHidden) {
+    if (self.hadNavBarHidden) {
         [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
-//    }
+    }
     if (self.navBackgroundColor) {
         [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
     }
     if (self.navShadowImage) {
         [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
     }
-//    if (self.hadNavBackgroundTranslucent) {
+    if (self.hadNavBackgroundTranslucent) {
         [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
-//    }
+    }
 }
 
 #pragma mark - navBarHidden
