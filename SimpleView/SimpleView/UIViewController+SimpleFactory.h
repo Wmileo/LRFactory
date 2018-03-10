@@ -20,5 +20,6 @@
 -(UIViewController *)navNextViewController;//导航的下一个页面
 
 -(void)viewDidDisappearForever;
+-(void)viewWillDisappearForever:(BOOL)animated;
 
 @end

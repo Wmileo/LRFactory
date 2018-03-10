@@ -16,6 +16,7 @@
 #import "TableViewController.h"
 #import "UIViewController+NavStyle.h"
 #import "SimpleHeader.h"
+#import "UIImageView+SimpleFactory.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource>
 
@@ -35,7 +36,8 @@
     
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
-        
+        TableViewController *vc = [[TableViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }] resetBackgroundColor:[UIColor blueColor]] setupOnView:self.view] resetCornerRadius:11] resetConfig:^(UIButton *ui) {
         ui.backgroundColor = [UIColor yellowColor];
     }];
@@ -61,6 +63,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+}
+
+-(void)viewWillDisappearForever:(BOOL)animated{
     
 }
 

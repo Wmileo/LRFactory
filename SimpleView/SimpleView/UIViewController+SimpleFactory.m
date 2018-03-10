@@ -16,12 +16,25 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(Simple_viewDidDisappear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(Simple_viewWillDisappear:)];
     });
 }
 
 -(void)Simple_viewDidDisappear:(BOOL)animated{
     [self Simple_viewDidDisappear:animated];
-    
+    if (![self isSelfValid]) {
+        [self viewDidDisappearForever];
+    }
+}
+
+-(void)Simple_viewWillDisappear:(BOOL)animated{
+    [self Simple_viewWillDisappear:animated];
+    if (![self isSelfValid]) {
+        [self viewWillDisappearForever:animated];
+    }
+}
+
+-(BOOL)isSelfValid{
     BOOL isContain = NO;
     if ([self.tabBarController.viewControllers containsObject:self]) {
         isContain = YES;
@@ -32,13 +45,11 @@
     if (self.presentedViewController) {
         isContain = YES;
     }
-
-    if (!isContain) {
-        [self viewDidDisappearForever];
-    }
+    return isContain;
 }
 
 -(void)viewDidDisappearForever{}
+-(void)viewWillDisappearForever:(BOOL)animated{}
 
 +(UIViewController *)currentViewController{
     UIViewController *vc = [[UIApplication sharedApplication].delegate.window rootViewController];

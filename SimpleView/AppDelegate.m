@@ -55,7 +55,7 @@
     [UIViewController configViewControllerGesturePopBack];
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundStyle];
-    
+    [UIViewController configSimple];
 
     [UIViewController autoHidesBottomBarWhenPush];
 
