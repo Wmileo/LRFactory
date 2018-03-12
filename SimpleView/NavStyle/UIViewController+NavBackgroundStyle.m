@@ -35,32 +35,24 @@ static UIColor *navBackgroundColor;
     [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillAppearFirstTime:) withSEL:@selector(NavBackgroundStyle_viewWillAppearFirstTime:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappearForever:) withSEL:@selector(NavBackgroundStyle_viewWillDisappearForever:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappearByNavigationPush:) withSEL:@selector(NavBackgroundStyle_viewWillDisappearByNavigationPush:)];
+        [UIViewController exchangeSEL:@selector(viewWillAppearByNavigationPush:) withSEL:@selector(NavBackgroundStyle_viewWillAppearByNavigationPush:)];
+        [UIViewController exchangeSEL:@selector(viewWillAppearByNavigationPop:) withSEL:@selector(NavBackgroundStyle_viewWillAppearByNavigationPop:)];
     });
 }
 
--(void)NavBackgroundStyle_viewWillDisappearForever:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillDisappearForever:animated];
-    if (self.presentedViewController) {
-        return;
-    }
-    [self.navigationController setNavigationBarHidden:self.oldNavBarHidden animated:animated];
-    [self.navigationController.navigationBar setBarTintColor:self.oldColor];
-    [self.navigationController.navigationBar setShadowImage:self.oldShadowImage];
-    [self.navigationController.navigationBar setTranslucent:self.oldTranslucent];
+-(void)NavBackgroundStyle_viewWillDisappearByNavigationPush:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillDisappearByNavigationPush:animated];
+    
+    [self tryUpdateBarHidden];
+    [self tryUpdateColor];
+    [self tryUpdateShadowImage];
+    [self tryUpdateTranslucent];
 }
 
--(void)NavBackgroundStyle_viewWillAppearFirstTime:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillAppearFirstTime:animated];
-    
-    if (self.presentedViewController) {
-        return;
-    }
-    [self tryRegisterOldBarHidden];
-    [self tryRegisterOldColor];
-    [self tryRegisterOldShadowImage];
-    [self tryRegisterOldTranslucent];
+-(void)NavBackgroundStyle_viewWillAppearByNavigationPop:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillAppearByNavigationPop:animated];
+
     if (self.hadNavBarHidden) {
         [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
     }
@@ -70,136 +62,115 @@ static UIColor *navBackgroundColor;
     if (self.navShadowImage) {
         [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
     }
-    if (self.hadNavBackgroundTranslucent) {
+//    if (self.hadNavBackgroundTranslucent) {
         [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+//    }
+}
+
+-(void)NavBackgroundStyle_viewWillAppearByNavigationPush:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillAppearByNavigationPop:animated];
+
+    if (self.hadNavBarHidden) {
+        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
     }
+    if (self.navBackgroundColor) {
+        [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
+    }
+    if (self.navShadowImage) {
+        [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
+    }
+//    if (self.hadNavBackgroundTranslucent) {
+        [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+//    }
 }
 
 #pragma mark - navBarHidden
 
-static char keyNavOldBarHidden;
-static char keyNavNewBarHidden;
-static char keyRegisterOldBarHidden;
+static char keyNavBarHidden;
 
 -(void)setNavBarHidden:(BOOL)navBarHidden{
     [self setNavBarHidden:navBarHidden animated:NO];
 }
 
--(void)tryRegisterOldBarHidden{
-    if (![objc_getAssociatedObject(self, &keyRegisterOldBarHidden) boolValue]) {
-        objc_setAssociatedObject(self, &keyRegisterOldBarHidden, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(self, &keyNavOldBarHidden, @(self.navigationController.navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
-
 -(void)setNavBarHidden:(BOOL)navBarHidden animated:(BOOL)animated{
-    objc_setAssociatedObject(self, &keyNavNewBarHidden, @(navBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyNavBarHidden, @(navBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:navBarHidden animated:animated];
     }
 }
 
 -(BOOL)navBarHidden{
-    return [objc_getAssociatedObject(self, &keyNavNewBarHidden) boolValue];
-}
-
--(BOOL)oldNavBarHidden{
-    return [objc_getAssociatedObject(self, &keyNavOldBarHidden) boolValue];
+    return [objc_getAssociatedObject(self, &keyNavBarHidden) boolValue];
 }
 
 -(BOOL)hadNavBarHidden{
-    return objc_getAssociatedObject(self, &keyNavNewBarHidden);
+    return objc_getAssociatedObject(self, &keyNavBarHidden);
+}
+
+-(void)tryUpdateBarHidden{
+    self.navBarHidden = self.navigationController.navigationBarHidden;
 }
 
 #pragma mrak - navBackgroundColor
 
-static char keyNavOldColor;
-static char keyNavNewColor;
-static char keyRegisterOldColor;
+static char keyNavColor;
 
 -(void)setNavBackgroundColor:(UIColor *)navBackgroundColor{
-    objc_setAssociatedObject(self, &keyNavNewColor, navBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyNavColor, navBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
-        [self tryRegisterOldColor];
         [self.navigationController.navigationBar setBarTintColor:navBackgroundColor];
     }
 }
 
 -(UIColor *)navBackgroundColor{
-    return objc_getAssociatedObject(self, &keyNavNewColor);
+    return objc_getAssociatedObject(self, &keyNavColor);
 }
 
--(void)tryRegisterOldColor{
-    if (![objc_getAssociatedObject(self, &keyRegisterOldColor) boolValue]) {
-        objc_setAssociatedObject(self, &keyRegisterOldColor, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(self, &keyNavOldColor, self.navigationController.navigationBar.barTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+-(void)tryUpdateColor{
+    self.navBackgroundColor = self.navigationController.navigationBar.barTintColor;
 }
-
--(UIColor *)oldColor{
-    return objc_getAssociatedObject(self, &keyNavOldColor);
-}
-
 
 #pragma mark - navShadowImage
 
-static char keyNavOldShadowImage;
-static char keyNavNewShadowImage;
-static char keyRegisterOldShadowImage;
+static char keyNavShadowImage;
 
 -(void)setNavShadowImage:(UIImage *)navShadowImage{
-    objc_setAssociatedObject(self, &keyNavNewShadowImage, navShadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyNavShadowImage, navShadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
-        [self tryRegisterOldShadowImage];
         [self.navigationController.navigationBar setShadowImage:navShadowImage];
     }
 }
 
 -(UIImage *)navShadowImage{
-    return objc_getAssociatedObject(self, &keyNavNewShadowImage);
+    return objc_getAssociatedObject(self, &keyNavShadowImage);
 }
 
--(void)tryRegisterOldShadowImage{
-    if (![objc_getAssociatedObject(self, &keyRegisterOldShadowImage) boolValue]) {
-        objc_setAssociatedObject(self, &keyRegisterOldShadowImage, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(self, &keyNavOldShadowImage, self.navigationController.navigationBar.shadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
-
--(UIImage *)oldShadowImage{
-    return objc_getAssociatedObject(self, &keyNavOldShadowImage);
+-(void)tryUpdateShadowImage{
+    self.navShadowImage = self.navigationController.navigationBar.shadowImage;
 }
 
 #pragma mark - navBackgroundTranslucent
-static char keyNavOldTranslucent;
-static char keyNavNewTranslucent;
-static char keyRegisterOldTranslucent;
+
+static char keyNavTranslucent;
 
 -(void)setNavBackgroundTranslucent:(BOOL)navBackgroundTranslucent{
-    objc_setAssociatedObject(self, &keyNavNewTranslucent, @(navBackgroundTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &keyNavTranslucent, @(navBackgroundTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController) {
-        [self tryRegisterOldTranslucent];
         [self.navigationController.navigationBar setTranslucent:navBackgroundTranslucent];
     }
 }
 
 -(BOOL)navBackgroundTranslucent{
-    return [objc_getAssociatedObject(self, &keyNavNewTranslucent) boolValue];
+    return [objc_getAssociatedObject(self, &keyNavTranslucent) boolValue];
 }
 
 -(BOOL)hadNavBackgroundTranslucent{
-    return objc_getAssociatedObject(self, &keyNavNewTranslucent);
+    return objc_getAssociatedObject(self, &keyNavTranslucent);
 }
 
--(void)tryRegisterOldTranslucent{
-    if (![objc_getAssociatedObject(self, &keyRegisterOldTranslucent) boolValue]) {
-        objc_setAssociatedObject(self, &keyRegisterOldTranslucent, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(self, &keyNavOldTranslucent, @(self.navigationController.navigationBar.translucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+-(void)tryUpdateTranslucent{
+    self.navBackgroundTranslucent = self.navigationController.navigationBar.translucent;
 }
 
--(BOOL)oldTranslucent{
-    return [objc_getAssociatedObject(self, &keyNavOldTranslucent) boolValue];
-}
 
 @end

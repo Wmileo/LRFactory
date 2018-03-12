@@ -24,9 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
-
-//    [UINavigationController configNavBarTranslucent:YES];
+    [UINavigationController configNavigationAction];
 //    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
 //    [UIViewController configViewControllerGesturePopBack];
@@ -41,13 +39,13 @@
         vc.navShadowImage = [[UIImage alloc] init];
     }],
     @"bababa" : [NavStyleModel modelWithTitleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:10] textColor:[UIColor blueColor] textFont:[UIFont systemFontOfSize:10] backStyle:@"back" config:^(UIViewController *vc) {
-        vc.navBackgroundColor = [UIColor blackColor];
+        
         vc.navShadowImage = nil;
     }]
                                         
     }];
     
-    [UIViewController configDefaultNavStyle:@"bababa"];
+//    [UIViewController configDefaultNavStyle:@"bababa"];
     
     
     [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];

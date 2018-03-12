@@ -8,8 +8,8 @@
 
 #import "TableViewController.h"
 #import "UIViewController+NavBackgroundStyle.h"
-
-
+#import "UIViewController+NavStyle.h"
+#import "UIViewController+BackButtonStyle.h"
 @interface TableViewController ()
 
 @end
@@ -33,6 +33,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)navClickOnBackItem{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 #pragma mark - Table view data source
 
