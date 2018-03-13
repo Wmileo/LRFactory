@@ -23,7 +23,6 @@ static UIColor *navBackgroundColor;
 
 +(void)configNavBackgroundColor:(UIColor *)color{
     navBackgroundColor = color;
-    [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setBarTintColor:color];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
 }

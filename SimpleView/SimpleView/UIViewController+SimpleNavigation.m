@@ -135,20 +135,20 @@ static char keyButtonTextFont;
 /**
  *  设置图片nav barbuttonitem
  */
--(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)())action{
+-(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)(void))action{
     return [self navSetupLeftButton:[self buttonWithImageName:name action:action]];
 }
--(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)())action{
+-(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)(void))action{
     return [self navSetupRightButton:[self buttonWithImageName:name action:action]];
 }
 
 /**
  *  设置文字nav barbuttonitem
  */
--(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)())action{
+-(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)(void))action{
     return [self navSetupLeftButton:[self buttonWithTitle:title action:action]];
 }
--(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)())action{
+-(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)(void))action{
     return [self navSetupRightButton:[self buttonWithTitle:title action:action]];
 }
 
@@ -192,20 +192,20 @@ static char keyButtonTextFont;
 /**
  *  添加图片nav barbuttonitem
  */
--(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)())action{
+-(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)(void))action{
     return [self navAddLeftButton:[self buttonWithImageName:name action:action]];
 }
--(instancetype)navAddRightImageName:(NSString *)name action:(void(^)())action{
+-(instancetype)navAddRightImageName:(NSString *)name action:(void(^)(void))action{
     return [self navAddRightButton:[self buttonWithImageName:name action:action]];
 }
 
 /**
  *  添加文字nav barbuttonitem
  */
--(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)())action{
+-(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)(void))action{
     return [self navAddLeftButton:[self buttonWithTitle:title action:action]];
 }
--(instancetype)navAddRightTitle:(NSString *)title action:(void(^)())action{
+-(instancetype)navAddRightTitle:(NSString *)title action:(void(^)(void))action{
     return [self navAddRightButton:[self buttonWithTitle:title action:action]];
 }
 
@@ -225,12 +225,12 @@ static char keyButtonTextFont;
     return self;
 }
 
--(UIButton *)buttonWithTitle:(NSString *)title action:(void(^)())action{
+-(UIButton *)buttonWithTitle:(NSString *)title action:(void(^)(void))action{
     UIButton *button = [UIButton buttonWithCenter:CGPointZero title:title textColor:objc_getAssociatedObject(self, &keyButtonTextColor) font:objc_getAssociatedObject(self, &keyButtonTextFont) click:action];
     return button;
 }
 
--(UIButton *)buttonWithImageName:(NSString *)name action:(void(^)())action{
+-(UIButton *)buttonWithImageName:(NSString *)name action:(void(^)(void))action{
     return [UIButton buttonWithCenter:CGPointZero normalImage:[UIImage imageNamed:name] click:action];
 }
 

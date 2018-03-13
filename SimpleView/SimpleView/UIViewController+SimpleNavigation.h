@@ -51,14 +51,14 @@
 /**
  *  设置图片nav barbuttonitem
  */
--(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)())action;
--(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)())action;
+-(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)(void))action;
+-(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)(void))action;
 
 /**
  *  设置文字nav barbuttonitem
  */
--(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)())action;
--(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navSetupLeftTitle:(NSString *)title action:(void(^)(void))action;
+-(instancetype)navSetupRightTitle:(NSString *)title action:(void(^)(void))action;
 
 /**
  *  设置间隔nav barbuttonitem
@@ -81,14 +81,14 @@
 /**
  *  添加图片nav barbuttonitem
  */
--(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)())action;
--(instancetype)navAddRightImageName:(NSString *)name action:(void(^)())action;
+-(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)(void))action;
+-(instancetype)navAddRightImageName:(NSString *)name action:(void(^)(void))action;
 
 /**
  *  添加文字nav barbuttonitem
  */
--(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)())action;
--(instancetype)navAddRightTitle:(NSString *)title action:(void(^)())action;
+-(instancetype)navAddLeftTitle:(NSString *)title action:(void(^)(void))action;
+-(instancetype)navAddRightTitle:(NSString *)title action:(void(^)(void))action;
 
 /**
  *  添加间隔nav barbuttonitem
