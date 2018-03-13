@@ -35,53 +35,82 @@ static UIColor *navBackgroundColor;
     [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillDisappearByNavigationPush:) withSEL:@selector(NavBackgroundStyle_viewWillDisappearByNavigationPush:)];
-        [UIViewController exchangeSEL:@selector(viewWillAppearByNavigationPush:) withSEL:@selector(NavBackgroundStyle_viewWillAppearByNavigationPush:)];
-        [UIViewController exchangeSEL:@selector(viewWillAppearByNavigationPop:) withSEL:@selector(NavBackgroundStyle_viewWillAppearByNavigationPop:)];
+        [UIViewController exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavBackgroundStyle_viewDidLoad)];
+        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
+        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(NavBackgroundStyle_viewWillDisappear:)];
     });
 }
 
--(void)NavBackgroundStyle_viewWillDisappearByNavigationPush:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillDisappearByNavigationPush:animated];
-    
-    [self tryUpdateBarHidden];
-    [self tryUpdateColor];
-    [self tryUpdateShadowImage];
-    [self tryUpdateTranslucent];
+-(void)dealloc{
+//    [self removeObserver];
 }
 
--(void)NavBackgroundStyle_viewWillAppearByNavigationPop:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillAppearByNavigationPop:animated];
-
-    if (self.hadNavBarHidden) {
-        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
-    }
-    if (self.navBackgroundColor) {
-        [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
-    }
-    if (self.navShadowImage) {
-        [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
-    }
-//    if (self.hadNavBackgroundTranslucent) {
-        [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+-(void)addObserver{
+//    if (self.navigationController) {
+//        [self.navigationController.navigationBar addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//        [self.navigationController.navigationBar addObserver:self forKeyPath:@"barTintColor" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//        [self.navigationController.navigationBar addObserver:self forKeyPath:@"shadowImage" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//        [self.navigationController.navigationBar addObserver:self forKeyPath:@"translucent" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 //    }
 }
 
--(void)NavBackgroundStyle_viewWillAppearByNavigationPush:(BOOL)animated{
-    [self NavBackgroundStyle_viewWillAppearByNavigationPop:animated];
-
-    if (self.hadNavBarHidden) {
-        [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
-    }
-    if (self.navBackgroundColor) {
-        [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
-    }
-    if (self.navShadowImage) {
-        [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
-    }
-//    if (self.hadNavBackgroundTranslucent) {
-        [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+-(void)removeObserver{
+//    if (self.navigationController) {
+//        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"hidden"];
+//        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"barTintColor"];
+//        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"shadowImage"];
+//        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"translucent"];
 //    }
+}
+
+-(void)NavBackgroundStyle_viewDidLoad{
+    [self NavBackgroundStyle_viewDidLoad];
+    self.navBarHidden = self.navigationController.navigationBarHidden;
+    self.navBackgroundColor = self.navigationController.navigationBar.barTintColor;
+    self.navShadowImage = self.navigationController.navigationBar.shadowImage;
+    self.navBackgroundTranslucent = self.navigationController.navigationBar.translucent;
+}
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (change[@"new"] == change[@"old"]) {
+        return;
+    }
+    if ([keyPath isEqualToString:@"hidden"]) {
+        self.navBarHidden = self.navigationController.navigationBarHidden;
+    }else if ([keyPath isEqualToString:@"barTintColor"]) {
+        self.navBackgroundColor = self.navigationController.navigationBar.barTintColor;
+    }else if ([keyPath isEqualToString:@"shadowImage"]) {
+        self.navShadowImage = self.navigationController.navigationBar.shadowImage;
+    }else if ([keyPath isEqualToString:@"translucent"]) {
+        self.navBackgroundTranslucent = self.navigationController.navigationBar.translucent;
+    }
+}
+
+-(void)NavBackgroundStyle_viewWillDisappear:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillDisappear:animated];
+//    [self removeObserver];
+    self.navBarHidden = self.navigationController.navigationBarHidden;
+    self.navBackgroundColor = self.navigationController.navigationBar.barTintColor;
+    self.navShadowImage = self.navigationController.navigationBar.shadowImage;
+    self.navBackgroundTranslucent = self.navigationController.navigationBar.translucent;
+}
+
+-(void)NavBackgroundStyle_viewWillAppear:(BOOL)animated{
+    [self NavBackgroundStyle_viewWillAppear:animated];
+    if (self.navigationController) {
+        if (self.hadNavBarHidden) {
+            [self.navigationController setNavigationBarHidden:self.navBarHidden animated:animated];
+        }
+        if (self.navBackgroundColor) {
+            [self.navigationController.navigationBar setBarTintColor:self.navBackgroundColor];
+        }
+        if (self.navShadowImage) {
+            [self.navigationController.navigationBar setShadowImage:self.navShadowImage];
+        }
+        if (self.hadNavBackgroundTranslucent) {
+            [self.navigationController.navigationBar setTranslucent:self.navBackgroundTranslucent];
+        }
+    }
+//    [self addObserver];
 }
 
 #pragma mark - navBarHidden
@@ -107,10 +136,6 @@ static char keyNavBarHidden;
     return objc_getAssociatedObject(self, &keyNavBarHidden);
 }
 
--(void)tryUpdateBarHidden{
-    self.navBarHidden = self.navigationController.navigationBarHidden;
-}
-
 #pragma mrak - navBackgroundColor
 
 static char keyNavColor;
@@ -126,10 +151,6 @@ static char keyNavColor;
     return objc_getAssociatedObject(self, &keyNavColor);
 }
 
--(void)tryUpdateColor{
-    self.navBackgroundColor = self.navigationController.navigationBar.barTintColor;
-}
-
 #pragma mark - navShadowImage
 
 static char keyNavShadowImage;
@@ -143,10 +164,6 @@ static char keyNavShadowImage;
 
 -(UIImage *)navShadowImage{
     return objc_getAssociatedObject(self, &keyNavShadowImage);
-}
-
--(void)tryUpdateShadowImage{
-    self.navShadowImage = self.navigationController.navigationBar.shadowImage;
 }
 
 #pragma mark - navBackgroundTranslucent
@@ -167,10 +184,5 @@ static char keyNavTranslucent;
 -(BOOL)hadNavBackgroundTranslucent{
     return objc_getAssociatedObject(self, &keyNavTranslucent);
 }
-
--(void)tryUpdateTranslucent{
-    self.navBackgroundTranslucent = self.navigationController.navigationBar.translucent;
-}
-
 
 @end
