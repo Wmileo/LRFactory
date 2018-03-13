@@ -26,4 +26,9 @@
 +(void)autoHidesBottomBarWhenPush;
 
 
+/**
+ *  配置push pop
+ */
++(void)configNavigationAction;
+
 @end

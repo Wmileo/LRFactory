@@ -23,4 +23,11 @@
 -(void)viewWillDisappearForever:(BOOL)animated;
 -(void)viewWillAppearFirstTime:(BOOL)animated;
 
+
+-(void)viewWillAppearByNavigationPush:(BOOL)animated;
+-(void)viewWillAppearByNavigationPop:(BOOL)animated;
+-(void)viewWillDisappearByNavigationPush:(BOOL)animated;
+-(void)viewWillDisappearByNavigationPop:(BOOL)animated;
+
+
 @end

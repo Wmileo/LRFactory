@@ -29,10 +29,9 @@
     
     self.title = @"aaa";
 
-    
-    self.view.backgroundColor = [UIColor blackColor];
-    self.navBackgroundColor = [UIColor blackColor];
-    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
+    self.view.backgroundColor = [UIColor blueColor];
+    self.navBackgroundColor = [UIColor redColor];
+//    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     
     [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
@@ -46,11 +45,10 @@
     [self navSetupRightTitle:@"table" action:^{
     }];
 
-    self.navBackgroundTranslucent = YES;
+//    self.navBackgroundTranslucent = YES;
     
 //    self.navigationBarHidden = YES;
 //    self.statusBarHidden = YES;
-    
     
 //    [self navSetupStyle:@"bababa"];
 

@@ -9,6 +9,7 @@
 #import "UIViewController+SimpleFactory.h"
 #import "NSObject+Method.h"
 #import <objc/runtime.h>
+#import "UINavigationController+SimpleFactory.h"
 
 @implementation UIViewController (SimpleFactory)
 
@@ -19,6 +20,7 @@
         [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(Simple_viewWillDisappear:)];
         [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(Simple_viewWillAppear:)];
     });
+    [UINavigationController configNavigationAction];
 }
 
 static char keyViewHadAppeared;
@@ -62,6 +64,11 @@ static char keyViewHadAppeared;
 -(void)viewDidDisappearForever{}
 -(void)viewWillDisappearForever:(BOOL)animated{}
 -(void)viewWillAppearFirstTime:(BOOL)animated{}
+
+-(void)viewWillAppearByNavigationPush:(BOOL)animated{}
+-(void)viewWillAppearByNavigationPop:(BOOL)animate{}
+-(void)viewWillDisappearByNavigationPush:(BOOL)animated{}
+-(void)viewWillDisappearByNavigationPop:(BOOL)animated{}
 
 +(UIViewController *)currentViewController{
     UIViewController *vc = [[UIApplication sharedApplication].delegate.window rootViewController];
