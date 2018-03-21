@@ -17,11 +17,13 @@
 static UIStatusBarStyle defaultStatusBarStyle;
 static BOOL defaultStatusBarHidden;
 
-
 +(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden{
-    [UINavigationController configChildViewControllerForStatusBarStyle];
     defaultStatusBarStyle = statusBarStyle;
     defaultStatusBarHidden = statusBarHidden;
+}
+
++(void)configSimpleStatusBar{
+    [UINavigationController configChildViewControllerForStatusBarStyle];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleStatus_preferredStatusBarStyle)];

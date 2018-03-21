@@ -13,6 +13,7 @@
 #import "UIViewController+SimpleNavigation.h"
 #import "NSObject+Method.h"
 #import <objc/runtime.h>
+#import "UINavigationController+BackButtonStyle.h"
 
 
 @implementation UIViewController (NavStyle)
@@ -28,6 +29,8 @@ static NSString *defaultNavStyle;
     });
     [UIViewController configNavBackgroundColor:nil];
     [UIViewController configNavBackgroundStyle];
+    [UINavigationController configViewControllerSetupDefaultBackButton];
+    [UIViewController configSimpleStatusBar];
 }
 
 +(void)configDefaultNavStyle:(NSString *)style{
@@ -36,7 +39,6 @@ static NSString *defaultNavStyle;
     NSAssert(model, @"请先配置Styles");
     [[UINavigationBar appearance] setTintColor:model.textColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : model.titleColor, NSFontAttributeName : model.textFont}];
-    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
     [UIViewController configDefaultBackItemWithStyle:model.backStyle];
 }
 
