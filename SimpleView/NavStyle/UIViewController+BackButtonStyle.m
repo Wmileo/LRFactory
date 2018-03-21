@@ -43,12 +43,12 @@ static char keyBackButtonClick;
 static NSString *defaultBackItemStyle;
 
 +(void)configBackItemStyles:(NSDictionary *)styles{
+    [UINavigationController configViewControllerSetupDefaultBackButton];
     backItemStyles = styles;
 }
 
 +(void)configDefaultBackItemWithStyle:(NSString *)style{
     defaultBackItemStyle = style;
-    [UINavigationController configViewControllerSetupDefaultBackButton];
 }
 
 -(instancetype)navSetupBackItemWithStyle:(NSString *)style{

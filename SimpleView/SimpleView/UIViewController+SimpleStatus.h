@@ -15,6 +15,8 @@
  */
 +(void)configDefaultPreferredStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden;
 
++(void)configSimpleStatusBar;
+
 /**
  *  状态栏隐藏
  */
