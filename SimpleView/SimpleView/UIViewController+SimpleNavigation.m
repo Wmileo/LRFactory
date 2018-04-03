@@ -136,10 +136,16 @@ static char keyButtonTextFont;
  *  设置图片nav barbuttonitem
  */
 -(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)(void))action{
-    return [self navSetupLeftButton:[self buttonWithImageName:name action:action]];
+    return [self navSetupLeftImage:[UIImage imageNamed:name] action:action];
 }
 -(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)(void))action{
-    return [self navSetupRightButton:[self buttonWithImageName:name action:action]];
+    return [self navSetupRightImage:[UIImage imageNamed:name] action:action];
+}
+-(instancetype)navSetupLeftImage:(UIImage *)image action:(void (^)(void))action{
+    return [self navSetupLeftButton:[self buttonWithImage:image action:action]];
+}
+-(instancetype)navSetupRightImage:(UIImage *)image action:(void (^)(void))action{
+    return [self navSetupRightButton:[self buttonWithImage:image action:action]];
 }
 
 /**
@@ -193,10 +199,16 @@ static char keyButtonTextFont;
  *  添加图片nav barbuttonitem
  */
 -(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)(void))action{
-    return [self navAddLeftButton:[self buttonWithImageName:name action:action]];
+    return [self navAddLeftImage:[UIImage imageNamed:name] action:action];
 }
 -(instancetype)navAddRightImageName:(NSString *)name action:(void(^)(void))action{
-    return [self navAddRightButton:[self buttonWithImageName:name action:action]];
+    return [self navAddRightImage:[UIImage imageNamed:name] action:action];
+}
+-(instancetype)navAddLeftImage:(UIImage *)image action:(void (^)(void))action{
+    return [self navAddLeftButton:[self buttonWithImage:image action:action]];
+}
+-(instancetype)navAddRightImage:(UIImage *)image action:(void (^)(void))action{
+    return [self navAddRightButton:[self buttonWithImage:image action:action]];
 }
 
 /**
@@ -230,8 +242,8 @@ static char keyButtonTextFont;
     return button;
 }
 
--(UIButton *)buttonWithImageName:(NSString *)name action:(void(^)(void))action{
-    return [UIButton buttonWithCenter:CGPointZero normalImage:[UIImage imageNamed:name] click:action];
+-(UIButton *)buttonWithImage:(UIImage *)image action:(void(^)(void))action{
+    return [UIButton buttonWithCenter:CGPointZero normalImage:image click:action];
 }
 
 #pragma mark - 配置

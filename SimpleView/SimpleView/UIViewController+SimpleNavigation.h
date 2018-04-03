@@ -51,8 +51,10 @@
 /**
  *  设置图片nav barbuttonitem
  */
--(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)(void))action;
--(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)(void))action;
+-(instancetype)navSetupLeftImageName:(NSString *)name action:(void (^)(void))action NS_DEPRECATED_IOS(2_0, 8_0);
+-(instancetype)navSetupRightImageName:(NSString *)name action:(void(^)(void))action NS_DEPRECATED_IOS(2_0, 8_0);
+-(instancetype)navSetupLeftImage:(UIImage *)image action:(void (^)(void))action;
+-(instancetype)navSetupRightImage:(UIImage *)image action:(void(^)(void))action;
 
 /**
  *  设置文字nav barbuttonitem
@@ -81,8 +83,10 @@
 /**
  *  添加图片nav barbuttonitem
  */
--(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)(void))action;
--(instancetype)navAddRightImageName:(NSString *)name action:(void(^)(void))action;
+-(instancetype)navAddLeftImageName:(NSString *)name action:(void (^)(void))action NS_DEPRECATED_IOS(2_0, 6_0);
+-(instancetype)navAddRightImageName:(NSString *)name action:(void(^)(void))action NS_DEPRECATED_IOS(2_0, 6_0);
+-(instancetype)navAddLeftImage:(UIImage *)image action:(void (^)(void))action;
+-(instancetype)navAddRightImage:(UIImage *)image action:(void(^)(void))action;
 
 /**
  *  添加文字nav barbuttonitem
