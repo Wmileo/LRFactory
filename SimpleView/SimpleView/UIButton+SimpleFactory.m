@@ -57,7 +57,7 @@
 +(UIButton *)buttonWithCenter:(CGPoint)center title:(NSString *)title textColor:(UIColor *)textColor font:(UIFont *)font click:(void (^)())click{
     font = !font ? [UIFont systemFontOfSize:[UIFont systemFontSize]] : font;
     CGSize size = [title sizeWithFont:font maxWidth:300];
-    return [UIButton buttonWithFrame:CGRectMake(center.x - size.width / 2, center.y - size.height / 2, size.width, size.height) title:title textColor:textColor font:font click:click];
+    return [UIButton buttonWithFrame:CGRectMake(center.x - size.width / 2, center.y - size.height / 2, size.width + 10, size.height) title:title textColor:textColor font:font click:click];
 }
 
 #pragma mark - 空按钮
