@@ -55,9 +55,7 @@ static NSString *defaultNavStyle;
     NavStyleModel *model = navStyles[style];
     [self navResetButtonTextColor:model.textColor font:model.textFont];
     [self navResetTitleColor:model.titleColor font:model.titleFont];
-    if (self.navigationController.viewControllers.count > 1) {
-        [self navSetupBackItemWithStyle:model.backStyle];
-    }
+    [self navSetupBackItemWithStyle:model.backStyle];
     model.Config(self);
     return self;
 }

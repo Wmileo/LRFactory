@@ -95,6 +95,10 @@ static NSString *defaultBackItemStyle;
 #pragma mark
 -(void)resetBackItem:(BackItemModel *)model{
     
+    if (self.navigationController.viewControllers.count < 2) {
+        return;
+    }
+    
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:3];
     if (model.offsetX != 0){
         [tmp addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:model.offsetX]];
