@@ -55,11 +55,11 @@ static NSString *defaultBackItemStyle;
     return [self navSetupBackItem:backItemStyles[style]];
 }
 
--(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action{
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)(void))action{
     return [self navSetupBackItem:backItemStyles[style] action:action];
 }
 
--(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)())action{
+-(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)(void))action{
     objc_setAssociatedObject(self, &keyBackButtonClick, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return [self navSetupBackItem:item];
 }
@@ -70,7 +70,7 @@ static NSString *defaultBackItemStyle;
     }else{
         [UINavigationController configViewControllerResetBackButton];
         __weak __typeof(self) wself = self;
-        void (^ResetBackButtonBlock)() = ^(){
+        void (^ResetBackButtonBlock)(void) = ^(){
             [wself resetBackItem:item];
         };
         objc_setAssociatedObject(self, &keyResetBackButtonBlock, ResetBackButtonBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -80,7 +80,7 @@ static NSString *defaultBackItemStyle;
 
 #pragma mark - backbutton
 -(void)viewControllerResetBackButton{
-    void (^ResetBackButtonBlock)() = objc_getAssociatedObject(self, &keyResetBackButtonBlock);
+    void (^ResetBackButtonBlock)(void) = objc_getAssociatedObject(self, &keyResetBackButtonBlock);
     if (ResetBackButtonBlock) {
         ResetBackButtonBlock();
     }
@@ -140,7 +140,7 @@ static NSString *defaultBackItemStyle;
     if ([self respondsToSelector:@selector(navBackItemWillHandleClick)]) {
         [self navBackItemWillHandleClick];
     }
-    void (^BackButtonClick)() = objc_getAssociatedObject(self, &keyBackButtonClick);
+    void (^BackButtonClick)(void) = objc_getAssociatedObject(self, &keyBackButtonClick);
     if (BackButtonClick) {
         BackButtonClick();
     }else if ([self respondsToSelector:@selector(navClickOnBackItem)]) {

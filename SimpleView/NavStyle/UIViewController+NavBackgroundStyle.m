@@ -77,7 +77,7 @@ static char keyNavBarHidden;
 }
 
 -(BOOL)hadNavBarHidden{
-    return objc_getAssociatedObject(self, &keyNavBarHidden);
+    return objc_getAssociatedObject(self, &keyNavBarHidden) != nil;
 }
 
 #pragma mrak - navBackgroundColor
@@ -126,7 +126,7 @@ static char keyNavTranslucent;
 }
 
 -(BOOL)hadNavBackgroundTranslucent{
-    return objc_getAssociatedObject(self, &keyNavTranslucent);
+    return objc_getAssociatedObject(self, &keyNavTranslucent)  != nil;
 }
 
 @end

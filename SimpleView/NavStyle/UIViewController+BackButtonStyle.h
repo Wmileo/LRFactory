@@ -64,7 +64,7 @@
 /**
  *  设置返回按钮 样式为style对应的样式 点击为action
  */
--(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)())action;
+-(instancetype)navSetupBackItemWithStyle:(NSString *)style action:(void (^)(void))action;
 
 /**
  *  设置返回按钮
@@ -74,7 +74,7 @@
 /**
  *  设置返回按钮 点击为action
  */
--(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)())action;
+-(instancetype)navSetupBackItem:(BackItemModel *)item action:(void (^)(void))action;
 
 /**
  *  返回上一个ViewController的title

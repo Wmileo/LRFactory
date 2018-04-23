@@ -23,11 +23,11 @@
 /**
  *  默认方式生成带图片BarButtonItem
  */
-+(UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image action:(void (^)())action;
++(UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image action:(void (^)(void))action;
 
 /**
  *  默认方式生成带文字BarButtonItem
  */
-+(UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title action:(void (^)())action;
++(UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title action:(void (^)(void))action;
 
 @end
