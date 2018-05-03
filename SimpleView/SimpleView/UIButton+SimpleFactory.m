@@ -9,6 +9,7 @@
 #import "UIButton+SimpleFactory.h"
 #import "NSObject+Block.h"
 #import "NSString+CGSize.h"
+#import "UIView+Sizes.h"
 
 @implementation UIButton (SimpleFactory)
 
@@ -28,7 +29,11 @@
 }
 
 +(UIButton *)buttonWithCenter:(CGPoint)center normalImage:(UIImage *)normalImg click:(void (^)(void))click{
-    return [UIButton buttonWithFrame:CGRectMake(center.x - normalImg.size.width / 2, center.y - normalImg.size.height / 2, normalImg.size.width, normalImg.size.height) normalImage:normalImg click:click];
+    UIButton *button = [UIButton buttonWithFrame:CGRectMake(center.x - normalImg.size.width / 2, center.y - normalImg.size.height / 2, normalImg.size.width, normalImg.size.height) normalImage:normalImg click:click];
+    button.width = MAX(button.width, 30);
+    CGFloat gapWidth = MAX((button.width - normalImg.size.width), 0);
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, gapWidth);
+    return button;
 }
 
 -(UIButton *)buttonAddHighlightedImage:(UIImage *)highlightedImg{
