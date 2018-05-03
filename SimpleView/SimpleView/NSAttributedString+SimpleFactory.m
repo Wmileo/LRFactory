@@ -51,7 +51,9 @@
 -(NSAttributedString *)copyAttributedStringWithLineSpacing:(CGFloat)lineSpacing{
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
-    [newStyle setParagraphStyle:[self paragraphStyle]];
+    if (@available(iOS 9.0, *)) {
+        [newStyle setParagraphStyle:[self paragraphStyle]];
+    }
     newStyle.lineSpacing = lineSpacing;
     [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];
     return [att copy];
@@ -60,7 +62,9 @@
 -(NSAttributedString *)copyAttributedStringWithFirstLineHeadIndent:(CGFloat)firstLineHeadIndent{
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
-    [newStyle setParagraphStyle:[self paragraphStyle]];
+    if (@available(iOS 9.0, *)) {
+        [newStyle setParagraphStyle:[self paragraphStyle]];
+    }
     newStyle.firstLineHeadIndent = firstLineHeadIndent;
     [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];
     return [att copy];
