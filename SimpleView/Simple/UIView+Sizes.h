@@ -111,10 +111,6 @@
 @property (nonatomic) CGPoint origin;
 
 @property (nonatomic, readonly) CGPoint boundsCenter;
-/**
- * Shortcut for frame.size
- */
-@property (nonatomic) CGSize size;
 
 /**
  * Finds the first descendant view (including this view) that is a member of a particular class.

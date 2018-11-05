@@ -8,8 +8,8 @@
 
 #import "UIViewController+SimpleNavigation.h"
 #import "UIBarButtonItem+SimpleFactory.h"
-#import "UIButton+SimpleFactory.h"
-#import "UILabel+SimpleFactory.h"
+#import "UIButton+LRFactory.h"
+#import "UILabel+LRFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
 #import "NSObject+Method.h"

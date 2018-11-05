@@ -1,17 +1,17 @@
 //
-//  UIButton+SimpleFactory.m
+//  UIButton+LRFactory.m
 //  SimpleView
 //
 //  Created by ileo on 16/4/11.
 //  Copyright © 2016年 ileo. All rights reserved.
 //
 
-#import "UIButton+SimpleFactory.h"
+#import "UIButton+LRFactory.h"
 #import "NSObject+Block.h"
 #import "NSString+CGSize.h"
 #import "UIView+Sizes.h"
 
-@implementation UIButton (SimpleFactory)
+@implementation UIButton (LRFactory)
 
 #pragma mark - 图片按钮
 
@@ -38,10 +38,13 @@
     return button;
 }
 
--(UIButton *)buttonAddHighlightedImage:(UIImage *)highlightedImg{
-    [self setImage:highlightedImg forState:UIControlStateHighlighted];
-    return self;
+-(UIButton *(^)(UIImage *))lrf_highlightedImage{
+    return ^id(UIImage *highlightedImg){
+        [self setImage:highlightedImg forState:UIControlStateHighlighted];
+        return self;
+    };
 }
+
 
 #pragma mark - 文字按钮
 
@@ -59,11 +62,14 @@
     return button;
 }
 
--(UIButton *)buttonAddHighlightedTitle:(NSString *)title textColor:(UIColor *)textColor{
-    [self setTitle:title forState:UIControlStateHighlighted];
-    if (textColor) [self setTitleColor:textColor forState:UIControlStateHighlighted];
-    return self;
+-(UIButton *(^)(NSString *, UIColor *))lrf_highlightedTitle{
+    return ^id(NSString *title, UIColor *textColor){
+        [self setTitle:title forState:UIControlStateHighlighted];
+        if (textColor) [self setTitleColor:textColor forState:UIControlStateHighlighted];
+        return self;
+    };
 }
+
 
 +(UIButton *)buttonWithCenter:(CGPoint)center title:(NSString *)title textColor:(UIColor *)textColor font:(UIFont *)font click:(void (^)(void))click{
     font = !font ? [UIFont systemFontOfSize:[UIFont systemFontSize]] : font;

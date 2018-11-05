@@ -9,9 +9,9 @@
 #ifndef SimpleViewHeader_h
 #define SimpleViewHeader_h
 
-#import "UIView+SimpleFactory.h"
-#import "UIButton+SimpleFactory.h"
-#import "UILabel+SimpleFactory.h"
+#import "UIView+LRFactory.h"
+#import "UIButton+LRFactory.h"
+#import "UILabel+LRFactory.h"
 #import "UIImageView+SimpleFactory.h"
 #import "UITextField+SimpleFactory.h"
 #import "UIBarButtonItem+SimpleFactory.h"

@@ -1,5 +1,5 @@
 //
-//  UIButton+SimpleFactory.h
+//  UIButton+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/4/11.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (SimpleFactory)
+@interface UIButton (LRFactory)
 
 #pragma mark - 图片按钮
 
@@ -25,7 +25,7 @@
 /**
  *  添加点击高亮图片
  */
--(UIButton *)buttonAddHighlightedImage:(UIImage *)highlightedImg;
+-(UIButton *(^)(UIImage *highlightedImg))lrf_highlightedImage;
 
 #pragma mark - 文字按钮
 
@@ -42,7 +42,7 @@
 /**
  *  添加点击高亮文字
  */
--(UIButton *)buttonAddHighlightedTitle:(NSString *)title textColor:(UIColor *)textColor;
+-(UIButton *(^)(NSString *title, UIColor *textColor))lrf_highlightedTitle;
 
 #pragma mark - 空按钮
 

@@ -202,20 +202,6 @@
 	self.frame = frame;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)size {
-	return self.frame.size;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setSize:(CGSize)size {
-	CGRect frame = self.frame;
-	frame.size = size;
-	self.frame = frame;
-}
-
 - (CGPoint)boundsCenter
 {
     return CGPointMake(roundf(self.width / 2), roundf(self.height / 2));

@@ -1,5 +1,5 @@
 //
-//  UINavigationController+SimpleFactory.h
+//  UINavigationController+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/5/6.

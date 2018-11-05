@@ -33,15 +33,13 @@
     self.navBackgroundColor = [UIColor redColor];
 //    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     
-    [[[[[UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
+    UIButton *b = [UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
         NSLog(@"click");
         TableViewController *vc = [[TableViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }] resetBackgroundColor:[UIColor blueColor]] setupOnView:self.view] resetCornerRadius:11] resetConfig:^(UIButton *ui) {
-        ui.backgroundColor = [UIColor yellowColor];
     }];
-    
-    
+    b.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:b];
     [self navSetupRightTitle:@"table" action:^{
     }];
 

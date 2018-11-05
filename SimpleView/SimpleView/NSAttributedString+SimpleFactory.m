@@ -1,5 +1,5 @@
 //
-//  NSAttributedString+SimpleFactory.m
+//  NSAttributedString+LRFactory.m
 //  SimpleView
 //
 //  Created by ileo on 16/7/29.

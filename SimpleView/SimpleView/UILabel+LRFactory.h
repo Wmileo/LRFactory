@@ -1,5 +1,5 @@
 //
-//  UILabel+SimpleFactory.h
+//  UILabel+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/5/4.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (SimpleFactory)
+@interface UILabel (LRFactory)
 
 /**
  *  工厂生产UILabel
@@ -23,17 +23,17 @@
 /**
  *  设置TextAlignment
  */
--(UILabel *)labelResetTextAlignment:(NSTextAlignment)textAlignment;
+-(UILabel *(^)(NSTextAlignment textAlignment))lrf_textAlignment;
 
 /**
  *  设置行数 0为不限制
  */
--(UILabel *)labelResetNumberOfLines:(NSInteger)lines;
+-(UILabel *(^)(NSInteger lines))lrf_numberOfLines;
 
 /**
  *  设置attributedText
  */
--(UILabel *)labelResetAttributedText:(NSAttributedString *)attributedText;
+-(UILabel *(^)(NSAttributedString *attributedText))lrf_attributedText;
 
 
 @end

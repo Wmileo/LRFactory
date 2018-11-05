@@ -1,5 +1,5 @@
 //
-//  UITextField+SimpleFactory.h
+//  UITextField+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/6/6.

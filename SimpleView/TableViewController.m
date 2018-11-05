@@ -10,6 +10,7 @@
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+NavStyle.h"
 #import "UIViewController+BackButtonStyle.h"
+#import "UIView+LRFactory.h"
 @interface TableViewController ()
 
 @end

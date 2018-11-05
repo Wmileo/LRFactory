@@ -1,5 +1,5 @@
 //
-//  UIViewController+SimpleFactory.m
+//  UIViewController+LRFactory.m
 //  SimpleView
 //
 //  Created by leo on 2017/3/31.

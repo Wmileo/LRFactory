@@ -121,7 +121,8 @@ static NSString *defaultBackItemStyle;
         CGFloat gapHeight = MAX((button.height - iconHeight), 0);
         button.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, 0, gapHeight / 2,gapWidth);
         if (model.hasTitle) {
-            UILabel *label = [[[UILabel labelWithFrame:CGRectMake(iconWidth + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor] labelResetTextAlignment:NSTextAlignmentLeft] setupOnView:button];
+            UILabel *label = [UILabel labelWithFrame:CGRectMake(iconWidth + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor].lrf_textAlignment(NSTextAlignmentLeft);
+            [button addSubview:label];
             label.centerY = button.height/2;
         }
         [tmp addObject:[UIBarButtonItem barButtonItemWithButton:button]];

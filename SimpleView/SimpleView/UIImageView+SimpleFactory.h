@@ -1,5 +1,5 @@
 //
-//  UIImageView+SimpleFactory.h
+//  UIImageView+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/5/17.

@@ -33,9 +33,9 @@
 //    self.statusHide = YES;
     
     self.navShadowImage = [[UIImage alloc] init];
-    
-    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 64)] resetBackgroundColor:[UIColor whiteColor]] setupOnView:self.view];
-
+    UIView *v = [UIView lrf_viewWithFrame:CGRectMake(0, -64, 320, 64)];
+    v.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:v];
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
     [self navResetTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
@@ -49,18 +49,24 @@
     NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"bbbbbbb"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
     NSAttributedString *att3 = [[[[[[NSAttributedString attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p] copyAttributedStringWithLineSpacing:17] copyAttributedStringWithFirstLineHeadIndent:50];
     
-    UILabel *label = [[[[[[UILabel viewWithFrame:CGRectMake(50, 100, 200, 200)] labelResetAttributedText:[NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]]] setupOnView:self.view] labelResetNumberOfLines:0] labelResetTextAlignment:NSTextAlignmentLeft] showDebugFrame];
-    
+    UILabel *label = [[UILabel lrf_viewWithFrame:CGRectMake(50, 100, 200, 200)]
+                      .lrf_attributedText([NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]])
+                      .lrf_numberOfLines(0)
+                      .lrf_textAlignment(NSTextAlignmentLeft)
+                       showDebugFrame];
+    [self.view addSubview:label];
     label.height = label.attributedText.size.height;
     
     
-    UITextView *text = [[UITextView viewWithFrame:CGRectMake(0, 0, 100, 100)] setupOnView:self.view];
+    UITextView *text = [UITextView lrf_viewWithFrame:CGRectMake(0, 0, 100, 100)];
+    [self.view addSubview:text];
+    
     text.attributedText = att;
     text.editable = NO;
     text.delegate = self;
-    
-    
-    [[UIImageView imageViewWithCenter:self.view.center image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://s.qianbaocard.com/file/images.do?name=201612/02/58412bd866ea9_small.png&date=1480997107265"]]]] setupOnView:self.view];
+    UIImageView *iv = [UIImageView imageViewWithCenter:self.view.center
+                                                 image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://s.qianbaocard.com/file/images.do?name=201612/02/58412bd866ea9_small.png&date=1480997107265"]]]];
+    [self.view addSubview:iv];
     
 //    [self navSetupRightTitle:@"SAAA" action:^{
 //        NSLog(@"aa");

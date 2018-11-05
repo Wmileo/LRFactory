@@ -1,5 +1,5 @@
 //
-//  UIBarButtonItem+SimpleFactory.h
+//  UIBarButtonItem+LRFactory.h
 //  SimpleView
 //
 //  Created by ileo on 16/4/27.

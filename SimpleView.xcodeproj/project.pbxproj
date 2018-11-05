@@ -15,9 +15,9 @@
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+SimplePush.m */; };
 		B3E84E551EAB347B0089E3BC /* UIViewController+NavStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */; };
 		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
-		CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */; };
+		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */; };
-		CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */; };
+		CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */; };
 		CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C21CDB634900A11CEB /* TestViewController.m */; };
 		CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C51CDC729C00A11CEB /* UINavigationController+SimpleFactory.m */; };
 		CE10184E1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */; };
@@ -30,7 +30,7 @@
 		CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE55BE571CBBC2F600D8364B /* LaunchScreen.storyboard */; };
 		CE55BE641CBBC2F600D8364B /* SimpleViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE631CBBC2F600D8364B /* SimpleViewTests.m */; };
 		CE55BE6F1CBBC2F600D8364B /* SimpleViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE6E1CBBC2F600D8364B /* SimpleViewUITests.m */; };
-		CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */; };
+		CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+LRFactory.m */; };
 		CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */; };
 		CE55BE8A1CBBD09600D8364B /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE891CBBD09600D8364B /* NSObject+Block.m */; };
 		CE763C381D054FB10068DA0B /* UITextField+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE763C371D054FB10068DA0B /* UITextField+SimpleFactory.m */; };
@@ -77,12 +77,12 @@
 		B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavStyle.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SimpleFactory.h"; sourceTree = "<group>"; };
-		CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LRFactory.h"; sourceTree = "<group>"; };
+		CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LRFactory.m"; sourceTree = "<group>"; };
 		CE0AE0BB1CD9FCB300A11CEB /* NSString+CGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CGSize.h"; sourceTree = "<group>"; };
 		CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CGSize.m"; sourceTree = "<group>"; };
-		CE0AE0BE1CDB33C000A11CEB /* UIView+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SimpleFactory.h"; sourceTree = "<group>"; };
-		CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE0AE0BE1CDB33C000A11CEB /* UIView+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LRFactory.h"; sourceTree = "<group>"; };
+		CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LRFactory.m"; sourceTree = "<group>"; };
 		CE0AE0C11CDB634900A11CEB /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		CE0AE0C21CDB634900A11CEB /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		CE0AE0C41CDC729C00A11CEB /* UINavigationController+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SimpleFactory.h"; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 		CE55BE6A1CBBC2F600D8364B /* SimpleViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE55BE6E1CBBC2F600D8364B /* SimpleViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleViewUITests.m; sourceTree = "<group>"; };
 		CE55BE701CBBC2F600D8364B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SimpleFactory.h"; sourceTree = "<group>"; };
-		CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SimpleFactory.m"; sourceTree = "<group>"; };
+		CE55BE801CBBCCD900D8364B /* UIButton+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LRFactory.h"; sourceTree = "<group>"; };
+		CE55BE811CBBCCD900D8364B /* UIButton+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LRFactory.m"; sourceTree = "<group>"; };
 		CE55BE831CBBCD0D00D8364B /* UIViewController+SimpleNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SimpleNavigation.h"; sourceTree = "<group>"; };
 		CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleNavigation.m"; sourceTree = "<group>"; };
 		CE55BE881CBBD09600D8364B /* NSObject+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Block.h"; sourceTree = "<group>"; };
@@ -265,12 +265,12 @@
 			isa = PBXGroup;
 			children = (
 				CE3158721CD2FC1F00BA5486 /* SimpleViewHeader.h */,
-				CE0AE0BE1CDB33C000A11CEB /* UIView+SimpleFactory.h */,
-				CE0AE0BF1CDB33C000A11CEB /* UIView+SimpleFactory.m */,
-				CE55BE801CBBCCD900D8364B /* UIButton+SimpleFactory.h */,
-				CE55BE811CBBCCD900D8364B /* UIButton+SimpleFactory.m */,
-				CE0AE0B51CD9F8E100A11CEB /* UILabel+SimpleFactory.h */,
-				CE0AE0B61CD9F8E100A11CEB /* UILabel+SimpleFactory.m */,
+				CE0AE0BE1CDB33C000A11CEB /* UIView+LRFactory.h */,
+				CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */,
+				CE55BE801CBBCCD900D8364B /* UIButton+LRFactory.h */,
+				CE55BE811CBBCCD900D8364B /* UIButton+LRFactory.m */,
+				CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */,
+				CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */,
 				CE10184C1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.h */,
 				CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */,
 				CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */,
@@ -517,7 +517,7 @@
 				B34759981E70280C007C702C /* UIViewController+SimpleStatus.m in Sources */,
 				CE0AE0C61CDC729C00A11CEB /* UINavigationController+SimpleFactory.m in Sources */,
 				B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */,
-				CE55BE821CBBCCD900D8364B /* UIButton+SimpleFactory.m in Sources */,
+				CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */,
 				CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */,
@@ -530,12 +530,12 @@
 				CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */,
 				B33625D91E8DFA0800C8D071 /* UIViewController+SimpleFactory.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */,
-				CE0AE0B71CD9F8E100A11CEB /* UILabel+SimpleFactory.m in Sources */,
+				CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */,
 				CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
 				CE763C381D054FB10068DA0B /* UITextField+SimpleFactory.m in Sources */,
 				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
-				CE0AE0C01CDB33C000A11CEB /* UIView+SimpleFactory.m in Sources */,
+				CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
 				CE10184E1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m in Sources */,
 				B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */,
