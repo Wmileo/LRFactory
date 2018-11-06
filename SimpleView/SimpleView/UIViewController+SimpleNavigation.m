@@ -9,6 +9,7 @@
 #import "UIViewController+SimpleNavigation.h"
 #import "UIBarButtonItem+SimpleFactory.h"
 #import "UIButton+LRFactory.h"
+#import "UIView+LRFactory.h"
 #import "UILabel+LRFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
@@ -230,6 +231,7 @@ static char keyButtonTextFont;
     [self.navigationItem setLeftBarButtonItems:arr];
     return self;
 }
+
 -(instancetype)navAddRightSpaceWithWidth:(CGFloat)width{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
     [arr addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:width]];
@@ -238,12 +240,19 @@ static char keyButtonTextFont;
 }
 
 -(UIButton *)buttonWithTitle:(NSString *)title action:(void(^)(void))action{
-    UIButton *button = [UIButton buttonWithCenter:CGPointZero title:title textColor:objc_getAssociatedObject(self, &keyButtonTextColor) font:objc_getAssociatedObject(self, &keyButtonTextFont) click:action];
+    UIButton *button = [UIButton lrf_view];
+    [button lrf_setupNormalTitle:title textColor:objc_getAssociatedObject(self, &keyButtonTextColor) font:objc_getAssociatedObject(self, &keyButtonTextFont) fitSize:YES];
+    [button lrf_setupFixedType:Fixed_CenterX_CenterY point:CGPointZero];
+    [button lrf_handleEventTouchUpInsideBlock:action];
     return button;
 }
 
 -(UIButton *)buttonWithImage:(UIImage *)image action:(void(^)(void))action{
-    return [UIButton buttonWithCenter:CGPointZero normalImage:image click:action];
+    UIButton *button = [UIButton lrf_view];
+    [button lrf_setupNormalImage:image fitSize:YES];
+    [button lrf_setupFixedType:Fixed_CenterX_CenterY point:CGPointZero];
+    [button lrf_handleEventTouchUpInsideBlock:action];
+    return button;
 }
 
 #pragma mark - 配置

@@ -12,12 +12,12 @@
 #import "UIView+LRFactory.h"
 #import "UIButton+LRFactory.h"
 #import "UILabel+LRFactory.h"
-#import "UIImageView+SimpleFactory.h"
+#import "UIImageView+LRFactory.h"
 #import "UITextField+SimpleFactory.h"
 #import "UIBarButtonItem+SimpleFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 
-#import "NSAttributedString+SimpleFactory.h"
+
 
 #import "UIViewController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"

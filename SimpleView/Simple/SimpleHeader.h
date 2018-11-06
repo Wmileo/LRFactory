@@ -16,4 +16,6 @@
 #import "UIColor+HexString.h"
 #import "NSObject+Method.h"
 
+#import "NSAttributedString+SimpleFactory.h"
+
 #endif /* SimpleHeader_h */

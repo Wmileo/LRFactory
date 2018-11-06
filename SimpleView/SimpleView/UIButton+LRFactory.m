@@ -7,80 +7,95 @@
 //
 
 #import "UIButton+LRFactory.h"
+#import "UIView+LRFactory.h"
 #import "NSObject+Block.h"
 #import "NSString+CGSize.h"
-#import "UIView+Sizes.h"
+
+
+#define kMinWidth 26
+#define kMinHeight 40
 
 @implementation UIButton (LRFactory)
 
+
+-(void)lrf_handleEventTouchUpInsideBlock:(void (^)(void))block{
+    if (block) {
+        [self setExclusiveTouch:YES];
+        [self onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+            block();
+        }];
+    }
+}
+
 #pragma mark - 图片按钮
 
-+(UIButton *)buttonWithFrame:(CGRect)frame normalImage:(UIImage *)normalImg click:(void (^)(void))click{
-    UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    if (normalImg) {
-        [button setImage:normalImg forState:UIControlStateNormal];
-        [button setImage:normalImg forState:UIControlStateHighlighted];
+-(void)lrf_setupNormalImage:(UIImage *)image fitSize:(BOOL)fit{
+    if (image) {
+        [self setImage:image forState:UIControlStateNormal];
+        if (fit) {
+            [self lrf_fitImageSize:image.size];
+        }
     }
-    [button setExclusiveTouch:YES];
-    if (click) [button onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-        click();
-    }];
-    return button;
 }
 
-+(UIButton *)buttonWithCenter:(CGPoint)center normalImage:(UIImage *)normalImg click:(void (^)(void))click{
-    UIButton *button = [UIButton buttonWithFrame:CGRectMake(center.x - normalImg.size.width / 2, center.y - normalImg.size.height / 2, normalImg.size.width, normalImg.size.height) normalImage:normalImg click:click];
-    button.width = MAX(button.width, 30);
+-(void)lrf_setupHighlightedImage:(UIImage *)image fitSize:(BOOL)fit{
+    if (image) {
+        [self setImage:image forState:UIControlStateHighlighted];
+        if (fit) {
+            [self lrf_fitImageSize:image.size];
+        }
+    }
+}
+
+-(void)lrf_fitImageSize:(CGSize)size{
+    CGFloat width = MAX(size.width, kMinWidth);
+    CGFloat height = MAX(size.height, kMinHeight);
+    self.lrf_size = CGSizeMake(width, height);
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 11) {
-        CGFloat gapWidth = MAX((button.width - normalImg.size.width), 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, gapWidth);
+        CGFloat gapWidth = MAX((self.lrf_width - size.width), 0);
+        CGFloat gapHeight = MAX((self.lrf_height - size.height), 0);
+        self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, gapWidth / 2, gapHeight / 2, gapWidth / 2);
     }
-    return button;
-}
-
--(UIButton *(^)(UIImage *))lrf_highlightedImage{
-    return ^id(UIImage *highlightedImg){
-        [self setImage:highlightedImg forState:UIControlStateHighlighted];
-        return self;
-    };
 }
 
 
 #pragma mark - 文字按钮
 
-+(UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title textColor:(UIColor *)textColor font:(UIFont *)font click:(void (^)(void))click{
-    UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    if(title){
-        [button setTitle:title forState:UIControlStateNormal];
+-(void)lrf_setupNormalTitle:(NSString *)title textColor:(UIColor *)color font:(UIFont *)font fitSize:(BOOL)fit{
+    if (font) {
+        self.titleLabel.font = font;
     }
-    [button setExclusiveTouch:YES];
-    if (font) button.titleLabel.font = font;
-    if (textColor) [button setTitleColor:textColor forState:UIControlStateNormal];
-    if (click) [button onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
-        click();
-    }];
-    return button;
+    if (color){
+        [self setTitleColor:color forState:UIControlStateNormal];
+    }
+    if(title){
+        [self setTitle:title forState:UIControlStateNormal];
+        if (fit) {
+            [self fitTitle:title];
+        }
+    }
 }
 
--(UIButton *(^)(NSString *, UIColor *))lrf_highlightedTitle{
-    return ^id(NSString *title, UIColor *textColor){
+-(void)lrf_setupHighlightedTitle:(NSString *)title textColor:(UIColor *)color font:(UIFont *)font fitSize:(BOOL)fit{
+    if (font) {
+        self.titleLabel.font = font;
+    }
+    if (color){
+        [self setTitleColor:color forState:UIControlStateHighlighted];
+    }
+    if(title){
         [self setTitle:title forState:UIControlStateHighlighted];
-        if (textColor) [self setTitleColor:textColor forState:UIControlStateHighlighted];
-        return self;
-    };
+        if (fit) {
+            [self fitTitle:title];
+        }
+    }
 }
 
-
-+(UIButton *)buttonWithCenter:(CGPoint)center title:(NSString *)title textColor:(UIColor *)textColor font:(UIFont *)font click:(void (^)(void))click{
-    font = !font ? [UIFont systemFontOfSize:[UIFont systemFontSize]] : font;
-    CGSize size = [title sizeWithFont:font maxWidth:300];
-    return [UIButton buttonWithFrame:CGRectMake(center.x - size.width / 2, center.y - size.height / 2, size.width + 10, size.height) title:title textColor:textColor font:font click:click];
-}
-
-#pragma mark - 空按钮
-
-+(UIButton *)buttonEmptyWithFrame:(CGRect)frame click:(void (^)(void))click{
-    return [UIButton buttonWithFrame:frame title:nil textColor:nil font:nil click:click];
+-(void)fitTitle:(NSString *)title{
+    CGSize size = [title sizeWithFont:self.titleLabel.font maxWidth:300];
+    CGFloat width = MAX(size.width + 10, kMinWidth);
+    CGFloat height = MAX(size.height, kMinHeight);
+    self.lrf_size = CGSizeMake(width, height);
 }
 
 @end

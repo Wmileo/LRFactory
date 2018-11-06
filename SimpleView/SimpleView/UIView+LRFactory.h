@@ -25,6 +25,11 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
 /**
  *  工厂生产UIView
  */
++(instancetype)lrf_view;
+
+/**
+ *  工厂生产UIView
+ */
 +(instancetype)lrf_viewWithFrame:(CGRect)frame;
 
 /**
@@ -33,6 +38,9 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
 +(instancetype)lrf_viewWithSize:(CGSize)size;
 
 @property (nonatomic) CGSize lrf_size;
+@property (nonatomic) CGFloat lrf_width;
+@property (nonatomic) CGFloat lrf_height;
+@property (nonatomic, readonly) CGPoint lrf_boundsCenter;
 
 /**
  *  设置固定点，用于适配变化的size

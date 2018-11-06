@@ -105,34 +105,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)width {
-	return CGRectGetWidth(self.frame);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setWidth:(CGFloat)width {
-	CGRect frame = self.frame;
-	frame.size.width = width;
-	self.frame = frame;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)height {
-	return CGRectGetHeight(self.frame);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setHeight:(CGFloat)height {
-	CGRect frame = self.frame;
-	frame.size.height = height;
-	self.frame = frame;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)ttScreenX {
 	CGFloat x = 0;
 	for (UIView* view = self; view; view = view.superview) {
@@ -153,43 +125,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)screenViewX {
-	CGFloat x = 0;
-	for (UIView* view = self; view; view = view.superview) {
-		x += [view left];
-		
-		if ([view isKindOfClass:[UIScrollView class]]) {
-			UIScrollView* scrollView = (UIScrollView*)view;
-			x -= scrollView.contentOffset.x;
-		}
-	}
-	
-	return x;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)screenViewY {
-	CGFloat y = 0;
-	for (UIView* view = self; view; view = view.superview) {
-		y += [view top];
-		
-		if ([view isKindOfClass:[UIScrollView class]]) {
-			UIScrollView* scrollView = (UIScrollView*)view;
-			y -= scrollView.contentOffset.y;
-		}
-	}
-	return y;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)screenFrame {
-	return CGRectMake([self screenViewX], [self screenViewY], [self width], [self height]);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGPoint)origin {
 	return self.frame.origin;
 }
@@ -202,10 +137,7 @@
 	self.frame = frame;
 }
 
-- (CGPoint)boundsCenter
-{
-    return CGPointMake(roundf(self.width / 2), roundf(self.height / 2));
-}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)descendantOrSelfWithClass:(Class)cls {

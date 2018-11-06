@@ -11,6 +11,10 @@
 
 @implementation UIView (LRFactory)
 
++(instancetype)lrf_view{
+    return [[[self class] alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+}
+
 +(instancetype)lrf_viewWithFrame:(CGRect)frame{
     return [[[self class] alloc] initWithFrame:frame];
 }
@@ -21,16 +25,7 @@
     return ui;
 }
 
--(void)setLrf_size:(CGSize)lrf_size{
-    CGRect frame = self.frame;
-    frame.size = lrf_size;
-    self.frame = frame;
-    [self fixPoint];
-}
-
--(CGSize)lrf_size{
-    return self.frame.size;
-}
+#pragma mark - setup
 
 static char keyFiexedType;
 static char keyFiexedPoint;
@@ -101,6 +96,44 @@ static char keyFiexedPoint;
     self.layer.masksToBounds = YES;
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
+
+#pragma mark - set get
+
+-(void)setLrf_size:(CGSize)lrf_size{
+    CGRect frame = self.frame;
+    frame.size = lrf_size;
+    self.frame = frame;
+    [self fixPoint];
+}
+
+-(CGSize)lrf_size{
+    return self.frame.size;
+}
+
+-(CGFloat)lrf_width{
+    return CGRectGetWidth(self.frame);
+}
+
+-(void)setLrf_width:(CGFloat)lrf_width{
+    CGSize size = self.lrf_size;
+    size.width = lrf_width;
+    self.lrf_size = size;
+}
+
+-(CGFloat)lrf_height{
+    return CGRectGetHeight(self.frame);
+}
+
+-(void)setLrf_height:(CGFloat)lrf_height{
+    CGSize size = self.lrf_size;
+    size.height = lrf_height;
+    self.lrf_size = size;
+}
+
+-(CGPoint)lrf_boundsCenter{
+    return CGPointMake(roundf(self.lrf_width / 2), roundf(self.lrf_height / 2));
 }
 
 @end

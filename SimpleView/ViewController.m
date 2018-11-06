@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SimpleViewHeader.h"
+#import "SimpleHeader.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+SimplePresent.h"
@@ -50,12 +51,12 @@
     NSAttributedString *att3 = [[[[[[NSAttributedString attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p] copyAttributedStringWithLineSpacing:17] copyAttributedStringWithFirstLineHeadIndent:50];
     
     UILabel *label = [[UILabel lrf_viewWithFrame:CGRectMake(50, 100, 200, 200)]
-                      .lrf_attributedText([NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]])
-                      .lrf_numberOfLines(0)
-                      .lrf_textAlignment(NSTextAlignmentLeft)
                        showDebugFrame];
     [self.view addSubview:label];
-    label.height = label.attributedText.size.height;
+    label.attributedText = [NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]];
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentLeft;
+    label.lrf_height = label.attributedText.size.height;
     
     
     UITextView *text = [UITextView lrf_viewWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -64,8 +65,10 @@
     text.attributedText = att;
     text.editable = NO;
     text.delegate = self;
-    UIImageView *iv = [UIImageView imageViewWithCenter:self.view.center
-                                                 image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://s.qianbaocard.com/file/images.do?name=201612/02/58412bd866ea9_small.png&date=1480997107265"]]]];
+    
+    UIImageView *iv = [UIImageView lrf_view];
+    [iv lrf_setupFixedType:Fixed_CenterX_CenterY point:self.view.lrf_boundsCenter];
+    [iv lrf_setupImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png"]]] fitSize:YES];
     [self.view addSubview:iv];
     
 //    [self navSetupRightTitle:@"SAAA" action:^{

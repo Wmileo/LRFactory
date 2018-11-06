@@ -17,20 +17,7 @@
     return textField;
 }
 
--(UITextField *)textFieldResetPlaceholder:(NSString *)placeholder{
-    self.placeholder = placeholder;
-    return self;
-}
 
--(UITextField *)textFieldResetTextAlignment:(NSTextAlignment)textAlignment{
-    self.textAlignment = textAlignment;
-    return self;
-}
-
--(UITextField *)textFieldResetKeyboardType:(UIKeyboardType)keyboardType{
-    self.keyboardType = keyboardType;
-    return self;
-}
 
 
 

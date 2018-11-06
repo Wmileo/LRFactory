@@ -52,19 +52,6 @@
  */
 @property (nonatomic) CGFloat bottom;
 
-/**
- * Shortcut for frame.size.width
- *
- * Sets frame.size.width = width
- */
-@property (nonatomic) CGFloat width;
-
-/**
- * Shortcut for frame.size.height
- *
- * Sets frame.size.height = height
- */
-@property (nonatomic) CGFloat height;
 
 /**
  * Shortcut for center.x
@@ -91,26 +78,9 @@
 @property (nonatomic, readonly) CGFloat ttScreenY;
 
 /**
- * Return the x coordinate on the screen, taking into account scroll views.
- */
-@property (nonatomic, readonly) CGFloat screenViewX;
-
-/**
- * Return the y coordinate on the screen, taking into account scroll views.
- */
-@property (nonatomic, readonly) CGFloat screenViewY;
-
-/**
- * Return the view frame on the screen, taking into account scroll views.
- */
-@property (nonatomic, readonly) CGRect screenFrame;
-
-/**
  * Shortcut for frame.origin
  */
 @property (nonatomic) CGPoint origin;
-
-@property (nonatomic, readonly) CGPoint boundsCenter;
 
 /**
  * Finds the first descendant view (including this view) that is a member of a particular class.

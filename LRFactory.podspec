@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
-  s.name         = "SimpleView"
-  s.version      = "1.0.7"
-  s.summary      = "SimpleView"
+  s.name         = "LRFactory"
+  s.version      = "1.0.0"
+  s.summary      = "LRFactory"
   s.description  = <<-DESC
 					 封装视图控件，用于方便调用
                    DESC

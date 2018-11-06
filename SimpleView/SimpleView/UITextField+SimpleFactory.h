@@ -15,20 +15,7 @@
  */
 +(UITextField *)textFieldWithFrame:(CGRect)frame textColor:(UIColor *)color font:(UIFont *)font;
 
-/**
- *  设置提示文字
- */
--(UITextField *)textFieldResetPlaceholder:(NSString *)placeholder;
 
-/**
- *  设置键盘样式
- */
--(UITextField *)textFieldResetKeyboardType:(UIKeyboardType)keyboardType;
-
-/**
- *  设置TextAlignment
- */
--(UITextField *)textFieldResetTextAlignment:(NSTextAlignment)textAlignment;
 
 
 //#pragma mark - delegate

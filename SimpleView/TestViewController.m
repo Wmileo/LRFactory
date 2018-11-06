@@ -16,7 +16,7 @@
 #import "TableViewController.h"
 #import "UIViewController+NavStyle.h"
 #import "SimpleHeader.h"
-#import "UIImageView+SimpleFactory.h"
+#import "UIImageView+LRFactory.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource>
 
@@ -33,13 +33,16 @@
     self.navBackgroundColor = [UIColor redColor];
 //    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     
-    UIButton *b = [UIButton buttonEmptyWithFrame:CGRectMake(50, 100, 100, 100) click:^{
+    UIButton *b = [UIButton lrf_viewWithFrame:CGRectMake(50, 100, 100, 100)];
+    [b lrf_handleEventTouchUpInsideBlock:^{
         NSLog(@"click");
         TableViewController *vc = [[TableViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
+    [b showDebugFrame];
+    
     [self navSetupRightTitle:@"table" action:^{
     }];
 

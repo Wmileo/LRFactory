@@ -14,7 +14,7 @@
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+SimplePush.m */; };
 		B3E84E551EAB347B0089E3BC /* UIViewController+NavStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */; };
-		CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */; };
+		CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+CGSize.m */; };
 		CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */; };
@@ -38,7 +38,7 @@
 		CE880DF81CEEF9CF002AA73D /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = CE880DF71CEEF9CF002AA73D /* UIColor+HexString.m */; };
 		CEC716DC1CE4527E006536F2 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */; };
 		CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */; };
-		CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */; };
+		CEC716E81CEABF9D006536F2 /* UIImageView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */; };
 		CECD57811D3DDA7F009C1F6F /* NSObject+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */; };
 		CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */; };
 		CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m */; };
@@ -76,7 +76,7 @@
 		B3E84E531EAB347B0089E3BC /* UIViewController+NavStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavStyle.h"; sourceTree = "<group>"; };
 		B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavStyle.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LRFactory.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LRFactory.h"; sourceTree = "<group>"; };
 		CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LRFactory.m"; sourceTree = "<group>"; };
 		CE0AE0BB1CD9FCB300A11CEB /* NSString+CGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CGSize.h"; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		CEC716DB1CE4527E006536F2 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavBackgroundStyle.h"; sourceTree = "<group>"; };
 		CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavBackgroundStyle.m"; sourceTree = "<group>"; };
-		CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SimpleFactory.h"; sourceTree = "<group>"; };
-		CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SimpleFactory.m"; sourceTree = "<group>"; };
+		CEC716E61CEABF9D006536F2 /* UIImageView+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LRFactory.h"; sourceTree = "<group>"; };
+		CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LRFactory.m"; sourceTree = "<group>"; };
 		CECD577F1D3DDA7F009C1F6F /* NSObject+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Method.h"; sourceTree = "<group>"; };
 		CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Method.m"; sourceTree = "<group>"; };
 		CED209101D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackButtonStyle.h"; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		CE55BE3D1CBBC2F500D8364B = {
 			isa = PBXGroup;
 			children = (
-				CE075E3A1DDEEA8A0030E81D /* SimpleView.podspec */,
+				CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */,
 				CE55BE481CBBC2F600D8364B /* SimpleView */,
 				CE55BE621CBBC2F600D8364B /* SimpleViewTests */,
 				CE55BE6D1CBBC2F600D8364B /* SimpleViewUITests */,
@@ -271,10 +271,8 @@
 				CE55BE811CBBCCD900D8364B /* UIButton+LRFactory.m */,
 				CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */,
 				CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */,
-				CE10184C1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.h */,
-				CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */,
-				CEC716E61CEABF9D006536F2 /* UIImageView+SimpleFactory.h */,
-				CEC716E71CEABF9D006536F2 /* UIImageView+SimpleFactory.m */,
+				CEC716E61CEABF9D006536F2 /* UIImageView+LRFactory.h */,
+				CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */,
 				CE763C361D054FB10068DA0B /* UITextField+SimpleFactory.h */,
 				CE763C371D054FB10068DA0B /* UITextField+SimpleFactory.m */,
 				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.h */,
@@ -309,6 +307,8 @@
 				CE880DF71CEEF9CF002AA73D /* UIColor+HexString.m */,
 				CECD577F1D3DDA7F009C1F6F /* NSObject+Method.h */,
 				CECD57801D3DDA7F009C1F6F /* NSObject+Method.m */,
+				CE10184C1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.h */,
+				CE10184D1D4B4B2B00B08A00 /* NSAttributedString+SimpleFactory.m */,
 			);
 			path = Simple;
 			sourceTree = "<group>";
@@ -438,7 +438,7 @@
 				CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */,
 				CE55BE561CBBC2F600D8364B /* Assets.xcassets in Resources */,
 				CE55BE541CBBC2F600D8364B /* Main.storyboard in Resources */,
-				CE075E3B1DDEEA8A0030E81D /* SimpleView.podspec in Resources */,
+				CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +519,7 @@
 				B3A251CD1F0E26ED00E2AF1D /* UIViewController+SimplePush.m in Sources */,
 				CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
-				CEC716E81CEABF9D006536F2 /* UIImageView+SimpleFactory.m in Sources */,
+				CEC716E81CEABF9D006536F2 /* UIImageView+LRFactory.m in Sources */,
 				CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */,
 				CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+SimpleFactory.m in Sources */,
 				CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */,

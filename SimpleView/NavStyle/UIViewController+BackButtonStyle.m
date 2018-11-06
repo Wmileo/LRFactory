@@ -110,26 +110,30 @@ static NSString *defaultBackItemStyle;
     }
     __weak __typeof(self) wself = self;
     if (model.icon) {
-        UIButton *button = [UIButton buttonWithCenter:CGPointZero normalImage:model.icon click:^{
+        UIButton *button = [UIButton lrf_view];
+        [button lrf_setupNormalImage:model.icon fitSize:YES];
+        [button lrf_handleEventTouchUpInsideBlock:^{
             [wself clickOnBack];
         }];
-        button.width = MAX(button.width, 30);
-        button.height = MAX(button.height, 40);
-        CGFloat iconWidth = model.imgWidth > 0 ? model.imgWidth : model.icon.size.width;
-        CGFloat iconHeight = model.imgWidth > 0 ? model.imgHeight : model.icon.size.height;
-        CGFloat gapWidth = MAX((button.width - iconWidth), 0);
-        CGFloat gapHeight = MAX((button.height - iconHeight), 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, 0, gapHeight / 2,gapWidth);
+        
         if (model.hasTitle) {
-            UILabel *label = [UILabel labelWithFrame:CGRectMake(iconWidth + model.titleOffsetX, 0, 80, 50) font:model.titleFont text:title textColor:model.titleColor].lrf_textAlignment(NSTextAlignmentLeft);
+            UILabel *label = [UILabel lrf_viewWithFrame:CGRectMake(button.lrf_width + model.titleOffsetX, 0, 80, 50)];
+            label.text = title;
+            label.font = model.titleFont;
+            label.textColor = model.titleColor;
+            label.backgroundColor = button.backgroundColor;
+            label.textAlignment = NSTextAlignmentLeft;
             [button addSubview:label];
-            label.centerY = button.height/2;
+            label.centerY = button.lrf_height/2;
         }
         [tmp addObject:[UIBarButtonItem barButtonItemWithButton:button]];
     }else if (model.hasTitle) {
-        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:[UIButton buttonWithCenter:CGPointZero title:title textColor:model.titleColor font:model.titleFont click:^{
+        UIButton *b = [UIButton lrf_view];
+        [b lrf_setupNormalTitle:title textColor:model.titleColor font:model.titleFont fitSize:YES];
+        [b lrf_handleEventTouchUpInsideBlock:^{
             [wself clickOnBack];
-        }]]];
+        }];
+        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:b]];
     }
     
     if (tmp.count > 0) {
