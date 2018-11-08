@@ -44,15 +44,15 @@
     p.lineBreakMode = NSLineBreakByTruncatingHead;
     p.alignment = NSTextAlignmentJustified;
     
-    NSAttributedString *att = [[[[[NSAttributedString attributedStringWithText:@"aaaaaaaaaa"] copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] copyAttributedStringWithColor:[UIColor blueColor]] copyAttributedStringWithUnderLineWithColor:[UIColor blueColor]] copyAttributedStringWithLink:@"aaa"];
-    NSAttributedString *att1 = [NSAttributedString attributedStringWithLineFeedSize:10];
-    NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"bbbbbbb"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
-    NSAttributedString *att3 = [[[[[[NSAttributedString attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p] copyAttributedStringWithLineSpacing:17] copyAttributedStringWithFirstLineHeadIndent:50];
+    NSAttributedString *att = [[[[[NSAttributedString lrf_attributedStringWithText:@"aaaaaaaaaa"] lrf_copyAttributedStringWithFont:[UIFont systemFontOfSize:14]] lrf_copyAttributedStringWithColor:[UIColor blueColor]] lrf_copyAttributedStringWithUnderLineWithColor:[UIColor blueColor]] lrf_copyAttributedStringWithLink:@"aaa"];
+    NSAttributedString *att1 = [NSAttributedString lrf_attributedStringWithLineFeedSize:10];
+    NSAttributedString *att2 = [[[NSAttributedString lrf_attributedStringWithText:@"bbbbbbb"] lrf_copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] lrf_copyAttributedStringWithColor:[UIColor redColor]];
+    NSAttributedString *att3 = [[[[[[NSAttributedString lrf_attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] lrf_copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] lrf_copyAttributedStringWithColor:[UIColor grayColor]] lrf_copyAttributedStringWithParagraphStyle:p] lrf_copyAttributedStringWithLineSpacing:17] lrf_copyAttributedStringWithFirstLineHeadIndent:50];
     
     UILabel *label = [UILabel lrf_viewWithFrame:CGRectMake(50, 100, 200, 200)];
     [label lrf_showDebugFrame];
     [self.view addSubview:label];
-    label.attributedText = [NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]];
+    label.attributedText = [NSAttributedString lrf_attributedStringWithAttributedStrings:@[att3,[NSAttributedString lrf_attributedStringWithLineFeedSize:1],att,att1,att2,att3]];
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentLeft;
     label.lrf_height = label.attributedText.size.height;
