@@ -7,8 +7,7 @@
 //
 
 #import "UIViewController+BackButtonStyle.h"
-#import "SimpleViewHeader.h"
-#import "UIView+Sizes.h"
+#import "LRUIFactory.h"
 #import "NSObject+LRFactory.h"
 #import "UINavigationController+BackButtonStyle.h"
 #import <objc/runtime.h>
@@ -123,7 +122,7 @@ static NSString *defaultBackItemStyle;
             label.backgroundColor = button.backgroundColor;
             label.textAlignment = NSTextAlignmentLeft;
             [button addSubview:label];
-            label.centerY = button.lrf_height/2;
+            label.lrf_centerY = button.lrf_height/2;
         }
         [tmp addObject:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
     }else if (model.hasTitle) {

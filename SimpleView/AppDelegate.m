@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SimpleViewHeader.h"
+#import "LRUIFactory.h"
 #import "ViewController.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"

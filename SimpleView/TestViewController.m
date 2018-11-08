@@ -8,14 +8,14 @@
 
 #import "TestViewController.h"
 #import "UIViewController+SimpleNavigation.h"
-#import "SimpleView/SimpleViewHeader.h"
+#import "LRUIFactory.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "ViewController.h"
 #import "UIViewController+SimplePresent.h"
 #import "TableViewController.h"
 #import "UIViewController+NavStyle.h"
-#import "SimpleHeader.h"
+#import "LRFactory.h"
 #import "UIImageView+LRFactory.h"
 
 @interface TestViewController () <UIViewControllerBackButtonDataSource>
@@ -41,7 +41,7 @@
     }];
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
-    [b showDebugFrame];
+    [b lrf_showDebugFrame];
     
     [self navSetupRightTitle:@"table" action:^{
     }];

@@ -7,12 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "SimpleViewHeader.h"
-#import "SimpleHeader.h"
+#import "LRUIFactory.h"
+#import "LRFactory.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+SimplePresent.h"
-#import "UIView+Sizes.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+NavStyle.h"
 
@@ -50,8 +49,8 @@
     NSAttributedString *att2 = [[[NSAttributedString attributedStringWithText:@"bbbbbbb"] copyAttributedStringWithFont:[UIFont systemFontOfSize:19]] copyAttributedStringWithColor:[UIColor redColor]];
     NSAttributedString *att3 = [[[[[[NSAttributedString attributedStringWithText:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"] copyAttributedStringWithFont:[UIFont systemFontOfSize:8]] copyAttributedStringWithColor:[UIColor grayColor]] copyAttributedStringWithParagraphStyle:p] copyAttributedStringWithLineSpacing:17] copyAttributedStringWithFirstLineHeadIndent:50];
     
-    UILabel *label = [[UILabel lrf_viewWithFrame:CGRectMake(50, 100, 200, 200)]
-                       showDebugFrame];
+    UILabel *label = [UILabel lrf_viewWithFrame:CGRectMake(50, 100, 200, 200)];
+    [label lrf_showDebugFrame];
     [self.view addSubview:label];
     label.attributedText = [NSAttributedString attributedStringWithAttributedStrings:@[att3,[NSAttributedString attributedStringWithLineFeedSize:1],att,att1,att2,att3]];
     label.numberOfLines = 0;

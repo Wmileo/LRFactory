@@ -8,7 +8,7 @@
 
 #import "UILabel+LRFactory.h"
 #import "UIView+LRFactory.h"
-#import "NSString+CGSize.h"
+#import "NSString+LRFactory.h"
 
 @implementation UILabel (LRFactory)
 
@@ -19,7 +19,7 @@
     if (font) {
         self.font = font;
     }
-    CGSize size = [self.text sizeWithFont:self.font maxWidth:300];
+    CGSize size = [self.text lrf_sizeWithFont:self.font maxWidth:300];
     self.lrf_size = size;
 }
 

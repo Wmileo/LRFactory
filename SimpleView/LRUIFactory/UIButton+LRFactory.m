@@ -9,7 +9,7 @@
 #import "UIButton+LRFactory.h"
 #import "UIView+LRFactory.h"
 #import "UIControl+LRFactory.h"
-#import "NSString+CGSize.h"
+#import "NSString+LRFactory.h"
 
 
 #define kMinWidth 26
@@ -92,7 +92,7 @@
 }
 
 -(void)fitTitle:(NSString *)title{
-    CGSize size = [title sizeWithFont:self.titleLabel.font maxWidth:300];
+    CGSize size = [title lrf_sizeWithFont:self.titleLabel.font maxWidth:300];
     CGFloat width = MAX(size.width + 10, kMinWidth);
     CGFloat height = MAX(size.height, kMinHeight);
     self.lrf_size = CGSizeMake(width, height);

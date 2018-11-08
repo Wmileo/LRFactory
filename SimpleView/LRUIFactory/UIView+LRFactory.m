@@ -44,6 +44,10 @@ static char keyFiexedPoint;
     CGPoint origin = CGPointMake(0, 0);
     CGSize size = self.lrf_size;
     switch (type) {
+        case Fixed_Left_Top:
+            origin.x = point.x;
+            origin.y = point.y;
+            break;
         case Fixed_Left_CenterY:
             origin.x = point.x;
             origin.y = point.y - size.height / 2;
@@ -98,8 +102,54 @@ static char keyFiexedPoint;
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
+-(void)lrf_removeAllSubviews{
+    while (self.subviews.count) {
+        UIView* child = self.subviews.lastObject;
+        [child removeFromSuperview];
+    }
+}
 
 #pragma mark - set get
+
+-(void)setLrf_left:(CGFloat)lrf_left{
+    CGRect frame = self.frame;
+    frame.origin.x = lrf_left;
+    self.frame = frame;
+}
+
+-(CGFloat)lrf_left{
+    return CGRectGetMinX(self.frame);
+}
+
+-(void)setLrf_right:(CGFloat)lrf_right{
+    CGRect frame = self.frame;
+    frame.origin.x = lrf_right - CGRectGetWidth(frame);
+    self.frame = frame;
+}
+
+- (CGFloat)lrf_right{
+    return CGRectGetMaxX(self.frame);
+}
+
+-(void)setLrf_top:(CGFloat)lrf_top{
+    CGRect frame = self.frame;
+    frame.origin.y = lrf_top;
+    self.frame = frame;
+}
+
+-(CGFloat)lrf_top{
+    return CGRectGetMinY(self.frame);
+}
+
+-(void)setLrf_bottom:(CGFloat)lrf_bottom{
+    CGRect frame = self.frame;
+    frame.origin.y = lrf_bottom - CGRectGetHeight(frame);
+    self.frame = frame;
+}
+
+- (CGFloat)lrf_bottom{
+    return CGRectGetMaxY(self.frame);
+}
 
 -(void)setLrf_size:(CGSize)lrf_size{
     CGRect frame = self.frame;
@@ -134,6 +184,31 @@ static char keyFiexedPoint;
 
 -(CGPoint)lrf_boundsCenter{
     return CGPointMake(roundf(self.lrf_width / 2), roundf(self.lrf_height / 2));
+}
+
+-(void)setLrf_centerX:(CGFloat)lrf_centerX{
+    self.center = CGPointMake(lrf_centerX, self.lrf_centerY);
+}
+
+-(CGFloat)lrf_centerX{
+    return CGRectGetMidX(self.frame);
+}
+
+-(void)setLrf_centerY:(CGFloat)lrf_centerY{
+    self.center = CGPointMake(self.lrf_centerX, lrf_centerY);
+}
+
+-(CGFloat)lrf_centerY{
+    return CGRectGetMidY(self.frame);
+}
+
+#pragma mark - debug
+
+-(void)lrf_showDebugFrame{
+#ifdef DEBUG
+    [[self layer] setBorderColor:[[UIColor redColor] CGColor]];
+    [[self layer] setBorderWidth:1.0f];
+#endif
 }
 
 @end

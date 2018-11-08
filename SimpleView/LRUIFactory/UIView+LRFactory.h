@@ -37,10 +37,18 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
  */
 +(instancetype)lrf_viewWithSize:(CGSize)size;
 
+@property (nonatomic) CGFloat lrf_left;
+@property (nonatomic) CGFloat lrf_right;
+@property (nonatomic) CGFloat lrf_top;
+@property (nonatomic) CGFloat lrf_bottom;
+
 @property (nonatomic) CGSize lrf_size;
 @property (nonatomic) CGFloat lrf_width;
 @property (nonatomic) CGFloat lrf_height;
+
 @property (nonatomic, readonly) CGPoint lrf_boundsCenter;
+@property (nonatomic) CGFloat lrf_centerX;
+@property (nonatomic) CGFloat lrf_centerY;
 
 /**
  *  设置固定点，用于适配变化的size
@@ -57,6 +65,11 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
  */
 -(void)lrf_setupCornerRadius:(CGFloat)radius;
 
+-(void)lrf_removeAllSubviews;
+
+
+#pragma mark - debug
+-(void)lrf_showDebugFrame;
 
 @end
 

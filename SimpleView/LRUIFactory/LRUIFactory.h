@@ -1,13 +1,13 @@
 //
-//  SimpleViewHeader.h
+//  LRUIFactory.h
 //  SimpleView
 //
-//  Created by ileo on 16/4/29.
-//  Copyright © 2016年 ileo. All rights reserved.
+//  Created by leo on 2018/11/8.
+//  Copyright © 2018 ileo. All rights reserved.
 //
 
-#ifndef SimpleViewHeader_h
-#define SimpleViewHeader_h
+#ifndef LRUIFactory_h
+#define LRUIFactory_h
 
 #import "UIView+LRFactory.h"
 #import "UIButton+LRFactory.h"
@@ -16,12 +16,10 @@
 #import "UIBarButtonItem+LRFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 
-
-
 #import "UIViewController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "UIViewController+SimplePresent.h"
 #import "UIViewController+SimpleStatus.h"
 #import "UIViewController+SimplePush.h"
 
-#endif /* SimpleViewHeader_h */
+#endif /* LRUIFactory_h */

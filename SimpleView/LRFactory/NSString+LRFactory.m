@@ -1,16 +1,16 @@
 //
-//  NSString+CGSize.m
+//  NSString+LRFactory.m
 //  SimpleView
 //
 //  Created by ileo on 16/5/4.
 //  Copyright © 2016年 ileo. All rights reserved.
 //
 
-#import "NSString+CGSize.h"
+#import "NSString+LRFactory.h"
 
-@implementation NSString (CGSize)
+@implementation NSString (LRFactory)
 
--(CGSize)sizeWithFont:(UIFont *)font maxWidth:(CGFloat)maxWidth{
+-(CGSize)lrf_sizeWithFont:(UIFont *)font maxWidth:(CGFloat)maxWidth{
     if (!font) {
         return CGSizeZero;
     }

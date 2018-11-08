@@ -11,10 +11,9 @@
 #import "UINavigationController+SimpleFactory.h"
 //#import "UINavigationController+BackButtonStyle.h"
 #import "UIView+LRFactory.h"
-#import "UIView+Sizes.h"
 #import <objc/runtime.h>
 #import "NSObject+LRFactory.h"
-#import "SimpleViewHeader.h"
+#import "LRUIFactory.h"
 #import "UIViewController+SimpleFactory.h"
 
 @implementation UIViewController (NavBackgroundStyle)

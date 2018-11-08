@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NSAttributedString (SimpleFactory)
+@interface NSAttributedString (LRFactory)
 
 
 -(CGSize)sizeWithMaxWidth:(CGFloat)maxWidth;

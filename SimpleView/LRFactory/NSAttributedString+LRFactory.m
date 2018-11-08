@@ -6,10 +6,9 @@
 //  Copyright © 2016年 ileo. All rights reserved.
 //
 
-#import "NSAttributedString+SimpleFactory.h"
+#import "NSAttributedString+LRFactory.h"
 
-
-@implementation NSAttributedString (SimpleFactory)
+@implementation NSAttributedString (LRFactory)
 
 -(CGSize)sizeWithMaxWidth:(CGFloat)maxWidth{
     return [self boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin) context:nil].size;

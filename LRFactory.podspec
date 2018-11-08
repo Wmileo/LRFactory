@@ -16,22 +16,22 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.subspec "Simple" do |simple|
-    simple.source_files = 'SimpleView/Simple/*'
+  s.subspec "LRFactory" do |ss|
+    ss.source_files = 'SimpleView/LRFactory/*'
   end
 
-  s.subspec "SimpleAnimation" do |simpleAnimation|
-    simpleAnimation.source_files = 'SimpleView/SimpleAnimation/*'
-  end
+  #s.subspec "SimpleAnimation" do |simpleAnimation|
+  #  simpleAnimation.source_files = 'SimpleView/SimpleAnimation/*'
+  #end
 
-  s.subspec "SimpleView" do |simpleView|
-    simpleView.source_files = 'SimpleView/SimpleView/*'
-    simpleView.dependency 'SimpleView/Simple'
+  s.subspec "LRUIFactory" do |ss|
+    ss.source_files = 'SimpleView/LRUIFactory/*'
+    ss.dependency 'LRFactory/LRFactory'
   end
 
   s.subspec "NavStyle" do |navStyle|
     navStyle.source_files = 'SimpleView/NavStyle/*'
-    navStyle.dependency 'SimpleView/SimpleView'
+    navStyle.dependency 'LRFactory/SimpleView'
   end
 
 end
