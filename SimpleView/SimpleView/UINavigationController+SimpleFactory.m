@@ -7,7 +7,7 @@
 //
 
 #import "UINavigationController+SimpleFactory.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import "UIViewController+SimpleFactory.h"
 
 @implementation UINavigationController (SimpleFactory)
@@ -19,17 +19,17 @@
 +(void)configChildViewControllerForStatusBarStyle{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(childViewControllerForStatusBarStyle) withSEL:@selector(SimpleNavigation_childViewControllerForStatusBarStyle)];
+        [UINavigationController lrf_exchangeSEL:@selector(childViewControllerForStatusBarStyle) withSEL:@selector(SimpleNavigation_childViewControllerForStatusBarStyle)];
     });
 }
 
 +(void)configNavigationAction{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(SimpleNavigation_pushViewController:animated:)];
-        [UINavigationController exchangeSEL:@selector(popToRootViewControllerAnimated:) withSEL:@selector(SimpleNavigation_popToRootViewControllerAnimated:)];
-        [UINavigationController exchangeSEL:@selector(popToViewController:animated:) withSEL:@selector(SimpleNavigation_popToViewController:animated:)];
-        [UINavigationController exchangeSEL:@selector(popViewControllerAnimated:) withSEL:@selector(SimpleNavigation_popViewControllerAnimated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(SimpleNavigation_pushViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(popToRootViewControllerAnimated:) withSEL:@selector(SimpleNavigation_popToRootViewControllerAnimated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(popToViewController:animated:) withSEL:@selector(SimpleNavigation_popToViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(popViewControllerAnimated:) withSEL:@selector(SimpleNavigation_popViewControllerAnimated:)];
     });
 }
 
@@ -40,7 +40,7 @@
 +(void)autoHidesBottomBarWhenPush{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(SimpleNavigation_autoHidesBottomBarWhenPush_pushViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(SimpleNavigation_autoHidesBottomBarWhenPush_pushViewController:animated:)];
     });
 }
 

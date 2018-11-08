@@ -10,7 +10,7 @@
 #import "UIViewController+SimpleStatus.h"
 #import "UINavigationController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 
 @implementation UIViewController (SimpleStatus)
 
@@ -26,9 +26,9 @@ static BOOL defaultStatusBarHidden;
     [UINavigationController configChildViewControllerForStatusBarStyle];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleStatus_preferredStatusBarStyle)];
-        [UIViewController exchangeSEL:@selector(prefersStatusBarHidden) withSEL:@selector(SimpleStatus_prefersStatusBarHidden)];
-        [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(SimpleStatus_viewDidAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(preferredStatusBarStyle) withSEL:@selector(SimpleStatus_preferredStatusBarStyle)];
+        [UIViewController lrf_exchangeSEL:@selector(prefersStatusBarHidden) withSEL:@selector(SimpleStatus_prefersStatusBarHidden)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(SimpleStatus_viewDidAppear:)];
     });
 }
 

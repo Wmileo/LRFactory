@@ -13,8 +13,7 @@
 #import "UIButton+LRFactory.h"
 #import "UILabel+LRFactory.h"
 #import "UIImageView+LRFactory.h"
-#import "UITextField+SimpleFactory.h"
-#import "UIBarButtonItem+SimpleFactory.h"
+#import "UIBarButtonItem+LRFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 
 

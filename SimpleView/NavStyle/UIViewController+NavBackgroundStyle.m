@@ -13,7 +13,7 @@
 #import "UIView+LRFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import "SimpleViewHeader.h"
 #import "UIViewController+SimpleFactory.h"
 
@@ -35,7 +35,7 @@ static UIColor *navBackgroundColor;
     [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];
     });
 }
 

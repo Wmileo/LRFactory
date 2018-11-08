@@ -7,13 +7,13 @@
 //
 
 #import "UIViewController+SimpleNavigation.h"
-#import "UIBarButtonItem+SimpleFactory.h"
+#import "UIBarButtonItem+LRFactory.h"
 #import "UIButton+LRFactory.h"
 #import "UIView+LRFactory.h"
 #import "UILabel+LRFactory.h"
 #import "UIView+Sizes.h"
 #import <objc/runtime.h>
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import "UINavigationController+SimpleFactory.h"
 
 typedef NS_ENUM(NSInteger, BarButtonSide){
@@ -40,8 +40,8 @@ BOOL registerOldTitleTextAttributes;
     }
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(SimpleNavigation_viewWillAppear:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(SimpleNavigation_viewWillDisappear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(SimpleNavigation_viewWillAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(SimpleNavigation_viewWillDisappear:)];
     });
 }
 
@@ -127,10 +127,10 @@ static char keyButtonTextFont;
  *  设置按钮nav barbuttonitem
  */
 -(instancetype)navSetupLeftButton:(UIButton *)button{
-    return [self navSetupLeftBarButtonItem:[UIBarButtonItem barButtonItemWithButton:button]];
+    return [self navSetupLeftBarButtonItem:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
 }
 -(instancetype)navSetupRightButton:(UIButton *)button{
-    return [self navSetupRightBarButtonItem:[UIBarButtonItem barButtonItemWithButton:button]];
+    return [self navSetupRightBarButtonItem:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
 }
 
 /**
@@ -163,11 +163,11 @@ static char keyButtonTextFont;
  *  设置间隔nav barbuttonitem
  */
 -(instancetype)navSetupLeftSpaceWithWidth:(CGFloat)width{
-    [self.navigationItem setLeftBarButtonItems:@[[UIBarButtonItem barButtonItemSpaceWithWidth:width]]];
+    [self.navigationItem setLeftBarButtonItems:@[[UIBarButtonItem lrf_barButtonItemSpaceWithWidth:width]]];
     return self;
 }
 -(instancetype)navSetupRightSpaceWithWidth:(CGFloat)width{
-    [self.navigationItem setRightBarButtonItems:@[[UIBarButtonItem barButtonItemSpaceWithWidth:width]]];
+    [self.navigationItem setRightBarButtonItems:@[[UIBarButtonItem lrf_barButtonItemSpaceWithWidth:width]]];
     return self;
 }
 
@@ -189,11 +189,11 @@ static char keyButtonTextFont;
  *  添加按钮nav barbuttonitem
  */
 -(instancetype)navAddLeftButton:(UIButton *)button{
-    return [self navAddLeftBarButtonItem:[UIBarButtonItem barButtonItemWithButton:button]];
+    return [self navAddLeftBarButtonItem:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
 
 }
 -(instancetype)navAddRightButton:(UIButton *)button{
-    return [self navAddRightBarButtonItem:[UIBarButtonItem barButtonItemWithButton:button]];
+    return [self navAddRightBarButtonItem:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
 }
 
 /**
@@ -227,14 +227,14 @@ static char keyButtonTextFont;
  */
 -(instancetype)navAddLeftSpaceWithWidth:(CGFloat)width{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationItem.leftBarButtonItems];
-    [arr addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:width]];
+    [arr addObject:[UIBarButtonItem lrf_barButtonItemSpaceWithWidth:width]];
     [self.navigationItem setLeftBarButtonItems:arr];
     return self;
 }
 
 -(instancetype)navAddRightSpaceWithWidth:(CGFloat)width{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
-    [arr addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:width]];
+    [arr addObject:[UIBarButtonItem lrf_barButtonItemSpaceWithWidth:width]];
     [self.navigationItem setRightBarButtonItems:arr];
     return self;
 }
@@ -260,7 +260,7 @@ static char keyButtonTextFont;
 +(void)configViewControllerRectEdgeNoneForExtendedLayout{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewDidLoad) withSEL:@selector(SimpleNavigation_viewDidLoad)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidLoad) withSEL:@selector(SimpleNavigation_viewDidLoad)];
     });
 }
 

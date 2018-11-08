@@ -10,11 +10,10 @@
 #define SimpleHeader_h
 
 
-#import "NSObject+Block.h"
+#import "NSObject+LRFactory.h"
 #import "NSString+CGSize.h"
 #import "UIView+Sizes.h"
 #import "UIColor+HexString.h"
-#import "NSObject+Method.h"
 
 #import "NSAttributedString+SimpleFactory.h"
 

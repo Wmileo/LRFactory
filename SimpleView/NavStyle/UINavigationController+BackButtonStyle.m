@@ -8,7 +8,7 @@
 
 #import "UINavigationController+BackButtonStyle.h"
 #import "UIViewController+BackButtonStyle.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 
 @interface UINavigationController () <UIGestureRecognizerDelegate>
 
@@ -19,7 +19,7 @@
 +(void)configNavigationControllerGesturePopBack{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(BackButtonStyle_pushViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(BackButtonStyle_pushViewController:animated:)];
     });
 }
 
@@ -34,14 +34,14 @@
 +(void)configViewControllerResetBackButton{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(UIViewControllerBackButton_pushViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(UIViewControllerBackButton_pushViewController:animated:)];
     });
 }
 
 +(void)configViewControllerSetupDefaultBackButton{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(UIViewControllerBackButton_setupDefault_pushViewController:animated:)];
+        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(UIViewControllerBackButton_setupDefault_pushViewController:animated:)];
     });
 }
 

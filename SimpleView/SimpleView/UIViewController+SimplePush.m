@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+SimplePush.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
 
@@ -29,7 +29,7 @@
 +(void)configSimplePush{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(SimplePush_viewDidAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(SimplePush_viewDidAppear:)];
     });
 }
 

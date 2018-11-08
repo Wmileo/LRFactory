@@ -1,15 +1,16 @@
 //
-//  NSObject+Method.m
+//  NSObject+LRFactory.m
 //  SimpleView
 //
-//  Created by ileo on 16/7/19.
-//  Copyright © 2016年 ileo. All rights reserved.
+//  Created by leo on 2018/11/7.
+//  Copyright © 2018 ileo. All rights reserved.
 //
 
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
-@implementation NSObject (Method)
+@implementation NSObject (LRFactory)
+
 
 static char tagObjectCopyKey;
 static char tagObjectStrongKey;
@@ -31,11 +32,11 @@ static char tagObjectStrongKey;
     return objc_getAssociatedObject(self, &tagObjectStrongKey);
 }
 
-+(void)exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2{
++(void)lrf_exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2{
     method_exchangeImplementations(class_getInstanceMethod([self class], sel1), class_getInstanceMethod([self class], sel2));
 }
 
-+(void)exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2{
++(void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2{
     method_exchangeImplementations(class_getClassMethod([self class], sel1), class_getClassMethod([self class], sel2));
 }
 

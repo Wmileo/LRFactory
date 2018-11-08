@@ -20,10 +20,6 @@
 
 @interface UIView (Sizes)
 
-
--(instancetype)initWithSize:(CGSize)size;
-
-
 /**
  * Shortcut for frame.origin.x.
  *

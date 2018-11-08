@@ -8,7 +8,7 @@
 
 #import "UIButton+LRFactory.h"
 #import "UIView+LRFactory.h"
-#import "NSObject+Block.h"
+#import "UIControl+LRFactory.h"
 #import "NSString+CGSize.h"
 
 
@@ -21,7 +21,7 @@
 -(void)lrf_handleEventTouchUpInsideBlock:(void (^)(void))block{
     if (block) {
         [self setExclusiveTouch:YES];
-        [self onlyHangdleUIControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+        [self lrf_handleEvent:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             block();
         }];
     }

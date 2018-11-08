@@ -11,7 +11,7 @@
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+SimpleNavigation.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+BackButtonStyle.h"
 
@@ -25,7 +25,7 @@ static NSString *defaultNavStyle;
     navStyles = styles;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavStyle_viewDidLoad)];
+        [self lrf_exchangeSEL:@selector(viewDidLoad) withSEL:@selector(NavStyle_viewDidLoad)];
     });
     [UIViewController configNavBackgroundColor:nil];
     [UIViewController configNavBackgroundStyle];

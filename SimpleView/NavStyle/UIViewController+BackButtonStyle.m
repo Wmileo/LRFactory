@@ -8,9 +8,8 @@
 
 #import "UIViewController+BackButtonStyle.h"
 #import "SimpleViewHeader.h"
-#import "NSObject+Block.h"
 #import "UIView+Sizes.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import "UINavigationController+BackButtonStyle.h"
 #import <objc/runtime.h>
 
@@ -24,7 +23,7 @@
     [UINavigationController configNavigationControllerGesturePopBack];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(BackButtonStyle_viewDidAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(BackButtonStyle_viewDidAppear:)];
     });
 }
 
@@ -101,7 +100,7 @@ static NSString *defaultBackItemStyle;
     
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:3];
     if (model.offsetX != 0){
-        [tmp addObject:[UIBarButtonItem barButtonItemSpaceWithWidth:model.offsetX]];
+        [tmp addObject:[UIBarButtonItem lrf_barButtonItemSpaceWithWidth:model.offsetX]];
     }
     
     NSString *title = self.navLastTitle;
@@ -126,14 +125,14 @@ static NSString *defaultBackItemStyle;
             [button addSubview:label];
             label.centerY = button.lrf_height/2;
         }
-        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:button]];
+        [tmp addObject:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
     }else if (model.hasTitle) {
         UIButton *b = [UIButton lrf_view];
         [b lrf_setupNormalTitle:title textColor:model.titleColor font:model.titleFont fitSize:YES];
         [b lrf_handleEventTouchUpInsideBlock:^{
             [wself clickOnBack];
         }];
-        [tmp addObject:[UIBarButtonItem barButtonItemWithButton:b]];
+        [tmp addObject:[UIBarButtonItem lrf_barButtonItemWithButton:b]];
     }
     
     if (tmp.count > 0) {

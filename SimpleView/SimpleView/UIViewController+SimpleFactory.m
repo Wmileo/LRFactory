@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+SimpleFactory.h"
-#import "NSObject+Method.h"
+#import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+SimpleFactory.h"
 
@@ -16,9 +16,9 @@
 +(void)configSimple{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(Simple_viewDidDisappear:)];
-        [UIViewController exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(Simple_viewWillDisappear:)];
-        [UIViewController exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(Simple_viewWillAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidDisappear:) withSEL:@selector(Simple_viewDidDisappear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(Simple_viewWillDisappear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(Simple_viewWillAppear:)];
     });
     [UINavigationController configNavigationAction];
 }
@@ -69,26 +69,6 @@ static char keyViewHadAppeared;
 -(void)viewWillAppearByNavigationPop:(BOOL)animate{}
 -(void)viewWillDisappearByNavigationPush:(BOOL)animated{}
 -(void)viewWillDisappearByNavigationPop:(BOOL)animated{}
-
-+(UIViewController *)currentViewController{
-    UIViewController *vc = [[UIApplication sharedApplication].delegate.window rootViewController];
-    if (vc.presentedViewController) {
-        vc = vc.presentedViewController;
-    }
-    if ([vc isKindOfClass:[UITabBarController class]]) {
-        vc = ((UITabBarController *) vc).selectedViewController;
-        if ([vc isKindOfClass:[UINavigationController class]]) {
-            vc = ((UINavigationController *) vc).visibleViewController;
-        }
-    }else if ([vc isKindOfClass:[UINavigationController class]]) {
-        vc = ((UINavigationController *) vc).visibleViewController;
-    }
-    return vc;
-}
-
-+(UIWindow *)mainWindow{
-    return [UIApplication sharedApplication].delegate.window;
-}
 
 
 -(UIViewController *)navLastViewController{
