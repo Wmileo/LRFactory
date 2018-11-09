@@ -16,13 +16,6 @@
     return [[UINavigationController alloc] initWithRootViewController:viewController];
 }
 
-+(void)configChildViewControllerForStatusBarStyle{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController lrf_exchangeSEL:@selector(childViewControllerForStatusBarStyle) withSEL:@selector(SimpleNavigation_childViewControllerForStatusBarStyle)];
-    });
-}
-
 +(void)configNavigationAction{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -31,10 +24,6 @@
         [UINavigationController lrf_exchangeSEL:@selector(popToViewController:animated:) withSEL:@selector(SimpleNavigation_popToViewController:animated:)];
         [UINavigationController lrf_exchangeSEL:@selector(popViewControllerAnimated:) withSEL:@selector(SimpleNavigation_popViewControllerAnimated:)];
     });
-}
-
--(UIViewController *)SimpleNavigation_childViewControllerForStatusBarStyle{
-    return self.visibleViewController;
 }
 
 +(void)autoHidesBottomBarWhenPush{

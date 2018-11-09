@@ -1,5 +1,5 @@
 //
-//  UIViewController+SimplePresent.h
+//  UIViewController+LRFPresent.h
 //  SimpleView
 //
 //  Created by ileo on 16/6/3.
@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (SimplePresent)
+@interface UIViewController (LRFPresent)
 
 typedef void (^PresentBlock)(BOOL success, id info);
 
-/**
- *  弹出动画
- */
--(instancetype)resetModalTransitionStyle:(UIModalTransitionStyle)style;
 
 /**
  *  弹出界面，带弹出界面消失的回调信息，

@@ -41,7 +41,7 @@
     return [att copy];
 }
 
--(NSParagraphStyle *)paragraphStyle{
+-(NSParagraphStyle *)lrf_paragraphStyle{
     NSRange range;
     return [self attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:&range];
 }
@@ -51,7 +51,7 @@
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
     if (@available(iOS 9.0, *)) {
-        [newStyle setParagraphStyle:[self paragraphStyle]];
+        [newStyle setParagraphStyle:[self lrf_paragraphStyle]];
     }
     newStyle.lineSpacing = lineSpacing;
     [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];
@@ -62,7 +62,7 @@
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSMutableParagraphStyle *newStyle = [[NSMutableParagraphStyle alloc] init];
     if (@available(iOS 9.0, *)) {
-        [newStyle setParagraphStyle:[self paragraphStyle]];
+        [newStyle setParagraphStyle:[self lrf_paragraphStyle]];
     }
     newStyle.firstLineHeadIndent = firstLineHeadIndent;
     [att addAttribute:NSParagraphStyleAttributeName value:newStyle range:NSMakeRange(0, self.string.length)];

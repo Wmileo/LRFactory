@@ -7,13 +7,13 @@
 //
 
 #import "UIViewController+NavStyle.h"
-#import "UIViewController+SimpleStatus.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+BackButtonStyle.h"
+
 
 
 @implementation UIViewController (NavStyle)
@@ -30,7 +30,7 @@ static NSString *defaultNavStyle;
     [UIViewController configNavBackgroundColor:nil];
     [UIViewController configNavBackgroundStyle];
     [UINavigationController configViewControllerSetupDefaultBackButton];
-    [UIViewController configSimpleStatusBar];
+//    [UIViewController configSimpleStatusBar];
 }
 
 +(void)configDefaultNavStyle:(NSString *)style{

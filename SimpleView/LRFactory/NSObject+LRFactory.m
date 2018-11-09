@@ -32,7 +32,7 @@ static char keyTagInteger;
 }
 
 -(void)setLrf_tag:(NSInteger)lrf_tag{
-    objc_setAssociatedObject(self, &keyTagInteger, @(lrf_tag), OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &keyTagInteger, @(lrf_tag), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(NSInteger)lrf_tag{

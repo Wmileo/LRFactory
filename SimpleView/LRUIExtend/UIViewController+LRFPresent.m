@@ -1,23 +1,19 @@
 //
-//  UIViewController+SimplePresent.m
+//  UIViewController+LRFPresent.m
 //  SimpleView
 //
 //  Created by ileo on 16/6/3.
 //  Copyright © 2016年 ileo. All rights reserved.
 //
 
-#import "UIViewController+SimplePresent.h"
+#import "UIViewController+LRFPresent.h"
 #import <objc/runtime.h>
 
-@implementation UIViewController (SimplePresent)
+@implementation UIViewController (LRFPresent)
 
 static char keyPresentWillDismissBlock;
 static char keyPresentDidDismissBlock;
 
--(instancetype)resetModalTransitionStyle:(UIModalTransitionStyle)style{
-    self.modalTransitionStyle = style;
-    return self;
-}
 
 -(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(PresentBlock)willDismissCallback didDismissCallback:(PresentBlock)didDismissCallback{
     objc_setAssociatedObject(self, &keyPresentWillDismissBlock, willDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);

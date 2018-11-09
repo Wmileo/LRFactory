@@ -18,8 +18,6 @@
 
 #import "UIViewController+SimpleFactory.h"
 #import "UIViewController+SimpleNavigation.h"
-#import "UIViewController+SimplePresent.h"
-#import "UIViewController+SimpleStatus.h"
 #import "UIViewController+SimplePush.h"
 
 #endif /* LRUIFactory_h */

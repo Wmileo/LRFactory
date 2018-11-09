@@ -10,6 +10,7 @@
 #import "LRUIFactory.h"
 #import "ViewController.h"
 #import "TestViewController.h"
+#import "LRUIExtend.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UINavigationController+SimpleFactory.h"
@@ -48,7 +49,7 @@
 //    [UIViewController configDefaultNavStyle:@"bababa"];
     
     
-    [UIViewController configDefaultPreferredStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
+    [UIViewController lrf_configDefaultStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
     
     [UIViewController configViewControllerGesturePopBack];
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];

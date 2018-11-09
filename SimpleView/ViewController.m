@@ -8,10 +8,10 @@
 
 #import "ViewController.h"
 #import "LRUIFactory.h"
+#import "LRUIExtend.h"
 #import "LRFactory.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+SimplePresent.h"
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+NavStyle.h"
 
@@ -117,7 +117,7 @@
 //        
 //    }]];
 
-    self.statusBarStyle = UIStatusBarStyleDefault;
+    self.lrf_statusBarStyle = UIStatusBarStyleDefault;
     
     // Do any additional setup after loading the view, typically from a nib.
 }

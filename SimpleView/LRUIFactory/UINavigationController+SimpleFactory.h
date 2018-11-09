@@ -16,11 +16,6 @@
 +(UINavigationController *)navigationControllerWithRootViewController:(UIViewController *)viewController;
 
 /**
- *  配置ChildViewControllerForStatusBarStyle
- */
-+(void)configChildViewControllerForStatusBarStyle;
-
-/**
  *  自动隐藏底部按钮当push的时候
  */
 +(void)autoHidesBottomBarWhenPush;
