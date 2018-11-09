@@ -10,18 +10,14 @@
 
 @interface UIViewController (LRFPresent)
 
-typedef void (^PresentBlock)(BOOL success, id info);
-
-
 /**
- *  弹出界面，带弹出界面消失的回调信息，
- *  ps支持单纯UIViewController，或者带UIViewController的UINavigationController取topViewController
+ *  弹出界面，带弹出界面消失的回调信息
  */
--(void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(PresentBlock)willDismissCallback didDismissCallback:(PresentBlock)didDismissCallback;
+-(void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void(^)(NSDictionary *info))willDismissCallback didDismissCallback:(void(^)(NSDictionary *info))didDismissCallback;
 
 /**
  *  消失界面，带回调信息
  */
--(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion success:(BOOL)success info:(id)info;
+-(void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info;
 
 @end
