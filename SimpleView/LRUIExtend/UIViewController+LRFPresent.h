@@ -13,11 +13,11 @@
 /**
  *  弹出界面，带弹出界面消失的回调信息
  */
--(void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void(^)(NSDictionary *info))willDismissCallback didDismissCallback:(void(^)(NSDictionary *info))didDismissCallback;
+- (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void(^)(NSDictionary *info))willDismissCallback didDismissCallback:(void(^)(NSDictionary *info))didDismissCallback;
 
 /**
  *  消失界面，带回调信息
  */
--(void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info;
+- (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info;
 
 @end

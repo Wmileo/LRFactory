@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIApplication (LRFactory)
 
-+(UIViewController *)lrf_currentViewController;
++ (UIViewController *)lrf_currentViewController;
 
-+(UIWindow *)lrf_mainWindow;
++ (UIWindow *)lrf_mainWindow;
 
 @end
 

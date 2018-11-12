@@ -13,7 +13,7 @@
 #import "UILabel+LRFactory.h"
 #import <objc/runtime.h>
 #import "NSObject+LRFactory.h"
-#import "UINavigationController+SimpleFactory.h"
+#import "UINavigationController+LRFactory.h"
 
 typedef NS_ENUM(NSInteger, BarButtonSide){
     BarButtonSideLeft,

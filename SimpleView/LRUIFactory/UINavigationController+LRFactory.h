@@ -8,22 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (SimpleFactory)
+@interface UINavigationController (LRFactory)
 
 /**
  *  生成有NavigationController
  */
-+(UINavigationController *)navigationControllerWithRootViewController:(UIViewController *)viewController;
++ (UINavigationController *)lrf_navigationControllerWithRootViewController:(UIViewController *)viewController;
 
 /**
  *  自动隐藏底部按钮当push的时候
  */
-+(void)autoHidesBottomBarWhenPush;
-
-
-/**
- *  配置push pop
- */
-+(void)configNavigationAction;
++ (void)autoHidesBottomBarWhenPush;
 
 @end

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIGestureRecognizer (LRFactory)
 
--(void)lrf_handleGestureRecognizer:(void(^)(id recognizer))block;
+- (void)lrf_handleGestureRecognizer:(void(^)(id recognizer))block;
 
 @end
 

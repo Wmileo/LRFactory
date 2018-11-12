@@ -25,17 +25,17 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
 /**
  *  工厂生产UIView
  */
-+(instancetype)lrf_view;
++ (instancetype)lrf_view;
 
 /**
  *  工厂生产UIView
  */
-+(instancetype)lrf_viewWithFrame:(CGRect)frame;
++ (instancetype)lrf_viewWithFrame:(CGRect)frame;
 
 /**
  *  工厂生产UIView
  */
-+(instancetype)lrf_viewWithSize:(CGSize)size;
++ (instancetype)lrf_viewWithSize:(CGSize)size;
 
 @property (nonatomic) CGFloat lrf_left;
 @property (nonatomic) CGFloat lrf_right;
@@ -53,23 +53,23 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
 /**
  *  设置固定点，用于适配变化的size
  */
--(void)lrf_setupFixedType:(FixedPointType)type point:(CGPoint)point;
+- (void)lrf_setupFixedType:(FixedPointType)type point:(CGPoint)point;
 
 /**
  *  设置边框
  */
--(void)lrf_setupBorderWidth:(CGFloat)width color:(UIColor *)color;
+- (void)lrf_setupBorderWidth:(CGFloat)width color:(UIColor *)color;
 
 /**
  *  设置圆角
  */
--(void)lrf_setupCornerRadius:(CGFloat)radius;
+- (void)lrf_setupCornerRadius:(CGFloat)radius;
 
--(void)lrf_removeAllSubviews;
+- (void)lrf_removeAllSubviews;
 
 
 #pragma mark - debug
--(void)lrf_showDebugFrame;
+- (void)lrf_showDebugFrame;
 
 @end
 

@@ -10,6 +10,6 @@
 
 @interface UILabel (LRFactory)
 
--(void)lrf_setupText:(NSString *)text font:(UIFont *)font fitSize:(BOOL)fit;
+- (void)lrf_setupText:(NSString *)text font:(UIFont *)font fitSize:(BOOL)fit;
 
 @end

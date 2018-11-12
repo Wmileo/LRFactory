@@ -8,13 +8,13 @@
 
 #import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+SimpleNavigation.h"
-#import "UINavigationController+SimpleFactory.h"
+#import "UINavigationController+LRFactory.h"
 //#import "UINavigationController+BackButtonStyle.h"
 #import "UIView+LRFactory.h"
 #import <objc/runtime.h>
 #import "NSObject+LRFactory.h"
 #import "LRUIFactory.h"
-#import "UIViewController+SimpleFactory.h"
+#import "UIViewController+LRFactory.h"
 
 @implementation UIViewController (NavBackgroundStyle)
 
@@ -31,7 +31,6 @@ static UIColor *navBackgroundColor;
 }
 
 +(void)configNavBackgroundStyle{
-    [UIViewController configSimple];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(NavBackgroundStyle_viewWillAppear:)];

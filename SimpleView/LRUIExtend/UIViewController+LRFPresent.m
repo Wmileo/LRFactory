@@ -14,13 +14,13 @@
 static char keyPresentWillDismissBlock;
 static char keyPresentDidDismissBlock;
 
--(void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void (^)(NSDictionary *))willDismissCallback didDismissCallback:(void (^)(NSDictionary *))didDismissCallback{
+- (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void (^)(NSDictionary *))willDismissCallback didDismissCallback:(void (^)(NSDictionary *))didDismissCallback{
     objc_setAssociatedObject(self, &keyPresentWillDismissBlock, willDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
     objc_setAssociatedObject(self, &keyPresentDidDismissBlock, didDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
--(void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info{
+- (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info{
     UIViewController *vc = self.presentingViewController;
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = ((UINavigationController *)vc).visibleViewController;

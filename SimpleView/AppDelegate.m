@@ -13,7 +13,7 @@
 #import "LRUIExtend.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIViewController+NavBackgroundStyle.h"
-#import "UINavigationController+SimpleFactory.h"
+#import "UINavigationController+LRFactory.h"
 #import "UIViewController+NavStyle.h"
 
 @interface AppDelegate ()
@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [UINavigationController configNavigationAction];
+    
 //    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
 //    [UIViewController configViewControllerGesturePopBack];
@@ -54,24 +54,18 @@
     [UIViewController configViewControllerGesturePopBack];
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundStyle];
-    [UIViewController configSimple];
 
     [UIViewController autoHidesBottomBarWhenPush];
 
     [[UINavigationBar appearance] setShadowImage:nil];
     
-    
-    
-    
-    
-    
-    
+ 
     
     UITabBarController *tab = [[UITabBarController alloc] init];
     
-    UINavigationController *nav = [UINavigationController navigationControllerWithRootViewController:[[ViewController alloc] init]];
+    UINavigationController *nav = [UINavigationController lrf_navigationControllerWithRootViewController:[[ViewController alloc] init]];
     
-    tab.viewControllers = @[nav,[UINavigationController navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
+    tab.viewControllers = @[nav,[UINavigationController lrf_navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
     
     self.window.rootViewController = tab;
     

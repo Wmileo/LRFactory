@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (LRFactory)
 
-+(UIColor *)lrf_colorWithHexString:(NSString *)hexString;
++ (UIColor *)lrf_colorWithHexString:(NSString *)hexString;
 
 @end
 

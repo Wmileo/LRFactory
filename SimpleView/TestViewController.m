@@ -64,11 +64,11 @@
     [super viewWillAppear:animated];
 }
 
--(void)viewWillDisappearForever:(BOOL)animated{
+-(void)viewWillDisappear_lrfByForever:(BOOL)animated{
     
 }
 
--(void)viewWillAppearFirstTime:(BOOL)animated{
+-(void)viewWillAppear_lrfByFirstTime:(BOOL)animated{
     
 }
 

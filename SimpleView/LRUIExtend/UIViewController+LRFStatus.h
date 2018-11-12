@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  配置默认状态栏样式  ps.应用开启时配置
  */
-+(void)lrf_configDefaultStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden;
++ (void)lrf_configDefaultStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden;
 
 /**
  *  状态栏隐藏
