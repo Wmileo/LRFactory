@@ -251,11 +251,6 @@ static char keyButtonTextFont;
     });
 }
 
-+(void)autoHidesBottomBarWhenPush{
-    [UINavigationController autoHidesBottomBarWhenPush];
-}
-
-
 -(void)SimpleNavigation_viewDidLoad{
     if (self.navigationController) {
         self.edgesForExtendedLayout = UIRectEdgeNone;

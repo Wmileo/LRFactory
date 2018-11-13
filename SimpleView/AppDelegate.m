@@ -51,11 +51,10 @@
     
     [UIViewController lrf_configDefaultStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
     
-    [UIViewController configViewControllerGesturePopBack];
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
     [UIViewController configNavBackgroundStyle];
 
-    [UIViewController autoHidesBottomBarWhenPush];
+    [UIViewController lrf_autoHidesTabBar];
 
     [[UINavigationBar appearance] setShadowImage:nil];
     

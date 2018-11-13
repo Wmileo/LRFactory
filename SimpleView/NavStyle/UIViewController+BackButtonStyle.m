@@ -18,21 +18,6 @@
 
 @implementation UIViewController (BackButtonStyle)
 
-+(void)configViewControllerGesturePopBack{
-    [UINavigationController configNavigationControllerGesturePopBack];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(BackButtonStyle_viewDidAppear:)];
-    });
-}
-
--(void)BackButtonStyle_viewDidAppear:(BOOL)animated{
-    [self BackButtonStyle_viewDidAppear:animated];
-    if (self.navigationController) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    }
-}
-
 static NSDictionary *backItemStyles;
 
 static char keyResetBackButtonBlock;
@@ -174,14 +159,6 @@ static char kNavClickOnBackItem;
 
 -(void)setNavClickOnBackItem:(void (^)(void))NavClickOnBackItem{
     objc_setAssociatedObject(self, &kNavClickOnBackItem, NavClickOnBackItem, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-static char kCanGesturePopBack;
--(NSNumber *)canGesturePopBack{
-    return objc_getAssociatedObject(self, &kCanGesturePopBack);
-}
--(void)setCanGesturePopBack:(NSNumber *)canGesturePopBack{
-    objc_setAssociatedObject(self, &kCanGesturePopBack, canGesturePopBack, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 @end

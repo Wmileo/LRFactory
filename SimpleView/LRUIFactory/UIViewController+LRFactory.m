@@ -13,7 +13,7 @@
 
 @implementation UIViewController (LRFactory)
 
--(UIViewController *)navLastViewController{
+- (UIViewController *)navLastViewController{
     if ([self.navigationController.viewControllers containsObject:self]) {
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
         if (index > 0) {
@@ -25,7 +25,7 @@
     return nil;
 }
 
--(UIViewController *)navNextViewController{
+- (UIViewController *)navNextViewController{
     if ([self.navigationController.viewControllers containsObject:self]) {
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
         index++;

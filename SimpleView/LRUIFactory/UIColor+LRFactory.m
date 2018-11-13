@@ -18,9 +18,9 @@
     return hexComponent / 255.0;
 }
 
-+(UIColor *)lrf_colorWithHexString:(NSString *)hexString{
++ (UIColor *)lrf_colorWithHexString:(NSString *)hexString{
     NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
-    CGFloat alpha, red, blue, green;
+    CGFloat alpha = 0, red = 0, blue = 0, green = 0;
     switch ([colorString length]) {
         case 3: // #RGB
             alpha = 1.0f;
@@ -47,7 +47,8 @@
             blue  = [self lrf_colorComponentFrom: colorString start: 6 length: 2];
             break;
         default:
-            return nil;
+            NSAssert(nil, @"参数不合法");
+            break;
     }
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }

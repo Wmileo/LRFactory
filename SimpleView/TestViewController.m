@@ -72,9 +72,6 @@
     
 }
 
-//-(BOOL)viewControllerShouldGesturePopBack{
-//    return NO;
-//}
 
 //-(UIColor *)navBackgroundColor{
 //    return [UIColor grayColor];

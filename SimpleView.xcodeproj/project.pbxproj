@@ -20,6 +20,8 @@
 		B3FCB1442194104A00523E92 /* UIColor+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB1432194104A00523E92 /* UIColor+LRFactory.m */; };
 		B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14921945B2F00523E92 /* UIViewController+LRFStatus.m */; };
 		B3FCB14E2199558300523E92 /* UIViewController+LRFAppear.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */; };
+		B3FCB151219968F300523E92 /* UIViewController+LRFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */; };
+		B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */; };
 		CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+LRFactory.m */; };
@@ -91,6 +93,10 @@
 		B3FCB14B2195614D00523E92 /* LRUIExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRUIExtend.h; sourceTree = "<group>"; };
 		B3FCB14C2199558300523E92 /* UIViewController+LRFAppear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFAppear.h"; sourceTree = "<group>"; };
 		B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFAppear.m"; sourceTree = "<group>"; };
+		B3FCB14F219968F300523E92 /* UIViewController+LRFTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFTabBar.h"; sourceTree = "<group>"; };
+		B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFTabBar.m"; sourceTree = "<group>"; };
+		B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFGesture.h"; sourceTree = "<group>"; };
+		B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFGesture.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LRFactory.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LRFactory.h"; sourceTree = "<group>"; };
@@ -204,6 +210,10 @@
 				B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */,
 				B3FCB14C2199558300523E92 /* UIViewController+LRFAppear.h */,
 				B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */,
+				B3FCB14F219968F300523E92 /* UIViewController+LRFTabBar.h */,
+				B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */,
+				B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */,
+				B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */,
 			);
 			path = LRUIExtend;
 			sourceTree = "<group>";
@@ -550,8 +560,10 @@
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
 				B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatus.m in Sources */,
+				B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */,
 				B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */,
 				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
+				B3FCB151219968F300523E92 /* UIViewController+LRFTabBar.m in Sources */,
 				B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */,
 				CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,

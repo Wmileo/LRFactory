@@ -19,10 +19,6 @@
 
 @interface UINavigationController (BackButtonStyle) 
 
-/**
- *  配置右滑返回手势
- */
-+(void)configNavigationControllerGesturePopBack;
 
 /**
  *  配置返回按钮  在push之后调用UIViewControllerBackButton

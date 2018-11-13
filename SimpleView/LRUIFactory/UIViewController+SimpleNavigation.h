@@ -17,11 +17,6 @@
  */
 +(void)configViewControllerRectEdgeNoneForExtendedLayout;
 
-/**
- *  自动隐藏底部按钮当push的时候
- */
-+(void)autoHidesBottomBarWhenPush;
-
 #pragma mark - Title
 
 /**

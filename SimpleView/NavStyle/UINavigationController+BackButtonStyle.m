@@ -16,21 +16,6 @@
 
 @implementation UINavigationController (BackButtonStyle)
 
-+(void)configNavigationControllerGesturePopBack{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(BackButtonStyle_pushViewController:animated:)];
-    });
-}
-
--(void)BackButtonStyle_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    if (self.viewControllers.count == 1) {
-        self.interactivePopGestureRecognizer.delegate = self;
-    }
-    self.interactivePopGestureRecognizer.enabled = NO;
-    [self BackButtonStyle_pushViewController:viewController animated:animated];
-}
-
 +(void)configViewControllerResetBackButton{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -59,23 +44,6 @@
     }
 }
 
-#pragma mark - 右滑返回
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    UIViewController *vc = self.visibleViewController;
-    if ([vc respondsToSelector:@selector(viewControllerShouldGesturePopBack)]) {
-        return (BOOL)[vc performSelector:@selector(viewControllerShouldGesturePopBack)];
-    }else if (vc.canGesturePopBack) {
-        return [vc.canGesturePopBack boolValue];
-    }
-    return self.viewControllers.count != 1;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
-}
+
 
 @end

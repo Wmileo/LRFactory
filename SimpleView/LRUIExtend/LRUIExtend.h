@@ -12,5 +12,7 @@
 #import "UIViewController+LRFStatus.h"
 #import "UIViewController+LRFPresent.h"
 #import "UIViewController+LRFPush.h"
+#import "UIViewController+LRFAppear.h"
+#import "UIViewController+LRFTabBar.h"
 
 #endif /* LRUIExtend_h */

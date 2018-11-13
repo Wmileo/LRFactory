@@ -13,11 +13,6 @@
 @optional
 
 /**
- *  是否能右滑返回手势
- */
--(BOOL)viewControllerShouldGesturePopBack;
-
-/**
  *  点击返回按钮
  */
 -(void)navClickOnBackItem;
@@ -33,17 +28,11 @@
  */
 -(void)navBackItemWillHandleClick;
 
-
 @end
 
 @class BackItemModel;
 
 @interface UIViewController (BackButtonStyle) <UIViewControllerBackButtonDataSource>
-
-/**
- *  配置右滑返回手势  ps.应用开启时配置
- */
-+(void)configViewControllerGesturePopBack;
 
 #pragma mark - 返回按钮
 /**
@@ -82,10 +71,6 @@
 -(NSString *)navLastTitle;
 
 @property (nonatomic, copy) void (^NavClickOnBackItem)(void);
-@property (nonatomic, copy) NSNumber *canGesturePopBack;
-
-
-
 
 
 @end

@@ -13,9 +13,15 @@
 
 @interface UINavigationController (LRFPush)
 
++ (void)lrf_injectLife;
+
 @end
 
 @implementation UIViewController (LRFPush)
+
++ (void)load{
+    [UINavigationController lrf_injectLife];
+}
 
 +(void)lrf_injectPush{
     static dispatch_once_t onceToken;
@@ -66,10 +72,6 @@ static char keyPopIgnore;
 @end
 
 @implementation UINavigationController (LRFPush)
-
-+ (void)load{
-    [UINavigationController lrf_injectLife];
-}
 
 + (void)lrf_injectLife{
     static dispatch_once_t onceToken;
