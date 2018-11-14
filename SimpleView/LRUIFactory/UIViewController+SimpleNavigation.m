@@ -22,63 +22,7 @@ typedef NS_ENUM(NSInteger, BarButtonSide){
 
 @implementation UIViewController (SimpleNavigation)
 
-#pragma mark - title
 
-static char keyNewTitleTextAttributes;
-static char keyOldTitleTextAttributes;
-BOOL registerOldTitleTextAttributes;
-
--(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font{
-    
-    NSDictionary *textAttributes = @{NSFontAttributeName : font, NSForegroundColorAttributeName : color};
-    objc_setAssociatedObject(self, &keyNewTitleTextAttributes, textAttributes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (self.navigationController) {
-        [self tryRegisterOldTextAttributes];
-        self.navigationController.navigationBar.titleTextAttributes = textAttributes;
-    }
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(SimpleNavigation_viewWillAppear:)];
-        [UIViewController lrf_exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(SimpleNavigation_viewWillDisappear:)];
-    });
-}
-
--(NSDictionary *)newTitleTextAttributes{
-    return objc_getAssociatedObject(self, &keyNewTitleTextAttributes);
-}
-
--(NSDictionary *)oldTitleTextAttributes{
-    return objc_getAssociatedObject(self, &keyOldTitleTextAttributes);
-}
-
--(void)SimpleNavigation_viewWillDisappear:(BOOL)animated{
-    [self SimpleNavigation_viewWillDisappear:animated];
-    if (self.presentedViewController) {
-        return;
-    }
-    [self.navigationController.navigationBar setTitleTextAttributes:self.oldTitleTextAttributes];
-}
-
--(void)SimpleNavigation_viewWillAppear:(BOOL)animated{
-    [self SimpleNavigation_viewWillAppear:animated];
-    
-    if (self.presentedViewController) {
-        return;
-    }
-    
-    [self tryRegisterOldTextAttributes];
-    if (self.newTitleTextAttributes) {
-        [self.navigationController.navigationBar setTitleTextAttributes:self.newTitleTextAttributes];
-    }
-}
-
--(void)tryRegisterOldTextAttributes{
-    if (!registerOldTitleTextAttributes) {
-        registerOldTitleTextAttributes = YES;
-        objc_setAssociatedObject(self, &registerOldTitleTextAttributes, self.navigationController.navigationBar.titleTextAttributes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
 
 #pragma mark - 设置按钮
 

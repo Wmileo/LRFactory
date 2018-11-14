@@ -10,7 +10,7 @@
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
 		B33625D91E8DFA0800C8D071 /* UIViewController+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B33625D81E8DFA0800C8D071 /* UIViewController+LRFactory.m */; };
 		B347599B1E713607007C702C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B347599A1E713607007C702C /* TableViewController.m */; };
-		B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */; };
+		B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */; };
 		B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */; };
 		B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854F2192C54700B51AA9 /* NSObject+LRFactory.m */; };
@@ -22,6 +22,7 @@
 		B3FCB14E2199558300523E92 /* UIViewController+LRFAppear.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */; };
 		B3FCB151219968F300523E92 /* UIViewController+LRFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */; };
 		B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */; };
+		B3FCB157219AA78600523E92 /* UIViewController+LRFTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */; };
 		CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+LRFactory.m */; };
@@ -70,8 +71,8 @@
 		B33625D81E8DFA0800C8D071 /* UIViewController+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFactory.m"; sourceTree = "<group>"; };
 		B34759991E713607007C702C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		B347599A1E713607007C702C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		B34952171E600EB4004AD109 /* CAKeyframeAnimation+Simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+Simple.h"; sourceTree = "<group>"; };
-		B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+Simple.m"; sourceTree = "<group>"; };
+		B34952171E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+LRFactory.h"; sourceTree = "<group>"; };
+		B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+LRFactory.m"; sourceTree = "<group>"; };
 		B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFPush.h"; sourceTree = "<group>"; };
 		B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFPush.m"; sourceTree = "<group>"; };
 		B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LRFactory.h"; sourceTree = "<group>"; };
@@ -97,6 +98,8 @@
 		B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFTabBar.m"; sourceTree = "<group>"; };
 		B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFGesture.h"; sourceTree = "<group>"; };
 		B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFGesture.m"; sourceTree = "<group>"; };
+		B3FCB155219AA78600523E92 /* UIViewController+LRFTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFTitle.h"; sourceTree = "<group>"; };
+		B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFTitle.m"; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LRFactory.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LRFactory.h"; sourceTree = "<group>"; };
@@ -189,13 +192,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B34952161E600EA4004AD109 /* SimpleAnimation */ = {
+		B34952161E600EA4004AD109 /* LRAnimationFactory */ = {
 			isa = PBXGroup;
 			children = (
-				B34952171E600EB4004AD109 /* CAKeyframeAnimation+Simple.h */,
-				B34952181E600EB4004AD109 /* CAKeyframeAnimation+Simple.m */,
+				B34952171E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.h */,
+				B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */,
 			);
-			path = SimpleAnimation;
+			path = LRAnimationFactory;
 			sourceTree = "<group>";
 		};
 		B3FCB1462194520E00523E92 /* LRUIExtend */ = {
@@ -214,6 +217,8 @@
 				B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */,
 				B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */,
 				B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */,
+				B3FCB155219AA78600523E92 /* UIViewController+LRFTitle.h */,
+				B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */,
 			);
 			path = LRUIExtend;
 			sourceTree = "<group>";
@@ -252,7 +257,7 @@
 				CE0AE0C21CDB634900A11CEB /* TestViewController.m */,
 				B34759991E713607007C702C /* TableViewController.h */,
 				B347599A1E713607007C702C /* TableViewController.m */,
-				B34952161E600EA4004AD109 /* SimpleAnimation */,
+				B34952161E600EA4004AD109 /* LRAnimationFactory */,
 				CE55BE871CBBD09600D8364B /* LRFactory */,
 				CE55BE7C1CBBCB6A00D8364B /* LRUIFactory */,
 				B3FCB1462194520E00523E92 /* LRUIExtend */,
@@ -543,6 +548,7 @@
 				CE0AE0C61CDC729C00A11CEB /* UINavigationController+LRFactory.m in Sources */,
 				B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */,
 				CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */,
+				B3FCB157219AA78600523E92 /* UIViewController+LRFTitle.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CEC716E81CEABF9D006536F2 /* UIImageView+LRFactory.m in Sources */,
 				CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */,
@@ -568,7 +574,7 @@
 				CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */,
 				CE55BE4B1CBBC2F600D8364B /* main.m in Sources */,
 				CE10184E1D4B4B2B00B08A00 /* NSAttributedString+LRFactory.m in Sources */,
-				B34952191E600EB4004AD109 /* CAKeyframeAnimation+Simple.m in Sources */,
+				B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */,
 				CE1B646F1D01722A0034672B /* UIViewController+LRFPresent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

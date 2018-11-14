@@ -14,5 +14,7 @@
 #import "UIViewController+LRFPush.h"
 #import "UIViewController+LRFAppear.h"
 #import "UIViewController+LRFTabBar.h"
+#import "UIViewController+LRFGesture.h"
+#import "UIViewController+LRFTitle.h"
 
 #endif /* LRUIExtend_h */

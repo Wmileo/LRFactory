@@ -28,9 +28,11 @@
     [super viewDidLoad];
     
     self.title = @"aaa";
-
+    
     self.view.backgroundColor = [UIColor blueColor];
-    self.navBackgroundColor = [UIColor redColor];
+    
+//    [self lrf_setupNavTitleColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:30]];
+    
 //    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     
     UIButton *b = [UIButton lrf_viewWithFrame:CGRectMake(50, 100, 100, 100)];
@@ -42,17 +44,14 @@
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
     [b lrf_showDebugFrame];
-    
+    [self navSetupLeftTitle:@"返回" action:^{
+        
+    }];
     [self navSetupRightTitle:@"table" action:^{
     }];
 
-//    self.navBackgroundTranslucent = YES;
-    
-//    self.navigationBarHidden = YES;
-//    self.statusBarHidden = YES;
-    
-//    [self navSetupStyle:@"bababa"];
 
+//    self.lrf_statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -70,19 +69,6 @@
 
 -(void)viewWillAppear_lrfByFirstTime:(BOOL)animated{
     
-}
-
-
-//-(UIColor *)navBackgroundColor{
-//    return [UIColor grayColor];
-//}
-
-//-(NSString *)navBackItemTitle{
-//    return @"返回";
-//}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
 }
 
 

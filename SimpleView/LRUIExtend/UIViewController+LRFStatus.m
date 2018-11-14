@@ -10,16 +10,11 @@
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
-@interface UINavigationController (LRFStatus)
-
-+ (void)lrf_injectNavStatus;
-
-@end
-
 @implementation UIViewController (LRFStatus)
 
 UIStatusBarStyle lrf_defaultStatusBarStyle = UIStatusBarStyleDefault;
 BOOL lrf_defaultStatusBarHidden = NO;
+UIStatusBarAnimation lrf_defaultStatusBarAnimation = UIStatusBarAnimationFade;
 
 + (void)lrf_configDefaultStatusBarStyle:(UIStatusBarStyle)statusBarStyle statusHidden:(BOOL)statusBarHidden{
     [UIViewController lrf_injectStatus];
@@ -32,38 +27,20 @@ BOOL lrf_defaultStatusBarHidden = NO;
 + (void)lrf_injectStatus{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UINavigationController lrf_injectNavStatus];
-        [UIViewController lrf_exchangeClassSEL:@selector(preferredStatusBarStyle) withClassSEL:@selector(LRFStatus_preferredStatusBarStyle)];
-        [UIViewController lrf_exchangeClassSEL:@selector(prefersStatusBarHidden) withClassSEL:@selector(LRFStatus_prefersStatusBarHidden)];
-        [UIViewController lrf_exchangeClassSEL:@selector(viewDidAppear:) withClassSEL:@selector(LRFStatus_viewDidAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(LRFStatus_viewWillAppear:)];
     });
 }
 
-- (UIStatusBarStyle)LRFStatus_preferredStatusBarStyle{
-    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
-        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
-    }
-    return lrf_defaultStatusBarStyle;
-}
-
-- (BOOL)LRFStatus_prefersStatusBarHidden{
-    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
-        return [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
-    }
-    return lrf_defaultStatusBarHidden;
-}
-
-- (void)LRFStatus_viewDidAppear:(BOOL)animated{
-    [self LRFStatus_viewDidAppear:animated];
-    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
-        self.lrf_statusBarStyle = [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
-    }else{
-        self.lrf_statusBarStyle = lrf_defaultStatusBarStyle;
-    }
-    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
-        self.lrf_statusBarHidden = [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
-    }else{
-        self.lrf_statusBarHidden = lrf_defaultStatusBarHidden;
+-(void)LRFStatus_viewWillAppear:(BOOL)animated{
+    [self LRFStatus_viewWillAppear:animated];
+    UIViewController *rvc = self.navigationController ?
+    (self.navigationController.tabBarController ?
+     self.navigationController.tabBarController :
+     self.navigationController) :
+    self.tabBarController;
+    if (rvc && rvc == [UIApplication sharedApplication].keyWindow.rootViewController) {
+        [[UIApplication sharedApplication] setStatusBarStyle:self.lrf_statusBarStyle animated:animated];
+        [[UIApplication sharedApplication] setStatusBarHidden:self.lrf_statusBarHidden withAnimation:self.lrf_statusBarAnimation];
     }
 }
 
@@ -71,48 +48,45 @@ BOOL lrf_defaultStatusBarHidden = NO;
 
 static char keyStatusBarStyle;
 static char keyStatusBarHidden;
+static char keyStatusBarAnimation;
 
 - (void)setLrf_statusBarHidden:(BOOL)lrf_statusBarHidden{
     [UIViewController lrf_injectStatus];
     objc_setAssociatedObject(self, &keyStatusBarHidden, @(lrf_statusBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self prefersStatusBarHidden];
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (BOOL)lrf_statusBarHidden{
-    return [self prefersStatusBarHidden];
+    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
+        return [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
+    }else{
+        return lrf_defaultStatusBarHidden;
+    }
 }
 
 - (void)setLrf_statusBarStyle:(UIStatusBarStyle)lrf_statusBarStyle{
     [UIViewController lrf_injectStatus];
     objc_setAssociatedObject(self, &keyStatusBarStyle, @(lrf_statusBarStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self preferredStatusBarStyle];
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (UIStatusBarStyle)lrf_statusBarStyle{
-    return [self preferredStatusBarStyle];
+    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
+        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    }else{
+        return lrf_defaultStatusBarStyle;
+    }
 }
 
-
-@end
-
-@implementation UINavigationController (LRFStatus)
-
-+ (void)lrf_injectNavStatus{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController lrf_exchangeClassSEL:@selector(childViewControllerForStatusBarStyle) withClassSEL:@selector(LRFStatus_childViewControllerForStatusBarStyle)];
-        [UINavigationController lrf_exchangeClassSEL:@selector(childViewControllerForStatusBarHidden) withClassSEL:@selector(LRFStatus_childViewControllerForStatusBarHidden)];
-    });
+- (void)setLrf_statusBarAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation{
+    [UIViewController lrf_injectStatus];
+    objc_setAssociatedObject(self, &keyStatusBarAnimation, @(lrf_statusBarAnimation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIViewController *)LRFStatus_childViewControllerForStatusBarStyle{
-    return self.visibleViewController;
-}
-
-- (UIViewController *)LRFStatus_childViewControllerForStatusBarHidden{
-    return self.visibleViewController;
+- (UIStatusBarAnimation)lrf_statusBarAnimation{
+    if (objc_getAssociatedObject(self, &keyStatusBarAnimation)) {
+        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    }else{
+        return lrf_defaultStatusBarAnimation;
+    }
 }
 
 @end

@@ -19,11 +19,6 @@
 
 #pragma mark - Title
 
-/**
- *  设置导航栏Title颜色，字体
- */
--(void)navResetTitleColor:(UIColor *)color font:(UIFont *)font;
-
 #pragma mark - 设置按钮
 
 /**

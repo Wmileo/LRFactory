@@ -30,7 +30,7 @@
     self.navBackgroundColor = [UIColor yellowColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navBarHidden                                                                                                                                                                                                                                          = NO;
-//    self.statusHide = YES;
+    self.lrf_statusBarHidden = YES;
     
     self.navShadowImage = [[UIImage alloc] init];
     UIView *v = [UIView lrf_viewWithFrame:CGRectMake(0, -64, 320, 64)];
@@ -38,7 +38,7 @@
     [self.view addSubview:v];
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
-    [self navResetTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
+//    [self lrf_setupNavTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
     
     NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
     p.lineBreakMode = NSLineBreakByTruncatingHead;
@@ -93,8 +93,6 @@
     __weak __typeof(self) wself = self;
     [self navAddRightTitle:@"bb" action:^{
         
-        NSLog(@"%@\n%@",wself.navLeftViews,wself.navRightViews);
-        
         
         TestViewController *test = [[TestViewController alloc] init];
 //        test.statusHide = YES;
@@ -108,6 +106,7 @@
 //        } didDismissCallback:^(BOOL success, id info) {
 //            NSLog(@"%zd - %@",success,info);
 //        }];
+        
     }];
 
 
@@ -124,7 +123,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -153,9 +155,9 @@
 //    return [UIColor grayColor];
 //}
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+//-(UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleLightContent;
+//}
 
 
 - (void)didReceiveMemoryWarning {
