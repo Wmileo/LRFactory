@@ -18,11 +18,12 @@
 		B3E685562192CBF100B51AA9 /* UIGestureRecognizer+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E685552192CBF100B51AA9 /* UIGestureRecognizer+LRFactory.m */; };
 		B3E84E551EAB347B0089E3BC /* UIViewController+NavStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */; };
 		B3FCB1442194104A00523E92 /* UIColor+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB1432194104A00523E92 /* UIColor+LRFactory.m */; };
-		B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14921945B2F00523E92 /* UIViewController+LRFStatus.m */; };
+		B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14921945B2F00523E92 /* UIViewController+LRFStatusBar.m */; };
 		B3FCB14E2199558300523E92 /* UIViewController+LRFAppear.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */; };
 		B3FCB151219968F300523E92 /* UIViewController+LRFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */; };
 		B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */; };
-		B3FCB157219AA78600523E92 /* UIViewController+LRFTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */; };
+		B3FCB157219AA78600523E92 /* UIViewController+LRFNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB156219AA78600523E92 /* UIViewController+LRFNavigationTitle.m */; };
+		B3FCB15A219BF48500523E92 /* UIViewController+LRFNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCB159219BF48500523E92 /* UIViewController+LRFNavigationBar.m */; };
 		CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */; };
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+LRFactory.m */; };
@@ -42,7 +43,6 @@
 		CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE811CBBCCD900D8364B /* UIButton+LRFactory.m */; };
 		CE55BE851CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */; };
 		CE805F2B1CE18F37000780D7 /* UIViewController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */; };
-		CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */; };
 		CEC716E81CEABF9D006536F2 /* UIImageView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */; };
 		CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */; };
 		CEE2FE2E1CD0ACE900F1DECF /* UIBarButtonItem+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2FE2D1CD0ACE900F1DECF /* UIBarButtonItem+LRFactory.m */; };
@@ -89,17 +89,20 @@
 		B3FCB1432194104A00523E92 /* UIColor+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LRFactory.m"; sourceTree = "<group>"; };
 		B3FCB145219430E900523E92 /* LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRFactory.h; sourceTree = "<group>"; };
 		B3FCB1472194526400523E92 /* LRUIFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRUIFactory.h; sourceTree = "<group>"; };
-		B3FCB14821945B2F00523E92 /* UIViewController+LRFStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFStatus.h"; sourceTree = "<group>"; };
-		B3FCB14921945B2F00523E92 /* UIViewController+LRFStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFStatus.m"; sourceTree = "<group>"; };
-		B3FCB14B2195614D00523E92 /* LRUIExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRUIExtend.h; sourceTree = "<group>"; };
+		B3FCB14821945B2F00523E92 /* UIViewController+LRFStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFStatusBar.h"; sourceTree = "<group>"; };
+		B3FCB14921945B2F00523E92 /* UIViewController+LRFStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFStatusBar.m"; sourceTree = "<group>"; };
 		B3FCB14C2199558300523E92 /* UIViewController+LRFAppear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFAppear.h"; sourceTree = "<group>"; };
 		B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFAppear.m"; sourceTree = "<group>"; };
 		B3FCB14F219968F300523E92 /* UIViewController+LRFTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFTabBar.h"; sourceTree = "<group>"; };
 		B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFTabBar.m"; sourceTree = "<group>"; };
 		B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFGesture.h"; sourceTree = "<group>"; };
 		B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFGesture.m"; sourceTree = "<group>"; };
-		B3FCB155219AA78600523E92 /* UIViewController+LRFTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFTitle.h"; sourceTree = "<group>"; };
-		B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFTitle.m"; sourceTree = "<group>"; };
+		B3FCB155219AA78600523E92 /* UIViewController+LRFNavigationTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFNavigationTitle.h"; sourceTree = "<group>"; };
+		B3FCB156219AA78600523E92 /* UIViewController+LRFNavigationTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFNavigationTitle.m"; sourceTree = "<group>"; };
+		B3FCB158219BF48500523E92 /* UIViewController+LRFNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFNavigationBar.h"; sourceTree = "<group>"; };
+		B3FCB159219BF48500523E92 /* UIViewController+LRFNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFNavigationBar.m"; sourceTree = "<group>"; };
+		B3FCB15B219D6E7500523E92 /* LRVCExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRVCExtend.h; sourceTree = "<group>"; };
+		B3FCB15C219D705A00523E92 /* LRVCStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRVCStyle.h; sourceTree = "<group>"; };
 		B511EC83D4174AA046132E6B /* libPods-SimpleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LRFactory.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE0AE0B51CD9F8E100A11CEB /* UILabel+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LRFactory.h"; sourceTree = "<group>"; };
@@ -138,8 +141,6 @@
 		CE55BE841CBBCD0D00D8364B /* UIViewController+SimpleNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SimpleNavigation.m"; sourceTree = "<group>"; };
 		CE805F291CE18F37000780D7 /* UIViewController+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonStyle.h"; sourceTree = "<group>"; };
 		CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonStyle.m"; sourceTree = "<group>"; };
-		CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavBackgroundStyle.h"; sourceTree = "<group>"; };
-		CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavBackgroundStyle.m"; sourceTree = "<group>"; };
 		CEC716E61CEABF9D006536F2 /* UIImageView+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LRFactory.h"; sourceTree = "<group>"; };
 		CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LRFactory.m"; sourceTree = "<group>"; };
 		CED209101D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackButtonStyle.h"; sourceTree = "<group>"; };
@@ -201,12 +202,10 @@
 			path = LRAnimationFactory;
 			sourceTree = "<group>";
 		};
-		B3FCB1462194520E00523E92 /* LRUIExtend */ = {
+		B3FCB1462194520E00523E92 /* LRVCExtend */ = {
 			isa = PBXGroup;
 			children = (
-				B3FCB14B2195614D00523E92 /* LRUIExtend.h */,
-				B3FCB14821945B2F00523E92 /* UIViewController+LRFStatus.h */,
-				B3FCB14921945B2F00523E92 /* UIViewController+LRFStatus.m */,
+				B3FCB15B219D6E7500523E92 /* LRVCExtend.h */,
 				CE1B646D1D01722A0034672B /* UIViewController+LRFPresent.h */,
 				CE1B646E1D01722A0034672B /* UIViewController+LRFPresent.m */,
 				B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */,
@@ -217,10 +216,8 @@
 				B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */,
 				B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */,
 				B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */,
-				B3FCB155219AA78600523E92 /* UIViewController+LRFTitle.h */,
-				B3FCB156219AA78600523E92 /* UIViewController+LRFTitle.m */,
 			);
-			path = LRUIExtend;
+			path = LRVCExtend;
 			sourceTree = "<group>";
 		};
 		CE55BE3D1CBBC2F500D8364B = {
@@ -260,8 +257,8 @@
 				B34952161E600EA4004AD109 /* LRAnimationFactory */,
 				CE55BE871CBBD09600D8364B /* LRFactory */,
 				CE55BE7C1CBBCB6A00D8364B /* LRUIFactory */,
-				B3FCB1462194520E00523E92 /* LRUIExtend */,
-				CE805F251CE18DE8000780D7 /* NavStyle */,
+				B3FCB1462194520E00523E92 /* LRVCExtend */,
+				CE805F251CE18DE8000780D7 /* LRVCStyle */,
 				CE55BE521CBBC2F600D8364B /* Main.storyboard */,
 				CE55BE551CBBC2F600D8364B /* Assets.xcassets */,
 				CE55BE571CBBC2F600D8364B /* LaunchScreen.storyboard */,
@@ -343,19 +340,24 @@
 			path = LRFactory;
 			sourceTree = "<group>";
 		};
-		CE805F251CE18DE8000780D7 /* NavStyle */ = {
+		CE805F251CE18DE8000780D7 /* LRVCStyle */ = {
 			isa = PBXGroup;
 			children = (
+				B3FCB15C219D705A00523E92 /* LRVCStyle.h */,
+				B3FCB155219AA78600523E92 /* UIViewController+LRFNavigationTitle.h */,
+				B3FCB156219AA78600523E92 /* UIViewController+LRFNavigationTitle.m */,
+				B3FCB14821945B2F00523E92 /* UIViewController+LRFStatusBar.h */,
+				B3FCB14921945B2F00523E92 /* UIViewController+LRFStatusBar.m */,
+				B3FCB158219BF48500523E92 /* UIViewController+LRFNavigationBar.h */,
+				B3FCB159219BF48500523E92 /* UIViewController+LRFNavigationBar.m */,
 				CE805F291CE18F37000780D7 /* UIViewController+BackButtonStyle.h */,
 				CE805F2A1CE18F37000780D7 /* UIViewController+BackButtonStyle.m */,
 				CED209101D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.h */,
 				CED209111D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m */,
-				CEC716E01CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.h */,
-				CEC716E11CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m */,
 				B3E84E531EAB347B0089E3BC /* UIViewController+NavStyle.h */,
 				B3E84E541EAB347B0089E3BC /* UIViewController+NavStyle.m */,
 			);
-			path = NavStyle;
+			path = LRVCStyle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -548,7 +550,7 @@
 				CE0AE0C61CDC729C00A11CEB /* UINavigationController+LRFactory.m in Sources */,
 				B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */,
 				CE55BE821CBBCCD900D8364B /* UIButton+LRFactory.m in Sources */,
-				B3FCB157219AA78600523E92 /* UIViewController+LRFTitle.m in Sources */,
+				B3FCB157219AA78600523E92 /* UIViewController+LRFNavigationTitle.m in Sources */,
 				CE55BE511CBBC2F600D8364B /* ViewController.m in Sources */,
 				CEC716E81CEABF9D006536F2 /* UIImageView+LRFactory.m in Sources */,
 				CED209121D3F1D7C0017FCAF /* UINavigationController+BackButtonStyle.m in Sources */,
@@ -565,10 +567,10 @@
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */,
 				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
-				B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatus.m in Sources */,
+				B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatusBar.m in Sources */,
+				B3FCB15A219BF48500523E92 /* UIViewController+LRFNavigationBar.m in Sources */,
 				B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */,
 				B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */,
-				CEC716E21CE4B2DC006536F2 /* UIViewController+NavBackgroundStyle.m in Sources */,
 				B3FCB151219968F300523E92 /* UIViewController+LRFTabBar.m in Sources */,
 				B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */,
 				CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */,

@@ -9,9 +9,9 @@
 #import "TestViewController.h"
 #import "UIViewController+SimpleNavigation.h"
 #import "LRUIFactory.h"
-#import "LRUIExtend.h"
+#import "LRVCExtend.h"
+#import "LRVCStyle.h"
 #import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+NavBackgroundStyle.h"
 #import "ViewController.h"
 #import "TableViewController.h"
 #import "UIViewController+NavStyle.h"
@@ -28,10 +28,10 @@
     [super viewDidLoad];
     
     self.title = @"aaa";
-    
+    self.lrf_statusBarHidden = NO;
     self.view.backgroundColor = [UIColor blueColor];
     
-//    [self lrf_setupNavTitleColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:30]];
+    [self lrf_setupNavigationTitleColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:30]];
     
 //    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
     

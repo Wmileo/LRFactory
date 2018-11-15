@@ -8,6 +8,7 @@
 
 #import "UIViewController+LRFactory.h"
 #import "NSObject+LRFactory.h"
+#import "UIApplication+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+LRFactory.h"
 
@@ -34,6 +35,10 @@
         }
     }
     return nil;
+}
+
+- (BOOL)lrf_isVisible{
+    return self == [UIApplication lrf_currentViewController];
 }
 
 @end

@@ -10,9 +10,9 @@
 #import "LRUIFactory.h"
 #import "ViewController.h"
 #import "TestViewController.h"
-#import "LRUIExtend.h"
+#import "LRVCExtend.h"
+#import "LRVCStyle.h"
 #import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+NavBackgroundStyle.h"
 #import "UINavigationController+LRFactory.h"
 #import "UIViewController+NavStyle.h"
 
@@ -27,7 +27,6 @@
     
     
 //    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
-    [UIViewController configNavBackgroundColor:[UIColor yellowColor]];
 //    [UIViewController configViewControllerGesturePopBack];
 //    [UIViewController configNavBackgroundStyle];
     [UIViewController configBackItemStyles:@{
@@ -37,11 +36,11 @@
     
     [UIViewController configNavStyles:
   @{@"lalala" : [NavStyleModel modelWithTitleColor:[UIColor redColor] titleFont:[UIFont systemFontOfSize:20] textColor:[UIColor redColor] textFont:[UIFont systemFontOfSize:20] backStyle:@"back" config:^(UIViewController *vc) {
-        vc.navShadowImage = [[UIImage alloc] init];
+        vc.lrf_navigationBarShadowImage = [[UIImage alloc] init];
     }],
     @"bababa" : [NavStyleModel modelWithTitleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:10] textColor:[UIColor blueColor] textFont:[UIFont systemFontOfSize:10] backStyle:@"back" config:^(UIViewController *vc) {
         
-        vc.navShadowImage = nil;
+        vc.lrf_navigationBarShadowImage = nil;
     }]
                                         
     }];
@@ -49,10 +48,7 @@
 //    [UIViewController configDefaultNavStyle:@"bababa"];
     
     
-    [UIViewController lrf_configDefaultStatusBarStyle:UIStatusBarStyleLightContent statusHidden:NO];
-    
     [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
-    [UIViewController configNavBackgroundStyle];
 
     [UIViewController lrf_autoHidesTabBar];
 

@@ -8,11 +8,11 @@
 
 #import "ViewController.h"
 #import "LRUIFactory.h"
-#import "LRUIExtend.h"
+#import "LRVCExtend.h"
 #import "LRFactory.h"
+#import "LRVCStyle.h"
 #import "TestViewController.h"
 #import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+NavBackgroundStyle.h"
 #import "UIViewController+NavStyle.h"
 
 @interface ViewController () <UITextViewDelegate>
@@ -27,18 +27,18 @@
     
 //    [self navSetupStyle:@"lalala"];
     
-    self.navBackgroundColor = [UIColor yellowColor];
+    self.lrf_navigationBarTintColor = [UIColor yellowColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navBarHidden                                                                                                                                                                                                                                          = NO;
+    self.lrf_navigationBarHidden = NO;
     self.lrf_statusBarHidden = YES;
     
-    self.navShadowImage = [[UIImage alloc] init];
+    self.lrf_navigationBarShadowImage = [[UIImage alloc] init];
     UIView *v = [UIView lrf_viewWithFrame:CGRectMake(0, -64, 320, 64)];
     v.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:v];
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
-//    [self lrf_setupNavTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
+    [self lrf_setupNavigationTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
     
     NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
     p.lineBreakMode = NSLineBreakByTruncatingHead;
@@ -96,8 +96,8 @@
         
         TestViewController *test = [[TestViewController alloc] init];
 //        test.statusHide = YES;
-        test.navBackgroundColor = [UIColor redColor];
-        test.navShadowImage = nil;
+        test.lrf_navigationBarTintColor = [UIColor redColor];
+        test.lrf_navigationBarShadowImage = nil;
 //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
         

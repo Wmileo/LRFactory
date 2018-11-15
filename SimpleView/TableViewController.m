@@ -7,7 +7,7 @@
 //
 
 #import "TableViewController.h"
-#import "UIViewController+NavBackgroundStyle.h"
+#import "LRVCExtend.h"
 #import "UIViewController+NavStyle.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "UIView+LRFactory.h"
