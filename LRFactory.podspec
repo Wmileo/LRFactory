@@ -29,14 +29,14 @@ Pod::Spec.new do |s|
         ss.dependency 'LRFactory/LRFactory'
     end
   
-    s.subspec "LRUIExtend" do |ss|
-        ss.source_files = 'SimpleView/LRUIExtend/*'
+    s.subspec "LRVCExtend" do |ss|
+        ss.source_files = 'SimpleView/LRVCExtend/*'
         ss.dependency 'LRFactory/LRUIFactory'
     end
 
-    s.subspec "NavStyle" do |ss|
-        ss.source_files = 'SimpleView/NavStyle/*'
-        ss.dependency 'LRFactory/SimpleView'
+    s.subspec "LRVCStyle" do |ss|
+        ss.source_files = 'SimpleView/LRVCStyle/*'
+        ss.dependency 'LRFactory/LRUIFactory'
     end
 
 end

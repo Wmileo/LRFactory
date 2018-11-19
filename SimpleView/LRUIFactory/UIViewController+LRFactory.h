@@ -10,9 +10,13 @@
 
 @interface UIViewController (LRFactory)
 
-- (UIViewController *)navLastViewController;//导航的上一个页面
-- (UIViewController *)navNextViewController;//导航的下一个页面
+//导航的上一个页面
+@property (nonatomic, readonly) UIViewController *lrf_prevNavigationViewController;
 
-@property (nonatomic, readonly) BOOL lrf_isVisible;//是否当前可见的
+//导航的下一个页面
+@property (nonatomic, readonly) UIViewController *lrf_nextNavigationViewController;
+
+//是否当前可见的
+@property (nonatomic, readonly) BOOL lrf_isVisible;
 
 @end

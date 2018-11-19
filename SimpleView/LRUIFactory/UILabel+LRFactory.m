@@ -12,15 +12,21 @@
 
 @implementation UILabel (LRFactory)
 
--(void)lrf_setupText:(NSString *)text font:(UIFont *)font fitSize:(BOOL)fit{
+- (void)lrf_setupText:(NSString *)text font:(UIFont *)font fitSize:(BOOL)fit{
     if (text) {
         self.text = text;
     }
     if (font) {
         self.font = font;
     }
-    CGSize size = [self.text lrf_sizeWithFont:self.font maxWidth:300];
-    self.lrf_size = size;
+    if (fit) {
+        CGSize size = [self.text lrf_sizeWithFont:self.font maxWidth:300];
+        self.lrf_size = size;
+    }
+}
+
+- (void)lrf_setupText:(NSString *)text font:(UIFont *)font{
+    [self lrf_setupText:text font:font fitSize:NO];
 }
 
 @end

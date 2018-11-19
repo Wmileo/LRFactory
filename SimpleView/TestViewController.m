@@ -7,7 +7,6 @@
 //
 
 #import "TestViewController.h"
-#import "UIViewController+SimpleNavigation.h"
 #import "LRUIFactory.h"
 #import "LRVCExtend.h"
 #import "LRVCStyle.h"
@@ -44,11 +43,14 @@
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
     [b lrf_showDebugFrame];
-    [self navSetupLeftTitle:@"返回" action:^{
-        
+//    [self navSetupLeftTitle:@"返回" action:^{
+//        
+//    }];
+    
+    [self lrf_setupNavigationItemWithText:@"table" side:LRF_BarButtonItem_Side_Right action:^{
+        NSLog(@"table");
     }];
-    [self navSetupRightTitle:@"table" action:^{
-    }];
+
 
 
 //    self.lrf_statusBarStyle = UIStatusBarStyleLightContent;

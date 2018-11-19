@@ -9,12 +9,11 @@
 #import "UIViewController+NavStyle.h"
 #import "UIViewController+BackButtonStyle.h"
 #import "LRVCExtend.h"
-#import "UIViewController+SimpleNavigation.h"
 #import "UIViewController+LRFNavigationTitle.h"
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+BackButtonStyle.h"
-
+#import "UIViewController+LRFNavigationButton.h"
 
 
 @implementation UIViewController (NavStyle)
@@ -52,7 +51,8 @@ static NSString *defaultNavStyle;
 
 -(instancetype)navSetupStyle:(NSString *)style{
     NavStyleModel *model = navStyles[style];
-    [self navResetButtonTextColor:model.textColor font:model.textFont];
+    self.lrf_navigationItemColor = model.textColor;
+    self.lrf_navigationItemFont = model.textFont;
     [self lrf_setupNavigationTitleColor:model.titleColor font:model.titleFont];
     [self navSetupBackItemWithStyle:model.backStyle];
     model.Config(self);

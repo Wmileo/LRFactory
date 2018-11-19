@@ -91,14 +91,14 @@ static char keyPopIgnore;
 
 - (NSArray<UIViewController *> *)LRFPush_popToViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self.viewControllers.lastObject viewWillDisappear_lrfByNavigationPop:animated];
-    [viewController.navLastViewController viewWillAppear_lrfByNavigationPop:animated];
+    [viewController.lrf_prevNavigationViewController viewWillAppear_lrfByNavigationPop:animated];
     NSArray<UIViewController *> *vcs = [self LRFPush_popToViewController:viewController animated:animated];
     return vcs;
 }
 
 - (UIViewController *)LRFPush_popViewControllerAnimated:(BOOL)animated{
     [self.viewControllers.lastObject viewWillDisappear_lrfByNavigationPop:animated];
-    [self.viewControllers.lastObject.navLastViewController viewWillAppear_lrfByNavigationPop:animated];
+    [self.viewControllers.lastObject.lrf_prevNavigationViewController viewWillAppear_lrfByNavigationPop:animated];
     UIViewController *vc = [self LRFPush_popViewControllerAnimated:animated];
     return vc;
 }

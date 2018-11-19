@@ -104,7 +104,6 @@ static NSString *defaultBackItemStyle;
             label.text = title;
             label.font = model.titleFont;
             label.textColor = model.titleColor;
-            label.backgroundColor = button.backgroundColor;
             label.textAlignment = NSTextAlignmentLeft;
             [button addSubview:label];
             label.lrf_centerY = button.lrf_height/2;
@@ -112,7 +111,7 @@ static NSString *defaultBackItemStyle;
         [tmp addObject:[UIBarButtonItem lrf_barButtonItemWithButton:button]];
     }else if (model.hasTitle) {
         UIButton *b = [UIButton lrf_view];
-        [b lrf_setupNormalTitle:title textColor:model.titleColor font:model.titleFont fitSize:YES];
+        [b lrf_setupNormalText:title color:model.titleColor font:model.titleFont fitSize:YES];
         [b lrf_handleEventTouchUpInsideBlock:^{
             [wself clickOnBack];
         }];

@@ -27,7 +27,7 @@
     
 //    [self navSetupStyle:@"lalala"];
     
-    self.lrf_navigationBarTintColor = [UIColor yellowColor];
+    self.lrf_navigationBarTintColor = [UIColor orangeColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.lrf_navigationBarHidden = NO;
     self.lrf_statusBarHidden = YES;
@@ -66,55 +66,28 @@
     text.delegate = self;
     
     UIImageView *iv = [UIImageView lrf_view];
-    [iv lrf_setupFixedType:Fixed_CenterX_CenterY point:self.view.lrf_boundsCenter];
+    [iv lrf_setupFixedType:LRF_Fixed_CenterX_CenterY point:self.view.lrf_boundsCenter];
     [iv lrf_setupImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png"]]] fitSize:YES];
     [self.view addSubview:iv];
     
-//    [self navSetupRightTitle:@"SAAA" action:^{
-//        NSLog(@"aa");
-//    }];
+    [self lrf_setupNavigationItemWithImage:[UIImage imageNamed:@"back"] side:LRF_BarButtonItem_Side_Left action:^{
+        NSLog(@"aaa");
+    }];
     
-//    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"NNN" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    UIBarButtonItem *barButtonItemR = [[UIBarButtonItem alloc] initWithTitle:@"N制作NN" style:UIBarButtonItemStyleBordered target:nil action:nil];
-//
-//    [self.navigationItem setLeftBarButtonItem:barButtonItem];
-//    [self.navigationItem setRightBarButtonItem:barButtonItemR];
 
-//    [self navSetup LeftSpaceWithWidth:-30];
-//    [self navAddLeftSpaceWithWidth:-100];
-    
-//    [self navAddLeftTitle:@"cc" action:^{
-//        NSLog(@"cc");
-//        [[[UIButton buttonEmptyWithFrame:CGRectMake(50, 50, 50, 50) click:nil] setupOnView:self.view] resetBackgroundColor:[UIColor whiteColor]];
-//
-//    }];
-    
-    [self navSetupRightSpaceWithWidth:10];
+    [self lrf_setupNavigationItemWithSpace:10 side:LRF_BarButtonItem_Side_Right];
     __weak __typeof(self) wself = self;
-    [self navAddRightTitle:@"bb" action:^{
-        
-        
+    
+    [self lrf_addNavigationItemWithText:@"bb" side:LRF_BarButtonItem_Side_Right action:^{
         TestViewController *test = [[TestViewController alloc] init];
-//        test.statusHide = YES;
+        //        test.statusHide = YES;
         test.lrf_navigationBarTintColor = [UIColor redColor];
         test.lrf_navigationBarShadowImage = nil;
-//        [test navSetupBackItemWithIdentification:@"back"];
+        //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
-        
-//        [wself presentViewController:[UINavigationController navigationControllerWithRootViewController:test] animated:YES completion:nil willDismissCallback:^(BOOL success, id info) {
-//            NSLog(@"%zd - %@",success,info);
-//        } didDismissCallback:^(BOOL success, id info) {
-//            NSLog(@"%zd - %@",success,info);
-//        }];
-        
     }];
-
-
-//    [self navSetupBackItemWithIdentification:@"back"];
     
-//    [self navSetupLeftButton:[UIButton buttonWithCenter:CGPointZero title:@"啊哈哈哈" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:10] click:^{
-//        
-//    }]];
+
 
     self.lrf_statusBarStyle = UIStatusBarStyleDefault;
     

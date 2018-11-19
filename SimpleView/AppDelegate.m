@@ -30,7 +30,7 @@
 //    [UIViewController configViewControllerGesturePopBack];
 //    [UIViewController configNavBackgroundStyle];
     [UIViewController configBackItemStyles:@{
-                                                      @"back":[BackItemModel modelWithOffsetX:-10 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:20]]}];
+                                                      @"back":[BackItemModel modelWithOffsetX:-500 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:20]]}];
     [UIViewController configDefaultBackItemWithStyle:@"back"];
     
     
@@ -45,10 +45,8 @@
                                         
     }];
     
-//    [UIViewController configDefaultNavStyle:@"bababa"];
+    [UIViewController configDefaultNavStyle:@"bababa"];
     
-    
-    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
 
     [UIViewController lrf_autoHidesTabBar];
 

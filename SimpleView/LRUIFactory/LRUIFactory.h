@@ -19,8 +19,8 @@
 #import "UIApplication+LRFactory.h"
 #import "UIBarButtonItem+LRFactory.h"
 #import "UINavigationController+LRFactory.h"
-
 #import "UIViewController+LRFactory.h"
-#import "UIViewController+SimpleNavigation.h"
+#import "UIViewController+LRFNavigationItem.h"
+
 
 #endif /* LRUIFactory_h */

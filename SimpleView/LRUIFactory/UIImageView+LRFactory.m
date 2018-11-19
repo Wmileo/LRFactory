@@ -13,7 +13,13 @@
 
 -(void)lrf_setupImage:(UIImage *)image fitSize:(BOOL)fit{
     self.image = image;
-    self.lrf_size = image.size;
+    if (fit) {
+        self.lrf_size = image.size;
+    }
+}
+
+- (void)lrf_setupImage:(UIImage *)image{
+    [self lrf_setupImage:image fitSize:NO];
 }
 
 @end

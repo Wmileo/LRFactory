@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface UIViewController (LRFNavigationBar)
+
+//edgesForExtendedLayout  UIRectEdgeNone为从导航底部开始页面
 
 /**
  *  隐藏导航栏
@@ -34,5 +34,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL lrf_navigationBarTranslucent;
 
 @end
-
-NS_ASSUME_NONNULL_END

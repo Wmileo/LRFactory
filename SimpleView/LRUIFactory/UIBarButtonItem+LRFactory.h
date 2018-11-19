@@ -11,7 +11,7 @@
 @interface UIBarButtonItem (LRFactory)
 
 /**
- *  生成空格BarButtonItem
+ *  生成空格BarButtonItem  只支持正数
  */
 + (UIBarButtonItem *)lrf_barButtonItemSpaceWithWidth:(CGFloat)width;
 
