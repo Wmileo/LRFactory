@@ -13,5 +13,6 @@
 #import "UIViewController+LRFNavigationBar.h"
 #import "UIViewController+LRFStatusBar.h"
 #import "UIViewController+LRFNavigationButton.h"
+#import "UIViewController+LRFViewControllerStyle.h"
 
 #endif /* LRVCStyle_h */

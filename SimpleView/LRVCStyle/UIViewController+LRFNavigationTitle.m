@@ -14,17 +14,6 @@
 
 @implementation UIViewController (LRFNavigationTitle)
 
-static char keyTitleTextAttributes;
-
-- (void)lrf_setupNavigationTitleColor:(UIColor *)color font:(UIFont *)font{
-    [UIViewController lrf_injectNavigationTitle];
-    NSDictionary *textAttributes = @{NSFontAttributeName : font, NSForegroundColorAttributeName : color};
-    objc_setAssociatedObject(self, &keyTitleTextAttributes, textAttributes, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    if (self.navigationController && self.lrf_isVisible) {
-        self.navigationController.navigationBar.titleTextAttributes = textAttributes;
-    }
-}
-
 #pragma mark - inject
 
 +(void)lrf_injectNavigationTitle{
@@ -44,10 +33,49 @@ static char keyTitleTextAttributes;
 #pragma mark - setget
 
 -(NSDictionary *)lrf_titleTextAttributes{
-    if (objc_getAssociatedObject(self, &keyTitleTextAttributes)) {
-        return objc_getAssociatedObject(self, &keyTitleTextAttributes);
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:2];
+    if (self.lrf_navigationTitleFont) {
+        dic[NSFontAttributeName] = self.lrf_navigationTitleFont;
+    }
+    if (self.lrf_navigationTitleColor) {
+        dic[NSForegroundColorAttributeName] = self.lrf_navigationTitleColor;
+    }
+    return [dic copy];
+}
+
+static char keyNavigationTitleColor;
+
+- (void)setLrf_navigationTitleColor:(UIColor *)lrf_navigationTitleColor{
+    [UIViewController lrf_injectNavigationTitle];
+    objc_setAssociatedObject(self, &keyNavigationTitleColor, lrf_navigationTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        self.navigationController.navigationBar.titleTextAttributes = self.lrf_titleTextAttributes;
+    }
+}
+
+- (UIColor *)lrf_navigationTitleColor{
+    if (objc_getAssociatedObject(self, &keyNavigationTitleColor)) {
+        return objc_getAssociatedObject(self, &keyNavigationTitleColor);
     }else{
-        return self.navigationController.navigationBar.titleTextAttributes;
+        return self.navigationController.navigationBar.titleTextAttributes[NSForegroundColorAttributeName];
+    }
+}
+
+static char keyNavigationTitleFont;
+
+- (void)setLrf_navigationTitleFont:(UIFont *)lrf_navigationTitleFont{
+    [UIViewController lrf_injectNavigationTitle];
+    objc_setAssociatedObject(self, &keyNavigationTitleFont, lrf_navigationTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        self.navigationController.navigationBar.titleTextAttributes = self.lrf_titleTextAttributes;
+    }
+}
+
+- (UIFont *)lrf_navigationTitleFont{
+    if (objc_getAssociatedObject(self, &keyNavigationTitleFont)) {
+        return objc_getAssociatedObject(self, &keyNavigationTitleFont);
+    }else{
+        return self.navigationController.navigationBar.titleTextAttributes[NSFontAttributeName];
     }
 }
 

@@ -23,7 +23,7 @@
     [UINavigationController lrf_injectLife];
 }
 
-+(void)lrf_injectPush{
++ (void)lrf_injectPush{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(LRFPush_viewDidAppear:)];
@@ -34,22 +34,22 @@
 
 static char keyPopIgnore;
 
--(void)setLrf_popIgnore:(BOOL)lrf_popIgnore{
+- (void)setLrf_popIgnore:(BOOL)lrf_popIgnore{
     [UIViewController lrf_injectPush];
     objc_setAssociatedObject(self, &keyPopIgnore, @(lrf_popIgnore), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self lrf_ignoreViewController];
 }
 
--(BOOL)lrf_popIgnore{
+- (BOOL)lrf_popIgnore{
     return [objc_getAssociatedObject(self, &keyPopIgnore) boolValue];
 }
 
--(void)LRFPush_viewDidAppear:(BOOL)animated{
+- (void)LRFPush_viewDidAppear:(BOOL)animated{
     [self LRFPush_viewDidAppear:animated];
     [self lrf_ignoreViewController];
 }
 
--(void)lrf_ignoreViewController{
+- (void)lrf_ignoreViewController{
     if (self.navigationController) {
         NSMutableArray *vcs = [NSMutableArray arrayWithCapacity:self.navigationController.viewControllers.count];
         [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -91,7 +91,7 @@ static char keyPopIgnore;
 
 - (NSArray<UIViewController *> *)LRFPush_popToViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self.viewControllers.lastObject viewWillDisappear_lrfByNavigationPop:animated];
-    [viewController.lrf_prevNavigationViewController viewWillAppear_lrfByNavigationPop:animated];
+    [viewController viewWillAppear_lrfByNavigationPop:animated];
     NSArray<UIViewController *> *vcs = [self LRFPush_popToViewController:viewController animated:animated];
     return vcs;
 }
@@ -109,6 +109,7 @@ static char keyPopIgnore;
     NSArray<UIViewController *> *vcs = [self LRFPush_popToRootViewControllerAnimated:animated];
     return vcs;
 }
+
 
 
 @end

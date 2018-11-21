@@ -12,9 +12,7 @@
 #import "TestViewController.h"
 #import "LRVCExtend.h"
 #import "LRVCStyle.h"
-#import "UIViewController+BackButtonStyle.h"
 #import "UINavigationController+LRFactory.h"
-#import "UIViewController+NavStyle.h"
 
 @interface AppDelegate ()
 
@@ -24,35 +22,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
     
-    
-//    [UIViewController configViewControllerRectEdgeNoneForExtendedLayout];
-//    [UIViewController configViewControllerGesturePopBack];
-//    [UIViewController configNavBackgroundStyle];
-    [UIViewController configBackItemStyles:@{
-                                                      @"back":[BackItemModel modelWithOffsetX:-500 icon:[UIImage imageNamed:@"back"] titleOffsetX:0 titleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:20]]}];
-    [UIViewController configDefaultBackItemWithStyle:@"back"];
-    
-    
-    [UIViewController configNavStyles:
-  @{@"lalala" : [NavStyleModel modelWithTitleColor:[UIColor redColor] titleFont:[UIFont systemFontOfSize:20] textColor:[UIColor redColor] textFont:[UIFont systemFontOfSize:20] backStyle:@"back" config:^(UIViewController *vc) {
+    [UIViewController lrf_styleAddWithIdentifier:@"lalala" style:^(UIViewController *vc) {
+        vc.lrf_navigationTitleColor = [UIColor redColor];
+        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:20];
+        vc.lrf_navigationItemColor = [UIColor redColor];
+        vc.lrf_navigationItemFont = [UIFont systemFontOfSize:20];
         vc.lrf_navigationBarShadowImage = [[UIImage alloc] init];
-    }],
-    @"bababa" : [NavStyleModel modelWithTitleColor:[UIColor blueColor] titleFont:[UIFont systemFontOfSize:10] textColor:[UIColor blueColor] textFont:[UIFont systemFontOfSize:10] backStyle:@"back" config:^(UIViewController *vc) {
-        
-        vc.lrf_navigationBarShadowImage = nil;
-    }]
-                                        
     }];
-    
-    [UIViewController configDefaultNavStyle:@"bababa"];
-    
+    [UIViewController lrf_styleAddWithIdentifier:@"bababa" style:^(UIViewController *vc) {
+        vc.lrf_navigationTitleColor = [UIColor blueColor];
+        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:10];
+        vc.lrf_navigationItemColor = [UIColor blueColor];
+        vc.lrf_navigationItemFont = [UIFont systemFontOfSize:10];
+        vc.lrf_navigationBackImage = [UIImage imageNamed:@"back"];
+        vc.lrf_navigationBackTitle = vc.lrf_navigationBackPrevTitle;
+        vc.lrf_navigationBackColor = [UIColor blueColor];
+        vc.lrf_navigationBackFont = [UIFont systemFontOfSize:20];
+        vc.lrf_navigationBarShadowImage = nil;
+    }];
+    [UIViewController lrf_styleSetupDefaultIdentifier:@"bababa"];
 
     [UIViewController lrf_autoHidesTabBar];
 
     [[UINavigationBar appearance] setShadowImage:nil];
-    
- 
     
     UITabBarController *tab = [[UITabBarController alloc] init];
     

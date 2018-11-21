@@ -10,14 +10,12 @@
 #import "LRUIFactory.h"
 #import "LRVCExtend.h"
 #import "LRVCStyle.h"
-#import "UIViewController+BackButtonStyle.h"
 #import "ViewController.h"
 #import "TableViewController.h"
-#import "UIViewController+NavStyle.h"
 #import "LRFactory.h"
 #import "UIImageView+LRFactory.h"
 
-@interface TestViewController () <UIViewControllerBackButtonDataSource>
+@interface TestViewController ()
 
 @end
 
@@ -29,10 +27,7 @@
     self.title = @"aaa";
     self.lrf_statusBarHidden = NO;
     self.view.backgroundColor = [UIColor blueColor];
-    
-    [self lrf_setupNavigationTitleColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:30]];
-    
-//    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
+    self.lrf_navigationBarTintColor = [UIColor yellowColor];
     
     UIButton *b = [UIButton lrf_viewWithFrame:CGRectMake(50, 100, 100, 100)];
     [b lrf_handleEventTouchUpInsideBlock:^{
@@ -43,16 +38,11 @@
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
     [b lrf_showDebugFrame];
-//    [self navSetupLeftTitle:@"返回" action:^{
-//        
-//    }];
-    
+
     [self lrf_setupNavigationItemWithText:@"table" side:LRF_BarButtonItem_Side_Right action:^{
         NSLog(@"table");
     }];
-
-
-
+    
 //    self.lrf_statusBarStyle = UIStatusBarStyleLightContent;
 }
 
@@ -72,7 +62,6 @@
 -(void)viewWillAppear_lrfByFirstTime:(BOOL)animated{
     
 }
-
 
 -(void)viewDidBePopped{
     NSLog(@"pop");

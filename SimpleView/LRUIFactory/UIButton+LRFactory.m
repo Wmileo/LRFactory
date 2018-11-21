@@ -90,11 +90,11 @@
 #pragma mark - 文字按钮
 
 -(void)lrf_setupNormalText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
-    [self lrf_setupNormalText:text color:color font:font];
+    [self lrf_setupNormalText:text color:color font:font fitSize:NO];
 }
 
 -(void)lrf_setupHighlightedText:(NSString *)text color:(UIColor *)color font:(UIFont *)font{
-    [self lrf_setupHighlightedText:text color:color font:font];
+    [self lrf_setupHighlightedText:text color:color font:font fitSize:NO];
 }
 
 -(void)lrf_setupNormalText:(NSString *)text color:(UIColor *)color font:(UIFont *)font fitSize:(BOOL)fit{

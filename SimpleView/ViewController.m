@@ -12,8 +12,6 @@
 #import "LRFactory.h"
 #import "LRVCStyle.h"
 #import "TestViewController.h"
-#import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+NavStyle.h"
 
 @interface ViewController () <UITextViewDelegate>
 
@@ -38,7 +36,6 @@
     [self.view addSubview:v];
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
     self.title = @"testaaaaaaaaaaaaaaaaaa";
-    [self lrf_setupNavigationTitleColor:[UIColor redColor] font:[UIFont systemFontOfSize:20]];
     
     NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
     p.lineBreakMode = NSLineBreakByTruncatingHead;

@@ -19,7 +19,7 @@
 @property (nonatomic, assign) BOOL lrf_statusBarHidden;
 - (void)setLrf_statusBarHidden:(BOOL)lrf_statusBarHidden withAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation;
 
-/**           
+/**
  *  状态栏样式，需设置info.plist，如上
  */
 @property (nonatomic, assign) UIStatusBarStyle lrf_statusBarStyle;

@@ -18,13 +18,16 @@
 
 - (void)lrf_addNavigationItemWithText:(NSString *)text side:(LRF_BarButtonItem_Side)side action:(void (^)(void))action;
 
-
 #pragma mark - back
 
-@property (nonatomic, copy) void (^lrf_clickBack)(void);
+@property (nonatomic, strong) UIImage *lrf_navigationBackImage;//图片
+@property (nonatomic, strong) UIColor *lrf_navigationBackColor;//文字颜色
+@property (nonatomic, strong) UIFont *lrf_navigationBackFont;//文字字体
+@property (nonatomic, assign) CGFloat lrf_navigationBackGap;//图片文字间隙
+@property (nonatomic, copy) NSString *lrf_navigationBackTitle;//文字
+@property (nonatomic, copy) void (^lrf_navigationBackClick)(void);//点击
 
-- (void)lrf_setupNavigationBackItemWithImage:(UIImage *)image;
-- (void)lrf_setupNavigationBackItemWithText:(NSString *)text;
+@property (nonatomic, readonly) NSString *lrf_navigationBackPrevTitle;//上一级页面title
 
 @end
 

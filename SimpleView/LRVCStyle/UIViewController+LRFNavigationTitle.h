@@ -12,8 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (LRFNavigationTitle)
 
+
+@property (nonatomic, strong) UIColor *lrf_navigationTitleColor;
+
 //font不建议大于29
-- (void)lrf_setupNavigationTitleColor:(UIColor *)color font:(UIFont *)font;
+@property (nonatomic, strong) UIFont *lrf_navigationTitleFont;
+
 
 @end
 
