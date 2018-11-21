@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, FixedPointType) {
-    Fixed_Left_Top,
-    Fixed_Left_CenterY,
-    Fixed_Left_Bottom,
-    Fixed_CenterX_Top,
-    Fixed_CenterX_CenterY,
-    Fixed_CenterX_Bottom,
-    Fixed_Right_Top,
-    Fixed_Right_CenterY,
-    Fixed_Right_Bottom
+typedef NS_ENUM(NSInteger, LRF_FixedPointType) {
+    LRF_Fixed_Left_Top,
+    LRF_Fixed_Left_CenterY,
+    LRF_Fixed_Left_Bottom,
+    LRF_Fixed_CenterX_Top,
+    LRF_Fixed_CenterX_CenterY,
+    LRF_Fixed_CenterX_Bottom,
+    LRF_Fixed_Right_Top,
+    LRF_Fixed_Right_CenterY,
+    LRF_Fixed_Right_Bottom
 };
 
 @interface UIView (LRFactory)
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, FixedPointType) {
 /**
  *  设置固定点，用于适配变化的size
  */
-- (void)lrf_setupFixedType:(FixedPointType)type point:(CGPoint)point;
+- (void)lrf_setupFixedType:(LRF_FixedPointType)type point:(CGPoint)point;
 
 /**
  *  设置边框

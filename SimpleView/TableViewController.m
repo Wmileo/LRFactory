@@ -7,9 +7,7 @@
 //
 
 #import "TableViewController.h"
-#import "UIViewController+NavBackgroundStyle.h"
-#import "UIViewController+NavStyle.h"
-#import "UIViewController+BackButtonStyle.h"
+#import "LRVCExtend.h"
 #import "UIView+LRFactory.h"
 @interface TableViewController ()
 

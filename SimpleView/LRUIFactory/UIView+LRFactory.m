@@ -29,54 +29,54 @@
 
 static char keyFiexedType;
 static char keyFiexedPoint;
--(void)lrf_setupFixedType:(FixedPointType)type point:(CGPoint)point{
+-(void)lrf_setupFixedType:(LRF_FixedPointType)type point:(CGPoint)point{
     objc_setAssociatedObject(self, &keyFiexedType, @(type), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &keyFiexedPoint, [NSValue valueWithCGPoint:point], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self fixPoint];
 }
 
 -(void)fixPoint{
-    FixedPointType type = [objc_getAssociatedObject(self, &keyFiexedType) integerValue];
+    LRF_FixedPointType type = [objc_getAssociatedObject(self, &keyFiexedType) integerValue];
     CGPoint point = [objc_getAssociatedObject(self, &keyFiexedPoint) CGPointValue];
-    if (type == Fixed_Left_Top) {
+    if (type == LRF_Fixed_Left_Top) {
         return;
     }
     CGPoint origin = CGPointMake(0, 0);
     CGSize size = self.lrf_size;
     switch (type) {
-        case Fixed_Left_Top:
+        case LRF_Fixed_Left_Top:
             origin.x = point.x;
             origin.y = point.y;
             break;
-        case Fixed_Left_CenterY:
+        case LRF_Fixed_Left_CenterY:
             origin.x = point.x;
             origin.y = point.y - size.height / 2;
             break;
-        case Fixed_Left_Bottom:
+        case LRF_Fixed_Left_Bottom:
             origin.x = point.x;
             origin.y = point.y - size.height;
             break;
-        case Fixed_CenterX_Top:
+        case LRF_Fixed_CenterX_Top:
             origin.x = point.x - size.width / 2;
             origin.y = point.y;
             break;
-        case Fixed_CenterX_CenterY:
+        case LRF_Fixed_CenterX_CenterY:
             origin.x = point.x - size.width / 2;
             origin.y = point.y - size.height / 2;
             break;
-        case Fixed_CenterX_Bottom:
+        case LRF_Fixed_CenterX_Bottom:
             origin.x = point.x - size.width / 2;
             origin.y = point.y - size.height;
             break;
-        case Fixed_Right_Top:
+        case LRF_Fixed_Right_Top:
             origin.x = point.x - size.width;
             origin.y = point.y;
             break;
-        case Fixed_Right_CenterY:
+        case LRF_Fixed_Right_CenterY:
             origin.x = point.x - size.width;
             origin.y = point.y - size.height / 2;
             break;
-        case Fixed_Right_Bottom:
+        case LRF_Fixed_Right_Bottom:
             origin.x = point.x - size.width;
             origin.y = point.y - size.height;
             break;

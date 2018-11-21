@@ -11,6 +11,6 @@
 
 @interface NSString (LRFactory)
 
--(CGSize)lrf_sizeWithFont:(UIFont *)font maxWidth:(CGFloat)maxWidth;
+- (CGSize)lrf_sizeWithFont:(UIFont *)font maxWidth:(CGFloat)maxWidth;
 
 @end

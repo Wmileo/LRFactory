@@ -10,6 +10,7 @@
 
 @interface UIImageView (LRFactory)
 
+- (void)lrf_setupImage:(UIImage *)image;
 - (void)lrf_setupImage:(UIImage *)image fitSize:(BOOL)fit;
 
 @end

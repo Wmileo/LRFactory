@@ -8,12 +8,13 @@
 
 #import "UIViewController+LRFactory.h"
 #import "NSObject+LRFactory.h"
+#import "UIApplication+LRFactory.h"
 #import <objc/runtime.h>
 #import "UINavigationController+LRFactory.h"
 
 @implementation UIViewController (LRFactory)
 
--(UIViewController *)navLastViewController{
+- (UIViewController *)lrf_prevNavigationViewController{
     if ([self.navigationController.viewControllers containsObject:self]) {
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
         if (index > 0) {
@@ -25,7 +26,7 @@
     return nil;
 }
 
--(UIViewController *)navNextViewController{
+- (UIViewController *)lrf_nextNavigationViewController{
     if ([self.navigationController.viewControllers containsObject:self]) {
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
         index++;
@@ -34,6 +35,10 @@
         }
     }
     return nil;
+}
+
+- (BOOL)lrf_isVisible{
+    return self == [UIApplication lrf_currentViewController];
 }
 
 @end

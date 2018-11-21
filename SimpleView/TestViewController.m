@@ -7,18 +7,15 @@
 //
 
 #import "TestViewController.h"
-#import "UIViewController+SimpleNavigation.h"
 #import "LRUIFactory.h"
-#import "LRUIExtend.h"
-#import "UIViewController+BackButtonStyle.h"
-#import "UIViewController+NavBackgroundStyle.h"
+#import "LRVCExtend.h"
+#import "LRVCStyle.h"
 #import "ViewController.h"
 #import "TableViewController.h"
-#import "UIViewController+NavStyle.h"
 #import "LRFactory.h"
 #import "UIImageView+LRFactory.h"
 
-@interface TestViewController () <UIViewControllerBackButtonDataSource>
+@interface TestViewController ()
 
 @end
 
@@ -28,10 +25,9 @@
     [super viewDidLoad];
     
     self.title = @"aaa";
-
+    self.lrf_statusBarHidden = NO;
     self.view.backgroundColor = [UIColor blueColor];
-    self.navBackgroundColor = [UIColor redColor];
-//    [[[UIView viewWithFrame:CGRectMake(0, -64, 320, 480)] setupOnView:self.view] resetBackgroundColor:[UIColor blackColor]];
+    self.lrf_navigationBarTintColor = [UIColor yellowColor];
     
     UIButton *b = [UIButton lrf_viewWithFrame:CGRectMake(50, 100, 100, 100)];
     [b lrf_handleEventTouchUpInsideBlock:^{
@@ -42,17 +38,12 @@
     b.backgroundColor = [UIColor blueColor];
     [self.view addSubview:b];
     [b lrf_showDebugFrame];
-    
-    [self navSetupRightTitle:@"table" action:^{
+
+    [self lrf_setupNavigationItemWithText:@"table" side:LRF_BarButtonItem_Side_Right action:^{
+        NSLog(@"table");
     }];
-
-//    self.navBackgroundTranslucent = YES;
     
-//    self.navigationBarHidden = YES;
-//    self.statusBarHidden = YES;
-    
-//    [self navSetupStyle:@"bababa"];
-
+//    self.lrf_statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -71,23 +62,6 @@
 -(void)viewWillAppear_lrfByFirstTime:(BOOL)animated{
     
 }
-
-//-(BOOL)viewControllerShouldGesturePopBack{
-//    return NO;
-//}
-
-//-(UIColor *)navBackgroundColor{
-//    return [UIColor grayColor];
-//}
-
-//-(NSString *)navBackItemTitle{
-//    return @"返回";
-//}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
-
 
 -(void)viewDidBePopped{
     NSLog(@"pop");
