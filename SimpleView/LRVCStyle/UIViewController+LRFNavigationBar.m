@@ -111,7 +111,7 @@ static char keyNavigationBarTranslucent;
 
 -(BOOL)lrf_navigationBarTranslucent{
     if (objc_getAssociatedObject(self, &keyNavigationBarTranslucent)) {
-        return objc_getAssociatedObject(self, &keyNavigationBarTranslucent);
+        return [objc_getAssociatedObject(self, &keyNavigationBarTranslucent) boolValue];
     }else{
         return self.navigationController.navigationBar.isTranslucent;
     }
