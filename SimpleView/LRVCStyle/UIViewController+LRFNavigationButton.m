@@ -163,7 +163,7 @@ static char keyNavigationBackClick;
 
 - (void (^)(void))lrf_navigationBackClick{
     if (objc_getAssociatedObject(self, &keyNavigationBackClick)) {
-        return objc_getAssociatedObject(self, &keyNavigationBackGap);
+        return objc_getAssociatedObject(self, &keyNavigationBackClick);
     }else{
         __weak typeof(self) wself = self;
         return ^(){
