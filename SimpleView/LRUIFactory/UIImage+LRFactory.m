@@ -11,8 +11,8 @@
 @implementation UIImage (LRFactory)
 
 - (UIImage *)lrf_copyWithSize:(CGSize)size{
-    CGRect rect = CGRectMake(0.0, 0.0, size.width, size.height);
-    UIGraphicsBeginImageContext(rect.size);
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [[UIScreen mainScreen] scale]);
     [self drawInRect:rect];
     UIImage *newI = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
