@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name         = "LRFactory"
-    s.version      = "2.0.3"
+    s.version      = "2.0.4"
     s.summary      = "LRFactory"
     s.description  = <<-DESC
 					 封装视图控件，用于方便调用
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.subspec "LRFactory" do |ss|
         ss.source_files = 'SimpleView/LRFactory/*'
     end
-  
+
     s.subspec "LRAnimationFactory" do |ss|
         ss.source_files = 'SimpleView/LRAnimationFactory/*'
     end
