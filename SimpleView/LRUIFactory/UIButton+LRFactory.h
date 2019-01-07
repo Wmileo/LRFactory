@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, LRF_Image_Aligning) {
 - (void)lrf_setupHighlightedImage:(UIImage *)image fitSize:(BOOL)fit;//
 - (void)lrf_setupNormalImage:(UIImage *)image aligning:(LRF_Image_Aligning)aligning;
 - (void)lrf_setupHighlightedImage:(UIImage *)image aligning:(LRF_Image_Aligning)aligning;
+- (void)lrf_fitImageSize:(CGSize)size aligning:(LRF_Image_Aligning)aligning;//适配图片
 
 #pragma mark - 文字按钮
 
