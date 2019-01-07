@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-NS_ASSUME_NONNULL_BEGIN
-
-
 @interface NSObject (LRFactory)
 
 @property (nonatomic, copy) id lrf_tag_copy;//用于区分，存值，copy
@@ -22,5 +19,3 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2;
 
 @end
-
-NS_ASSUME_NONNULL_END
