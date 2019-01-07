@@ -15,6 +15,7 @@
 #import "UIColor+LRFactory.h"
 #import "UIButton+LRFactory.h"
 #import "UILabel+LRFactory.h"
+#import "UIImage+LRFactory.h"
 #import "UIImageView+LRFactory.h"
 #import "UIApplication+LRFactory.h"
 #import "UIBarButtonItem+LRFactory.h"
