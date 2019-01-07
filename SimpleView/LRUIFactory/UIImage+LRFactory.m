@@ -10,7 +10,7 @@
 
 @implementation UIImage (LRFactory)
 
-- (UIImage *)lrf_setupSize:(CGSize)size{
+- (UIImage *)lrf_copyWithSize:(CGSize)size{
     CGRect rect = CGRectMake(0.0, 0.0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     [self drawInRect:rect];
@@ -19,14 +19,14 @@
     return newI;
 }
 
-- (UIImage *)lrf_setupRatio:(CGFloat)ratio{
+- (UIImage *)lrf_copyWithRatio:(CGFloat)ratio{
     CGSize size = [self size];
     size.width = ratio * size.width;
     size.height = ratio * size.height;
-    return [self lrf_setupSize:size];
+    return [self lrf_copyWithSize:size];
 }
 
-- (UIImage *)lrf_setupMaxSide:(CGFloat)side{
+- (UIImage *)lrf_copyWithMaxSide:(CGFloat)side{
     CGSize size = [self size];
     CGFloat ratio = 1;
     if (size.width > size.height) {
@@ -36,7 +36,7 @@
         if (size.height > 1)
             ratio = side / size.height;
     }
-    return [self lrf_setupRatio:ratio];
+    return [self lrf_copyWithRatio:ratio];
 }
 
 @end
