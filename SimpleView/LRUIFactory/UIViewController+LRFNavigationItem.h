@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, LRF_BarButtonItem_Side){
     LRF_BarButtonItem_Side_Left,
@@ -49,4 +48,3 @@ typedef NS_ENUM(NSInteger, LRF_BarButtonItem_Side){
 
 @end
 
-NS_ASSUME_NONNULL_END
