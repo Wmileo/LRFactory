@@ -56,16 +56,23 @@
 }
 
 -(void)lrf_setupNormalImage:(UIImage *)image aligning:(LRF_Image_Aligning)aligning{
-    [self lrf_setupNormalImage:image];
-    [self lrf_fitImageSize:image.size aligning:aligning];
+    if (image) {
+        [self lrf_setupNormalImage:image];
+        [self lrf_fitImageSize:image.size aligning:aligning];
+    }
 }
 
 -(void)lrf_setupHighlightedImage:(UIImage *)image aligning:(LRF_Image_Aligning)aligning{
-    [self lrf_setupHighlightedImage:image];
-    [self lrf_fitImageSize:image.size aligning:aligning];
+    if (image) {
+        [self lrf_setupHighlightedImage:image];
+        [self lrf_fitImageSize:image.size aligning:aligning];
+    }
 }
 
 -(void)lrf_fitImageSize:(CGSize)size aligning:(LRF_Image_Aligning)aligning{
+    if (size.width == 0 || size.height == 0) {
+        return;
+    }
     CGFloat width = MAX(size.width, kMinWidth);
     CGFloat height = MAX(size.height, kMinHeight);
     self.lrf_size = CGSizeMake(width, height);
