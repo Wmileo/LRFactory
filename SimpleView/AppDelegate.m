@@ -43,9 +43,9 @@
         vc.lrf_navigationBarShadowImage = nil;
     }];
     [UIViewController lrf_styleSetupDefaultIdentifier:@"bababa"];
-
+    
     [UIViewController lrf_autoHidesTabBar];
-
+    
     [[UINavigationBar appearance] setShadowImage:nil];
     
     UITabBarController *tab = [[UITabBarController alloc] init];
