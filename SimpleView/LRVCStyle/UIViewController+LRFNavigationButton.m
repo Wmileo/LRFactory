@@ -185,7 +185,7 @@ static char keyNavigationBackClick;
         }
     }];
     if (!button) {
-        button = [UIButton lrf_viewWithFrame:CGRectMake(100, 100, 100, 100)];
+        button = [UIButton lrf_viewWithFrame:CGRectZero];
         button.tag = LRF_Key_Button_Tag;
         button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self lrf_setupNavigationItemWithButton:button side:LRF_BarButtonItem_Side_Left];
