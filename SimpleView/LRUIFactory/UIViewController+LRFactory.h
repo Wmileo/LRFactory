@@ -19,4 +19,7 @@
 //是否当前可见的
 @property (nonatomic, readonly) BOOL lrf_isVisible;
 
+//是否最终控制器（比如该控制器还包含子控制器则返回NO）
+@property (nonatomic, readonly) BOOL lrf_isFinalController;
+
 @end

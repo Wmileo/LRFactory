@@ -24,7 +24,7 @@
 
 -(void)LRFStatus_viewWillAppear:(BOOL)animated{
     [self LRFStatus_viewWillAppear:animated];
-    if (self.lrf_isVisible) {
+    if (self.lrf_isFinalController) {
         [[UIApplication sharedApplication] setStatusBarStyle:self.lrf_statusBarStyle animated:animated];
         [[UIApplication sharedApplication] setStatusBarHidden:self.lrf_statusBarHidden withAnimation:self.lrf_statusBarAnimation];
     }
