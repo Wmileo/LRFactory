@@ -41,4 +41,13 @@
     return self == [UIApplication lrf_currentViewController];
 }
 
+- (BOOL)lrf_isFinalController{
+    if ([self isKindOfClass:[UITabBarController class]]) {
+        return NO;
+    } else if ([self isKindOfClass:[UINavigationController class]]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

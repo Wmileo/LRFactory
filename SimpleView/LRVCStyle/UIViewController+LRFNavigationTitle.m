@@ -25,7 +25,7 @@
 
 -(void)LRFTitle_viewWillAppear:(BOOL)animated{
     [self LRFTitle_viewWillAppear:animated];
-    if (self.navigationController && self.lrf_isVisible) {
+    if (self.navigationController && self.lrf_isFinalController) {
         [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_titleTextAttributes];
     }
 }
