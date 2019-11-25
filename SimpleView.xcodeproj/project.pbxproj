@@ -12,6 +12,7 @@
 		B347599B1E713607007C702C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B347599A1E713607007C702C /* TableViewController.m */; };
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */; };
 		B36D12DD21E2F94D007303FD /* UIImage+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */; };
+		B37FD6072388E092004FFEED /* UITableView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FD6062388E092004FFEED /* UITableView+LRFactory.m */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */; };
 		B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */; };
 		B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854F2192C54700B51AA9 /* NSObject+LRFactory.m */; };
@@ -75,6 +76,8 @@
 		B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+LRFactory.m"; sourceTree = "<group>"; };
 		B36D12DB21E2F94D007303FD /* UIImage+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+LRFactory.h"; sourceTree = "<group>"; };
 		B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LRFactory.m"; sourceTree = "<group>"; };
+		B37FD6052388E092004FFEED /* UITableView+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LRFactory.h"; sourceTree = "<group>"; };
+		B37FD6062388E092004FFEED /* UITableView+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LRFactory.m"; sourceTree = "<group>"; };
 		B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFPush.h"; sourceTree = "<group>"; };
 		B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFPush.m"; sourceTree = "<group>"; };
 		B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LRFactory.h"; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */,
 				CEC716E61CEABF9D006536F2 /* UIImageView+LRFactory.h */,
 				CEC716E71CEABF9D006536F2 /* UIImageView+LRFactory.m */,
+				B37FD6052388E092004FFEED /* UITableView+LRFactory.h */,
+				B37FD6062388E092004FFEED /* UITableView+LRFactory.m */,
 				B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */,
 				B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */,
 				CEE2FE2C1CD0ACE900F1DECF /* UIBarButtonItem+LRFactory.h */,
@@ -579,6 +584,7 @@
 				B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */,
 				CE1B646F1D01722A0034672B /* UIViewController+LRFPresent.m in Sources */,
 				B3FCB15F219E8AE000523E92 /* UIViewController+LRFNavigationItem.m in Sources */,
+				B37FD6072388E092004FFEED /* UITableView+LRFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
