@@ -22,6 +22,7 @@
 #import "UINavigationController+LRFactory.h"
 #import "UIViewController+LRFactory.h"
 #import "UIViewController+LRFNavigationItem.h"
+#import "UITableView+LRFactory.h"
 
 
 #endif /* LRUIFactory_h */
