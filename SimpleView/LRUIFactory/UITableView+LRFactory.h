@@ -18,8 +18,6 @@ typedef NSDictionary LRFHeaderFooterInfo;
 
 - (UITableViewCell *)lrf_tableView:(UITableView *)tableView cellWithInfo:(NSDictionary *)info cellID:(NSString *)cellID;
 
-- (NSArray<LRFSectionInfo *> *)lrf_dataSourcesWithTableView:(UITableView *)tableView;
-
 @optional
 
 - (void)lrf_tableView:(UITableView *)tableView didSelectCellWithInfo:(NSDictionary *)info cellID:(NSString *)cellID;
@@ -33,6 +31,8 @@ typedef NSDictionary LRFHeaderFooterInfo;
 
 @property (nonatomic) id lrf_delegate;
 @property (nonatomic) id<LRF_UITableViewDataSource> lrf_dataSource;
+
+- (void)lrf_updateDataSources:(NSArray<LRFSectionInfo *> *)dataSources;
 
 - (CGFloat)lrf_contentHeight;
 
