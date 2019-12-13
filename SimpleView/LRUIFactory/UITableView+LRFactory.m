@@ -120,12 +120,21 @@
         if (sections) {
             for (LRFSectionInfo *section in sections) {
                 CGFloat headerHeight = [section[kLrfHeaderHeight] floatValue];
+                if (headerHeight == UITableViewAutomaticDimension) {
+                    headerHeight = self.estimatedSectionHeaderHeight;
+                }
                 CGFloat footerHeight = [section[kLrfFooterHeight] floatValue];
+                if (footerHeight == UITableViewAutomaticDimension) {
+                    footerHeight = self.estimatedSectionFooterHeight;
+                }
                 height += (headerHeight + footerHeight);
                 NSArray<LRFCellInfo *> *cells = section[kLrfCells];
                 for (LRFCellInfo *cell in cells) {
-                    CGFloat h = [cell[kLrfCellHeight] floatValue];
-                    height += h;
+                    CGFloat rowHeight = [cell[kLrfCellHeight] floatValue];
+                    if (rowHeight == UITableViewAutomaticDimension) {
+                        rowHeight = self.estimatedRowHeight;
+                    }
+                    height += rowHeight;
                 }
             }
         }
