@@ -92,7 +92,6 @@
         default:
             break;
     }
-    [self lrf_showDebugFrame];
 }
 
 
