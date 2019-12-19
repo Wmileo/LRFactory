@@ -12,8 +12,8 @@
 #import "NSString+LRFactory.h"
 
 
-#define kMinWidth 26
-#define kMinHeight 28
+#define kMinWidth 33
+#define kMinHeight 33
 
 @implementation UIButton (LRFactory)
 
@@ -78,19 +78,21 @@
     self.lrf_size = CGSizeMake(width, height);
     CGFloat gapWidth = MAX((self.lrf_width - size.width), 0);
     CGFloat gapHeight = MAX((self.lrf_height - size.height), 0);
+    CGFloat gap = MIN(4, gapWidth / 2);
     switch (aligning) {
         case LRF_Image_Aligning_Left:
-             self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, 0, gapHeight / 2, gapWidth);
+             self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, gap, gapHeight / 2, gapWidth - gap);
             break;
         case LRF_Image_Aligning_Center:
              self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, gapWidth / 2, gapHeight / 2, gapWidth / 2);
             break;
         case LRF_Image_Aligning_Right:
-             self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, gapWidth, gapHeight / 2, 0);
+             self.imageEdgeInsets = UIEdgeInsetsMake(gapHeight / 2, gapWidth - gap, gapHeight / 2, gap);
             break;
         default:
             break;
     }
+    [self lrf_showDebugFrame];
 }
 
 
