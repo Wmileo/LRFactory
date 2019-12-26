@@ -8,6 +8,7 @@
 
 #import "UIViewController+LRFViewControllerStyle.h"
 #import "NSObject+LRFactory.h"
+#import "UIViewController+LRFactory.h"
 #import <objc/runtime.h>
 
 @implementation UIViewController (LRFViewControllerStyle)
@@ -39,8 +40,11 @@ NSString *lrf_defaultStyleIdentifier;
 }
 
 - (void)LRFViewControllerStyle_viewDidLoad{
-    void (^Block)(UIViewController *vc) = lrf_styles[self.lrf_styleIdentifier];
-    Block(self);
+    if ([self lrf_isVisible]) {
+        void (^Block)(UIViewController *vc) = lrf_styles[self.lrf_styleIdentifier];
+        Block(self);
+    }
+    [self LRFViewControllerStyle_viewDidLoad];
 }
 
 #pragma mark - set get
