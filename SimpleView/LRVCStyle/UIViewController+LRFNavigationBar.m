@@ -25,7 +25,7 @@
 
 -(void)LRFNavigationBar_viewWillAppear:(BOOL)animated{
     [self LRFNavigationBar_viewWillAppear:animated];
-    if (self.navigationController && self.lrf_isFinalController) {
+    if (!self.lrf_isKitController && self.navigationController && self.lrf_isFinalController) {
         [self.navigationController setNavigationBarHidden:self.lrf_navigationBarHidden animated:animated];
         [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
         [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];

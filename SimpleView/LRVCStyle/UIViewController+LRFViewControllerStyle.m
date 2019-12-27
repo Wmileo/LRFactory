@@ -42,7 +42,7 @@ NSString *lrf_defaultStyleIdentifier;
 
 - (void)LRFViewControllerStyle_viewDidLoad{
     [self LRFViewControllerStyle_viewDidLoad];
-    if (self.lrf_isVisible || self.lrf_viewControllerByPresent.lrf_isVisible) {
+    if (!self.lrf_isKitController) {
         void (^Block)(UIViewController *vc) = lrf_styles[self.lrf_styleIdentifier];
         Block(self);
     }
