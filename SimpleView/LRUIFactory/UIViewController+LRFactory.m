@@ -50,4 +50,9 @@
     return YES;
 }
 
+- (BOOL)lrf_isKitController{
+    NSString *str = NSStringFromClass([self class]);
+    return [str hasPrefix:@"UI"] || [str hasPrefix:@"_UI"];
+}
+
 @end

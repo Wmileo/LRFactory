@@ -11,9 +11,9 @@
 
 @interface UIViewController (LRFAppear)
 
-- (void)viewDidDisappear_lrfForever;
-- (void)viewWillDisappear_lrfForever:(BOOL)animated;
-- (void)viewWillAppear_lrfFirstTime:(BOOL)animated;
+@property (nonatomic, copy) void (^lrf_viewDidDisappearForever)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillDisappearForever)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillAppearFirstTime)(BOOL animated);
 
 @end
 
