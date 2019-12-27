@@ -22,4 +22,7 @@
 //是否最终控制器（比如该控制器还包含子控制器则返回NO）
 @property (nonatomic, readonly) BOOL lrf_isFinalController;
 
+//是否是系统控制器（判断 UI，_UI 开头）
+@property (nonatomic, readonly) BOOL lrf_isKitController;
+
 @end
