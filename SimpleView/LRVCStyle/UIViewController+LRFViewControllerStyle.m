@@ -9,6 +9,7 @@
 #import "UIViewController+LRFViewControllerStyle.h"
 #import "NSObject+LRFactory.h"
 #import "UIViewController+LRFactory.h"
+#import "UIViewController+LRFPresent.h"
 #import <objc/runtime.h>
 
 @implementation UIViewController (LRFViewControllerStyle)
@@ -40,11 +41,12 @@ NSString *lrf_defaultStyleIdentifier;
 }
 
 - (void)LRFViewControllerStyle_viewDidLoad{
-    if ([self lrf_isVisible]) {
+    if (self.lrf_isVisible || self.lrf_viewControllerByPresent.lrf_isVisible) {
         void (^Block)(UIViewController *vc) = lrf_styles[self.lrf_styleIdentifier];
         Block(self);
     }
     [self LRFViewControllerStyle_viewDidLoad];
+    NSLog(@"%d",[self lrf_isVisible]);
 }
 
 #pragma mark - set get
