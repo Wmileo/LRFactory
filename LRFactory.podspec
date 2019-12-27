@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name         = "LRFactory"
-    s.version      = "2.1.5"
+    s.version      = "2.1.6"
     s.summary      = "LRFactory"
     s.description  = <<-DESC
 					 封装视图控件，用于方便调用
@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
     s.subspec "LRVCStyle" do |ss|
         ss.source_files = 'SimpleView/LRVCStyle/*'
         ss.dependency 'LRFactory/LRUIFactory'
+        ss.dependency 'LRFactory/LRVCExtend'
     end
 
 end

@@ -20,4 +20,14 @@
  */
 - (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info;
 
+/**
+ *  是否将要显示
+ */
+@property (nonatomic, readonly) BOOL lrf_isPresentWillAppear;
+
+/**
+ *  被该控制器present
+ */
+@property (nonatomic, readonly) UIViewController *lrf_viewControllerByPresent;
+
 @end
