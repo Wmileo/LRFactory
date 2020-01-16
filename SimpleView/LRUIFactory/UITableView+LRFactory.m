@@ -45,7 +45,7 @@
     [self reloadData];
 }
 
-- (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(NSDictionary *)info{
++ (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(NSDictionary *)info{
     if (!cellID) {
         cellID = @"cell";
     }
@@ -62,11 +62,11 @@
     };
 }
 
-- (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells{
++ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells{
     return [self lrf_sectionInfoWithCells:cells info:@{} headerFooterInfo:[self lrf_headerInfoWithHeaderID:@"header" height:0]];
 }
 
-- (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(NSDictionary *)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
++ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(NSDictionary *)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
     if (!cells) {
         cells = @[];
     }
@@ -84,15 +84,15 @@
     return [dic copy];
 }
 
-- (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height{
++ (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height{
     return [self lrf_headerFooterInfoWithHeaderID:headerID headerHeight:height footerID:@"footer" footerHeight:0];
 }
 
-- (LRFHeaderFooterInfo *)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height{
++ (LRFHeaderFooterInfo *)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height{
     return [self lrf_headerFooterInfoWithHeaderID:@"header" headerHeight:0 footerID:footerID footerHeight:height];
 }
 
-- (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight{
++ (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight{
     if (!headerID) {
         headerID = @"header";
     }
