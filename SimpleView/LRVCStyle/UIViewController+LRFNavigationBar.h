@@ -24,9 +24,24 @@
 @property (nonatomic, strong) UIColor *lrf_navigationBarTintColor;
 
 /**
+ *  item字体颜色
+ */
+@property (nonatomic, strong) UIColor *lrf_navigationBarItemTintColor;
+
+/**
+ * title字体样式颜色
+ */
+@property (nonatomic, copy) NSDictionary<NSAttributedStringKey,id> *lrf_navigationBarTitleTextAttributes;
+
+/**
  *  底部阴影 nil为默认阴影
  */
 @property (nonatomic, strong) UIImage *lrf_navigationBarShadowImage;
+
+/**
+ *  背景图片 nil为默认图片
+ */
+@property (nonatomic, strong) UIImage *lrf_navigationBarBackgroundImage;
 
 /**
  *  导航栏背景透明
