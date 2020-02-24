@@ -27,9 +27,14 @@
     [self LRFNavigationBar_viewWillAppear:animated];
     if (!self.lrf_isKitController && self.navigationController && self.lrf_isFinalController) {
         [self.navigationController setNavigationBarHidden:self.lrf_navigationBarHidden animated:animated];
-        [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
-        [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
-        [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
+        if (!self.lrf_navigationBarHidden) {
+            [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
+            [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
+            [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
+            [self.navigationController.navigationBar setBackgroundImage:self.lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+            [self.navigationController.navigationBar setTintColor:self.lrf_navigationBarItemTintColor];
+            [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_navigationBarTitleTextAttributes];
+        }
     }
 }
 
@@ -50,11 +55,7 @@ static char keyNavigationBarHidden;
 }
 
 - (BOOL)lrf_navigationBarHidden{
-    if (objc_getAssociatedObject(self, &keyNavigationBarHidden)) {
-        return [objc_getAssociatedObject(self, &keyNavigationBarHidden) boolValue];
-    }else{
-        return self.navigationController.isNavigationBarHidden;
-    }
+    return [objc_getAssociatedObject(self, &keyNavigationBarHidden) boolValue];
 }
 
 #pragma mrak - navigationBarTintColor
@@ -70,11 +71,39 @@ static char keyNavigationBarTintColor;
 }
 
 -(UIColor *)lrf_navigationBarTintColor{
-    if (objc_getAssociatedObject(self, &keyNavigationBarTintColor)) {
-        return objc_getAssociatedObject(self, &keyNavigationBarTintColor);
-    }else{
-        return self.navigationController.navigationBar.barTintColor;
+    return objc_getAssociatedObject(self, &keyNavigationBarTintColor);
+}
+
+#pragma mrak - navigationBarItemTintColor
+
+static char keyNavigationBarItemTintColor;
+
+-(void)setLrf_navigationBarItemTintColor:(UIColor *)lrf_navigationBarItemTintColor{
+    [UIViewController lrf_injectNavigationBar];
+    objc_setAssociatedObject(self, &keyNavigationBarItemTintColor, lrf_navigationBarItemTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        [self.navigationController.navigationBar setTintColor:lrf_navigationBarItemTintColor];
     }
+}
+
+-(UIColor *)lrf_navigationBarItemTintColor{
+    return objc_getAssociatedObject(self, &keyNavigationBarItemTintColor);
+}
+
+#pragma mrak - navigationBarTitleTextAttributes
+
+static char keyNavigationBarTitleTextAttributes;
+
+-(void)setLrf_navigationBarTitleTextAttributes:(NSDictionary<NSAttributedStringKey,id> *)lrf_navigationBarTitleTextAttributes{
+    [UIViewController lrf_injectNavigationBar];
+    objc_setAssociatedObject(self, &keyNavigationBarTitleTextAttributes, lrf_navigationBarTitleTextAttributes, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        [self.navigationController.navigationBar setTitleTextAttributes:lrf_navigationBarTitleTextAttributes];
+    }
+}
+
+-(NSDictionary<NSAttributedStringKey,id> *)lrf_navigationBarTitleTextAttributes{
+    return objc_getAssociatedObject(self, &keyNavigationBarTitleTextAttributes);
 }
 
 #pragma mark - navigationBarShadowImage
@@ -90,11 +119,22 @@ static char keyNavigationBarShadowImage;
 }
 
 -(UIImage *)lrf_navigationBarShadowImage{
-    if (objc_getAssociatedObject(self, &keyNavigationBarShadowImage)) {
-        return objc_getAssociatedObject(self, &keyNavigationBarShadowImage);
-    }else{
-        return self.navigationController.navigationBar.shadowImage;
+    return objc_getAssociatedObject(self, &keyNavigationBarShadowImage);
+}
+
+#pragma mark - navigationBarShadowImage
+
+static char keyNavigationBarBackgroundImage;
+-(void)setLrf_navigationBarBackgroundImage:(UIImage *)lrf_navigationBarBackgroundImage{
+    [UIViewController lrf_injectNavigationBar];
+    objc_setAssociatedObject(self, &keyNavigationBarBackgroundImage, lrf_navigationBarBackgroundImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        [self.navigationController.navigationBar setBackgroundImage:lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
     }
+}
+
+-(UIImage *)lrf_navigationBarBackgroundImage{
+    return objc_getAssociatedObject(self, &keyNavigationBarBackgroundImage);
 }
 
 #pragma mark - navigationBarTranslucent
@@ -110,11 +150,7 @@ static char keyNavigationBarTranslucent;
 }
 
 -(BOOL)lrf_navigationBarTranslucent{
-    if (objc_getAssociatedObject(self, &keyNavigationBarTranslucent)) {
-        return [objc_getAssociatedObject(self, &keyNavigationBarTranslucent) boolValue];
-    }else{
-        return self.navigationController.navigationBar.isTranslucent;
-    }
+    return [objc_getAssociatedObject(self, &keyNavigationBarTranslucent) boolValue];
 }
 
 @end
