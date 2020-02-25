@@ -27,14 +27,6 @@
     [self LRFNavigationBar_viewWillAppear:animated];
     if (!self.lrf_isKitController && self.navigationController && self.lrf_isFinalController) {
         [self.navigationController setNavigationBarHidden:self.lrf_navigationBarHidden animated:animated];
-        if (!self.lrf_navigationBarHidden) {
-            [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
-            [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
-            [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
-            [self.navigationController.navigationBar setBackgroundImage:self.lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-            [self.navigationController.navigationBar setTintColor:self.lrf_navigationBarItemTintColor];
-            [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_navigationBarTitleTextAttributes];
-        }
     }
 }
 
@@ -51,6 +43,14 @@ static char keyNavigationBarHidden;
     objc_setAssociatedObject(self, &keyNavigationBarHidden, @(lrf_navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController setNavigationBarHidden:lrf_navigationBarHidden animated:animated];
+        if (!lrf_navigationBarHidden) {
+            [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
+            [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
+            [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
+            [self.navigationController.navigationBar setBackgroundImage:self.lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+            [self.navigationController.navigationBar setTintColor:self.lrf_navigationBarItemTintColor];
+            [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_navigationBarTitleTextAttributes];
+        }
     }
 }
 
