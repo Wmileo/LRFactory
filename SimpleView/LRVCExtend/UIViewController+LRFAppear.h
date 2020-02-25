@@ -15,5 +15,10 @@
 @property (nonatomic, copy) void (^lrf_viewWillDisappearForever)(BOOL animated);
 @property (nonatomic, copy) void (^lrf_viewWillAppearFirstTime)(BOOL animated);
 
+@property (nonatomic, copy) void (^lrf_viewWillAppear)(BOOL animated, BOOL isFirstTime);
+@property (nonatomic, copy) void (^lrf_viewDidAppear)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillDisappear)(BOOL animated, BOOL isForever);
+@property (nonatomic, copy) void (^lrf_viewDidDisappear)(BOOL animated, BOOL isForever);
+
 @end
 

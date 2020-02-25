@@ -44,8 +44,14 @@
 @property (nonatomic, strong) UIImage *lrf_navigationBarBackgroundImage;
 
 /**
- *  导航栏背景透明
+ *  导航栏背景半透明
  */
 @property (nonatomic, assign) BOOL lrf_navigationBarTranslucent;
+
+///**
+// *  导航栏背景透明
+// */
+//@property (nonatomic, assign) BOOL lrf_navigationBarClear;
+
 
 @end
