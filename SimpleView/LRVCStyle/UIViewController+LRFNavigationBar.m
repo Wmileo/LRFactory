@@ -20,13 +20,54 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(LRFNavigationBar_viewWillAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(LRFNavigationBar_viewDidAppear:)];
+        [UIViewController lrf_exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(LRFNavigationBar_viewWillDisappear:)];
     });
 }
 
 -(void)LRFNavigationBar_viewWillAppear:(BOOL)animated{
-    [self LRFNavigationBar_viewWillAppear:animated];
     if (!self.lrf_isKitController && self.navigationController && self.lrf_isFinalController) {
-        [self.navigationController setNavigationBarHidden:self.lrf_navigationBarHidden animated:animated];
+        if (self.lrf_navigationBarClear) {
+            [self.navigationController setNavigationBarHidden:YES animated:animated];
+        } else {
+            [self lrf_resetNavigationBar:animated];
+        }
+    }
+    [self LRFNavigationBar_viewWillAppear:animated];
+}
+
+- (void)LRFNavigationBar_viewDidAppear:(BOOL)animated {
+    if (!self.lrf_isKitController && self.navigationController && self.lrf_isFinalController) {
+        if (self.lrf_navigationBarClear) {
+            [self lrf_resetNavigationBar:NO];
+        }
+    }
+    [self LRFNavigationBar_viewDidAppear:animated];
+}
+
+- (void)LRFNavigationBar_viewWillDisappear:(BOOL)animated{
+    if (!self.lrf_isKitController && self.lrf_navigationBarClear && self.navigationController && self.lrf_isFinalController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
+    [self LRFNavigationBar_viewWillDisappear:animated];
+}
+
+- (void)lrf_resetNavigationBar:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:self.lrf_navigationBarHidden animated:animated];
+    if (!self.lrf_navigationBarHidden) {
+        if (self.lrf_navigationBarClear) {
+            [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+            [self.navigationController.navigationBar setTranslucent:YES];
+            [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        } else {
+            [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
+            [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
+            [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
+            [self.navigationController.navigationBar setBackgroundImage:self.lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+        }
+        [self.navigationController.navigationBar setTintColor:self.lrf_navigationBarItemTintColor];
+        [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_navigationBarTitleTextAttributes];
     }
 }
 
@@ -42,15 +83,7 @@ static char keyNavigationBarHidden;
     [UIViewController lrf_injectNavigationBar];
     objc_setAssociatedObject(self, &keyNavigationBarHidden, @(lrf_navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.navigationController && self.lrf_isVisible) {
-        [self.navigationController setNavigationBarHidden:lrf_navigationBarHidden animated:animated];
-        if (!lrf_navigationBarHidden) {
-            [self.navigationController.navigationBar setBarTintColor:self.lrf_navigationBarTintColor];
-            [self.navigationController.navigationBar setShadowImage:self.lrf_navigationBarShadowImage];
-            [self.navigationController.navigationBar setTranslucent:self.lrf_navigationBarTranslucent];
-            [self.navigationController.navigationBar setBackgroundImage:self.lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-            [self.navigationController.navigationBar setTintColor:self.lrf_navigationBarItemTintColor];
-            [self.navigationController.navigationBar setTitleTextAttributes:self.lrf_navigationBarTitleTextAttributes];
-        }
+        [self lrf_resetNavigationBar:animated];
     }
 }
 
@@ -151,6 +184,25 @@ static char keyNavigationBarTranslucent;
 
 -(BOOL)lrf_navigationBarTranslucent{
     return [objc_getAssociatedObject(self, &keyNavigationBarTranslucent) boolValue];
+}
+
+#pragma mark - navigationBarClear
+
+static char keyNavigationBarClear;
+
+-(void)setLrf_navigationBarClear:(BOOL)lrf_navigationBarClear{
+    [UIViewController lrf_injectNavigationBar];
+    objc_setAssociatedObject(self, &keyNavigationBarClear, @(lrf_navigationBarClear), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.navigationController && self.lrf_isVisible) {
+        self.lrf_navigationBarTintColor = [UIColor clearColor];
+        self.lrf_navigationBarTranslucent = YES;
+        self.lrf_navigationBarBackgroundImage = [UIImage new];
+        self.lrf_navigationBarShadowImage = [UIImage new];
+    }
+}
+
+-(BOOL)lrf_navigationBarClear{
+    return [objc_getAssociatedObject(self, &keyNavigationBarClear) boolValue];
 }
 
 @end
