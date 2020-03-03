@@ -12,9 +12,9 @@
 
 @property (nonatomic, assign) BOOL lrf_popIgnore;//pop时忽略
 
-- (void)viewWillAppear_lrfByNavigationPush:(BOOL)animated;
-- (void)viewWillAppear_lrfByNavigationPop:(BOOL)animated;
-- (void)viewWillDisappear_lrfByNavigationPush:(BOOL)animated;
-- (void)viewWillDisappear_lrfByNavigationPop:(BOOL)animated;
+@property (nonatomic, copy) void (^lrf_viewWillAppearByNavigationPush)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillAppearByNavigationPop)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillDisappearByNavigationPush)(BOOL animated);
+@property (nonatomic, copy) void (^lrf_viewWillDisappearByNavigationPop)(BOOL animated);
 
 @end
