@@ -29,7 +29,6 @@
 static char keyViewHadAppeared;
 
 - (void)LRFAppear_viewWillAppear:(BOOL)animated{
-    [self LRFAppear_viewWillAppear:animated];
     BOOL isFirstTime = NO;
     if (![objc_getAssociatedObject(self, &keyViewHadAppeared) boolValue] && self.lrf_viewWillAppearFirstTime) {
         objc_setAssociatedObject(self, &keyViewHadAppeared, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -39,6 +38,7 @@ static char keyViewHadAppeared;
     if (self.lrf_viewWillAppear) {
         self.lrf_viewWillAppear(animated, isFirstTime);
     }
+    [self LRFAppear_viewWillAppear:animated];
 }
 
 -(void)LRFAppear_viewDidAppear:(BOOL)animated{
@@ -61,7 +61,6 @@ static char keyViewHadAppeared;
 }
 
 - (void)LRFAppear_viewWillDisappear:(BOOL)animated{
-    [self LRFAppear_viewWillDisappear:animated];
     BOOL isForever = NO;
     if (![self lrf_isSelfValid] && self.lrf_viewWillDisappearForever) {
         self.lrf_viewWillDisappearForever(animated);
@@ -70,6 +69,7 @@ static char keyViewHadAppeared;
     if (self.lrf_viewWillDisappear) {
         self.lrf_viewWillDisappear(animated, isForever);
     }
+    [self LRFAppear_viewWillDisappear:animated];
 }
 
 - (BOOL)lrf_isSelfValid{

@@ -48,10 +48,10 @@
  */
 @property (nonatomic, assign) BOOL lrf_navigationBarTranslucent;
 
-///**
-// *  导航栏背景透明
-// */
-//@property (nonatomic, assign) BOOL lrf_navigationBarClear;
+/**
+ *  导航栏背景透明
+ */
+@property (nonatomic, assign) BOOL lrf_navigationBarClear;
 
 
 @end
