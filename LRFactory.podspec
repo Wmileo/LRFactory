@@ -7,12 +7,12 @@ Pod::Spec.new do |s|
 					 封装视图控件，用于方便调用
                    DESC
 
-    s.homepage     = "https://github.com/Wmileo/SimpleView"
+    s.homepage     = "https://github.com/Wmileo/LRFactory"
     s.license      = "MIT"
     s.author       = { "leo" => "work.mileo@gmail.com" }
 
     s.platform     = :ios, "8.0"
-    s.source       = { :git => "https://github.com/Wmileo/SimpleView.git", :tag => s.version.to_s }
+    s.source       = { :git => "https://github.com/Wmileo/LRFactory.git", :tag => s.version.to_s }
 
     s.requires_arc = true
 
