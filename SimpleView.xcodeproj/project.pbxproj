@@ -13,6 +13,7 @@
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */; };
 		B36D12DD21E2F94D007303FD /* UIImage+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */; };
 		B37FD6072388E092004FFEED /* UITableView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FD6062388E092004FFEED /* UITableView+LRFactory.m */; };
+		B39BFED0244B5817005D8EE1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B39BFECF244B5817005D8EE1 /* README.md */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */; };
 		B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */; };
 		B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854F2192C54700B51AA9 /* NSObject+LRFactory.m */; };
@@ -78,8 +79,10 @@
 		B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LRFactory.m"; sourceTree = "<group>"; };
 		B37FD6052388E092004FFEED /* UITableView+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LRFactory.h"; sourceTree = "<group>"; };
 		B37FD6062388E092004FFEED /* UITableView+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LRFactory.m"; sourceTree = "<group>"; };
+		B39BFECF244B5817005D8EE1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFPush.h"; sourceTree = "<group>"; };
 		B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFPush.m"; sourceTree = "<group>"; };
+		B3C85448244C379200C49AE2 /* LRVCExtend.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LRVCExtend.md; sourceTree = "<group>"; };
 		B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LRFactory.h"; sourceTree = "<group>"; };
 		B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LRFactory.m"; sourceTree = "<group>"; };
 		B3E6854E2192C54700B51AA9 /* NSObject+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LRFactory.h"; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		B3FCB1462194520E00523E92 /* LRVCExtend */ = {
 			isa = PBXGroup;
 			children = (
+				B3C85448244C379200C49AE2 /* LRVCExtend.md */,
 				B3FCB15B219D6E7500523E92 /* LRVCExtend.h */,
 				CE1B646D1D01722A0034672B /* UIViewController+LRFPresent.h */,
 				CE1B646E1D01722A0034672B /* UIViewController+LRFPresent.m */,
@@ -226,6 +230,7 @@
 		CE55BE3D1CBBC2F500D8364B = {
 			isa = PBXGroup;
 			children = (
+				B39BFECF244B5817005D8EE1 /* README.md */,
 				CE075E3A1DDEEA8A0030E81D /* LRFactory.podspec */,
 				CE55BE481CBBC2F600D8364B /* SimpleView */,
 				CE55BE621CBBC2F600D8364B /* SimpleViewTests */,
@@ -474,6 +479,7 @@
 			files = (
 				CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */,
 				CE55BE561CBBC2F600D8364B /* Assets.xcassets in Resources */,
+				B39BFED0244B5817005D8EE1 /* README.md in Resources */,
 				CE55BE541CBBC2F600D8364B /* Main.storyboard in Resources */,
 				CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */,
 			);

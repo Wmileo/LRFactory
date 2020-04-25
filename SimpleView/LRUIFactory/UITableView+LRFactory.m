@@ -22,13 +22,11 @@
 #define kLrfHeaderID @"kLrfHeaderID"
 #define kLrfFooterID @"kLrfFooterID"
 
-
 @interface LRFTabViewImplement : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *lrf_tableView;
 
 @end
-
 
 @interface UITableView ()
 
@@ -121,11 +119,11 @@
 
 static char klrf_sectionInfos;
 
--(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
+- (NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
     return objc_getAssociatedObject(self, &klrf_sectionInfos);
 }
 
--(void)setLrf_sectionInfos:(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
+- (void)setLrf_sectionInfos:(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
     objc_setAssociatedObject(self, &klrf_sectionInfos, lrf_sectionInfos, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
@@ -133,18 +131,21 @@ static char klrf_sectionInfos;
 # pragma mark - delegate
 
 static char klrf_implement;
--(LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
-    LRFTabViewImplement *implement = objc_getAssociatedObject(self, &klrf_implement);
-    if (!implement) {
-        implement = [[LRFTabViewImplement alloc] init];
-        implement.lrf_tableView = self;
-        self.lrf_implement = implement;
-    }
-    return implement;
+
+- (LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
+    return objc_getAssociatedObject(self, &klrf_implement);
 }
 
--(void)setLrf_implement:(LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
+- (void)setLrf_implement:(LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
     objc_setAssociatedObject(self, &klrf_implement, lrf_implement, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_safeImplement{
+    if (!self.lrf_implement) {
+        self.lrf_implement = [[LRFTabViewImplement alloc] init];
+        self.lrf_implement.lrf_tableView = self;
+    }
+    return self.lrf_implement;
 }
 
 static char klrf_dataSource;
@@ -154,7 +155,9 @@ static char klrf_dataSource;
 }
 
 - (void)setLrf_dataSource:(id<LRF_UITableViewDataSource>)lrf_dataSource{
-    self.dataSource = self.lrf_implement;
+    if (lrf_dataSource) {
+        self.dataSource = self.lrf_safeImplement;
+    }
     objc_setAssociatedObject(self, &klrf_dataSource, lrf_dataSource, OBJC_ASSOCIATION_ASSIGN);
 }
 
@@ -165,7 +168,9 @@ static char klrf_delegate;
 }
 
 - (void)setLrf_delegate:(id)lrf_delegate{
-    self.delegate = self.lrf_implement;
+    if (lrf_delegate) {
+        self.delegate = self.lrf_safeImplement;
+    }
     objc_setAssociatedObject(self, &klrf_delegate, lrf_delegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
@@ -218,7 +223,7 @@ static char klrf_delegate;
     return [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"footer"];
 }
 
--(CGFloat)lrf_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)lrf_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (self.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
@@ -232,7 +237,7 @@ static char klrf_delegate;
     return 0;
 }
 
--(CGFloat)lrf_tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)lrf_tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (self.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
@@ -248,28 +253,31 @@ static char klrf_delegate;
 
 @end
 
-
 @implementation LRFTabViewImplement
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [self.lrf_tableView lrf_tableView:tableView heightForRowAtIndexPath:indexPath];
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.lrf_tableView lrf_tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [self.lrf_tableView lrf_tableView:tableView viewForHeaderInSection:section];
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [self.lrf_tableView lrf_tableView:tableView viewForFooterInSection:section];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.lrf_tableView lrf_tableView:tableView heightForHeaderInSection:section];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return [self.lrf_tableView lrf_tableView:tableView heightForFooterInSection:section];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.lrf_tableView.lrf_dataSource) {
@@ -281,7 +289,7 @@ static char klrf_delegate;
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.lrf_tableView.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_tableView.lrf_sectionInfos;
         if (sections && sections.count > section) {
@@ -292,7 +300,7 @@ static char klrf_delegate;
     return 0;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.lrf_tableView.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_tableView.lrf_sectionInfos;
         if (sections && sections.count > indexPath.section) {
@@ -305,4 +313,5 @@ static char klrf_delegate;
     }
     return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
 }
+
 @end
