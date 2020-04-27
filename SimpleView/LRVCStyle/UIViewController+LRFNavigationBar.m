@@ -9,7 +9,6 @@
 #import "UIViewController+LRFNavigationBar.h"
 #import "UIViewController+LRFactory.h"
 #import "NSObject+LRFactory.h"
-#import <objc/runtime.h>
 
 @implementation UIViewController (LRFNavigationBar)
 
@@ -81,14 +80,14 @@ static char keyNavigationBarHidden;
 
 - (void)setLrf_navigationBarHidden:(BOOL)lrf_navigationBarHidden animated:(BOOL)animated{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarHidden, @(lrf_navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_navigationBarHidden) withKey:&keyNavigationBarHidden];
     if (self.navigationController && self.lrf_isVisible) {
         [self lrf_resetNavigationBar:animated];
     }
 }
 
 - (BOOL)lrf_navigationBarHidden{
-    return [objc_getAssociatedObject(self, &keyNavigationBarHidden) boolValue];
+    return [[self lrf_getAssociatedObjectWithKey:&keyNavigationBarHidden] boolValue];
 }
 
 #pragma mrak - navigationBarTintColor
@@ -97,14 +96,14 @@ static char keyNavigationBarTintColor;
 
 -(void)setLrf_navigationBarTintColor:(UIColor *)lrf_navigationBarTintColor{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarTintColor, lrf_navigationBarTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_navigationBarTintColor withKey:&keyNavigationBarTintColor];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setBarTintColor:lrf_navigationBarTintColor];
     }
 }
 
 -(UIColor *)lrf_navigationBarTintColor{
-    return objc_getAssociatedObject(self, &keyNavigationBarTintColor);
+    return [self lrf_getAssociatedObjectWithKey:&keyNavigationBarTintColor];
 }
 
 #pragma mrak - navigationBarItemTintColor
@@ -113,14 +112,14 @@ static char keyNavigationBarItemTintColor;
 
 -(void)setLrf_navigationBarItemTintColor:(UIColor *)lrf_navigationBarItemTintColor{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarItemTintColor, lrf_navigationBarItemTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_navigationBarItemTintColor withKey:&keyNavigationBarItemTintColor];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setTintColor:lrf_navigationBarItemTintColor];
     }
 }
 
 -(UIColor *)lrf_navigationBarItemTintColor{
-    return objc_getAssociatedObject(self, &keyNavigationBarItemTintColor);
+    return [self lrf_getAssociatedObjectWithKey:&keyNavigationBarItemTintColor];
 }
 
 #pragma mrak - navigationBarTitleTextAttributes
@@ -129,14 +128,14 @@ static char keyNavigationBarTitleTextAttributes;
 
 -(void)setLrf_navigationBarTitleTextAttributes:(NSDictionary<NSAttributedStringKey,id> *)lrf_navigationBarTitleTextAttributes{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarTitleTextAttributes, lrf_navigationBarTitleTextAttributes, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self lrf_setNonatomicCopyAssociatedObject:lrf_navigationBarTitleTextAttributes withKey:&keyNavigationBarTitleTextAttributes];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setTitleTextAttributes:lrf_navigationBarTitleTextAttributes];
     }
 }
 
 -(NSDictionary<NSAttributedStringKey,id> *)lrf_navigationBarTitleTextAttributes{
-    return objc_getAssociatedObject(self, &keyNavigationBarTitleTextAttributes);
+    return [self lrf_getAssociatedObjectWithKey:&keyNavigationBarTitleTextAttributes];
 }
 
 #pragma mark - navigationBarShadowImage
@@ -145,29 +144,30 @@ static char keyNavigationBarShadowImage;
 
 -(void)setLrf_navigationBarShadowImage:(UIImage *)lrf_navigationBarShadowImage{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarShadowImage, lrf_navigationBarShadowImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_navigationBarShadowImage withKey:&keyNavigationBarShadowImage];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setShadowImage:lrf_navigationBarShadowImage];
     }
 }
 
 -(UIImage *)lrf_navigationBarShadowImage{
-    return objc_getAssociatedObject(self, &keyNavigationBarShadowImage);
+    return [self lrf_getAssociatedObjectWithKey:&keyNavigationBarShadowImage];
 }
 
 #pragma mark - navigationBarShadowImage
 
 static char keyNavigationBarBackgroundImage;
+
 -(void)setLrf_navigationBarBackgroundImage:(UIImage *)lrf_navigationBarBackgroundImage{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarBackgroundImage, lrf_navigationBarBackgroundImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_navigationBarBackgroundImage withKey:&keyNavigationBarBackgroundImage];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setBackgroundImage:lrf_navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
     }
 }
 
 -(UIImage *)lrf_navigationBarBackgroundImage{
-    return objc_getAssociatedObject(self, &keyNavigationBarBackgroundImage);
+    return [self lrf_getAssociatedObjectWithKey:&keyNavigationBarBackgroundImage];
 }
 
 #pragma mark - navigationBarTranslucent
@@ -176,14 +176,14 @@ static char keyNavigationBarTranslucent;
 
 -(void)setLrf_navigationBarTranslucent:(BOOL)lrf_navigationBarTranslucent{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarTranslucent, @(lrf_navigationBarTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_navigationBarTranslucent) withKey:&keyNavigationBarTranslucent];
     if (self.navigationController && self.lrf_isVisible) {
         [self.navigationController.navigationBar setTranslucent:lrf_navigationBarTranslucent];
     }
 }
 
 -(BOOL)lrf_navigationBarTranslucent{
-    return [objc_getAssociatedObject(self, &keyNavigationBarTranslucent) boolValue];
+    return [[self lrf_getAssociatedObjectWithKey:&keyNavigationBarTranslucent] boolValue];
 }
 
 #pragma mark - navigationBarClear
@@ -192,7 +192,7 @@ static char keyNavigationBarClear;
 
 -(void)setLrf_navigationBarClear:(BOOL)lrf_navigationBarClear{
     [UIViewController lrf_injectNavigationBar];
-    objc_setAssociatedObject(self, &keyNavigationBarClear, @(lrf_navigationBarClear), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_navigationBarClear) withKey:&keyNavigationBarClear];
     if (self.navigationController && self.lrf_isVisible) {
         self.lrf_navigationBarTintColor = [UIColor clearColor];
         self.lrf_navigationBarTranslucent = YES;
@@ -202,7 +202,7 @@ static char keyNavigationBarClear;
 }
 
 -(BOOL)lrf_navigationBarClear{
-    return [objc_getAssociatedObject(self, &keyNavigationBarClear) boolValue];
+    return [[self lrf_getAssociatedObjectWithKey:&keyNavigationBarClear] boolValue];
 }
 
 @end

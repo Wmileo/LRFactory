@@ -33,7 +33,6 @@
 		CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0B61CD9F8E100A11CEB /* UILabel+LRFactory.m */; };
 		CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BC1CD9FCB300A11CEB /* NSString+LRFactory.m */; };
 		CE0AE0C01CDB33C000A11CEB /* UIView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */; };
-		CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C21CDB634900A11CEB /* TestViewController.m */; };
 		CE0AE0C61CDC729C00A11CEB /* UINavigationController+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE0C51CDC729C00A11CEB /* UINavigationController+LRFactory.m */; };
 		CE10184E1D4B4B2B00B08A00 /* NSAttributedString+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10184D1D4B4B2B00B08A00 /* NSAttributedString+LRFactory.m */; };
 		CE1B646F1D01722A0034672B /* UIViewController+LRFPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B646E1D01722A0034672B /* UIViewController+LRFPresent.m */; };
@@ -123,8 +122,6 @@
 		CE0AE0BC1CD9FCB300A11CEB /* NSString+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LRFactory.m"; sourceTree = "<group>"; };
 		CE0AE0BE1CDB33C000A11CEB /* UIView+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LRFactory.h"; sourceTree = "<group>"; };
 		CE0AE0BF1CDB33C000A11CEB /* UIView+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LRFactory.m"; sourceTree = "<group>"; };
-		CE0AE0C11CDB634900A11CEB /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		CE0AE0C21CDB634900A11CEB /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		CE0AE0C41CDC729C00A11CEB /* UINavigationController+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LRFactory.h"; sourceTree = "<group>"; };
 		CE0AE0C51CDC729C00A11CEB /* UINavigationController+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LRFactory.m"; sourceTree = "<group>"; };
 		CE10184C1D4B4B2B00B08A00 /* NSAttributedString+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+LRFactory.h"; sourceTree = "<group>"; };
@@ -258,8 +255,6 @@
 				CE55BE4D1CBBC2F600D8364B /* AppDelegate.m */,
 				CE55BE4F1CBBC2F600D8364B /* ViewController.h */,
 				CE55BE501CBBC2F600D8364B /* ViewController.m */,
-				CE0AE0C11CDB634900A11CEB /* TestViewController.h */,
-				CE0AE0C21CDB634900A11CEB /* TestViewController.m */,
 				B34759991E713607007C702C /* TableViewController.h */,
 				B347599A1E713607007C702C /* TableViewController.m */,
 				B34952161E600EA4004AD109 /* LRAnimationFactory */,
@@ -576,7 +571,6 @@
 				B36D12DD21E2F94D007303FD /* UIImage+LRFactory.m in Sources */,
 				CE0AE0BD1CD9FCB300A11CEB /* NSString+LRFactory.m in Sources */,
 				CE0AE0B71CD9F8E100A11CEB /* UILabel+LRFactory.m in Sources */,
-				CE0AE0C31CDB634900A11CEB /* TestViewController.m in Sources */,
 				B3FCB14A21945B2F00523E92 /* UIViewController+LRFStatusBar.m in Sources */,
 				B3FCB15A219BF48500523E92 /* UIViewController+LRFNavigationBar.m in Sources */,
 				B3FCB15421997F3900523E92 /* UIViewController+LRFGesture.m in Sources */,

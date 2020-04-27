@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface UIApplication (LRFactory)
 
 + (UIViewController *)lrf_currentViewController;

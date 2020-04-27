@@ -11,7 +11,6 @@
 #import "LRVCExtend.h"
 #import "LRFactory.h"
 #import "LRVCStyle.h"
-#import "TestViewController.h"
 
 @interface ViewController () <UITextViewDelegate>
 
@@ -76,7 +75,7 @@
     __weak __typeof(self) wself = self;
     
     [self lrf_addNavigationItemWithText:@"bb" side:LRF_BarButtonItem_Side_Right action:^{
-        TestViewController *test = [[TestViewController alloc] init];
+        ViewController *test = [[ViewController alloc] init];
         //        test.statusHide = YES;
         test.lrf_navigationBarTintColor = [UIColor redColor];
         test.lrf_navigationBarShadowImage = nil;
