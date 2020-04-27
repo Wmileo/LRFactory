@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name         = "LRFactory"
-    s.version      = "2.2.3"
+    s.version      = "2.2.4"
     s.summary      = "LRFactory"
     s.description  = <<-DESC
 					 封装视图控件，用于方便调用
