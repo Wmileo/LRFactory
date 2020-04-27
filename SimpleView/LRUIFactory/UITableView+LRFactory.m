@@ -8,7 +8,6 @@
 
 #import "UITableView+LRFactory.h"
 #import "NSObject+LRFactory.h"
-#import <objc/runtime.h>
 
 #define kLrfCellID @"kLrfCellID"
 #define kLrfCellHeight @"kLrfCellHeight"
@@ -151,27 +150,27 @@ static char klrf_implement;
 static char klrf_dataSource;
 
 - (id<LRF_UITableViewDataSource>)lrf_dataSource{
-    return objc_getAssociatedObject(self, &klrf_dataSource);
+    return [self lrf_getAssociatedObjectWithKey:&klrf_dataSource];
 }
 
 - (void)setLrf_dataSource:(id<LRF_UITableViewDataSource>)lrf_dataSource{
     if (lrf_dataSource) {
         self.dataSource = self.lrf_safeImplement;
     }
-    objc_setAssociatedObject(self, &klrf_dataSource, lrf_dataSource, OBJC_ASSOCIATION_ASSIGN);
+    [self lrf_setWeakAssociatedObject:lrf_dataSource withKey:&klrf_dataSource];
 }
 
 static char klrf_delegate;
 
 - (id)lrf_delegate{
-    return objc_getAssociatedObject(self, &klrf_delegate);
+    return [self lrf_getAssociatedObjectWithKey:&klrf_delegate];
 }
 
 - (void)setLrf_delegate:(id)lrf_delegate{
     if (lrf_delegate) {
         self.delegate = self.lrf_safeImplement;
     }
-    objc_setAssociatedObject(self, &klrf_delegate, lrf_delegate, OBJC_ASSOCIATION_ASSIGN);
+    [self lrf_setWeakAssociatedObject:lrf_delegate withKey:&klrf_delegate];
 }
 
 - (CGFloat)lrf_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

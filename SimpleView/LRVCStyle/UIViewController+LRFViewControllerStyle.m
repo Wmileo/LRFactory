@@ -56,7 +56,9 @@ static char keyStyleIdentifier;
     objc_setAssociatedObject(self, &keyStyleIdentifier, lrf_styleIdentifier, OBJC_ASSOCIATION_COPY_NONATOMIC);
     if (lrf_styleIdentifier) {
         void (^Block)(UIViewController *vc) = lrf_styles[lrf_styleIdentifier];
-        Block(self);
+        if (Block) {
+            Block(self);
+        }
     }
 }
 
