@@ -9,7 +9,6 @@
 #import "UIViewController+LRFStatusBar.h"
 #import "NSObject+LRFactory.h"
 #import "UIViewController+LRFactory.h"
-#import <objc/runtime.h>
 
 @implementation UIViewController (LRFStatusBar)
 
@@ -42,16 +41,17 @@ static char keyStatusBarAnimation;
 
 -(void)setLrf_statusBarHidden:(BOOL)lrf_statusBarHidden withAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation{
     [UIViewController lrf_injectStatus];
-    objc_setAssociatedObject(self, &keyStatusBarHidden, @(lrf_statusBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, &keyStatusBarAnimation, @(lrf_statusBarAnimation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarHidden) withKey:&keyStatusBarHidden];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKey:&keyStatusBarAnimation];
     if (self.lrf_isVisible) {
         [[UIApplication sharedApplication] setStatusBarHidden:self.lrf_statusBarHidden withAnimation:self.lrf_statusBarAnimation];
     }
 }
 
 - (BOOL)lrf_statusBarHidden{
-    if (objc_getAssociatedObject(self, &keyStatusBarHidden)) {
-        return [objc_getAssociatedObject(self, &keyStatusBarHidden) boolValue];
+    id hidden = [self lrf_getAssociatedObjectWithKey:&keyStatusBarHidden];
+    if (hidden) {
+        return [hidden boolValue];
     }else{
         return [UIApplication sharedApplication].statusBarHidden;
     }
@@ -63,15 +63,16 @@ static char keyStatusBarAnimation;
 
 -(void)setLrf_statusBarStyle:(UIStatusBarStyle)lrf_statusBarStyle animated:(BOOL)animated{
     [UIViewController lrf_injectStatus];
-    objc_setAssociatedObject(self, &keyStatusBarStyle, @(lrf_statusBarStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarStyle) withKey:&keyStatusBarStyle];
     if (self.lrf_isVisible) {
         [[UIApplication sharedApplication] setStatusBarStyle:self.lrf_statusBarStyle animated:animated];
     }
 }
 
 - (UIStatusBarStyle)lrf_statusBarStyle{
-    if (objc_getAssociatedObject(self, &keyStatusBarStyle)) {
-        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    id style = [self lrf_getAssociatedObjectWithKey:&keyStatusBarStyle];
+    if (style) {
+        return [style integerValue];
     }else{
         return [UIApplication sharedApplication].statusBarStyle;
     }
@@ -79,12 +80,13 @@ static char keyStatusBarAnimation;
 
 - (void)setLrf_statusBarAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation{
     [UIViewController lrf_injectStatus];
-    objc_setAssociatedObject(self, &keyStatusBarAnimation, @(lrf_statusBarAnimation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKey:&keyStatusBarAnimation];
 }
 
 - (UIStatusBarAnimation)lrf_statusBarAnimation{
-    if (objc_getAssociatedObject(self, &keyStatusBarAnimation)) {
-        return [objc_getAssociatedObject(self, &keyStatusBarStyle) integerValue];
+    id animation = [self lrf_getAssociatedObjectWithKey:&keyStatusBarAnimation];
+    if (animation) {
+        return [animation integerValue];
     }else{
         return UIStatusBarAnimationFade;
     }

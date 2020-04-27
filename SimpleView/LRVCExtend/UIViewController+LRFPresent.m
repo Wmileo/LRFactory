@@ -54,20 +54,13 @@ static char keyPresentDidDismissBlock;
 
 #pragma mark -
 
-static char keyIsPresentWillAppear;
-
--(BOOL)lrf_isPresentWillAppear{
-    return [objc_getAssociatedObject(self, &keyIsPresentWillAppear) boolValue];
-}
-
 static char keyViewControllerByPresent;
 -(UIViewController *)lrf_viewControllerByPresent{
-    return objc_getAssociatedObject(self, &keyViewControllerByPresent);
+    return [self lrf_getAssociatedObjectWithKey:&keyViewControllerByPresent];
 }
 
 -(void)LRFPresent_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
-    objc_setAssociatedObject(viewControllerToPresent, &keyIsPresentWillAppear, @(YES), OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(viewControllerToPresent, &keyViewControllerByPresent, self, OBJC_ASSOCIATION_ASSIGN);
+    [viewControllerToPresent lrf_setWeakAssociatedObject:self withKey:&keyViewControllerByPresent];
     [self LRFPresent_presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 

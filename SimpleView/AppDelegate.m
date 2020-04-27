@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LRUIFactory.h"
 #import "ViewController.h"
-#import "TestViewController.h"
 #import "LRVCExtend.h"
 #import "LRVCStyle.h"
 #import "UINavigationController+LRFactory.h"
@@ -51,8 +50,9 @@
     UITabBarController *tab = [[UITabBarController alloc] init];
     
     UINavigationController *nav = [UINavigationController lrf_navigationControllerWithRootViewController:[[ViewController alloc] init]];
-    
-    tab.viewControllers = @[nav,[UINavigationController lrf_navigationControllerWithRootViewController:[[TestViewController alloc] init]]];
+    UINavigationController *nav1 = [UINavigationController lrf_navigationControllerWithRootViewController:[[ViewController alloc] init]];
+
+    tab.viewControllers = @[nav,nav1];
     
     self.window.rootViewController = tab;
     
