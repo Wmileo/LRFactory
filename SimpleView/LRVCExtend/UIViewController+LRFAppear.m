@@ -10,6 +10,8 @@
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIViewController (LRFAppear)
 
 + (void)load{
@@ -26,49 +28,57 @@
     });
 }
 
+- (void)lrf_viewWillAppearFirstTime:(BOOL)animated{}
+- (void)lrf_viewWillDisappearForever:(BOOL)animated{}
+- (void)lrf_viewDidDisappearForever:(BOOL)animated{}
+
 static char keyViewHadAppeared;
 
 - (void)LRFAppear_viewWillAppear:(BOOL)animated{
     BOOL isFirstTime = NO;
-    if (![objc_getAssociatedObject(self, &keyViewHadAppeared) boolValue] && self.lrf_viewWillAppearFirstTime) {
-        objc_setAssociatedObject(self, &keyViewHadAppeared, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        self.lrf_viewWillAppearFirstTime(animated);
+    if (![[self lrf_getAssociatedObjectWithKey:&keyViewHadAppeared] boolValue]) {
+        [self lrf_setStrongAssociatedObject:@(YES) withKey:&keyViewHadAppeared];
         isFirstTime = YES;
+        [self lrf_viewWillAppearFirstTime:animated];
     }
-    if (self.lrf_viewWillAppear) {
-        self.lrf_viewWillAppear(animated, isFirstTime);
-    }
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewWillAppearActions];
+    [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
+        obj(animated, isFirstTime);
+    }];
     [self LRFAppear_viewWillAppear:animated];
 }
 
 -(void)LRFAppear_viewDidAppear:(BOOL)animated{
     [self LRFAppear_viewDidAppear:animated];
-    if (self.lrf_viewDidAppear) {
-        self.lrf_viewDidAppear(animated);
-    }
+    NSArray<void(^)(BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewDidAppearActions];
+    [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
+        obj(animated);
+    }];
 }
 
 - (void)LRFAppear_viewDidDisappear:(BOOL)animated{
     [self LRFAppear_viewDidDisappear:animated];
     BOOL isForever = NO;
-    if (![self lrf_isSelfValid] && self.lrf_viewDidDisappearForever) {
-        self.lrf_viewDidDisappearForever(animated);
+    if (![self lrf_isSelfValid]) {
         isForever = YES;
+        [self lrf_viewDidDisappearForever:animated];
     }
-    if (self.lrf_viewDidDisappear) {
-        self.lrf_viewDidDisappear(animated, isForever);
-    }
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewDidDisappearActions];
+    [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
+        obj(animated, isForever);
+    }];
 }
 
 - (void)LRFAppear_viewWillDisappear:(BOOL)animated{
     BOOL isForever = NO;
-    if (![self lrf_isSelfValid] && self.lrf_viewWillDisappearForever) {
-        self.lrf_viewWillDisappearForever(animated);
+    if (![self lrf_isSelfValid]) {
         isForever = YES;
+        [self lrf_viewWillDisappearForever:animated];
     }
-    if (self.lrf_viewWillDisappear) {
-        self.lrf_viewWillDisappear(animated, isForever);
-    }
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewWillDisappearActions];
+    [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
+        obj(animated, isForever);
+    }];
     [self LRFAppear_viewWillDisappear:animated];
 }
 
@@ -88,74 +98,42 @@ static char keyViewHadAppeared;
 
 #pragma mark -
 
-static char keyViewDidDisappearForever;
+static char keyViewWillAppearActions;
+static char keyViewDidAppearActions;
+static char keyViewWillDisappearActions;
+static char keyViewDidDisappearActions;
 
--(void (^)(BOOL))lrf_viewDidDisappearForever{
-    return objc_getAssociatedObject(self, &keyViewDidDisappearForever);
+- (NSArray *)lrf_getActionsWithKey:(const void *)key{
+    NSArray *arr = [self lrf_getAssociatedObjectWithKey:key];
+    if (!arr) {
+        arr = @[];
+    }
+    return arr;
 }
 
--(void)setLrf_viewDidDisappearForever:(void (^)(BOOL))lrf_viewDidDisappearForever{
-    objc_setAssociatedObject(self, &keyViewDidDisappearForever, lrf_viewDidDisappearForever, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)lrf_addAction:(id)action key:(const void *)key{
+    NSArray *actions = [self lrf_getActionsWithKey:key];
+    actions = [actions arrayByAddingObject:action];
+    [self lrf_setCopyAssociatedObject:actions withKey:key];
 }
 
-static char keyViewWillAppearFirstTime;
-
--(void (^)(BOOL))lrf_viewWillAppearFirstTime{
-    return objc_getAssociatedObject(self, &keyViewWillAppearFirstTime);
+- (void)lrf_addActionWhileViewWillAppear:(void (^)(BOOL, BOOL))action{
+    [self lrf_addAction:action key:&keyViewWillAppearActions];
 }
 
--(void)setLrf_viewWillAppearFirstTime:(void (^)(BOOL))lrf_viewWillAppearFirstTime{
-    objc_setAssociatedObject(self, &keyViewWillAppearFirstTime, lrf_viewWillAppearFirstTime, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)lrf_addActionWhileViewDidAppear:(void (^)(BOOL))action{
+    [self lrf_addAction:action key:&keyViewDidAppearActions];
 }
 
-static char keyViewWillDisappearForever;
-
--(void (^)(BOOL))lrf_viewWillDisappearForever{
-    return objc_getAssociatedObject(self, &keyViewWillDisappearForever);
+- (void)lrf_addActionWhileViewWillDisappear:(void (^)(BOOL, BOOL))action{
+    [self lrf_addAction:action key:&keyViewWillDisappearActions];
 }
 
--(void)setLrf_viewWillDisappearForever:(void (^)(BOOL))lrf_viewWillDisappearForever{
-    objc_setAssociatedObject(self, &keyViewWillDisappearForever, lrf_viewWillDisappearForever, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-static char keyViewDidDisappear;
-
--(void (^)(BOOL, BOOL))lrf_viewDidDisappear{
-    return objc_getAssociatedObject(self, &keyViewDidDisappear);
-}
-
--(void)setLrf_viewDidDisappear:(void (^)(BOOL, BOOL))lrf_viewDidDisappear{
-    objc_setAssociatedObject(self, &keyViewDidDisappear, lrf_viewDidDisappear, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-static char keyViewWillAppear;
-
--(void (^)(BOOL, BOOL))lrf_viewWillAppear{
-    return objc_getAssociatedObject(self, &keyViewWillAppear);
-}
-
--(void)setLrf_viewWillAppear:(void (^)(BOOL, BOOL))lrf_viewWillAppear{
-    objc_setAssociatedObject(self, &keyViewWillAppear, lrf_viewWillAppear, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-static char keyViewWillDisappear;
-
--(void (^)(BOOL, BOOL))lrf_viewWillDisappear{
-    return objc_getAssociatedObject(self, &keyViewWillDisappear);
-}
-
--(void)setLrf_viewWillDisappear:(void (^)(BOOL, BOOL))lrf_viewWillDisappear{
-    objc_setAssociatedObject(self, &keyViewWillDisappear, lrf_viewWillDisappear, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-static char keyViewDidAppear;
-
--(void (^)(BOOL))lrf_viewDidAppear{
-    return objc_getAssociatedObject(self, &keyViewDidAppear);
-}
-
--(void)setLrf_viewDidAppear:(void (^)(BOOL))lrf_viewDidAppear{
-    objc_setAssociatedObject(self, &keyViewDidAppear, lrf_viewDidAppear, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)lrf_addActionWhileViewDidDisappear:(void (^)(BOOL, BOOL))action{
+    [self lrf_addAction:action key:&keyViewDidDisappearActions];
 }
 
 @end
+
+
+NS_ASSUME_NONNULL_END
