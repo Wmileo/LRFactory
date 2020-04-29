@@ -36,7 +36,6 @@ Pod::Spec.new do |s|
 
     s.subspec "LRVCStyle" do |ss|
         ss.source_files = 'SimpleView/LRVCStyle/*.{h,m}'
-        ss.dependency 'LRFactory/LRUIFactory'
         ss.dependency 'LRFactory/LRVCExtend'
     end
 
