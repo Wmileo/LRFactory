@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (LRFTabBar)
 
-+(void)lrf_autoHidesTabBar;
++ (void)lrf_autoHidesTabBar;
 
 @end
 
+NS_ASSUME_NONNULL_END

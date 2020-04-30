@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (LRFGesture)
 
-@property (nonatomic, assign) BOOL lrf_canGesturePop;//手势右滑返回
+@property (nonatomic, assign) BOOL lrf_canGesturePop;//手势右滑返回, 默认YES
 
 @end
 
+NS_ASSUME_NONNULL_END

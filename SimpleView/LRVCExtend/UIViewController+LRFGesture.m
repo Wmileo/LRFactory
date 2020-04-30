@@ -10,6 +10,8 @@
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController ()
 
 @end
@@ -46,12 +48,13 @@
 static char keyCanGesturePop;
 
 - (void)setLrf_canGesturePop:(BOOL)lrf_canGesturePop{
-    objc_setAssociatedObject(self, &keyCanGesturePop, @(lrf_canGesturePop), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setStrongAssociatedObject:@(lrf_canGesturePop) withKey:&keyCanGesturePop];
 }
 
 -(BOOL)lrf_canGesturePop{
-    if (objc_getAssociatedObject(self, &keyCanGesturePop)) {
-        return [objc_getAssociatedObject(self, &keyCanGesturePop) boolValue];
+    id canGesturePop = [self lrf_getAssociatedObjectWithKey:&keyCanGesturePop];
+    if (canGesturePop) {
+        return [canGesturePop boolValue];
     }else{
         return YES;
     }
@@ -97,3 +100,5 @@ static char keyCanGesturePop;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

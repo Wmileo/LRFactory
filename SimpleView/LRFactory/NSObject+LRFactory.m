@@ -60,7 +60,7 @@ static char keyTagInteger;
 
 static char keyLRFDeallocObject;
 
-- (void)lrf_addActionWillDealloc:(void (^)(void))action{
+- (void)lrf_addActionWhileWillDealloc:(void (^)(void))action{
     LRFDeallocObject *obj = [self lrf_getAssociatedObjectWithKey:&keyLRFDeallocObject];
     if (!obj) {
         obj = [[LRFDeallocObject alloc] init];
@@ -88,7 +88,7 @@ static char keyLRFDeallocObject;
 - (void)lrf_setWeakAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
     [self lrf_setAssignAssociatedObject:objc withKey:key];
     __weak typeof(self) wself = self;
-    [objc lrf_addActionWillDealloc:^{
+    [objc lrf_addActionWhileWillDealloc:^{
         [wself lrf_setAssignAssociatedObject:nil withKey:key];
     }];
 }
@@ -117,6 +117,22 @@ static char keyLRFDeallocObject;
 
 + (void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2{
     method_exchangeImplementations(class_getClassMethod([self class], sel1), class_getClassMethod([self class], sel2));
+}
+
+#pragma mark - actions
+
+- (NSArray * _Nullable)lrf_getActionsWithKey:(const void *)key{
+    return [self lrf_getAssociatedObjectWithKey:key];
+}
+
+- (void)lrf_addAction:(id)action key:(const void *)key{
+    NSArray *actions = [self lrf_getActionsWithKey:key];
+    if (actions) {
+        actions = [actions arrayByAddingObject:action];
+    } else {
+        actions = @[action];
+    }
+    [self lrf_setCopyAssociatedObject:actions withKey:key];
 }
 
 @end

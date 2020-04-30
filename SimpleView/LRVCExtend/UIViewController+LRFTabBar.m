@@ -8,15 +8,18 @@
 
 #import "UIViewController+LRFTabBar.h"
 #import "NSObject+LRFactory.h"
-#import <objc/runtime.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UINavigationController (LRFTabBar)
-+(void)lrf_injectTabBar;
+
++ (void)lrf_injectTabBar;
+
 @end
 
 @implementation UIViewController (LRFTabBar)
 
-+(void)lrf_autoHidesTabBar{
++ (void)lrf_autoHidesTabBar{
     [UINavigationController lrf_injectTabBar];
 }
 
@@ -24,18 +27,22 @@
 
 @implementation UINavigationController (LRFTabBar)
 
-+(void)lrf_injectTabBar{
++ (void)lrf_injectTabBar{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UINavigationController lrf_exchangeSEL:@selector(pushViewController:animated:) withSEL:@selector(LRFTabBar_pushViewController:animated:)];
     });
 }
 
--(void)LRFTabBar_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    if (self.viewControllers.count > 0) {
+
+- (void)LRFTabBar_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count > 0 && self.tabBarController) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
     [self LRFTabBar_pushViewController:viewController animated:animated];
 }
 
 @end
+
+
+NS_ASSUME_NONNULL_END

@@ -8,17 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (LRFAppear)
 
-@property (nonatomic, copy) void (^lrf_viewDidDisappearForever)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillDisappearForever)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillAppearFirstTime)(BOOL animated);
+// 需子类重写， 默认空实现
+- (void)lrf_viewWillAppearFirstTime:(BOOL)animated;
+- (void)lrf_viewWillDisappearForever:(BOOL)animated;
+- (void)lrf_viewDidDisappearForever:(BOOL)animated;
 
-@property (nonatomic, copy) void (^lrf_viewWillAppear)(BOOL animated, BOOL isFirstTime);
-@property (nonatomic, copy) void (^lrf_viewDidAppear)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillDisappear)(BOOL animated, BOOL isForever);
-@property (nonatomic, copy) void (^lrf_viewDidDisappear)(BOOL animated, BOOL isForever);
+// 
+- (void)lrf_addActionWhileViewWillAppear:(void(^)(BOOL animated, BOOL isFirstTime))action;
+- (void)lrf_addActionWhileViewDidAppear:(void(^)(BOOL animated))action;
+- (void)lrf_addActionWhileViewWillDisappear:(void(^)(BOOL animated, BOOL isForever))action;
+- (void)lrf_addActionWhileViewDidDisappear:(void(^)(BOOL animated, BOOL isForever))action;
 
 @end
 
+NS_ASSUME_NONNULL_END
