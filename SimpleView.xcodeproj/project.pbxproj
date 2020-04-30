@@ -208,18 +208,18 @@
 		B3FCB1462194520E00523E92 /* LRVCExtend */ = {
 			isa = PBXGroup;
 			children = (
-				B3C85448244C379200C49AE2 /* LRVCExtend.md */,
 				B3FCB15B219D6E7500523E92 /* LRVCExtend.h */,
+				B3C85448244C379200C49AE2 /* LRVCExtend.md */,
+				B3FCB14C2199558300523E92 /* UIViewController+LRFAppear.h */,
+				B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */,
+				B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */,
+				B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */,
 				CE1B646D1D01722A0034672B /* UIViewController+LRFPresent.h */,
 				CE1B646E1D01722A0034672B /* UIViewController+LRFPresent.m */,
 				B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */,
 				B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */,
-				B3FCB14C2199558300523E92 /* UIViewController+LRFAppear.h */,
-				B3FCB14D2199558300523E92 /* UIViewController+LRFAppear.m */,
 				B3FCB14F219968F300523E92 /* UIViewController+LRFTabBar.h */,
 				B3FCB150219968F300523E92 /* UIViewController+LRFTabBar.m */,
-				B3FCB15221997F3900523E92 /* UIViewController+LRFGesture.h */,
-				B3FCB15321997F3900523E92 /* UIViewController+LRFGesture.m */,
 			);
 			path = LRVCExtend;
 			sourceTree = "<group>";

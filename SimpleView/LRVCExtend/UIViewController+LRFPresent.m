@@ -8,7 +8,8 @@
 
 #import "UIViewController+LRFPresent.h"
 #import "NSObject+LRFactory.h"
-#import <objc/runtime.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIViewController (LRFPresent)
 
@@ -16,26 +17,33 @@
     [UIViewController lrf_injectPresent];
 }
 
++ (void)lrf_injectPresent{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UINavigationController lrf_exchangeSEL:@selector(dismissViewControllerAnimated:completion:) withSEL:@selector(LRFPresent_dismissViewControllerAnimated:completion:)];
+    });
+}
+
 static char keyPresentWillDismissBlock;
 static char keyPresentDidDismissBlock;
 
-- (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion willDismissCallback:(void (^)(NSDictionary *))willDismissCallback didDismissCallback:(void (^)(NSDictionary *))didDismissCallback{
-    objc_setAssociatedObject(self, &keyPresentWillDismissBlock, willDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &keyPresentDidDismissBlock, didDismissCallback, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^ __nullable)(void))completion willDismissCallback:(void (^ __nullable)(id _Nullable))willDismissCallback didDismissCallback:(void (^ __nullable)(id _Nullable))didDismissCallback{
+    [self lrf_setCopyAssociatedObject:willDismissCallback withKey:&keyPresentWillDismissBlock];
+    [self lrf_setCopyAssociatedObject:didDismissCallback withKey:&keyPresentDidDismissBlock];
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
-- (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion info:(NSDictionary *)info{
+- (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^ __nullable)(void))completion info:(id _Nullable)info{
     UIViewController *vc = self.presentingViewController;
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = ((UINavigationController *)vc).visibleViewController;
     }
-    void (^WillDismissBlock)(NSDictionary *) = objc_getAssociatedObject(vc, &keyPresentWillDismissBlock);
-    void (^DidDismissBlock)(NSDictionary *) = objc_getAssociatedObject(vc, &keyPresentDidDismissBlock);
+    void (^WillDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKey:&keyPresentWillDismissBlock];
+    void (^DidDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKey:&keyPresentDidDismissBlock];
     if (WillDismissBlock) {
         WillDismissBlock(info);
     }
-    [self dismissViewControllerAnimated:flag completion:^{
+    [self LRFPresent_dismissViewControllerAnimated:flag completion:^{
         if (completion) {
             completion();
         }
@@ -45,23 +53,20 @@ static char keyPresentDidDismissBlock;
     }];
 }
 
-+ (void)lrf_injectPresent{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UINavigationController lrf_exchangeSEL:@selector(presentViewController:animated:completion:) withSEL:@selector(LRFPresent_presentViewController:animated:completion:)];
-    });
+- (void)LRFPresent_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion{
+    [self lrf_dismissViewControllerAnimated:flag completion:completion info:nil];
 }
 
-#pragma mark -
-
-static char keyViewControllerByPresent;
--(UIViewController *)lrf_viewControllerByPresent{
-    return [self lrf_getAssociatedObjectWithKey:&keyViewControllerByPresent];
-}
-
--(void)LRFPresent_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
-    [viewControllerToPresent lrf_setWeakAssociatedObject:self withKey:&keyViewControllerByPresent];
-    [self LRFPresent_presentViewController:viewControllerToPresent animated:flag completion:completion];
-}
+//static char keyViewControllerByPresent;
+//- (UIViewController * _Nullable)lrf_viewControllerByPresent{
+//    return [self lrf_getAssociatedObjectWithKey:&keyViewControllerByPresent];
+//}
+//
+//-(void)LRFPresent_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^ __nullable)(void))completion{
+//    [viewControllerToPresent lrf_setWeakAssociatedObject:self withKey:&keyViewControllerByPresent];
+//    [self LRFPresent_presentViewController:viewControllerToPresent animated:flag completion:completion];
+//}
 
 @end
+
+NS_ASSUME_NONNULL_END
