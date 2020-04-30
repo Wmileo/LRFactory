@@ -3,7 +3,7 @@
 
 **可以帮助你更快的实现需求**
 
-*使用*
+*如何使用*
 ```objc
   //通过 Cocoapods 安装
   pod 'LRFactory/LRVCExtend'
