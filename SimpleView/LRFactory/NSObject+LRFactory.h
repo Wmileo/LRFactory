@@ -29,7 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lrf_setCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
 - (void)lrf_setNonatomicCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
 
-- (void)lrf_addActionWillDealloc:(void(^)(void))action;
+- (void)lrf_addActionWhileWillDealloc:(void(^)(void))action;
+
+- (NSArray  * _Nullable)lrf_getActionsWithKey:(const void *)key;
+- (void)lrf_addAction:(id)action key:(const void *)key;
 
 @end
 

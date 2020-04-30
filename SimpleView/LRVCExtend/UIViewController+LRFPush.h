@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController (LRFPush)
 
-@property (nonatomic, assign) BOOL lrf_popIgnore;//pop时忽略
-
-@property (nonatomic, copy) void (^lrf_viewWillAppearByNavigationPush)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillAppearByNavigationPop)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillDisappearByNavigationPush)(BOOL animated);
-@property (nonatomic, copy) void (^lrf_viewWillDisappearByNavigationPop)(BOOL animated);
+@property (nonatomic, assign) BOOL lrf_popIgnore;//pop时忽略该页面， 默认NO
 
 @end
+
+NS_ASSUME_NONNULL_END

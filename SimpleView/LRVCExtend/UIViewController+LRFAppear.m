@@ -103,20 +103,6 @@ static char keyViewDidAppearActions;
 static char keyViewWillDisappearActions;
 static char keyViewDidDisappearActions;
 
-- (NSArray *)lrf_getActionsWithKey:(const void *)key{
-    NSArray *arr = [self lrf_getAssociatedObjectWithKey:key];
-    if (!arr) {
-        arr = @[];
-    }
-    return arr;
-}
-
-- (void)lrf_addAction:(id)action key:(const void *)key{
-    NSArray *actions = [self lrf_getActionsWithKey:key];
-    actions = [actions arrayByAddingObject:action];
-    [self lrf_setCopyAssociatedObject:actions withKey:key];
-}
-
 - (void)lrf_addActionWhileViewWillAppear:(void (^)(BOOL, BOOL))action{
     [self lrf_addAction:action key:&keyViewWillAppearActions];
 }
