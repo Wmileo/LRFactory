@@ -8,8 +8,6 @@
 
 #import "NSObject+LRFactory.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LRFDeallocObject : NSObject
 
 @property (nonatomic, copy, nullable) NSArray<void(^)(void)> *lrf_willDeallocActions;
@@ -136,5 +134,3 @@ static char keyLRFDeallocObject;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

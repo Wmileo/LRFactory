@@ -9,8 +9,6 @@
 #import "UIViewController+LRFPresent.h"
 #import "NSObject+LRFactory.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation UIViewController (LRFPresent)
 
 +(void)load{
@@ -68,5 +66,3 @@ static char keyPresentDidDismissBlock;
 //}
 
 @end
-
-NS_ASSUME_NONNULL_END

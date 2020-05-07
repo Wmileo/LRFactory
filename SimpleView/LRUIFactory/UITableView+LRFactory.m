@@ -29,9 +29,9 @@
 
 @interface UITableView ()
 
-@property (nonatomic) LRFTabViewImplement<UITableViewDelegate, UITableViewDataSource> *lrf_implement;
+@property (nonatomic, nullable) LRFTabViewImplement<UITableViewDelegate, UITableViewDataSource> *lrf_implement;
 
-@property (nonatomic) NSArray<LRFSectionInfo *> *lrf_sectionInfos;
+@property (nonatomic, nullable) NSArray<LRFSectionInfo *> *lrf_sectionInfos;
 
 @end
 
