@@ -31,10 +31,9 @@ typedef NSDictionary LRFHeaderFooterInfo;
 
 @interface UITableView (LRFactory)
 
-@property (nonatomic, nullable) id lrf_delegate;
-@property (nonatomic, nullable) id<LRF_UITableViewDataSource> lrf_dataSource;
+- (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource handleDelegate:(BOOL)canHandel;
 
-- (void)lrf_updateDataSources:(NSArray<LRFSectionInfo *> * _Nullable)dataSources;
+- (void)lrf_reloadData:(NSArray<LRFSectionInfo *> * _Nullable)data;
 
 - (CGFloat)lrf_contentHeight;
 
@@ -46,7 +45,6 @@ typedef NSDictionary LRFHeaderFooterInfo;
 + (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height;
 + (LRFHeaderFooterInfo *)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height;
 + (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight;
-
 
 - (CGFloat)lrf_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)lrf_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;

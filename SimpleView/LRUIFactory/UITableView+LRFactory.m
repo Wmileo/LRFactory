@@ -37,8 +37,8 @@
 
 @implementation UITableView (LRFactory)
 
-- (void)lrf_updateDataSources:(NSArray<LRFSectionInfo *> *)dataSources{
-    self.lrf_sectionInfos = dataSources;
+- (void)lrf_reloadData:(NSArray<LRFSectionInfo *> *)data{
+    self.lrf_sectionInfos = data;
     [self reloadData];
 }
 
@@ -119,11 +119,11 @@
 static char klrf_sectionInfos;
 
 - (NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    return objc_getAssociatedObject(self, &klrf_sectionInfos);
+    return [self lrf_getAssociatedObjectWithKey:&klrf_sectionInfos];
 }
 
 - (void)setLrf_sectionInfos:(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    objc_setAssociatedObject(self, &klrf_sectionInfos, lrf_sectionInfos, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKey:&klrf_sectionInfos];
 }
 
 
@@ -153,24 +153,15 @@ static char klrf_dataSource;
     return [self lrf_getAssociatedObjectWithKey:&klrf_dataSource];
 }
 
-- (void)setLrf_dataSource:(id<LRF_UITableViewDataSource>)lrf_dataSource{
-    if (lrf_dataSource) {
-        self.dataSource = self.lrf_safeImplement;
+- (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource handleDelegate:(BOOL)canHandel{
+    LRFTabViewImplement *imp = self.lrf_safeImplement;
+    if (dataSource) {
+        self.dataSource = imp;
     }
-    [self lrf_setWeakAssociatedObject:lrf_dataSource withKey:&klrf_dataSource];
-}
-
-static char klrf_delegate;
-
-- (id)lrf_delegate{
-    return [self lrf_getAssociatedObjectWithKey:&klrf_delegate];
-}
-
-- (void)setLrf_delegate:(id)lrf_delegate{
-    if (lrf_delegate) {
-        self.delegate = self.lrf_safeImplement;
+    [self lrf_setWeakAssociatedObject:dataSource withKey:&klrf_dataSource];
+    if (canHandel) {
+        self.delegate = imp;
     }
-    [self lrf_setWeakAssociatedObject:lrf_delegate withKey:&klrf_delegate];
 }
 
 - (CGFloat)lrf_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
