@@ -18,40 +18,43 @@ typedef NSDictionary LRFHeaderFooterInfo;
 
 @required
 
-- (UITableViewCell *)lrf_tableView:(UITableView *)tableView cellWithInfo:(NSDictionary *)info cellID:(NSString *)cellID;
+- (UITableViewCell *)lrf_tableView:(UITableView *)tableView cellWithInfo:(id _Nullable)info cellID:(NSString *)cellID;
 
 @optional
 
-- (void)lrf_tableView:(UITableView *)tableView didSelectCellWithInfo:(NSDictionary *)info cellID:(NSString *)cellID;
+- (void)lrf_tableView:(UITableView *)tableView didSelectCellWithInfo:(id _Nullable)info cellID:(NSString *)cellID;
 
-- (UITableViewHeaderFooterView *)lrf_tableView:(UITableView *)tableView viewForHeaderWithInfo:(NSDictionary *)info headerFooterID:(NSString *)headerFooterID;
-- (UITableViewHeaderFooterView *)lrf_tableView:(UITableView *)tableView viewForFooterWithInfo:(NSDictionary *)info headerFooterID:(NSString *)headerFooterID;
+- (UITableViewHeaderFooterView *)lrf_tableView:(UITableView *)tableView viewForSectionInfo:(id _Nullable)info headerFooterID:(NSString *)headerFooterID;
 
 @end
 
 @interface UITableView (LRFactory)
 
-- (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource handleDelegate:(BOOL)canHandel;
+- (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource canHandleDelegate:(BOOL)canHandel;
 
 - (void)lrf_reloadData:(NSArray<LRFSectionInfo *> * _Nullable)data;
 
 - (CGFloat)lrf_contentHeight;
 
-+ (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(NSDictionary * _Nullable)info;
-
+// section
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells;
-+ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(NSDictionary * _Nullable)info headerFooterInfo:(LRFHeaderFooterInfo * _Nullable)headerFooterInfo;
++ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(id _Nullable)info headerFooterInfo:(LRFHeaderFooterInfo * _Nullable)headerFooterInfo;
 
+// cell
++ (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id _Nullable)info;
+
+// header footer
 + (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height;
 + (LRFHeaderFooterInfo *)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height;
 + (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight;
 
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)lrf_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-- (nullable UIView *)lrf_tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
-- (nullable UIView *)lrf_tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section;
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
+// for delegate
+- (CGFloat)lrf_heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)lrf_didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable UIView *)lrf_viewForHeaderInSection:(NSInteger)section;
+- (nullable UIView *)lrf_viewForFooterInSection:(NSInteger)section;
+- (CGFloat)lrf_heightForHeaderInSection:(NSInteger)section;
+- (CGFloat)lrf_heightForFooterInSection:(NSInteger)section;
 
 @end
 

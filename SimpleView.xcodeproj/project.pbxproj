@@ -16,6 +16,7 @@
 		B39BFED0244B5817005D8EE1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B39BFECF244B5817005D8EE1 /* README.md */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */; };
 		B3B0D1302465914200B8C9A4 /* tableview1.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B0D12F2465914200B8C9A4 /* tableview1.png */; };
+		B3B0D1322466617A00B8C9A4 /* tableview2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B0D1312466617900B8C9A4 /* tableview2.png */; };
 		B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */; };
 		B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854F2192C54700B51AA9 /* NSObject+LRFactory.m */; };
 		B3E685532192CBB900B51AA9 /* UIControl+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E685522192CBB900B51AA9 /* UIControl+LRFactory.m */; };
@@ -84,6 +85,7 @@
 		B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFPush.h"; sourceTree = "<group>"; };
 		B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFPush.m"; sourceTree = "<group>"; };
 		B3B0D12F2465914200B8C9A4 /* tableview1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview1.png; sourceTree = "<group>"; };
+		B3B0D1312466617900B8C9A4 /* tableview2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview2.png; sourceTree = "<group>"; };
 		B3C85448244C379200C49AE2 /* LRVCExtend.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LRVCExtend.md; sourceTree = "<group>"; };
 		B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LRFactory.h"; sourceTree = "<group>"; };
 		B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LRFactory.m"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				B3B0D12F2465914200B8C9A4 /* tableview1.png */,
+				B3B0D1312466617900B8C9A4 /* tableview2.png */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				B39BFED0244B5817005D8EE1 /* README.md in Resources */,
 				CE55BE541CBBC2F600D8364B /* Main.storyboard in Resources */,
 				CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */,
+				B3B0D1322466617A00B8C9A4 /* tableview2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

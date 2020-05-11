@@ -26,8 +26,8 @@ static char keyPresentWillDismissBlock;
 static char keyPresentDidDismissBlock;
 
 - (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^ __nullable)(void))completion willDismissCallback:(void (^ __nullable)(id _Nullable))willDismissCallback didDismissCallback:(void (^ __nullable)(id _Nullable))didDismissCallback{
-    [self lrf_setCopyAssociatedObject:willDismissCallback withKey:&keyPresentWillDismissBlock];
-    [self lrf_setCopyAssociatedObject:didDismissCallback withKey:&keyPresentDidDismissBlock];
+    [self lrf_setCopyAssociatedObject:willDismissCallback withKeyAdr:&keyPresentWillDismissBlock];
+    [self lrf_setCopyAssociatedObject:didDismissCallback withKeyAdr:&keyPresentDidDismissBlock];
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
@@ -36,8 +36,8 @@ static char keyPresentDidDismissBlock;
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = ((UINavigationController *)vc).visibleViewController;
     }
-    void (^WillDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKey:&keyPresentWillDismissBlock];
-    void (^DidDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKey:&keyPresentDidDismissBlock];
+    void (^WillDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyAdr:&keyPresentWillDismissBlock];
+    void (^DidDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyAdr:&keyPresentDidDismissBlock];
     if (WillDismissBlock) {
         WillDismissBlock(info);
     }
@@ -57,7 +57,7 @@ static char keyPresentDidDismissBlock;
 
 //static char keyViewControllerByPresent;
 //- (UIViewController * _Nullable)lrf_viewControllerByPresent{
-//    return [self lrf_getAssociatedObjectWithKey:&keyViewControllerByPresent];
+//    return [self lrf_getAssociatedObjectWithKeyAdr:&keyViewControllerByPresent];
 //}
 //
 //-(void)LRFPresent_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^ __nullable)(void))completion{

@@ -20,19 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lrf_exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2;
 + (void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2;
 
-- (void)lrf_setAssociatedObject:(id _Nullable)objc withKey:(const void *)key policy:(objc_AssociationPolicy)policy;
-- (id _Nullable)lrf_getAssociatedObjectWithKey:(const void *)key;
-- (void)lrf_setAssignAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
-- (void)lrf_setWeakAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
-- (void)lrf_setStrongAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
-- (void)lrf_setNonatomicStrongAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
-- (void)lrf_setCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
-- (void)lrf_setNonatomicCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key;
+- (void)lrf_setAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key policy:(objc_AssociationPolicy)policy;
+- (id _Nullable)lrf_getAssociatedObjectWithKeyAdr:(const void *)key;
+- (void)lrf_setAssignAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
+- (void)lrf_setWeakAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
+- (void)lrf_setStrongAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
+- (void)lrf_setNonatomicStrongAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
+- (void)lrf_setCopyAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
+- (void)lrf_setNonatomicCopyAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key;
 
 - (void)lrf_addActionWhileWillDealloc:(void(^)(void))action;
 
-- (NSArray  * _Nullable)lrf_getActionsWithKey:(const void *)key;
-- (void)lrf_addAction:(id)action key:(const void *)key;
+- (NSArray  * _Nullable)lrf_getActionsWithKeyAdr:(const void *)key;
+- (void)lrf_addAction:(id)action withKeyAdr:(const void *)key;
 
 @end
 
