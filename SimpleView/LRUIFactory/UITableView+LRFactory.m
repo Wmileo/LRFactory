@@ -38,50 +38,56 @@
 @implementation UITableView (LRFactory)
 
 - (void)lrf_reloadData:(NSArray<LRFSectionInfo *> *)data{
-    self.lrf_sectionInfos = data;
-    [self reloadData];
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        __strong typeof(wself) sself = wself;
+        if (sself) {
+            sself.lrf_sectionInfos = data ? data : @[];
+            [sself reloadData];
+        }
+    });
 }
 
 + (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id)info{
-    if (!cellID) {
-        cellID = @"cell";
+    NSDictionary *dic;
+    @autoreleasepool {
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:3];
+        mDic[kLrfCellHeight] = @(height);
+        mDic[kLrfCellID] = cellID ? cellID : @"cell";
+        if (info) {
+            mDic[kLrfCellInfo] = info;
+        }
+        dic = [mDic copy];
     }
-    if (!height) {
-        height = 0;
-    }
-    if (!info) {
-        return @{
-            kLrfCellID: cellID,
-            kLrfCellHeight: @(height)
-        };
-    }
-    return @{
-        kLrfCellID: cellID,
-        kLrfCellHeight: @(height),
-        kLrfCellInfo: info
-    };
+    return dic;
 }
 
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells{
-    return [self lrf_sectionInfoWithCells:cells info:@{} headerFooterInfo:[self lrf_headerInfoWithHeaderID:@"header" height:0]];
+    return [self lrf_sectionInfoWithCells:cells info:nil headerFooterInfo:nil];
 }
 
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(id)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
-    if (!cells) {
-        cells = @[];
+    NSDictionary *dic;
+    @autoreleasepool {
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:6];
+        if (headerFooterInfo) {
+            [mDic addEntriesFromDictionary:headerFooterInfo];
+        }
+        if (cells) {
+            NSMutableArray *arr = [NSMutableArray arrayWithCapacity:cells.count];
+            [cells enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj[kLrfCellHeight] floatValue] > 0) {
+                    [arr addObject:obj];
+                }
+            }];
+            mDic[kLrfCells] = [arr copy];
+        }
+        if (info) {
+            mDic[kLrfSectionInfo] = info;
+        }
+        dic = [mDic copy];
     }
-    if (!info) {
-        info = @{};
-    }
-    if (!headerFooterInfo) {
-        headerFooterInfo = @{};
-    }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:headerFooterInfo];
-    [dic addEntriesFromDictionary:@{
-        kLrfCells: cells,
-        kLrfSectionInfo: info
-    }];
-    return [dic copy];
+    return dic;
 }
 
 + (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height{
@@ -93,24 +99,23 @@
 }
 
 + (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight{
-    if (!headerID) {
-        headerID = @"header";
+    NSDictionary *dic;
+    BOOL hasInfo = NO;
+    @autoreleasepool {
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:4];
+        if (headerHeight > 0) {
+            mDic[kLrfHeaderHeight] = @(headerHeight);
+            mDic[kLrfHeaderID] = headerID ? headerID : @"header";
+            hasInfo = YES;
+        }
+        if (footerHeight > 0) {
+            mDic[kLrfFooterHeight] = @(footerHeight);
+            mDic[kLrfFooterID] = footerID ? footerID : @"footerID";
+            hasInfo = YES;
+        }
+        dic = [mDic copy];
     }
-    if (!footerID) {
-        footerID = @"footer";
-    }
-    if (!headerHeight) {
-        headerHeight = 0;
-    }
-    if (!footerHeight) {
-        footerHeight = 0;
-    }
-    return @{
-        kLrfHeaderHeight: @(headerHeight),
-        kLrfFooterHeight: @(footerHeight),
-        kLrfHeaderID: headerID,
-        kLrfFooterID: footerID
-    };
+    return hasInfo ? dic : nil;
 }
 
 - (CGFloat)lrf_contentHeight{
@@ -199,9 +204,7 @@ static char klrf_dataSource;
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            if ([info[kLrfHeaderHeight] floatValue] > 0) {
-                return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfHeaderID]];
-            }
+            return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfHeaderID]];
         }
     }
     return nil;
@@ -212,9 +215,7 @@ static char klrf_dataSource;
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            if ([info[kLrfHeaderHeight] floatValue] > 0) {
-                return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfFooterID]];
-            }
+            return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfFooterID]];
         }
     }
     return nil;
@@ -225,10 +226,7 @@ static char klrf_dataSource;
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            NSNumber *height = info[kLrfHeaderHeight];
-            if (height) {
-                return [height floatValue];
-            }
+            return [info[kLrfHeaderHeight] floatValue];
         }
     }
     return 0;
@@ -239,10 +237,7 @@ static char klrf_dataSource;
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            NSNumber *height = info[kLrfFooterHeight];
-            if (height) {
-                return [height floatValue];
-            }
+            return [info[kLrfFooterHeight] floatValue];
         }
     }
     return 0;

@@ -44,9 +44,9 @@ typedef NSDictionary LRFHeaderFooterInfo;
 + (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id _Nullable)info;
 
 // header footer
-+ (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height;
-+ (LRFHeaderFooterInfo *)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height;
-+ (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight;
++ (LRFHeaderFooterInfo * _Nullable)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height;
++ (LRFHeaderFooterInfo * _Nullable)lrf_footerInfoWithFooterID:(NSString *)footerID height:(CGFloat)height;
++ (LRFHeaderFooterInfo * _Nullable)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight;
 
 // for delegate
 - (CGFloat)lrf_heightForRowAtIndexPath:(NSIndexPath *)indexPath;
