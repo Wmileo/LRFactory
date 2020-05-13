@@ -15,6 +15,8 @@
 		B37FD6072388E092004FFEED /* UITableView+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FD6062388E092004FFEED /* UITableView+LRFactory.m */; };
 		B39BFED0244B5817005D8EE1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B39BFECF244B5817005D8EE1 /* README.md */; };
 		B3A251CD1F0E26ED00E2AF1D /* UIViewController+LRFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */; };
+		B3B0D1302465914200B8C9A4 /* tableview1.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B0D12F2465914200B8C9A4 /* tableview1.png */; };
+		B3B0D1322466617A00B8C9A4 /* tableview2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B0D1312466617900B8C9A4 /* tableview2.png */; };
 		B3E6854D2191932600B51AA9 /* UIApplication+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */; };
 		B3E685502192C54700B51AA9 /* NSObject+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E6854F2192C54700B51AA9 /* NSObject+LRFactory.m */; };
 		B3E685532192CBB900B51AA9 /* UIControl+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E685522192CBB900B51AA9 /* UIControl+LRFactory.m */; };
@@ -74,6 +76,7 @@
 		B347599A1E713607007C702C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		B34952171E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+LRFactory.h"; sourceTree = "<group>"; };
 		B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+LRFactory.m"; sourceTree = "<group>"; };
+		B36798C0246457A0009FB114 /* LRUIFactory-UITableView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "LRUIFactory-UITableView.md"; sourceTree = "<group>"; };
 		B36D12DB21E2F94D007303FD /* UIImage+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+LRFactory.h"; sourceTree = "<group>"; };
 		B36D12DC21E2F94D007303FD /* UIImage+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LRFactory.m"; sourceTree = "<group>"; };
 		B37FD6052388E092004FFEED /* UITableView+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LRFactory.h"; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 		B39BFECF244B5817005D8EE1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B3A251CB1F0E26ED00E2AF1D /* UIViewController+LRFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFPush.h"; sourceTree = "<group>"; };
 		B3A251CC1F0E26ED00E2AF1D /* UIViewController+LRFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFPush.m"; sourceTree = "<group>"; };
+		B3B0D12F2465914200B8C9A4 /* tableview1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview1.png; sourceTree = "<group>"; };
+		B3B0D1312466617900B8C9A4 /* tableview2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview2.png; sourceTree = "<group>"; };
 		B3C85448244C379200C49AE2 /* LRVCExtend.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LRVCExtend.md; sourceTree = "<group>"; };
 		B3E6854B2191932600B51AA9 /* UIApplication+LRFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LRFactory.h"; sourceTree = "<group>"; };
 		B3E6854C2191932600B51AA9 /* UIApplication+LRFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LRFactory.m"; sourceTree = "<group>"; };
@@ -205,6 +210,15 @@
 			path = LRAnimationFactory;
 			sourceTree = "<group>";
 		};
+		B3B0D12E2465912D00B8C9A4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B3B0D12F2465914200B8C9A4 /* tableview1.png */,
+				B3B0D1312466617900B8C9A4 /* tableview2.png */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		B3FCB1462194520E00523E92 /* LRVCExtend */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +271,7 @@
 				CE55BE501CBBC2F600D8364B /* ViewController.m */,
 				B34759991E713607007C702C /* TableViewController.h */,
 				B347599A1E713607007C702C /* TableViewController.m */,
+				B3B0D12E2465912D00B8C9A4 /* Sources */,
 				B34952161E600EA4004AD109 /* LRAnimationFactory */,
 				CE55BE871CBBD09600D8364B /* LRFactory */,
 				CE55BE7C1CBBCB6A00D8364B /* LRUIFactory */,
@@ -329,6 +344,7 @@
 				B33625D81E8DFA0800C8D071 /* UIViewController+LRFactory.m */,
 				B3FCB15D219E8AE000523E92 /* UIViewController+LRFNavigationItem.h */,
 				B3FCB15E219E8AE000523E92 /* UIViewController+LRFNavigationItem.m */,
+				B36798C0246457A0009FB114 /* LRUIFactory-UITableView.md */,
 			);
 			path = LRUIFactory;
 			sourceTree = "<group>";
@@ -376,8 +392,6 @@
 				CE55BE421CBBC2F500D8364B /* Sources */,
 				CE55BE431CBBC2F500D8364B /* Frameworks */,
 				CE55BE441CBBC2F500D8364B /* Resources */,
-				3479B25D2AA8648B677FF37A /* [CP] Embed Pods Frameworks */,
-				6C7D48070142E08DDD3FE89C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -473,10 +487,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE55BE591CBBC2F600D8364B /* LaunchScreen.storyboard in Resources */,
+				B3B0D1302465914200B8C9A4 /* tableview1.png in Resources */,
 				CE55BE561CBBC2F600D8364B /* Assets.xcassets in Resources */,
 				B39BFED0244B5817005D8EE1 /* README.md in Resources */,
 				CE55BE541CBBC2F600D8364B /* Main.storyboard in Resources */,
 				CE075E3B1DDEEA8A0030E81D /* LRFactory.podspec in Resources */,
+				B3B0D1322466617A00B8C9A4 /* tableview2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,36 +513,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3479B25D2AA8648B677FF37A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C7D48070142E08DDD3FE89C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C7CEC81421047218CE0B32C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -9,8 +9,6 @@
 #import "UIViewController+LRFTabBar.h"
 #import "NSObject+LRFactory.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface UINavigationController (LRFTabBar)
 
 + (void)lrf_injectTabBar;
@@ -44,5 +42,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-NS_ASSUME_NONNULL_END

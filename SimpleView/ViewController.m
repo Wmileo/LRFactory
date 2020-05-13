@@ -82,8 +82,6 @@
         //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
     }];
-    
-
 
     self.lrf_statusBarStyle = UIStatusBarStyleDefault;
     

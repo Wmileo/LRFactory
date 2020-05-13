@@ -29,56 +29,62 @@
 
 @interface UITableView ()
 
-@property (nonatomic) LRFTabViewImplement<UITableViewDelegate, UITableViewDataSource> *lrf_implement;
+@property (nonatomic, nullable) LRFTabViewImplement<UITableViewDelegate, UITableViewDataSource> *lrf_implement;
 
-@property (nonatomic) NSArray<LRFSectionInfo *> *lrf_sectionInfos;
+@property (nonatomic, nullable) NSArray<LRFSectionInfo *> *lrf_sectionInfos;
 
 @end
 
 @implementation UITableView (LRFactory)
 
-- (void)lrf_updateDataSources:(NSArray<LRFSectionInfo *> *)dataSources{
-    self.lrf_sectionInfos = dataSources;
-    [self reloadData];
+- (void)lrf_reloadData:(NSArray<LRFSectionInfo *> *)data{
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:data.count];
+    [data enumerateObjectsUsingBlock:^(LRFSectionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj[kLrfCells] || obj[kLrfHeaderID] || obj[kLrfFooterID]) {
+            [arr addObject:obj];
+        }
+    }];
+    self.lrf_sectionInfos = [arr copy];
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [wself reloadData];
+    });
 }
 
-+ (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(NSDictionary *)info{
-    if (!cellID) {
-        cellID = @"cell";
++ (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id)info{
+    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    mDic[kLrfCellHeight] = @(height);
+    mDic[kLrfCellID] = cellID ? cellID : @"cell";
+    if (info) {
+        mDic[kLrfCellInfo] = info;
     }
-    if (!height) {
-        height = 0;
-    }
-    if (!info) {
-        info = @{};
-    }
-    return @{
-        kLrfCellID: cellID,
-        kLrfCellHeight: @(height),
-        kLrfCellInfo: info
-    };
+    return [mDic copy];
 }
 
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells{
-    return [self lrf_sectionInfoWithCells:cells info:@{} headerFooterInfo:[self lrf_headerInfoWithHeaderID:@"header" height:0]];
+    return [self lrf_sectionInfoWithCells:cells info:nil headerFooterInfo:nil];
 }
 
-+ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(NSDictionary *)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
-    if (!cells) {
-        cells = @[];
++ (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(id)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
+    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:6];
+    if (headerFooterInfo) {
+        [mDic addEntriesFromDictionary:headerFooterInfo];
     }
-    if (!info) {
-        info = @{};
+    if (cells) {
+        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:cells.count];
+        [cells enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[kLrfCellHeight] floatValue] > 0) {
+                [arr addObject:obj];
+            }
+        }];
+        if (arr.count > 0) {
+            mDic[kLrfCells] = [arr copy];
+        }
     }
-    if (!headerFooterInfo) {
-        headerFooterInfo = @{};
+    if (info) {
+        mDic[kLrfSectionInfo] = info;
     }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:headerFooterInfo];
-    [dic addEntriesFromDictionary:@{
-        kLrfCells: cells,
-        kLrfSectionInfo: info
-    }];
-    return [dic copy];
+    return [mDic copy];
 }
 
 + (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height{
@@ -90,24 +96,19 @@
 }
 
 + (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight{
-    if (!headerID) {
-        headerID = @"header";
+    BOOL hasInfo = NO;
+    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:4];
+    if (headerHeight > 0) {
+        mDic[kLrfHeaderHeight] = @(headerHeight);
+        mDic[kLrfHeaderID] = headerID ? headerID : @"header";
+        hasInfo = YES;
     }
-    if (!footerID) {
-        footerID = @"footer";
+    if (footerHeight > 0) {
+        mDic[kLrfFooterHeight] = @(footerHeight);
+        mDic[kLrfFooterID] = footerID ? footerID : @"footerID";
+        hasInfo = YES;
     }
-    if (!headerHeight) {
-        headerHeight = 0;
-    }
-    if (!footerHeight) {
-        footerHeight = 0;
-    }
-    return @{
-        kLrfHeaderHeight: @(headerHeight),
-        kLrfFooterHeight: @(footerHeight),
-        kLrfHeaderID: headerID,
-        kLrfFooterID: footerID
-    };
+    return hasInfo ? [mDic copy] : nil;
 }
 
 - (CGFloat)lrf_contentHeight{
@@ -119,11 +120,11 @@
 static char klrf_sectionInfos;
 
 - (NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    return objc_getAssociatedObject(self, &klrf_sectionInfos);
+    return [self lrf_getAssociatedObjectWithKeyAdr:&klrf_sectionInfos];
 }
 
 - (void)setLrf_sectionInfos:(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    objc_setAssociatedObject(self, &klrf_sectionInfos, lrf_sectionInfos, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKeyAdr:&klrf_sectionInfos];
 }
 
 
@@ -150,30 +151,21 @@ static char klrf_implement;
 static char klrf_dataSource;
 
 - (id<LRF_UITableViewDataSource>)lrf_dataSource{
-    return [self lrf_getAssociatedObjectWithKey:&klrf_dataSource];
+    return [self lrf_getAssociatedObjectWithKeyAdr:&klrf_dataSource];
 }
 
-- (void)setLrf_dataSource:(id<LRF_UITableViewDataSource>)lrf_dataSource{
-    if (lrf_dataSource) {
-        self.dataSource = self.lrf_safeImplement;
+- (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource canHandleDelegate:(BOOL)canHandel{
+    LRFTabViewImplement *imp = self.lrf_safeImplement;
+    if (dataSource) {
+        self.dataSource = imp;
     }
-    [self lrf_setWeakAssociatedObject:lrf_dataSource withKey:&klrf_dataSource];
-}
-
-static char klrf_delegate;
-
-- (id)lrf_delegate{
-    return [self lrf_getAssociatedObjectWithKey:&klrf_delegate];
-}
-
-- (void)setLrf_delegate:(id)lrf_delegate{
-    if (lrf_delegate) {
-        self.delegate = self.lrf_safeImplement;
+    [self lrf_setWeakAssociatedObject:dataSource withKeyAdr:&klrf_dataSource];
+    if (canHandel) {
+        self.delegate = imp;
     }
-    [self lrf_setWeakAssociatedObject:lrf_delegate withKey:&klrf_delegate];
 }
 
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)lrf_heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > indexPath.section) {
@@ -187,64 +179,58 @@ static char klrf_delegate;
     return 0;
 }
 
-- (void)lrf_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)lrf_didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.lrf_dataSource && [self.lrf_dataSource respondsToSelector:@selector(lrf_tableView:didSelectCellWithInfo:cellID:)]) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > indexPath.section) {
             NSArray<LRFCellInfo *> *cells = sections[indexPath.section][kLrfCells];
             if (cells && cells.count > indexPath.row) {
                 LRFCellInfo *cell = cells[indexPath.row];
-                [self.lrf_dataSource lrf_tableView:tableView didSelectCellWithInfo:cell[kLrfCellInfo] cellID:cell[kLrfCellID]];
+                [self.lrf_dataSource lrf_tableView:self didSelectCellWithInfo:cell[kLrfCellInfo] cellID:cell[kLrfCellID]];
             }
         }
     }
 }
 
-- (UIView *)lrf_tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.lrf_dataSource && [self.lrf_dataSource respondsToSelector:@selector(lrf_tableView:viewForHeaderWithInfo:headerFooterID:)]) {
+- (UIView *)lrf_viewForHeaderInSection:(NSInteger)section{
+    if (self.lrf_dataSource && [self.lrf_dataSource respondsToSelector:@selector(lrf_tableView:viewForSectionInfo:headerFooterID:)]) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            return [self.lrf_dataSource lrf_tableView:tableView viewForHeaderWithInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfHeaderID]];
+            return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfHeaderID]];
         }
     }
-    return [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"header"];
+    return nil;
 }
 
-- (UIView *)lrf_tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (self.lrf_dataSource && [self.lrf_dataSource respondsToSelector:@selector(lrf_tableView:viewForFooterWithInfo:headerFooterID:)]) {
+- (UIView *)lrf_viewForFooterInSection:(NSInteger)section{
+    if (self.lrf_dataSource && [self.lrf_dataSource respondsToSelector:@selector(lrf_tableView:viewForSectionInfo:headerFooterID:)]) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            return [self.lrf_dataSource lrf_tableView:tableView viewForFooterWithInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfFooterID]];
+            return [self.lrf_dataSource lrf_tableView:self viewForSectionInfo:info[kLrfSectionInfo] headerFooterID:info[kLrfFooterID]];
         }
     }
-    return [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"footer"];
+    return nil;
 }
 
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)lrf_heightForHeaderInSection:(NSInteger)section{
     if (self.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            NSNumber *height = info[kLrfHeaderHeight];
-            if (height) {
-                return [height floatValue];
-            }
+            return [info[kLrfHeaderHeight] floatValue];
         }
     }
     return 0;
 }
 
-- (CGFloat)lrf_tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)lrf_heightForFooterInSection:(NSInteger)section{
     if (self.lrf_dataSource) {
         NSArray<LRFSectionInfo *> *sections = self.lrf_sectionInfos;
         if (sections && sections.count > section) {
             LRFSectionInfo *info = sections[section];
-            NSNumber *height = info[kLrfFooterHeight];
-            if (height) {
-                return [height floatValue];
-            }
+            return [info[kLrfFooterHeight] floatValue];
         }
     }
     return 0;
@@ -255,27 +241,27 @@ static char klrf_delegate;
 @implementation LRFTabViewImplement
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.lrf_tableView lrf_tableView:tableView heightForRowAtIndexPath:indexPath];
+    return [self.lrf_tableView lrf_heightForRowAtIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.lrf_tableView lrf_tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [self.lrf_tableView lrf_didSelectRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return [self.lrf_tableView lrf_tableView:tableView viewForHeaderInSection:section];
+    return [self.lrf_tableView lrf_viewForHeaderInSection:section];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return [self.lrf_tableView lrf_tableView:tableView viewForFooterInSection:section];
+    return [self.lrf_tableView lrf_viewForFooterInSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [self.lrf_tableView lrf_tableView:tableView heightForHeaderInSection:section];
+    return [self.lrf_tableView lrf_heightForHeaderInSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return [self.lrf_tableView lrf_tableView:tableView heightForFooterInSection:section];
+    return [self.lrf_tableView lrf_heightForFooterInSection:section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
