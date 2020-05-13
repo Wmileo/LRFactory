@@ -52,13 +52,13 @@
 }
 
 + (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id)info{
-    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    NSMutableDictionary *mDic = [self lrf_getReuseDictionary];
     mDic[kLrfCellHeight] = @(height);
     mDic[kLrfCellID] = cellID ? cellID : @"cell";
     if (info) {
         mDic[kLrfCellInfo] = info;
     }
-    return [mDic copy];
+    return [self lrf_unuseDictionary:mDic];
 }
 
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells{
@@ -66,7 +66,7 @@
 }
 
 + (LRFSectionInfo *)lrf_sectionInfoWithCells:(NSArray<LRFCellInfo *> *)cells info:(id)info headerFooterInfo:(LRFHeaderFooterInfo *)headerFooterInfo{
-    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:6];
+    NSMutableDictionary *mDic = [self lrf_getReuseDictionary];
     if (headerFooterInfo) {
         [mDic addEntriesFromDictionary:headerFooterInfo];
     }
@@ -84,7 +84,7 @@
     if (info) {
         mDic[kLrfSectionInfo] = info;
     }
-    return [mDic copy];
+    return [self lrf_unuseDictionary:mDic];
 }
 
 + (LRFHeaderFooterInfo *)lrf_headerInfoWithHeaderID:(NSString *)headerID height:(CGFloat)height{
@@ -97,7 +97,7 @@
 
 + (LRFHeaderFooterInfo *)lrf_headerFooterInfoWithHeaderID:(NSString *)headerID headerHeight:(CGFloat)headerHeight footerID:(NSString *)footerID footerHeight:(CGFloat)footerHeight{
     BOOL hasInfo = NO;
-    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:4];
+    NSMutableDictionary *mDic = [self lrf_getReuseDictionary];
     if (headerHeight > 0) {
         mDic[kLrfHeaderHeight] = @(headerHeight);
         mDic[kLrfHeaderID] = headerID ? headerID : @"header";
@@ -108,7 +108,7 @@
         mDic[kLrfFooterID] = footerID ? footerID : @"footerID";
         hasInfo = YES;
     }
-    return hasInfo ? [mDic copy] : nil;
+    return hasInfo ? [self lrf_unuseDictionary:mDic] : nil;
 }
 
 - (CGFloat)lrf_contentHeight{
@@ -127,6 +127,29 @@ static char klrf_sectionInfos;
     [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKeyAdr:&klrf_sectionInfos];
 }
 
+NSMutableSet *reuseSet;
+
++ (NSMutableDictionary *)lrf_getReuseDictionary{
+    if (!reuseSet) {
+        reuseSet = [[NSMutableSet alloc] initWithCapacity:2];
+    }
+    NSMutableDictionary *tmp = [reuseSet anyObject];
+    if (tmp) {
+        [reuseSet removeObject:tmp];
+    } else {
+        tmp = [NSMutableDictionary dictionaryWithCapacity:6];
+    }
+    return tmp;
+}
+
++ (NSDictionary *)lrf_unuseDictionary:(NSMutableDictionary *)reuseDictionary{
+    NSDictionary *dic = [reuseDictionary copy];
+    if (reuseSet.count == 0) {
+        [reuseDictionary removeAllObjects];
+        [reuseSet addObject:reuseDictionary];
+    }
+    return dic;
+}
 
 # pragma mark - delegate
 
