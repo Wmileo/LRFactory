@@ -10,8 +10,6 @@
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation UIViewController (LRFAppear)
 
 + (void)load{
@@ -36,12 +34,12 @@ static char keyViewHadAppeared;
 
 - (void)LRFAppear_viewWillAppear:(BOOL)animated{
     BOOL isFirstTime = NO;
-    if (![[self lrf_getAssociatedObjectWithKey:&keyViewHadAppeared] boolValue]) {
-        [self lrf_setStrongAssociatedObject:@(YES) withKey:&keyViewHadAppeared];
+    if (![[self lrf_getAssociatedObjectWithKeyAdr:&keyViewHadAppeared] boolValue]) {
+        [self lrf_setStrongAssociatedObject:@(YES) withKeyAdr:&keyViewHadAppeared];
         isFirstTime = YES;
         [self lrf_viewWillAppearFirstTime:animated];
     }
-    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewWillAppearActions];
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKeyAdr:&keyViewWillAppearActions];
     [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
         obj(animated, isFirstTime);
     }];
@@ -50,7 +48,7 @@ static char keyViewHadAppeared;
 
 -(void)LRFAppear_viewDidAppear:(BOOL)animated{
     [self LRFAppear_viewDidAppear:animated];
-    NSArray<void(^)(BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewDidAppearActions];
+    NSArray<void(^)(BOOL)> *actions = [self lrf_getActionsWithKeyAdr:&keyViewDidAppearActions];
     [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
         obj(animated);
     }];
@@ -63,7 +61,7 @@ static char keyViewHadAppeared;
         isForever = YES;
         [self lrf_viewDidDisappearForever:animated];
     }
-    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewDidDisappearActions];
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKeyAdr:&keyViewDidDisappearActions];
     [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
         obj(animated, isForever);
     }];
@@ -75,7 +73,7 @@ static char keyViewHadAppeared;
         isForever = YES;
         [self lrf_viewWillDisappearForever:animated];
     }
-    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKey:&keyViewWillDisappearActions];
+    NSArray<void(^)(BOOL,BOOL)> *actions = [self lrf_getActionsWithKeyAdr:&keyViewWillDisappearActions];
     [actions enumerateObjectsUsingBlock:^(void (^ _Nonnull obj)(BOOL, BOOL), NSUInteger idx, BOOL * _Nonnull stop) {
         obj(animated, isForever);
     }];
@@ -104,22 +102,20 @@ static char keyViewWillDisappearActions;
 static char keyViewDidDisappearActions;
 
 - (void)lrf_addActionWhileViewWillAppear:(void (^)(BOOL, BOOL))action{
-    [self lrf_addAction:action key:&keyViewWillAppearActions];
+    [self lrf_addAction:action withKeyAdr:&keyViewWillAppearActions];
 }
 
 - (void)lrf_addActionWhileViewDidAppear:(void (^)(BOOL))action{
-    [self lrf_addAction:action key:&keyViewDidAppearActions];
+    [self lrf_addAction:action withKeyAdr:&keyViewDidAppearActions];
 }
 
 - (void)lrf_addActionWhileViewWillDisappear:(void (^)(BOOL, BOOL))action{
-    [self lrf_addAction:action key:&keyViewWillDisappearActions];
+    [self lrf_addAction:action withKeyAdr:&keyViewWillDisappearActions];
 }
 
 - (void)lrf_addActionWhileViewDidDisappear:(void (^)(BOOL, BOOL))action{
-    [self lrf_addAction:action key:&keyViewDidDisappearActions];
+    [self lrf_addAction:action withKeyAdr:&keyViewDidDisappearActions];
 }
 
 @end
 
-
-NS_ASSUME_NONNULL_END

@@ -11,8 +11,6 @@
 #import "NSObject+LRFactory.h"
 #import <objc/runtime.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation UIViewController (LRFPush)
 
 + (void)lrf_injectPush{
@@ -28,12 +26,12 @@ static char keyPopIgnore;
 
 - (void)setLrf_popIgnore:(BOOL)lrf_popIgnore{
     [UIViewController lrf_injectPush];
-    [self lrf_setStrongAssociatedObject:@(lrf_popIgnore) withKey:&keyPopIgnore];
+    [self lrf_setStrongAssociatedObject:@(lrf_popIgnore) withKeyAdr:&keyPopIgnore];
     [self lrf_ignoreViewController];
 }
 
 - (BOOL)lrf_popIgnore{
-    return [[self lrf_getAssociatedObjectWithKey:&keyPopIgnore] boolValue];
+    return [[self lrf_getAssociatedObjectWithKeyAdr:&keyPopIgnore] boolValue];
 }
 
 - (void)LRFPush_viewDidAppear:(BOOL)animated{
@@ -57,5 +55,3 @@ static char keyPopIgnore;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -8,8 +8,6 @@
 
 #import "NSObject+LRFactory.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LRFDeallocObject : NSObject
 
 @property (nonatomic, copy, nullable) NSArray<void(^)(void)> *lrf_willDeallocActions;
@@ -33,27 +31,27 @@ static char keyTagObjectStrong;
 static char keyTagInteger;
 
 - (void)setLrf_tag_copy:(id _Nullable)lrf_tag_copy{
-    [self lrf_setNonatomicCopyAssociatedObject:lrf_tag_copy withKey:&keyTagObjectCopy];
+    [self lrf_setNonatomicCopyAssociatedObject:lrf_tag_copy withKeyAdr:&keyTagObjectCopy];
 }
 
 - (id _Nullable)lrf_tag_copy{
-    return [self lrf_getAssociatedObjectWithKey:&keyTagObjectCopy];
+    return [self lrf_getAssociatedObjectWithKeyAdr:&keyTagObjectCopy];
 }
 
 - (void)setLrf_tag_strong:(id _Nullable)lrf_tag_strong{
-    [self lrf_setNonatomicStrongAssociatedObject:lrf_tag_strong withKey:&keyTagObjectStrong];
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_tag_strong withKeyAdr:&keyTagObjectStrong];
 }
 
 - (id _Nullable)lrf_tag_strong{
-    return [self lrf_getAssociatedObjectWithKey:&keyTagObjectStrong];
+    return [self lrf_getAssociatedObjectWithKeyAdr:&keyTagObjectStrong];
 }
 
 - (void)setLrf_tag:(NSInteger)lrf_tag{
-    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_tag) withKey:&keyTagInteger];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_tag) withKeyAdr:&keyTagInteger];
 }
 
 - (NSInteger)lrf_tag{
-    return [[self lrf_getAssociatedObjectWithKey:&keyTagInteger] integerValue];
+    return [[self lrf_getAssociatedObjectWithKeyAdr:&keyTagInteger] integerValue];
 }
 
 #pragma mark - weak dealloc
@@ -61,10 +59,10 @@ static char keyTagInteger;
 static char keyLRFDeallocObject;
 
 - (void)lrf_addActionWhileWillDealloc:(void (^)(void))action{
-    LRFDeallocObject *obj = [self lrf_getAssociatedObjectWithKey:&keyLRFDeallocObject];
+    LRFDeallocObject *obj = [self lrf_getAssociatedObjectWithKeyAdr:&keyLRFDeallocObject];
     if (!obj) {
         obj = [[LRFDeallocObject alloc] init];
-        [self lrf_setNonatomicStrongAssociatedObject:obj withKey:&keyLRFDeallocObject];
+        [self lrf_setNonatomicStrongAssociatedObject:obj withKeyAdr:&keyLRFDeallocObject];
     }
     NSArray<void(^)(void)> *actions = obj.lrf_willDeallocActions;
     NSArray<void(^)(void)> *tmp = actions ? [actions arrayByAddingObject:action] : @[action];
@@ -73,40 +71,40 @@ static char keyLRFDeallocObject;
 
 #pragma mark - property
 
-- (void)lrf_setAssociatedObject:(id _Nullable)objc withKey:(const void *)key policy:(objc_AssociationPolicy)policy{
+- (void)lrf_setAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key policy:(objc_AssociationPolicy)policy{
     objc_setAssociatedObject(self, key, objc, policy);
 }
 
-- (id _Nullable)lrf_getAssociatedObjectWithKey:(const void *)key{
+- (id _Nullable)lrf_getAssociatedObjectWithKeyAdr:(const void *)key{
     return objc_getAssociatedObject(self, key);
 }
 
-- (void)lrf_setAssignAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssociatedObject:objc withKey:key policy:OBJC_ASSOCIATION_ASSIGN];
+- (void)lrf_setAssignAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssociatedObject:objc withKeyAdr:key policy:OBJC_ASSOCIATION_ASSIGN];
 }
 
-- (void)lrf_setWeakAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssignAssociatedObject:objc withKey:key];
+- (void)lrf_setWeakAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssignAssociatedObject:objc withKeyAdr:key];
     __weak typeof(self) wself = self;
     [objc lrf_addActionWhileWillDealloc:^{
-        [wself lrf_setAssignAssociatedObject:nil withKey:key];
+        [wself lrf_setAssignAssociatedObject:nil withKeyAdr:key];
     }];
 }
 
-- (void)lrf_setStrongAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssociatedObject:objc withKey:key policy:OBJC_ASSOCIATION_RETAIN];
+- (void)lrf_setStrongAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssociatedObject:objc withKeyAdr:key policy:OBJC_ASSOCIATION_RETAIN];
 }
 
-- (void)lrf_setNonatomicStrongAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssociatedObject:objc withKey:key policy:OBJC_ASSOCIATION_RETAIN_NONATOMIC];
+- (void)lrf_setNonatomicStrongAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssociatedObject:objc withKeyAdr:key policy:OBJC_ASSOCIATION_RETAIN_NONATOMIC];
 }
 
-- (void)lrf_setCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssociatedObject:objc withKey:key policy:OBJC_ASSOCIATION_COPY];
+- (void)lrf_setCopyAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssociatedObject:objc withKeyAdr:key policy:OBJC_ASSOCIATION_COPY];
 }
 
-- (void)lrf_setNonatomicCopyAssociatedObject:(id _Nullable)objc withKey:(const void *)key{
-    [self lrf_setAssociatedObject:objc withKey:key policy:OBJC_ASSOCIATION_COPY_NONATOMIC];
+- (void)lrf_setNonatomicCopyAssociatedObject:(id _Nullable)objc withKeyAdr:(const void *)key{
+    [self lrf_setAssociatedObject:objc withKeyAdr:key policy:OBJC_ASSOCIATION_COPY_NONATOMIC];
 }
 
 #pragma mark - method
@@ -121,20 +119,18 @@ static char keyLRFDeallocObject;
 
 #pragma mark - actions
 
-- (NSArray * _Nullable)lrf_getActionsWithKey:(const void *)key{
-    return [self lrf_getAssociatedObjectWithKey:key];
+- (NSArray * _Nullable)lrf_getActionsWithKeyAdr:(const void *)key{
+    return [self lrf_getAssociatedObjectWithKeyAdr:key];
 }
 
-- (void)lrf_addAction:(id)action key:(const void *)key{
-    NSArray *actions = [self lrf_getActionsWithKey:key];
+- (void)lrf_addAction:(id)action withKeyAdr:(const void *)key{
+    NSArray *actions = [self lrf_getActionsWithKeyAdr:key];
     if (actions) {
         actions = [actions arrayByAddingObject:action];
     } else {
         actions = @[action];
     }
-    [self lrf_setCopyAssociatedObject:actions withKey:key];
+    [self lrf_setCopyAssociatedObject:actions withKeyAdr:key];
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
