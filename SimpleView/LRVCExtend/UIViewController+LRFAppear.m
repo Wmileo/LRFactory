@@ -81,17 +81,7 @@ static char keyViewHadAppeared;
 }
 
 - (BOOL)lrf_isSelfValid{
-    BOOL isContain = NO;
-    if ([self.tabBarController.viewControllers containsObject:self]) {
-        isContain = YES;
-    }
-    if ([self.navigationController.viewControllers containsObject:self]) {
-        isContain = YES;
-    }
-    if (self.presentedViewController) {
-        isContain = YES;
-    }
-    return isContain;
+    return [self.navigationController.viewControllers containsObject:self] || self.presentedViewController || [self.tabBarController.viewControllers containsObject:self];
 }
 
 #pragma mark -
