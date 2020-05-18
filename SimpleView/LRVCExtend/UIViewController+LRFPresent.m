@@ -26,8 +26,8 @@ static char keyPresentWillDismissBlock;
 static char keyPresentDidDismissBlock;
 
 - (void)lrf_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^ __nullable)(void))completion willDismissCallback:(void (^ __nullable)(id _Nullable))willDismissCallback didDismissCallback:(void (^ __nullable)(id _Nullable))didDismissCallback{
-    [self lrf_setCopyAssociatedObject:willDismissCallback withKeyAdr:&keyPresentWillDismissBlock];
-    [self lrf_setCopyAssociatedObject:didDismissCallback withKeyAdr:&keyPresentDidDismissBlock];
+    [self lrf_setCopyAssociatedObject:willDismissCallback withKeyPoint:&keyPresentWillDismissBlock];
+    [self lrf_setCopyAssociatedObject:didDismissCallback withKeyPoint:&keyPresentDidDismissBlock];
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
@@ -36,8 +36,8 @@ static char keyPresentDidDismissBlock;
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = ((UINavigationController *)vc).visibleViewController;
     }
-    void (^WillDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyAdr:&keyPresentWillDismissBlock];
-    void (^DidDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyAdr:&keyPresentDidDismissBlock];
+    void (^WillDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyPoint:&keyPresentWillDismissBlock];
+    void (^DidDismissBlock)(id _Nullable) = [vc lrf_getAssociatedObjectWithKeyPoint:&keyPresentDidDismissBlock];
     if (WillDismissBlock) {
         WillDismissBlock(info);
     }

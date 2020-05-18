@@ -121,11 +121,11 @@
 static char klrf_sectionInfos;
 
 - (NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    return [self lrf_getAssociatedObjectWithKeyAdr:&klrf_sectionInfos];
+    return [self lrf_getAssociatedObjectWithKeyPoint:&klrf_sectionInfos];
 }
 
 - (void)setLrf_sectionInfos:(NSArray<LRFSectionInfo *> *)lrf_sectionInfos{
-    [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKeyAdr:&klrf_sectionInfos];
+    [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKeyPoint:&klrf_sectionInfos];
 }
 
 NSMutableSet *reuseSet;
@@ -157,11 +157,11 @@ NSMutableSet *reuseSet;
 static char klrf_implement;
 
 - (LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
-    return objc_getAssociatedObject(self, &klrf_implement);
+    return [self lrf_getAssociatedObjectWithKeyPoint:&klrf_implement];
 }
 
 - (void)setLrf_implement:(LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_implement{
-    objc_setAssociatedObject(self, &klrf_implement, lrf_implement, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lrf_setNonatomicStrongAssociatedObject:lrf_implement withKeyPoint:&klrf_implement];
 }
 
 - (LRFTabViewImplement<UITableViewDelegate,UITableViewDataSource> *)lrf_safeImplement{
@@ -175,7 +175,7 @@ static char klrf_implement;
 static char klrf_dataSource;
 
 - (id<LRF_UITableViewDataSource>)lrf_dataSource{
-    return [self lrf_getAssociatedObjectWithKeyAdr:&klrf_dataSource];
+    return [self lrf_getAssociatedObjectWithKeyPoint:&klrf_dataSource];
 }
 
 - (void)lrf_handleDataSource:(id<LRF_UITableViewDataSource>)dataSource canHandleDelegate:(BOOL)canHandel{
@@ -183,7 +183,7 @@ static char klrf_dataSource;
     if (dataSource) {
         self.dataSource = imp;
     }
-    [self lrf_setWeakAssociatedObject:dataSource withKeyAdr:&klrf_dataSource];
+    [self lrf_setWeakAssociatedObject:dataSource withKeyPoint:&klrf_dataSource];
     if (canHandel) {
         self.delegate = imp;
     }

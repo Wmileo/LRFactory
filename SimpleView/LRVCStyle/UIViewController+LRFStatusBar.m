@@ -41,15 +41,15 @@ static char keyStatusBarAnimation;
 
 -(void)setLrf_statusBarHidden:(BOOL)lrf_statusBarHidden withAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation{
     [UIViewController lrf_injectStatus];
-    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarHidden) withKeyAdr:&keyStatusBarHidden];
-    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKeyAdr:&keyStatusBarAnimation];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarHidden) withKeyPoint:&keyStatusBarHidden];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKeyPoint:&keyStatusBarAnimation];
     if (self.lrf_isVisible) {
         [[UIApplication sharedApplication] setStatusBarHidden:self.lrf_statusBarHidden withAnimation:self.lrf_statusBarAnimation];
     }
 }
 
 - (BOOL)lrf_statusBarHidden{
-    id hidden = [self lrf_getAssociatedObjectWithKeyAdr:&keyStatusBarHidden];
+    id hidden = [self lrf_getAssociatedObjectWithKeyPoint:&keyStatusBarHidden];
     if (hidden) {
         return [hidden boolValue];
     }else{
@@ -63,14 +63,14 @@ static char keyStatusBarAnimation;
 
 -(void)setLrf_statusBarStyle:(UIStatusBarStyle)lrf_statusBarStyle animated:(BOOL)animated{
     [UIViewController lrf_injectStatus];
-    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarStyle) withKeyAdr:&keyStatusBarStyle];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarStyle) withKeyPoint:&keyStatusBarStyle];
     if (self.lrf_isVisible) {
         [[UIApplication sharedApplication] setStatusBarStyle:self.lrf_statusBarStyle animated:animated];
     }
 }
 
 - (UIStatusBarStyle)lrf_statusBarStyle{
-    id style = [self lrf_getAssociatedObjectWithKeyAdr:&keyStatusBarStyle];
+    id style = [self lrf_getAssociatedObjectWithKeyPoint:&keyStatusBarStyle];
     if (style) {
         return [style integerValue];
     }else{
@@ -80,11 +80,11 @@ static char keyStatusBarAnimation;
 
 - (void)setLrf_statusBarAnimation:(UIStatusBarAnimation)lrf_statusBarAnimation{
     [UIViewController lrf_injectStatus];
-    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKeyAdr:&keyStatusBarAnimation];
+    [self lrf_setNonatomicStrongAssociatedObject:@(lrf_statusBarAnimation) withKeyPoint:&keyStatusBarAnimation];
 }
 
 - (UIStatusBarAnimation)lrf_statusBarAnimation{
-    id animation = [self lrf_getAssociatedObjectWithKeyAdr:&keyStatusBarAnimation];
+    id animation = [self lrf_getAssociatedObjectWithKeyPoint:&keyStatusBarAnimation];
     if (animation) {
         return [animation integerValue];
     }else{
