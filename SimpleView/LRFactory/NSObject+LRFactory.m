@@ -117,6 +117,37 @@ static char keyLRFDeallocObject;
     method_exchangeImplementations(class_getClassMethod([self class], sel1), class_getClassMethod([self class], sel2));
 }
 
+#pragma mark - hook
+static NSString *LRFHookPrefix = @"__LRF__";
+- (Class)lrf_hookSubObject{
+    Class realClass = object_getClass(self);
+    Class showClass = [self class];
+    if ([NSStringFromClass(realClass) hasPrefix:LRFHookPrefix]) {
+        return realClass;
+    }
+    if (realClass != showClass) {
+        return realClass;
+    }
+    const char *subName = [LRFHookPrefix stringByAppendingString:NSStringFromClass(showClass)].UTF8String;
+    Class subClass = objc_getClass(subName);
+    if (!subClass) {
+        subClass = objc_allocateClassPair(showClass, subName, 0);
+        [self lrf_hookClass:subClass];
+        objc_registerClassPair(subClass);
+    }
+    object_setClass(self, subClass);
+    return subClass;
+}
+
+- (void)lrf_hookClass:(Class)subClass {
+    Method method = class_getInstanceMethod(subClass, @selector(class));
+    Class selfClass = [self class];
+    IMP newIMP = imp_implementationWithBlock(^() {
+        return selfClass;
+    });
+    class_replaceMethod(subClass, @selector(class), newIMP, method_getTypeEncoding(method));
+}
+
 #pragma mark - actions
 
 - (NSArray * _Nullable)lrf_getActionsWithKeyPoint:(const void *)point{

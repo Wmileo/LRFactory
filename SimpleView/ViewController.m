@@ -21,6 +21,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class cc = [self lrf_hookSubObject];
+
+        [cc lrf_exchangeSEL:@selector(cc_viewWillDisappear:) withSEL:@selector(viewWillDisappear:)];
+    });
+    NSLog(@"%@", object_getClass(self));
     
 //    [self navSetupStyle:@"lalala"];
     
@@ -67,7 +75,7 @@
     [self.view addSubview:iv];
     
     [self lrf_setupNavigationItemWithImage:[UIImage imageNamed:@"back"] side:LRF_BarButtonItem_Side_Left action:^{
-        NSLog(@"aaa");
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
 
@@ -88,8 +96,14 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+-(void)cc_viewWillDisappear:(BOOL)animated{
+    [self cc_viewWillDisappear:animated];
+    NSLog(@"ccccc");
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    NSLog(@"real");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

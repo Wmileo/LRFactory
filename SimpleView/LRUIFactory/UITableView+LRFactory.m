@@ -49,7 +49,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [wself reloadData];
     });
-    
 }
 
 + (LRFCellInfo *)lrf_cellInfoWithCellID:(NSString *)cellID height:(CGFloat)height info:(id)info{
