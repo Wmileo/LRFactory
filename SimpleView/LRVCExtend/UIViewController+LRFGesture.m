@@ -46,11 +46,11 @@
 static char keyCanGesturePop;
 
 - (void)setLrf_canGesturePop:(BOOL)lrf_canGesturePop{
-    [self lrf_setStrongAssociatedObject:@(lrf_canGesturePop) withKeyAdr:&keyCanGesturePop];
+    [self lrf_setStrongAssociatedObject:@(lrf_canGesturePop) withKeyPoint:&keyCanGesturePop];
 }
 
 -(BOOL)lrf_canGesturePop{
-    id canGesturePop = [self lrf_getAssociatedObjectWithKeyAdr:&keyCanGesturePop];
+    id canGesturePop = [self lrf_getAssociatedObjectWithKeyPoint:&keyCanGesturePop];
     if (canGesturePop) {
         return [canGesturePop boolValue];
     }else{

@@ -38,7 +38,7 @@
 }
 
 - (BOOL)lrf_isVisible{
-    return self == [UIApplication lrf_currentViewController];
+    return self.isViewLoaded && self.view.window;
 }
 
 - (BOOL)lrf_isFinalController{
