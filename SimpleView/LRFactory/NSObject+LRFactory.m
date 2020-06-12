@@ -110,42 +110,58 @@ static char keyLRFDeallocObject;
 #pragma mark - method
 
 + (void)lrf_exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2{
-    method_exchangeImplementations(class_getInstanceMethod([self class], sel1), class_getInstanceMethod([self class], sel2));
+    Method method1 = class_getInstanceMethod([self class], sel1);
+    Method method2 = class_getInstanceMethod([self class], sel2);
+    IMP imp1 = method_getImplementation(method1);
+    IMP imp2 = method_getImplementation(method2);
+    class_replaceMethod([self class], sel1, imp2, method_getTypeEncoding(method1));
+    class_replaceMethod([self class], sel2, imp1, method_getTypeEncoding(method2));
 }
 
 + (void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2{
-    method_exchangeImplementations(class_getClassMethod([self class], sel1), class_getClassMethod([self class], sel2));
+    Method method1 = class_getClassMethod([self class], sel1);
+    Method method2 = class_getClassMethod([self class], sel2);
+    IMP imp1 = method_getImplementation(method1);
+    IMP imp2 = method_getImplementation(method2);
+    class_replaceMethod([self class], sel1, imp2, method_getTypeEncoding(method1));
+    class_replaceMethod([self class], sel2, imp1, method_getTypeEncoding(method2));
 }
 
 #pragma mark - hook
+
 static NSString *LRFHookPrefix = @"__LRF__";
+
 - (Class)lrf_hookSubObject{
     Class realClass = object_getClass(self);
     Class showClass = [self class];
     if ([NSStringFromClass(realClass) hasPrefix:LRFHookPrefix]) {
         return realClass;
     }
-    if (realClass != showClass) {
+    if (![NSStringFromClass(realClass) isEqualToString:NSStringFromClass(showClass)]) {
         return realClass;
     }
-    const char *subName = [LRFHookPrefix stringByAppendingString:NSStringFromClass(showClass)].UTF8String;
+    NSString *subNameStr = [LRFHookPrefix stringByAppendingString:NSStringFromClass(showClass)];
+    const char *subName = subNameStr.UTF8String;
     Class subClass = objc_getClass(subName);
+    if (class_isMetaClass(realClass)) {
+        subClass = object_getClass(subClass);
+    }
     if (!subClass) {
         subClass = objc_allocateClassPair(showClass, subName, 0);
-        [self lrf_hookClass:subClass];
+        lrf_hookClass(self, subClass);
         objc_registerClassPair(subClass);
     }
     object_setClass(self, subClass);
     return subClass;
 }
 
-- (void)lrf_hookClass:(Class)subClass {
-    Method method = class_getInstanceMethod(subClass, @selector(class));
-    Class selfClass = [self class];
+static void lrf_hookClass(id self, Class sub) {
+    Method method = class_getInstanceMethod(sub, @selector(class));
+    Class showClass = [self class];
     IMP newIMP = imp_implementationWithBlock(^() {
-        return selfClass;
+        return showClass;
     });
-    class_replaceMethod(subClass, @selector(class), newIMP, method_getTypeEncoding(method));
+    class_replaceMethod(sub, @selector(class), newIMP, method_getTypeEncoding(method));
 }
 
 #pragma mark - actions

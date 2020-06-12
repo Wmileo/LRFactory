@@ -21,12 +21,15 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    Class cc = [self lrf_hookSubObject];
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Class cc = [self lrf_hookSubObject];
-
+//        Class ii = [ViewController lrf_hookSubObject];
         [cc lrf_exchangeSEL:@selector(cc_viewWillDisappear:) withSEL:@selector(viewWillDisappear:)];
+        
+        NSLog(@"%@", object_getClass(self));
+        
     });
     NSLog(@"%@", object_getClass(self));
     
