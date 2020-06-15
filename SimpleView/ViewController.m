@@ -21,11 +21,16 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    Class cc = [self lrf_hookSubObject];
+    Class ii = [ViewController lrf_hookSubClass];
+    Class cc = [self lrf_hookSubClass];
 
+    
+    LRFNavigationBarStyle *style = [[LRFNavigationBarStyle alloc] init];
+    [style bindingViewController:self];
+    style.isHidden = YES;
+    NSLog(@"%d", style.isHidden);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        Class ii = [ViewController lrf_hookSubObject];
         [cc lrf_exchangeSEL:@selector(cc_viewWillDisappear:) withSEL:@selector(viewWillDisappear:)];
         
         NSLog(@"%@", object_getClass(self));
@@ -35,12 +40,12 @@
     
 //    [self navSetupStyle:@"lalala"];
     
-    self.lrf_navigationBarTintColor = [UIColor orangeColor];
+    self.lrf_navigationBarStyle.tintColor = [UIColor orangeColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.lrf_navigationBarHidden = NO;
+    self.lrf_navigationBarStyle.isHidden = NO;
     self.lrf_statusBarHidden = YES;
     
-    self.lrf_navigationBarShadowImage = [[UIImage alloc] init];
+    self.lrf_navigationBarStyle.shadowImage = [[UIImage alloc] init];
     UIView *v = [UIView lrf_viewWithFrame:CGRectMake(0, -64, 320, 64)];
     v.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:v];
@@ -88,8 +93,9 @@
     [self lrf_addNavigationItemWithText:@"bb" side:LRF_BarButtonItem_Side_Right action:^{
         ViewController *test = [[ViewController alloc] init];
         //        test.statusHide = YES;
-        test.lrf_navigationBarTintColor = [UIColor redColor];
-        test.lrf_navigationBarShadowImage = nil;
+        test.lrf_navigationBarStyle.tintColor = [UIColor redColor];
+        test.lrf_navigationBarStyle.shadowImage = nil;
+        test.lrf_popIgnore = YES;
         //        [test navSetupBackItemWithIdentification:@"back"];
         [wself.navigationController pushViewController:test animated:YES];
     }];

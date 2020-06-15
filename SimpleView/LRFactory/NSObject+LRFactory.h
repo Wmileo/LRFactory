@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lrf_exchangeSEL:(SEL)sel1 withSEL:(SEL)sel2;
 + (void)lrf_exchangeClassSEL:(SEL)sel1 withClassSEL:(SEL)sel2;
 
-- (Class)lrf_hookSubObject;
+- (Class)lrf_hookSubClass;
 
 - (void)lrf_setAssociatedObject:(id _Nullable)objc withKeyPoint:(const void *)point policy:(objc_AssociationPolicy)policy;
 - (id _Nullable)lrf_getAssociatedObjectWithKeyPoint:(const void *)point;

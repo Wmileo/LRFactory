@@ -24,22 +24,22 @@
 
     
     [UIViewController lrf_styleAddWithIdentifier:@"lalala" style:^(UIViewController *vc) {
-        vc.lrf_navigationTitleColor = [UIColor redColor];
-        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:20];
+//        vc.lrf_navigationTitleColor = [UIColor redColor];
+//        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:20];
         vc.lrf_navigationItemColor = [UIColor redColor];
         vc.lrf_navigationItemFont = [UIFont systemFontOfSize:20];
-        vc.lrf_navigationBarShadowImage = [[UIImage alloc] init];
+        vc.lrf_navigationBarStyle.shadowImage = [[UIImage alloc] init];
     }];
     [UIViewController lrf_styleAddWithIdentifier:@"bababa" style:^(UIViewController *vc) {
-        vc.lrf_navigationTitleColor = [UIColor blueColor];
-        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:10];
+//        vc.lrf_navigationTitleColor = [UIColor blueColor];
+//        vc.lrf_navigationTitleFont = [UIFont systemFontOfSize:10];
         vc.lrf_navigationItemColor = [UIColor blueColor];
         vc.lrf_navigationItemFont = [UIFont systemFontOfSize:10];
         vc.lrf_navigationBackImage = [UIImage imageNamed:@"back"];
         vc.lrf_navigationBackTitle = vc.lrf_navigationBackPrevTitle;
         vc.lrf_navigationBackColor = [UIColor blueColor];
         vc.lrf_navigationBackFont = [UIFont systemFontOfSize:20];
-        vc.lrf_navigationBarShadowImage = nil;
+        vc.lrf_navigationBarStyle.shadowImage = nil;
     }];
     [UIViewController lrf_styleSetupDefaultIdentifier:@"bababa"];
     

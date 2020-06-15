@@ -9,10 +9,10 @@
 #ifndef LRVCStyle_h
 #define LRVCStyle_h
 
-#import "UIViewController+LRFNavigationTitle.h"
 #import "UIViewController+LRFNavigationBar.h"
 #import "UIViewController+LRFStatusBar.h"
 #import "UIViewController+LRFNavigationButton.h"
 #import "UIViewController+LRFViewControllerStyle.h"
+#import "UINavigationController+LRFStyle.h"
 
 #endif /* LRVCStyle_h */

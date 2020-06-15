@@ -127,7 +127,7 @@ static char klrf_sectionInfos;
     [self lrf_setCopyAssociatedObject:lrf_sectionInfos withKeyPoint:&klrf_sectionInfos];
 }
 
-NSMutableSet *reuseSet;
+static NSMutableSet *reuseSet;
 
 + (NSMutableDictionary *)lrf_getReuseDictionary{
     if (!reuseSet) {

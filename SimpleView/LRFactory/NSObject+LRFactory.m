@@ -131,7 +131,7 @@ static char keyLRFDeallocObject;
 
 static NSString *LRFHookPrefix = @"__LRF__";
 
-- (Class)lrf_hookSubObject{
+- (Class)lrf_hookSubClass{
     Class realClass = object_getClass(self);
     Class showClass = [self class];
     if ([NSStringFromClass(realClass) hasPrefix:LRFHookPrefix]) {
@@ -143,16 +143,21 @@ static NSString *LRFHookPrefix = @"__LRF__";
     NSString *subNameStr = [LRFHookPrefix stringByAppendingString:NSStringFromClass(showClass)];
     const char *subName = subNameStr.UTF8String;
     Class subClass = objc_getClass(subName);
-    if (class_isMetaClass(realClass)) {
-        subClass = object_getClass(subClass);
-    }
+    Class subMetaClass = object_getClass(subClass);
     if (!subClass) {
         subClass = objc_allocateClassPair(showClass, subName, 0);
-        lrf_hookClass(self, subClass);
         objc_registerClassPair(subClass);
+        subMetaClass = object_getClass(subClass);
+        lrf_hookClass(self, subClass);
+        lrf_hookClass(self, subMetaClass);
     }
-    object_setClass(self, subClass);
-    return subClass;
+    if (class_isMetaClass(realClass)) {
+        object_setClass(self, subMetaClass);
+        return subMetaClass;
+    } else {
+        object_setClass(self, subClass);
+        return subClass;
+    }
 }
 
 static void lrf_hookClass(id self, Class sub) {
