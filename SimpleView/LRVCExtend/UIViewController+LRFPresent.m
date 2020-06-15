@@ -33,6 +33,9 @@ static char keyPresentDidDismissBlock;
 
 - (void)lrf_dismissViewControllerAnimated:(BOOL)flag completion:(void (^ __nullable)(void))completion info:(id _Nullable)info{
     UIViewController *vc = self.presentingViewController;
+    if (!vc) {
+        return;
+    }
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = ((UINavigationController *)vc).visibleViewController;
     }
