@@ -19,8 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateWithNavigationController:(UINavigationController *)navigationController;
 - (void)updateWithNavigationBarStyle:(LRFNavigationBarStyle *)style;
 
-
 - (void)layoutNavigationBar:(BOOL)animated;
+
+- (void)startObserve;
+- (void)endObserve;
 
 @property (nonatomic, assign) BOOL isRealTime;
 

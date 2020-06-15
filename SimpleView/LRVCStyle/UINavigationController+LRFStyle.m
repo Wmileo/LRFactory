@@ -13,8 +13,11 @@
 @interface LRFNavigationBarStyle ()
 
 @property (nonatomic, weak) UIViewController *viewController;
+@property (nonatomic, weak) UINavigationController *navigationController;
 @property (readonly) UINavigationBar *navigationBar;
 @property (readonly) BOOL isNavigationBarValid;
+
+@property (nonatomic, assign) BOOL isObserving;
 
 @end
 
@@ -29,41 +32,11 @@
 
 - (void)bindingViewController:(UIViewController *)viewController{
     self.viewController = viewController;
-}
-
-- (void)updateWithNavigationBarStyle:(LRFNavigationBarStyle *)style{
-    if (style) {
-        self.isHidden = style.isHidden;
-        self.tintColor = style.tintColor;
-        self.itemTintColor = style.itemTintColor;
-        self.titleTextAttributes = style.titleTextAttributes;
-        self.titleFont = style.titleFont;
-        self.titleColor = style.titleColor;
-        self.shadowImage = style.shadowImage;
-        self.backgroundImage = style.backgroundImage;
-        self.isTranslucent = style.isTranslucent;
-        self.isClear = style.isClear;
-    }
-}
-
-- (void)updateWithNavigationController:(UINavigationController *)navigationController{
-    if (navigationController) {
-        self.isHidden = navigationController.navigationBarHidden;
-        UINavigationBar *bar = navigationController.navigationBar;
-        self.tintColor = bar.barTintColor;
-        self.itemTintColor = bar.tintColor;
-        self.titleTextAttributes = bar.titleTextAttributes;
-        self.titleFont = bar.titleTextAttributes[NSFontAttributeName];
-        self.titleColor = bar.titleTextAttributes[NSForegroundColorAttributeName];
-        self.shadowImage = bar.shadowImage;
-        self.backgroundImage = [bar backgroundImageForBarMetrics:UIBarMetricsDefault];
-        self.isTranslucent = bar.translucent;
-        self.isClear = NO;
-    }
+    self.navigationController = viewController.navigationController;
 }
 
 - (void)layoutNavigationBar:(BOOL)animated {
-    UINavigationController *navigationController = self.viewController.navigationController;
+    UINavigationController *navigationController = self.navigationController;
     if (navigationController) {
         [navigationController setNavigationBarHidden:self.isHidden animated:animated];
         if (!self.isHidden) {
@@ -85,6 +58,88 @@
     }
 }
 
+- (void)updateWithNavigationBarStyle:(LRFNavigationBarStyle *)style{
+    if (style) {
+        self.isHidden = style.isHidden;
+        self.tintColor = style.tintColor;
+        self.itemTintColor = style.itemTintColor;
+        self.titleTextAttributes = style.titleTextAttributes;
+        self.titleFont = style.titleFont;
+        self.titleColor = style.titleColor;
+        self.shadowImage = style.shadowImage;
+        self.backgroundImage = style.backgroundImage;
+        self.isTranslucent = style.isTranslucent;
+        self.isClear = style.isClear;
+    }
+}
+
+- (void)updateWithNavigationController:(UINavigationController *)navigationController{
+    if (navigationController) {
+        self.navigationController = navigationController;
+        self.isHidden = navigationController.navigationBarHidden;
+        UINavigationBar *bar = navigationController.navigationBar;
+        self.tintColor = bar.barTintColor;
+        self.itemTintColor = bar.tintColor;
+        self.titleTextAttributes = bar.titleTextAttributes;
+        self.titleFont = bar.titleTextAttributes[NSFontAttributeName];
+        self.titleColor = bar.titleTextAttributes[NSForegroundColorAttributeName];
+        self.shadowImage = bar.shadowImage;
+        self.backgroundImage = [bar backgroundImageForBarMetrics:UIBarMetricsDefault];
+        self.isTranslucent = bar.translucent;
+    }
+}
+
+#pragma mark - observie
+
+- (void)startObserve{
+    self.isObserving = YES;
+    [self.navigationController addObserver:self forKeyPath:@"navigationBarHidden" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"barTintColor" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"tintColor" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"titleTextAttributes" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"shadowImage" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"translucent" options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController.navigationBar addObserver:self forKeyPath:@"backgroundImage" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)endObserve{
+    if (self.isObserving) {
+        self.isObserving = NO;
+        [self.navigationController removeObserver:self forKeyPath:@"navigationBarHidden"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"barTintColor"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"tintColor"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"titleTextAttributes"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"shadowImage"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"translucent"];
+        [self.navigationController.navigationBar removeObserver:self forKeyPath:@"backgroundImage"];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    UINavigationController *navigationController = self.navigationController;
+    UINavigationBar *bar = navigationController.navigationBar;
+    if ([keyPath isEqualToString:@"navigationBarHidden"]) {
+        self.isHidden = navigationController.navigationBarHidden;
+    } else if ([keyPath isEqualToString:@"barTintColor"]) {
+        self.tintColor = bar.barTintColor;
+    } else if ([keyPath isEqualToString:@"tintColor"]) {
+        self.itemTintColor = bar.tintColor;
+    } else if ([keyPath isEqualToString:@"titleTextAttributes"]) {
+        self.titleTextAttributes = bar.titleTextAttributes;
+        self.titleFont = bar.titleTextAttributes[NSFontAttributeName];
+        self.titleColor = bar.titleTextAttributes[NSForegroundColorAttributeName];
+    } else if ([keyPath isEqualToString:@"shadowImage"]) {
+        self.shadowImage = bar.shadowImage;
+    } else if ([keyPath isEqualToString:@"translucent"]) {
+        self.isTranslucent = bar.translucent;
+    } else if ([keyPath isEqualToString:@"backgroundImage"]) {
+        self.backgroundImage = [bar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    }
+}
+
+- (void)dealloc{
+    [self endObserve];
+}
 
 #pragma mark - set get
 
@@ -201,23 +256,25 @@ static char keyDefaultBarStyle;
 }
 
 static void lrf_updateCurrentViewControllerBarStyle(UINavigationController *self) {
-    self.visibleViewController.lrf_navigationBarStyle.isRealTime = NO;
     if (self.visibleViewController.lrf_isNavigationBarStyleHandle) {
+        self.visibleViewController.lrf_navigationBarStyle.isRealTime = NO;
         [self.visibleViewController.lrf_navigationBarStyle updateWithNavigationController:self];
     } else {
+        self.visibleViewController.lrf_navigationBarStyle.isRealTime = NO;
         [self.lrf_defaultBarStyle updateWithNavigationController:self];
     }
 }
 
-static void lrf_hookViewControllerBarStyle(UIViewController *vc) {
+static void lrf_hookViewControllerBarStyle(UIViewController *vc, UINavigationController *self) {
     if (!vc.lrf_isNavigationBarStyleHandle) {
         [vc lrf_hookNavigationBarStyle];
+        [self.lrf_defaultBarStyle startObserve];
     }
 }
 
 - (void)LRFStyle_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     lrf_updateCurrentViewControllerBarStyle(self);
-    lrf_hookViewControllerBarStyle(viewController);
+    lrf_hookViewControllerBarStyle(viewController, self);
     [self LRFStyle_pushViewController:viewController animated:animated];
 }
 
@@ -238,7 +295,7 @@ static void lrf_hookViewControllerBarStyle(UIViewController *vc) {
 
 - (void)LRFStyle_setViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers{
     for (UIViewController *vc in viewControllers) {
-        lrf_hookViewControllerBarStyle(vc);
+        lrf_hookViewControllerBarStyle(vc, self);
     }
     [self LRFStyle_setViewControllers:viewControllers];
 }

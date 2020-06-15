@@ -24,6 +24,7 @@ static NSMutableSet *hookSet;
         Class target = [self lrf_hookSubClass];
         if (![hookSet containsObject:target]) {
             [hookSet addObject:target];
+            [target lrf_exchangeSEL:@selector(viewDidLoad) withSEL:@selector(LRFNavigationBar_viewDidLoad)];
             [target lrf_exchangeSEL:@selector(viewWillAppear:) withSEL:@selector(LRFNavigationBar_viewWillAppear:)];
             [target lrf_exchangeSEL:@selector(viewDidAppear:) withSEL:@selector(LRFNavigationBar_viewDidAppear:)];
             [target lrf_exchangeSEL:@selector(viewWillDisappear:) withSEL:@selector(LRFNavigationBar_viewWillDisappear:)];
@@ -32,6 +33,11 @@ static NSMutableSet *hookSet;
 }
 
 #pragma mark - inject
+
+- (void)LRFNavigationBar_viewDidLoad{
+    [self LRFNavigationBar_viewDidLoad];
+    [self.navigationController.lrf_defaultBarStyle endObserve];
+}
 
 - (void)LRFNavigationBar_viewWillAppear:(BOOL)animated{
     if (self.navigationController) {
@@ -89,7 +95,7 @@ static char keyNavigationBarStyle;
 }
 
 - (BOOL)lrf_isNavigationBarStyleHandle{
-    return [self lrf_getAssociatedObjectWithKeyPoint:&keyNavigationBarStyle];
+    return !![self lrf_getAssociatedObjectWithKeyPoint:&keyNavigationBarStyle];
 }
 
 @end
