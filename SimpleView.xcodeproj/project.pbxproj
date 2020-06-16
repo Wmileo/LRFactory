@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5216997B2B1AE5E1A1002352 /* libPods-SimpleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B511EC83D4174AA046132E6B /* libPods-SimpleView.a */; };
-		B32EB7082496041500420814 /* UINavigationController+LRFStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EB7062496041500420814 /* UINavigationController+LRFStyle.m */; };
-		B32EB70B2497C90300420814 /* LRFNavigationBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EB70A2497C90200420814 /* LRFNavigationBarStyle.m */; };
+		B32EB70E2498A46F00420814 /* UIViewController+LRFCompleteChild.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EB70D2498A46F00420814 /* UIViewController+LRFCompleteChild.m */; };
 		B33625D91E8DFA0800C8D071 /* UIViewController+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B33625D81E8DFA0800C8D071 /* UIViewController+LRFactory.m */; };
 		B347599B1E713607007C702C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B347599A1E713607007C702C /* TableViewController.m */; };
 		B34952191E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B34952181E600EB4004AD109 /* CAKeyframeAnimation+LRFactory.m */; };
@@ -71,10 +70,8 @@
 
 /* Begin PBXFileReference section */
 		0202D8E12B681407EABF28BB /* Pods-SimpleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleView/Pods-SimpleView.debug.xcconfig"; sourceTree = "<group>"; };
-		B32EB7062496041500420814 /* UINavigationController+LRFStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LRFStyle.m"; sourceTree = "<group>"; };
-		B32EB7072496041500420814 /* UINavigationController+LRFStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LRFStyle.h"; sourceTree = "<group>"; };
-		B32EB7092497C90200420814 /* LRFNavigationBarStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRFNavigationBarStyle.h; sourceTree = "<group>"; };
-		B32EB70A2497C90200420814 /* LRFNavigationBarStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LRFNavigationBarStyle.m; sourceTree = "<group>"; };
+		B32EB70C2498A46F00420814 /* UIViewController+LRFCompleteChild.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFCompleteChild.h"; sourceTree = "<group>"; };
+		B32EB70D2498A46F00420814 /* UIViewController+LRFCompleteChild.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFCompleteChild.m"; sourceTree = "<group>"; };
 		B33625D71E8DFA0800C8D071 /* UIViewController+LRFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LRFactory.h"; sourceTree = "<group>"; };
 		B33625D81E8DFA0800C8D071 /* UIViewController+LRFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LRFactory.m"; sourceTree = "<group>"; };
 		B34759991E713607007C702C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -370,10 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				B3FCB15C219D705A00523E92 /* LRVCStyle.h */,
-				B32EB7092497C90200420814 /* LRFNavigationBarStyle.h */,
-				B32EB70A2497C90200420814 /* LRFNavigationBarStyle.m */,
-				B32EB7072496041500420814 /* UINavigationController+LRFStyle.h */,
-				B32EB7062496041500420814 /* UINavigationController+LRFStyle.m */,
+				B32EB70C2498A46F00420814 /* UIViewController+LRFCompleteChild.h */,
+				B32EB70D2498A46F00420814 /* UIViewController+LRFCompleteChild.m */,
 				B3FCB14821945B2F00523E92 /* UIViewController+LRFStatusBar.h */,
 				B3FCB14921945B2F00523E92 /* UIViewController+LRFStatusBar.m */,
 				B3FCB158219BF48500523E92 /* UIViewController+LRFNavigationBar.h */,
@@ -555,9 +550,8 @@
 				B347599B1E713607007C702C /* TableViewController.m in Sources */,
 				CE55BE4E1CBBC2F600D8364B /* AppDelegate.m in Sources */,
 				B3FCB14E2199558300523E92 /* UIViewController+LRFAppear.m in Sources */,
-				B32EB7082496041500420814 /* UINavigationController+LRFStyle.m in Sources */,
+				B32EB70E2498A46F00420814 /* UIViewController+LRFCompleteChild.m in Sources */,
 				B3E685532192CBB900B51AA9 /* UIControl+LRFactory.m in Sources */,
-				B32EB70B2497C90300420814 /* LRFNavigationBarStyle.m in Sources */,
 				B3FCB1442194104A00523E92 /* UIColor+LRFactory.m in Sources */,
 				B33625D91E8DFA0800C8D071 /* UIViewController+LRFactory.m in Sources */,
 				B36D12DD21E2F94D007303FD /* UIImage+LRFactory.m in Sources */,

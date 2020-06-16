@@ -7,17 +7,62 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UINavigationController+LRFStyle.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface LRFNavigationBarStyle : NSObject
+
+/**
+ *  导航栏隐藏
+ */
+@property (nonatomic, assign) BOOL isHidden;
+- (void)setIsHidden:(BOOL)isHidden animated:(BOOL)animated;
+
+/**
+ *  背景颜色
+ */
+@property (nonatomic, strong, nullable) UIColor *tintColor;
+
+/**
+ *  item字体颜色
+ */
+@property (nonatomic, strong, nullable) UIColor *itemTintColor;
+
+/**
+ * title字体样式颜色
+ */
+@property (nonatomic, copy, nullable) NSDictionary<NSAttributedStringKey,id> *titleTextAttributes;
+@property (nonatomic, strong, nullable) UIFont *titleFont;
+@property (nonatomic, strong, nullable) UIColor *titleColor;
+
+/**
+ *  底部阴影 nil为默认阴影
+ */
+@property (nonatomic, strong, nullable) UIImage *shadowImage;
+
+/**
+ *  背景图片 nil为默认图片
+ */
+@property (nonatomic, strong, nullable) UIImage *backgroundImage;
+
+/**
+ *  导航栏背景半透明
+ */
+@property (nonatomic, assign) BOOL isTranslucent;
+
+/**
+ *  导航栏背景透明
+ */
+@property (nonatomic, assign) BOOL isClear;
+
+@end
 
 @interface UIViewController (LRFNavigationBar)
 
 //edgesForExtendedLayout  UIRectEdgeNone为从导航底部开始页面
 
-- (void) lrf_hookNavigationBarStyle;
-
-@property (nonatomic, readonly) BOOL lrf_isNavigationBarStyleHandle;
-
 @property (nonatomic, readonly) LRFNavigationBarStyle *lrf_navigationBarStyle;
 
-
 @end
+
+NS_ASSUME_NONNULL_END

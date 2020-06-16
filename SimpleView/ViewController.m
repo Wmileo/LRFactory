@@ -21,14 +21,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    Class ii = [ViewController lrf_hookSubClass];
+//    Class ii = [ViewController lrf_hookSubClass];
     Class cc = [self lrf_hookSubClass];
 
     
-    LRFNavigationBarStyle *style = [[LRFNavigationBarStyle alloc] init];
-    [style bindingViewController:self];
-    style.isHidden = YES;
-    NSLog(@"%d", style.isHidden);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [cc lrf_exchangeSEL:@selector(cc_viewWillDisappear:) withSEL:@selector(viewWillDisappear:)];
@@ -50,7 +46,7 @@
     v.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:v];
 //    [self navResetTitleColor:[UIColor blueColor] font:[UIFont systemFontOfSize:40]];
-    self.title = @"testaaaaaaaaaaaaaaaaaa";
+//    self.title = @"testaaaaaaaaaaaaaaaaaa";
     
     NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
     p.lineBreakMode = NSLineBreakByTruncatingHead;

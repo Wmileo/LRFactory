@@ -51,7 +51,7 @@
     
     UINavigationController *nav = [UINavigationController lrf_navigationControllerWithRootViewController:[[ViewController alloc] init]];
     UINavigationController *nav1 = [UINavigationController lrf_navigationControllerWithRootViewController:[[ViewController alloc] init]];
-
+    
     tab.viewControllers = @[nav,nav1];
     
     self.window.rootViewController = tab;

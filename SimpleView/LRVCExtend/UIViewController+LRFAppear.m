@@ -57,7 +57,7 @@ static char keyViewHadAppeared;
 - (void)LRFAppear_viewDidDisappear:(BOOL)animated{
     [self LRFAppear_viewDidDisappear:animated];
     BOOL isForever = NO;
-    if (![self lrf_isSelfValid]) {
+    if (!lrf_isValidViewController(self)) {
         isForever = YES;
         [self lrf_viewDidDisappearForever:animated];
     }
@@ -69,7 +69,7 @@ static char keyViewHadAppeared;
 
 - (void)LRFAppear_viewWillDisappear:(BOOL)animated{
     BOOL isForever = NO;
-    if (![self lrf_isSelfValid]) {
+    if (!lrf_isValidViewController(self)) {
         isForever = YES;
         [self lrf_viewWillDisappearForever:animated];
     }
@@ -80,8 +80,9 @@ static char keyViewHadAppeared;
     [self LRFAppear_viewWillDisappear:animated];
 }
 
-- (BOOL)lrf_isSelfValid{
-    return [self.navigationController.viewControllers containsObject:self] || self.presentedViewController || [self.tabBarController.viewControllers containsObject:self];
+static BOOL lrf_isValidViewController(UIViewController *vc) {
+        return vc.parentViewController || vc.presentedViewController;
+    //    return [self.navigationController.viewControllers containsObject:self] || self.presentedViewController || [self.tabBarController.viewControllers containsObject:self] || self.parentViewController;
 }
 
 #pragma mark -

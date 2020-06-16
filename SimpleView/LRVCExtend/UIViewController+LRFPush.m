@@ -42,15 +42,17 @@ static char keyPopIgnore;
 - (void)lrf_ignoreViewController{
     if (self.navigationController) {
         NSMutableArray *vcs = [NSMutableArray arrayWithCapacity:self.navigationController.viewControllers.count];
+        __block BOOL isChange = NO;
         [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (!obj.lrf_popIgnore) {
+            if (obj.lrf_popIgnore && obj != self.navigationController.viewControllers.lastObject) {
+                isChange = YES;
+            } else{
                 [vcs addObject:obj];
             }
         }];
-        if (![vcs containsObject:self] && self.navigationController.viewControllers.lastObject == self) {
-            [vcs addObject:self];
+        if (isChange) {
+            self.navigationController.viewControllers = vcs;
         }
-        self.navigationController.viewControllers = vcs;
     }
 }
 
